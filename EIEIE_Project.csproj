@@ -1,13 +1,22 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <OutputType>Exe</OutputType>
     </PropertyGroup>
 
     <ItemGroup>
       <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EditorConfigFiles Remove="C:\SpartaCodingClub\2-3주차%28C#문법 강의%29\티팉 던전\EIEIE_Project\.editorconfig" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="C:\SpartaCodingClub\2-3주차(C#문법 강의)\티팉 던전\EIEIE_Project\.editorconfig" />
     </ItemGroup>
 
 </Project>

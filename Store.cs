@@ -2,83 +2,127 @@ namespace EIEIE_Project;
 
 public class Store
 {
-    GameManager gm = new GameManager();
-
+    GameManager gm;
     public void StoreScreen(Player player, List<Item> inventory)
     {
-        Console.Clear();
-        Console.WriteLine("»óÁ¡ \nÇÊ¿äÇÑ ¹°°ÇÀ» »ç°í ÆÈ ¼ö ÀÖ´Â °÷ÀÔ´Ï´Ù. \n");
-        Console.WriteLine($"[º¸À¯ °ñµå] : {player.Gold}G \n"); //ÀÌµû ÇÃ·¹ÀÌ¾î °ñµå ¿©±â¿¡ ³Ö¾î¾ß ÇÔ
-        Console.WriteLine("[¾ÆÀÌÅÛ ¸ñ·Ï] \n");
-
-        for (int i = 0; i < gm.itemList.Count; i++)
+        while (true)
         {
-            Item item = gm.itemList[i];
-            Console.WriteLine($" - {i}. {item.Name} | {item.Inform} | {item.Price}");
-        }
+            Console.Clear();
+            Console.WriteLine("ìƒì  \ní•„ìš”í•œ ë¬¼ê±´ì„ ì‚¬ê³  íŒ” ìˆ˜ ìˆëŠ” ê³³ì…ë‹ˆë‹¤. ìƒì ì´ë‹¤!!!!!!!!!!\n");
+            Console.WriteLine($"[ë³´ìœ  ê³¨ë“œ] : {player.Gold}G \n");
+            Console.WriteLine("[ì•„ì´í…œ ëª©ë¡] \n");
 
-        Console.WriteLine("1. ¾ÆÀÌÅÛ ±¸¸Å \n0.³ª°¡±â");
-        
-        //ÀÔ·ÂÇÑ °ªÀÌ ¼ıÀÚ°¡ ¸Â´ÂÁö È®ÀÎ
-        bool isNum = int.TryParse(Console.ReadLine(), out int input);
-        if (isNum)
-        {
-            switch (input)
+            for (int i = 0; i < gm.itemList.Count; i++)
             {
-                case 1:
-                    BuyItem(player, inventory);
-                    break;
-                case 0:
-                    break;
+                Item item = gm.itemList[i];
+                string str = item.ItemType == 1 ? "ê³µê²©ë ¥: " : "ë°©ì–´ë ¥: ";
+                string strPrice = gm.itemList[i].IsBought ? "êµ¬ë§¤ì™„ë£Œ" : $"{item.Price} G";
+                Console.WriteLine($" - {item.ChangeEquipMark()} {item.Name} | {item.ItemType} +{item.GetValue()}| {item.Inform} | {strPrice}");
             }
-        }
-        else
-        {
-            WrongInput();
+
+            Console.WriteLine("1. ì•„ì´í…œ êµ¬ë§¤ \n2. ì•„ì´í…œ íŒë§¤ \n0. ë‚˜ê°€ê¸°");
+
+            //ì…ë ¥í•œ ê°’ì´ ìˆ«ìê°€ ë§ëŠ”ì§€ í™•ì¸
+            int num = Utility.GetInput(0, 2);
+            if (num == 1) BuyItem(player, inventory);
+            else if (num == 2) SellItem(player, inventory);
+            else break;
         }
     }
 
     public void BuyItem(Player player, List<Item> inventory)
     {
-        Console.Clear();
-        Console.WriteLine("»óÁ¡ - ¾ÆÀÌÅÛ ±¸¸Å \nÇÊ¿äÇÑ ¹°°ÇÀ» ±¸¸ÅÇÕ´Ï´Ù. \n");
-        Console.WriteLine($"[º¸À¯ °ñµå] : {player.Gold} G \n"); //ÀÌµû ÇÃ·¹ÀÌ¾î °ñµå ¿©±â¿¡ ³Ö¾î¾ß ÇÔ
-        Console.WriteLine("[¾ÆÀÌÅÛ ¸ñ·Ï] \n");
-
-        for (int i = 0; i < gm.itemList.Count; i++)
+        while (true)
         {
-            Item item = gm.itemList[i];
-            string str = item.ItemType == 1 ? "°ø°İ·Â: " : "¹æ¾î·Â: ";
-            //ItemType¿¡ µû¶ó bool·Î Á¤ÇÑ °ÍÀÌ¹Ç·Î ÃßÈÄ ¾ÆÀÌÅÛ Å¸ÀÔÀÌ Ãß°¡µÉ °æ¿ì º¯°æÇØ¾ßÇÔ
-            Console.WriteLine($"{i}. {item.Name} | {str} +{item.GetValue()} | {item.Inform} | {item.Price}");
-        }
+            Console.Clear();
+            Console.WriteLine("ìƒì  - ì•„ì´í…œ êµ¬ë§¤ \nì•„ì´í…œì„ êµ¬ë§¤í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤. \n");
+            Console.WriteLine($"[ë³´ìœ  ê³¨ë“œ] : {player.Gold} G \n");
+            Console.WriteLine("[ì•„ì´í…œ ëª©ë¡] \n");
 
-        Console.WriteLine("±¸¸ÅÇÒ ¾ÆÀÌÅÛÀÇ ¹øÈ£¸¦ ´©¸£¼¼¿ä.");
-        Console.WriteLine("0. ³ª°¡±â");
-
-        Utility.GetInput(0, gm.itemList.Count);
-        bool input = int.TryParse(Console.ReadLine(), out int num);
-        if (input)
-        {
-            if (gm.itemList[num].IsBought)
+            for (int i = 0; i < gm.itemList.Count; i++)
             {
-                Console.Clear();
-                Console.WriteLine("ÀÌ¹Ì ±¸¸ÅÇÑ ¾ÆÀÌÅÛÀÔ´Ï´Ù.");
+                Item item = gm.itemList[i];
+                string str = item.ItemType == 1 ? "ê³µê²©ë ¥: " : "ë°©ì–´ë ¥: ";
+                string strPrice = gm.itemList[i].IsBought ? "êµ¬ë§¤ì™„ë£Œ" : $"{item.Price} G";
+                //ItemTypeì— ë”°ë¼ boolë¡œ ì •í•œ ê²ƒì´ë¯€ë¡œ ì¶”í›„ ì•„ì´í…œ íƒ€ì…ì´ ì¶”ê°€ë  ê²½ìš° ë³€ê²½í•´ì•¼í•¨
+                Console.WriteLine($"{i + 1}. {item.Name} | {str} +{item.GetValue()} | {item.Inform} | {strPrice}");
+            }
+
+            Console.WriteLine("êµ¬ë§¤í•  ì•„ì´í…œì˜ ë²ˆí˜¸ë¥¼ ëˆ„ë¥´ì„¸ìš”.");
+            Console.WriteLine("0. ë‚˜ê°€ê¸°");
+
+            int num = Utility.GetInput(0, gm.itemList.Count);
+
+            if (num != 0)
+            {
+                num++;
+                if (gm.itemList[num].IsBought)
+                {
+                    Console.Clear();
+                    Console.WriteLine("ì´ë¯¸ êµ¬ë§¤í•œ ì•„ì´í…œì…ë‹ˆë‹¤.");
+                }
+                else if (player.Gold >= gm.itemList[num].Price)
+                {
+                    gm.itemList[num].IsBought = true;
+                    inventory.Add(gm.itemList[num]);
+                    player.Gold -= gm.itemList[num].Price;
+                    Console.Clear();
+                    Console.WriteLine($"{gm.itemList[num].Name} ì•„ì´í…œì„ êµ¬ë§¤í–ˆìŠµë‹ˆë‹¤.");
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("ê³¨ë“œê°€ ë¶€ì¡±í•©ë‹ˆë‹¤.");
+                }
                 BuyItem(player, inventory);
             }
-            else if (player.Gold >= gm.itemList[num].Price)
+            else
             {
-                gm.itemList[num].IsBought = true;
-                inventory.Add(gm.itemList[num]);
-                Console.Clear();
-                Console.WriteLine($"{gm.itemList[num].Name}À» ±¸¸ÅÇß½À´Ï´Ù.");
+                break;
             }
         }
-        Console.WriteLine("");
     }
 
-    public void WrongInput()
+    public void SellItem(Player player, List<Item> inventory)
     {
-        Console.WriteLine("Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù.");
+        while (true)
+        {
+            Console.Clear();
+            Console.WriteLine("ìƒì  - ì•„ì´í…œ íŒë§¤ \nì•„ì´í…œì„ íŒë§¤í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤. \n");
+            Console.WriteLine($"[ë³´ìœ  ê³¨ë“œ] : {player.Gold} G \n");
+            Console.WriteLine("[ì•„ì´í…œ ëª©ë¡] \n");
+
+            for (int i = 0; i < inventory.Count; i++)//ì¸ë²¤í† ë¦¬ ì•„ì´í…œ ë§Œí¼
+            {
+                Item item = inventory[i];
+                float sellNum = (float)item.Price * 0.85f;
+                string str = item.ItemType == 1 ? "ê³µê²©ë ¥: " : "ë°©ì–´ë ¥: ";
+
+                //ItemTypeì— ë”°ë¼ boolë¡œ ì •í•œ ê²ƒì´ë¯€ë¡œ ì¶”í›„ ì•„ì´í…œ íƒ€ì…ì´ ì¶”ê°€ë  ê²½ìš° ë³€ê²½í•´ì•¼í•¨
+                //ì†Œì§€ ì¤‘ì¸ ì•„ì´í…œì˜ ë²ˆí˜¸ê°€ ì•„ì´í…œIDì™€ ê´€ê³„ ì—†ì´ ìˆœì°¨ì ìœ¼ë¡œ í‘œì‹œë¨
+                Console.WriteLine($"{i + 1}. {item.Name} | {str} +{item.GetValue()} | {item.Inform} | {sellNum.ToString("N0")}");
+            }
+            Console.WriteLine("íŒë§¤í•  ì•„ì´í…œì˜ ë²ˆí˜¸ë¥¼ ëˆ„ë¥´ì„¸ìš”.");
+            Console.WriteLine("0. ë‚˜ê°€ê¸°");
+
+            int num = Utility.GetInput(0, inventory.Count); //0ì—ì„œ ì¸ë²¤í† ë¦¬ ì•„ì´í…œ ê°œìˆ˜ê¹Œì§€
+            if (num != 0)
+            {
+                Item item = inventory[num - 1]; //ì•„ì´í…œ ìˆœë²ˆì´ 1ë¶€í„° ì‹œì‘í•˜ë¯€ë¡œ inputì—ì„œ 1ì„ ëº€ ê°’ì„ ì„ì‹œ itemì— ì¶”ê°€
+                int itemID = item.ItemID; //ì„ íƒëœ ì•„ì´í…œì˜ itemIDë¥¼ ë°˜í™˜í•¨
+                if (item.IsEquiped) item.IsEquiped = false; //ì¥ì°© ì¤‘ì´ì—ˆë‹¤ë©´ í•´ì œí•¨
+                float sellNum = inventory[num - 1].Price * 0.85f; //íŒë§¤ ê°€ê²© ì„¤ì •
+                player.Gold += (int)sellNum; //í”Œë ˆì´ì–´ ê³¨ë“œì— íŒë§¤ ê°€ê²© ì¶”ê°€
+                inventory.Remove(inventory[num - 1]); //í•´ë‹¹ ì•„ì´í…œì„ inventoryì—ì„œ ì œê±°
+                Console.Clear();
+                Console.WriteLine($"{gm.itemList[itemID - 1].Name} ì•„ì´í…œì„ íŒë§¤í–ˆìŠµë‹ˆë‹¤.");
+                SellItem(player, inventory);
+            }
+            else
+            {
+                break;
+            }
+
+        }
     }
 }
