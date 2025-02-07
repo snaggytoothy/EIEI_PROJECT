@@ -6,23 +6,23 @@ public class Utility
     {
         while (true)
         {
-            Console.Write("ì›í•˜ì‹œëŠ” í–‰ë™ì„ ì…ë ¥í•´ì£¼ì„¸ìš”.");
+            Console.Write("¿øÇÏ½Ã´Â Çàµ¿À» ÀÔ·ÂÇØÁÖ¼¼¿ä.");
             if(int.TryParse(Console.ReadLine(), out int input) && (input >= min) && (input <= max))
             return input;
             
-            Console.WriteLine("ì˜ëª»ëœ ì…ë ¥ì…ë‹ˆë‹¤. ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”.");
+            Console.WriteLine("Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù. ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä.");
         }
     }
 
     public static void Loading()
     {
         Console.Clear();
-        Console.Write("í–‰ë™ì¤‘");
+        Console.Write("Loading");
         String str = ".";
 
         for (int i = 0; i < 4; i++)
         {
-            Thread.Sleep(1000); // 1ì´ˆ ì‹œê°„ì§€ì—°
+            Thread.Sleep(1000);
             Console.Write(str);
 
         }
