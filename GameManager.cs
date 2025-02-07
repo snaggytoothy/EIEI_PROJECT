@@ -4,17 +4,46 @@ public class GameManager
 {
     public List<Item> itemList = new List<Item>()
     {
-        new Weapon{Name = "±âº» °Ë", ItemID = 1, Price = 100, ItemType = 0, Inform = "±âº» °ËÀÔ´Ï´Ù. Æ¯º°ÇÑ Á¡Àº ¾ø½À´Ï´Ù.",
+        new Weapon{Name = "ë‚¡ì€ ê²€", ItemID = 1, Price = 100, ItemType = 0, Inform = "ì˜¤ë«ë™ì•ˆ ë°©ì¹˜ëœ ë“¯ ë³´ì´ëŠ” ê²€ì…ë‹ˆë‹¤.",
         IsEquiped = false, ShopFlag = true, MonsterFlag = false, Atk = 5f},
-        new Weapon{Name = "³¯Ä«·Î¿î °Ë", ItemID = 2, Price = 250, ItemType = 0, Inform = "³¯ÀÌ Àß º­·ÁÁø °ËÀÔ´Ï´Ù.",
+        new Weapon{Name = "ì˜ˆë¦¬í•œ ê²€", ItemID = 2, Price = 250, ItemType = 0, Inform = "ì˜ˆë¦¬í•˜ê²Œ ë²¼ë ¤ì§„ ê²€ì…ë‹ˆë‹¤.",
         IsEquiped = false, ShopFlag = true, MonsterFlag = true, Atk = 8f},
-        new Weapon{Name = "½Åºñ·Î¿î °Ë", ItemID = 3, Price = 500, ItemType = 0, Inform = "ºñ¹ĞÀÌ ¸¹¾Æº¸ÀÌ´Â °ËÀÔ´Ï´Ù.",
+        new Weapon{Name = "ì‹¬ìƒì¹˜ ì•Šì€ ê²€", ItemID = 3, Price = 500, ItemType = 0, Inform = "ì‹¬ìƒì¹˜ ì•Šì€ ê¸°ìš´ì´ ëŠê»´ì§€ëŠ” ê²€ì…ë‹ˆë‹¤.",
         IsEquiped = false, ShopFlag = true, MonsterFlag = true, Atk = 10f},
-        new Armor{Name = "±âº» °©¿Ê", ItemID = 4, Price = 100, ItemType = 1, Inform = "±âº» °©¿ÊÀÔ´Ï´Ù. Æ¯º°ÇÑ Á¡Àº ¾ø½À´Ï´Ù.",
+        new Armor{Name = "ë¬´ì‡  ê°‘ì˜·", ItemID = 4, Price = 100, ItemType = 1, Inform = "í”íˆ êµ¬í•  ìˆ˜ ìˆëŠ” ê°‘ì˜·ì…ë‹ˆë‹¤.",
         IsEquiped = false, ShopFlag = true, MonsterFlag = false, Def = 5f},
-        new Armor{Name = "¹İÂ¦ÀÌ´Â °©¿Ê", ItemID = 5, Price = 300, ItemType = 1, Inform = "Àß ´Û¾Æ¼­ ¹İÂ¦ÀÌ´Â °©¿ÊÀÔ´Ï´Ù.",
+        new Armor{Name = "ë‹¨ë‹¨í•œ ê°‘ì˜·", ItemID = 5, Price = 300, ItemType = 1, Inform = "ì•„ì£¼ ë‹¨ë‹¨í•œ ê°‘ì˜·ì…ë‹ˆë‹¤.",
         IsEquiped = false, ShopFlag = true, MonsterFlag = true, Def = 8f},
-        new Armor{Name = "½Åºñ·Î¿î °©¿Ê", ItemID = 6, Price = 700, ItemType = 1, Inform = "ºñ¹ĞÀÌ ¸¹¾Æº¸ÀÌ´Â °©¿ÊÀÔ´Ï´Ù.",
+        new Armor{Name = "ì‹¬ìƒì¹˜ ì•Šì€ ê°‘ì˜·", ItemID = 6, Price = 700, ItemType = 1, Inform = "ì‹¬ìƒì¹˜ ì•Šì€ ê¸°ìš´ì´ ëŠê»´ì§€ëŠ” ê°‘ì˜·ì…ë‹ˆë‹¤..",
         IsEquiped = false, ShopFlag = true, MonsterFlag = true, Def = 12f},
+        new Consumable{Name = "íšŒë³µ ë¬¼ì•½", ItemID = 7, Price = 50, ItemType = 2, Inform = "ì²´ë ¥ì„ íšŒë³µì‹œì¼œ ì¤ë‹ˆë‹¤."},
+        new Consumable{Name = "ì‹¸ì›€ê¾¼ì˜ ë¬¼ì•½", ItemID = 8, Price = 100, ItemType = 2, Inform = "ê³µê²©ë ¥ì„ ì˜¬ë ¤ì¤ë‹ˆë‹¤."}
     };
+    public List<Equipment> equipments = new List<Equipment>();
+    public List<Consumable> consumables = new List<Consumable>();
+    public void InitItem()
+    {
+        foreach (Item nowitem in itemList)
+        {
+            if (nowitem is Equipment equipment)
+            {
+                equipments.Add(equipment);
+            }
+            else if (now)
+        }
+    }
+
+
+
+
+
+
+
+    public Player player = new Player() { Level = 1, Name = "", MaxHP = 10, NowHP = 10, Atk = 1, Def = 1, Job = "", Gold = 1500, MaxExp = 10, NowExp = 0, MaxMP = 10, NowMP = 10 };
+
+    public List<Equipment> InventoryEquipment = new List<Equipment>();  //ì¸ë²¤í† ë¦¬ ë¦¬ìŠ¤íŠ¸
+    public List<Consumable> InventoryConsumables = new List<Consumable>(); // ì†Œëª¨í’ˆ ë¦¬ìŠ¤íŠ¸
+
+    public int killCount = 0;
+    public int attackCount = 0;
 }
