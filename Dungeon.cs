@@ -1,11 +1,6 @@
 using System;
 using System.Numerics;
-
 namespace EIEIE_Project;
-
-
-
-
 
 class Dungeon
 {
@@ -75,8 +70,61 @@ class Dungeon
 
     }
 
+    public void DungeonProgress(Player player, List<Item> inventory, List<Item> EntireItem,int level)
+    {
+        //플레이어의 진입시 상태를 저장
+        Player tempPlayer = new Player() { NowExp = player.NowExp, Gold = player.Gold, NowHP = player.NowHP, Level = player.Level };
+        List<Monster> monsters = new List<Monster>();
+        int input;
+        if (level == 1)
+        {
+            while (true)
+            {
+                monsters.Add(new Monster(1));
+                monsters.Add(new Monster(2));
+                monsters.Add(new Monster(3));
+
+                Console.WriteLine("Battle!!");
+                Console.WriteLine();
+                for (int i = 0; i < monsters.Count; i++)
+                {
+                    if (monsters[i].IsDead == true)
+                    {
+                        Console.WriteLine("{0} Lv {1} {2}   HP {3} / {4}", i, monsters[i].Name, monsters[i].Level, monsters[i].NowHP, monsters[i].MaxHP);
+                    }
+                    else if (monsters[i].IsDead == false)
+                    {
+                        Console.WriteLine("{0} Lv {1} {2}   Dead", i, monsters[i].Name, monsters[i].Level);
+                    }
+                }
+    
+                Console.WriteLine("[내정보]");
+                Console.WriteLine("Lv. {0}  {1}  ({2})", player.Level, player.Name, player.Job);
+                Console.WriteLine("HP {0}/{1}", player.NowHP, player.MaxHP);
+                Console.WriteLine();
+                Console.WriteLine("0. 턴종료");
+                Console.WriteLine();
+                Console.WriteLine("대상을 선택해주세요");
+                Console.Write(">>>");
+                input = Utility.GetInput(1, monsters.Count);
 
 
+            }
+                
+        }
+        else if (level == 2)
+        {
+
+        }
+        else if (level == 3)
+        {
+
+        }
+        else
+        {
+            //예외처리
+        }
+    }
 }
 
 

@@ -4,17 +4,20 @@ public class GameManager
 {
     public List<Item> itemList = new List<Item>()
     {
-        new Weapon{Name = "±âº» °Ë", ItemID = 1, Price = 100, ItemType = 0, Inform = "±âº» °ËÀÔ´Ï´Ù. Æ¯º°ÇÑ Á¡Àº ¾ø½À´Ï´Ù.",
+        new Weapon{Name = "ï¿½âº» ï¿½ï¿½", ItemID = 1, Price = 100, ItemType = 0, Inform = "ï¿½âº» ï¿½ï¿½ï¿½Ô´Ï´ï¿½. Æ¯ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.",
         IsEquiped = false, ShopFlag = true, MonsterFlag = false, Atk = 5f},
-        new Weapon{Name = "³¯Ä«·Î¿î °Ë", ItemID = 2, Price = 250, ItemType = 0, Inform = "³¯ÀÌ Àß º­·ÁÁø °ËÀÔ´Ï´Ù.",
+        new Weapon{Name = "ï¿½ï¿½Ä«ï¿½Î¿ï¿½ ï¿½ï¿½", ItemID = 2, Price = 250, ItemType = 0, Inform = "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ô´Ï´ï¿½.",
         IsEquiped = false, ShopFlag = true, MonsterFlag = true, Atk = 8f},
-        new Weapon{Name = "½Åºñ·Î¿î °Ë", ItemID = 3, Price = 500, ItemType = 0, Inform = "ºñ¹ÐÀÌ ¸¹¾Æº¸ÀÌ´Â °ËÀÔ´Ï´Ù.",
+        new Weapon{Name = "ï¿½Åºï¿½Î¿ï¿½ ï¿½ï¿½", ItemID = 3, Price = 500, ItemType = 0, Inform = "ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æºï¿½ï¿½Ì´ï¿½ ï¿½ï¿½ï¿½Ô´Ï´ï¿½.",
         IsEquiped = false, ShopFlag = true, MonsterFlag = true, Atk = 10f},
-        new Armor{Name = "±âº» °©¿Ê", ItemID = 4, Price = 100, ItemType = 1, Inform = "±âº» °©¿ÊÀÔ´Ï´Ù. Æ¯º°ÇÑ Á¡Àº ¾ø½À´Ï´Ù.",
+        new Armor{Name = "ï¿½âº» ï¿½ï¿½ï¿½ï¿½", ItemID = 4, Price = 100, ItemType = 1, Inform = "ï¿½âº» ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½. Æ¯ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.",
         IsEquiped = false, ShopFlag = true, MonsterFlag = false, Def = 5f},
-        new Armor{Name = "¹ÝÂ¦ÀÌ´Â °©¿Ê", ItemID = 5, Price = 300, ItemType = 1, Inform = "Àß ´Û¾Æ¼­ ¹ÝÂ¦ÀÌ´Â °©¿ÊÀÔ´Ï´Ù.",
+        new Armor{Name = "ï¿½ï¿½Â¦ï¿½Ì´ï¿½ ï¿½ï¿½ï¿½ï¿½", ItemID = 5, Price = 300, ItemType = 1, Inform = "ï¿½ï¿½ ï¿½Û¾Æ¼ï¿½ ï¿½ï¿½Â¦ï¿½Ì´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.",
         IsEquiped = false, ShopFlag = true, MonsterFlag = true, Def = 8f},
-        new Armor{Name = "½Åºñ·Î¿î °©¿Ê", ItemID = 6, Price = 700, ItemType = 1, Inform = "ºñ¹ÐÀÌ ¸¹¾Æº¸ÀÌ´Â °©¿ÊÀÔ´Ï´Ù.",
+        new Armor{Name = "ï¿½Åºï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½", ItemID = 6, Price = 700, ItemType = 1, Inform = "ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æºï¿½ï¿½Ì´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.",
         IsEquiped = false, ShopFlag = true, MonsterFlag = true, Def = 12f},
     };
+
+    public Player player = new Player() { Level = 1, Name = "", MaxHP = 10, NowHP = 10, Atk = 1, Def = 1, Job = "", Gold = 1500, MaxExp = 10, NowExp = 0 , MaxMP = 10, NowMP = 10};
+    
 }

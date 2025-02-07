@@ -16,7 +16,7 @@ public class DungeonFail
             //유저스탯 - 레벨 / 이름
             Console.WriteLine("Lv. {0} NAME : {1}", player.Level, player.Name);
             //입장시점 HP -> 0
-            Console.WriteLine("HP {0} -> {1}", tempPlayer.HP, player.HP);
+            Console.WriteLine("HP {0} -> {1}", tempPlayer.NowHP, player.NowHP);
 
             Console.WriteLine();
             Console.WriteLine("1. 게임종료");
