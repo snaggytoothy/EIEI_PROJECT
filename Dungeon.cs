@@ -41,7 +41,7 @@ class Dungeon
 
     public void EasyScreen(GameManager gameManager)
     {
-
+        int cmd;
         Console.WriteLine("던전을 걸어가고 있습니다.");
         for (int i = 0; i < 3; i++)
         {
@@ -60,14 +60,23 @@ class Dungeon
 
         Console.WriteLine();
         Console.WriteLine("0. 도망가기");
+        Console.WriteLine("1. 진입하기");
         Console.WriteLine();
 
-        Utility.GetInput(0, 0);
-        DungeonProgress(gameManager, 1); // 던전입구 입장
+        cmd = Utility.GetInput(0, 1);
+        if (cmd == 0)
+        {
+            return;
+        }
+        else if (cmd == 1) 
+        {
+            DungeonProgress(gameManager, 1); // 던전입구 입장
+        }
     }
 
     public void NormalScreen(GameManager gameManager)
     {
+        int cmd;
         Console.WriteLine("던전을 걸어가고 있습니다.");
         for (int i = 0; i < 3; i++)
         {
@@ -87,14 +96,23 @@ class Dungeon
 
         Console.WriteLine();
         Console.WriteLine("0. 도망가기");
+        Console.WriteLine("1. 진입하기");
         Console.WriteLine();
 
-        Utility.GetInput(0, 0);
-        DungeonProgress(gameManager, 2); // 던전입구 입장
+        cmd = Utility.GetInput(0, 1);
+        if (cmd == 0)
+        {
+            return;
+        }
+        else if (cmd == 1)
+        {
+            DungeonProgress(gameManager, 2); // 던전입구 입장
+        }
     }
 
     public void HardScreen(GameManager gameManager)
     {
+        int cmd;
         Console.WriteLine("던전을 걸어가고 있습니다.");
         for (int i = 0; i < 3; i++)
         {
@@ -116,8 +134,20 @@ class Dungeon
         Console.WriteLine("0. 도망가기");
         Console.WriteLine();
 
-        Utility.GetInput(0, 0);
-        DungeonProgress(gameManager, 3); // 던전입구 입장 // 임시저장
+        Console.WriteLine();
+        Console.WriteLine("0. 도망가기");
+        Console.WriteLine("1. 진입하기");
+        Console.WriteLine();
+
+        cmd = Utility.GetInput(0, 1);
+        if (cmd == 0)
+        {
+            return;
+        }
+        else if (cmd == 1)
+        {
+            DungeonProgress(gameManager, 3); // 던전입구 입장
+        }
 
     }
 
@@ -381,6 +411,20 @@ class Dungeon
 
         while (true)
         {
+            Console.Clear();
+
+            for (int i = 0; i < monsters.Count; i++)
+            {
+                if (monsters[i].IsDead == false)
+                {
+                    Console.WriteLine("{0} Lv {1} {2}   HP {3} / {4}", i + 1, monsters[i].Name, monsters[i].Level, monsters[i].NowHP, monsters[i].MaxHP);
+                }
+                else if (monsters[i].IsDead == true)
+                {
+                    Console.WriteLine("{0} Lv {1} {2}   Dead", i + 1, monsters[i].Name, monsters[i].Level);
+                }
+            }
+
             input = Utility.GetInput(1, monsters.Count);
             tempHP = monsters[input - 1].NowHP;
             if (monsters[input - 1].IsDead == true)
