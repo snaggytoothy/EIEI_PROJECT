@@ -5,7 +5,7 @@ namespace EIEIE_Project;
 
 class Dungeon
 {
-    public void DoorDungeon()
+    public void DoorDungeon(GameManager gameManager)
     {
         Utility.Loading();
 
@@ -34,14 +34,12 @@ class Dungeon
                 //HardScreen();
                 break;
         }
-
     }
   
-    public void EasyScreen()
-    {   
-        //렙 제한
-        
 
+
+    public void EasyScreen(GameManager gameManager)
+    {
 
         Console.WriteLine("던전을 걸어가고 있습니다.");
         for (int i = 0; i < 3; i++)
@@ -64,17 +62,61 @@ class Dungeon
         Console.WriteLine();
 
         Utility.GetInput(0, 0);
-        DoorDungeon(); // 던전입구 입장
+        DoorDungeon(gameManager); // 던전입구 입장
     }
 
-    public void NormalScreen()
+    public void NormalScreen(GameManager gameManager)
     {
+        Console.WriteLine("던전을 걸어가고 있습니다.");
+        for (int i = 0; i < 3; i++)
+        {
+            Console.WriteLine("뚜벅");
+            Thread.Sleep(1000); // 1초 시간지연
+        }
 
+        Console.WriteLine();
+        Console.WriteLine("이제 모험가라고 불릴 수 있는 단계입니다.");
+        Console.WriteLine("난이도 보통입니다.");
+        Console.WriteLine();
+
+        // Utility(캐릭터 상태창);
+
+        Console.WriteLine("캐릭터의 정보가 표시됩니다.");
+
+
+        Console.WriteLine();
+        Console.WriteLine("0. 도망가기");
+        Console.WriteLine();
+
+        Utility.GetInput(0, 0);
+        DoorDungeon(gameManager); // 던전입구 입장
     }
 
-    public void HardScreen()
+    public void HardScreen(GameManager gameManager)
     {
+        Console.WriteLine("던전을 걸어가고 있습니다.");
+        for (int i = 0; i < 3; i++)
+        {
+            Console.WriteLine("뚜벅");
+            Thread.Sleep(1000); // 1초 시간지연
+        }
 
+        Console.WriteLine();
+        Console.WriteLine("상당히 무서운 몬스터들이 있는 던전입니다 조심하세요 순식간에 사망합니다.");
+        Console.WriteLine("난이도 어려움입니다.");
+        Console.WriteLine();
+
+        // Utility(캐릭터 상태창);
+
+        Console.WriteLine("캐릭터의 정보가 표시됩니다.");
+
+
+        Console.WriteLine();
+        Console.WriteLine("0. 도망가기");
+        Console.WriteLine();
+
+        Utility.GetInput(0, 0);
+        DoorDungeon(gameManager); // 던전입구 입장 // 임시저장
 
     }
 
