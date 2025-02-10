@@ -12,6 +12,7 @@ public class Start()
     {
         GameManager gameManager = new();
         Inventory inventory = new();
+
         StartGame(gameManager);
         inventory.InventoryScene(gameManager);
     }
@@ -61,47 +62,22 @@ public class Start()
                     Information.Status();
                     break;
                 case 2:
-
+                    //인벤토리
+                    //Bag.inventory(this);
                     break;
                 case 3:
-
+                    Store store = new();
+                    store.StoreScreen(gameManager.player, gameManager.itemList);
                     break;
                 case 4:
-
+                    Dungeon dungeon = new();
+                    dungeon.DoorDungeon(gameManager);
                     break;
                 case 5:
-
+                    //휴식
+                    //-500 골드 && hp 100으로 회복
                     break;
 
-            }
-
-            if (act == 1)
-            {
-                //Information.Status();
-            }
-            else if (act == 2)
-            {
-                //인벤토리
-                //Bag.inventory(this);
-            }
-            else if (act == 3)
-            {
-                //상점
-                //Shop.store(this);
-            }
-            else if (act == 4)
-            {
-                //던전
-                //hell.dungeon(this);
-            }
-            else if (act == 5)
-            {
-                //휴식
-                //-500 골드 && hp 100으로 회복
-            }
-            else
-            {
-                //예외처리
             }
         }
     }
