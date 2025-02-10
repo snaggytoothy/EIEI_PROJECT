@@ -1,8 +1,21 @@
+using System.Runtime.CompilerServices;
+
 namespace EIEIE_Project;
 
 public class Character
 {
-    public int Level { get; set; }
+    protected int level;
+    public virtual int Level
+    {
+        get
+        {
+            return level;
+        }
+        set
+        {
+            level = value;
+        }
+    }
     public string Name { get; set; }
     public float Atk { get; set; }
     public float Def { get; set; }
@@ -19,12 +32,48 @@ public class Character
     }
 }
 public class Player : Character
-{
+{    
+    public override int Level
+    {
+        get
+        {
+            return level;
+        }
+        set
+        {
+            if(level != value)
+            {
+                level = value;
+                Atk += (level - 1) * 0.5f;
+                Def += (level - 1) * 1f;
+            }
+        }
+    }
     public string Job { get; set; }
     public float MaxMP { get; set; }
     public float NowMP { get; set; }
     public int MaxExp { get; set; }
-    public int NowExp { get; set; }
+    private int nowExp;
+    public int NowExp
+    {
+        get
+        {
+            return nowExp;
+        }
+        set
+        {
+            if(nowExp != value)
+            {
+                nowExp += value;
+                if(nowExp == MaxExp)
+                {
+                    nowExp = 0;
+                    MaxExp += 15 * Level;
+                    Level++;
+                }
+            }
+        }
+    }
     public int Gold { get; set; }
 }
 
