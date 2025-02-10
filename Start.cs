@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Xml.Linq;
 using System;
 using System.ComponentModel.Design;
+using Microsoft.VisualBasic;
 namespace EIEIE_Project;
 
 public class Start()
@@ -13,6 +14,7 @@ public class Start()
     static void Main(string[] args)
     {
         GameManager gameManager = new();
+
 
         StartGame(gameManager);
     }
@@ -29,16 +31,15 @@ public class Start()
             Console.Clear();
             Console.WriteLine($"안녕하세요! {gameManager.player.Name}님!\n계속해서 이 이름으로 불러 드릴까요?");
             Console.WriteLine("1. 네 2. 아니오");
-            string namesure = Console.ReadLine() ?? "기본값";
 
-            namesure = Utility.GetInput(1, 2).ToString();
+            int namesure = Utility.GetInput(1, 2);
             switch (namesure)
             {
-                case "1":
+                case 1:
                     Console.Clear();
                     SelectMenu(gameManager);
                     break;
-                case "2":
+                case 2:
                     Console.Clear();
                     Console.WriteLine("이름을 바꿀 수 있는 기회는 지금 밖에 없습니다. 신중히 입력해주세요!");
                     continue; //다시 물어보기.
@@ -58,9 +59,9 @@ public class Start()
         {
             Console.Clear();
             Console.WriteLine("이곳에서 던전으로 들어가기전 활동을 할 수 있습니다.");
-            Console.WriteLine("1. 상태 보기 2. 인벤토리 3. 상점 4. 던전 입장 5. 휴식하기 | 0. 게임종료");
+            Console.WriteLine("1. 상태 보기 \n2. 인벤토리 \n3. 상점 \n4. 던전 입장 \n5. 휴식하기 \n\n0. 게임종료");
 
-            act = Utility.GetInput(1, 5);
+            act = Utility.GetInput(0, 5);
             switch (act)
             {
                 case 1:
@@ -70,7 +71,7 @@ public class Start()
                     inventory.InventoryScene(gameManager);
                     break;
                 case 3:
-                    store.StoreScreen(gameManager.player, gameManager.itemList);
+                    store.StoreScreen(gameManager, gameManager.itemList);
                     break;
                 case 4:
                     dungeon.DoorDungeon(gameManager);
@@ -78,23 +79,28 @@ public class Start()
                 case 5:
                     RestScreen(player);
                     break;
+                case 0:
+                    Environment.Exit(0);
+                    break;
             }
         }
     }
     public static void Status(GameManager gameManager)
     {
-        int act;
         Console.Clear();
         Console.WriteLine($"<상태 보기>\n{gameManager.player.Name}님의 캐릭터 정보가 표시됩니다.\r\n");
         Console.WriteLine($"Lv. {gameManager.player.Level}");
-        Console.WriteLine($"{gameManager.player.Name} {gameManager.player.Job}");
+        Console.WriteLine($"{gameManager.player.Name} ({gameManager.player.Job})");
         Console.WriteLine($"공격력: {gameManager.player.Atk}");
         Console.WriteLine($"방어력: {gameManager.player.Def}");
         Console.WriteLine($"체력: {gameManager.player.NowHP}\nGold: {gameManager.player.Gold} G");
-        Console.WriteLine("\r\n0. 나가기\n원하시는 행동을 입력해주세요.");
-        if (int.TryParse(Console.ReadLine(), out act))
+        Console.WriteLine("\r\n0. 나가기");
+        int act = Utility.GetInput(0, 0);
+
+        if (act == 0)
         {
             Console.Clear();
+            SelectMenu(gameManager);
         }
         Console.Clear();
     }

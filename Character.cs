@@ -135,6 +135,17 @@ public class Monster : Character // Monster 캐릭터 관리
             this.NowHP = 70;
             Console.WriteLine("설명: 검은 판급갑옷, 검은 대검 or 검은 방패 한손무기 장착, 발생 원인은 파악을 못 하였으나 전쟁터에서 죽은 사람의 원혼이 뭉쳐서 탄생한다는 소문이 있다, ");
         }
+        //else if (id == ) // 수진님 몬스터
+        //{
+        //    this.MonsterType = 1;
+        //    this.MonsterID = id;
+        //    this.Level = 3;
+        //    this.Name = "고스트[브론즈]"; //  
+        //    this.Atk = 3;
+        //    this.Def = 5;
+        //    this.MaxHP = 50;
+        //    this.NowHP = 50;
+        //}
 
         //else if (id == )
         //{
@@ -184,6 +195,10 @@ public class Monster : Character // Monster 캐릭터 관리
         //{
         //    //예외처리
         //}
+        else
+        {
+            //예외처리
+        }
 
     }
 }
