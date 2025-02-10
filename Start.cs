@@ -15,6 +15,7 @@ public class Start()
     {
         GameManager gameManager = new();
 
+
         StartGame(gameManager);
     }
 
@@ -70,7 +71,7 @@ public class Start()
                     inventory.InventoryScene(gameManager);
                     break;
                 case 3:
-                    store.StoreScreen(gameManager.player, gameManager.itemList);
+                    store.StoreScreen(gameManager, gameManager.itemList);
                     break;
                 case 4:
                     dungeon.DoorDungeon(gameManager);
@@ -93,7 +94,7 @@ public class Start()
         Console.WriteLine($"공격력: {gameManager.player.Atk}");
         Console.WriteLine($"방어력: {gameManager.player.Def}");
         Console.WriteLine($"체력: {gameManager.player.NowHP}\nGold: {gameManager.player.Gold} G");
-        Console.WriteLine("\r\n0. 나가기\n원하시는 행동을 입력해주세요.");
+        Console.WriteLine("\r\n0. 나가기");
         int act = Utility.GetInput(0, 0);
 
         if (act == 0)
@@ -101,14 +102,6 @@ public class Start()
             Console.Clear();
             SelectMenu(gameManager);
         }
-        //if (int.TryParse(Console.ReadLine(), out act))
-        //{
-        //    if (act == 0)
-        //    {
-        //        Console.Clear();
-        //        Status(gameManager);
-        //    }
-        //}
         Console.Clear();
     }
 

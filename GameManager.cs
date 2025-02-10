@@ -2,6 +2,11 @@ namespace EIEIE_Project;
 
 public class GameManager
 {
+    public GameManager()
+    {
+        InitItem();
+    }
+
     public List<Item> itemList = new List<Item>()
     {
         new Weapon{Name = "낡은 검", ItemID = 1, Price = 100, ItemType = 0, Inform = "오랫동안 방치된 듯 보이는 검입니다.",
