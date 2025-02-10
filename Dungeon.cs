@@ -37,7 +37,7 @@ class Dungeon
         }
 
     }
-  
+
     public void EasyScreen(GameManager gameManager)
     {
 
