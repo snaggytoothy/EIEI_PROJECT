@@ -53,4 +53,5 @@ public class GameManager
 
     public int killCount = 0;
     public int attackCount = 0;
+    public int exitFlag = 0;
 }
