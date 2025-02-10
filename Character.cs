@@ -77,7 +77,7 @@ public class Monster : Character // Monster 캐릭터 관리
             this.MonsterType = 2;
             this.MonsterID = id;
             this.Level = 6;
-            this.Name = "홉 고블린[브론즈]"; // EasyScreen 
+            this.Name = "홉 고블린[레어 브론즈]"; // EasyScreen 
             this.Atk = 6;
             this.Def = 5;
             this.MaxHP = 45;
@@ -92,7 +92,7 @@ public class Monster : Character // Monster 캐릭터 관리
             this.Name = "스켈레톤[스톤]"; // NormalScreen
             this.Atk = 2;
             this.Def = 1;
-            this.MaxHP = 20;
+            this.MaxHP = 15;
             this.NowHP = 20;
             Console.WriteLine("설명: 아무 장비도 장착 안 되어있는 그냥 스켈레톤이다 하지만 무리지어 다니기 때문에 다구리에 장사없으니 조심하자.");
         }
@@ -100,11 +100,11 @@ public class Monster : Character // Monster 캐릭터 관리
         {
             this.MonsterType = 1;
             this.MonsterID = id;
-            this.Level = 3;
+            this.Level = 4;
             this.Name = "궁수 스켈레톤[스톤]"; // NormalScreen
-            this.Atk = 4;
+            this.Atk = 5;
             this.Def = 2;
-            this.MaxHP = 20;
+            this.MaxHP = 15;
             this.NowHP = 20;
             Console.WriteLine("설명: 활, 가죽 누더기를 장착하고있다, 죽기전에는 궁수였던거 같다.");
 
@@ -117,11 +117,23 @@ public class Monster : Character // Monster 캐릭터 관리
             this.Level = 3;
             this.Name = "전사 스켈레톤[스톤]"; // NormalScreen
             this.Atk = 4;
-            this.Def = 2;
-            this.MaxHP = 20;
+            this.Def = 3;
+            this.MaxHP = 16;
             this.NowHP = 20;
-            Console.WriteLine("설명: ");
+            Console.WriteLine("설명: 들고있는 근접 무기가 다양하다, 대부분 녹슨 사슬갑옷을 장착, 죽기전에 전사였던거 같다.");
 
+        }
+        else if (id == 8) // 수진님 몬스터
+        {
+            this.MonsterType = 2;
+            this.MonsterID = id;
+            this.Level = 7;
+            this.Name = "War 고스트[레어 아이언]"; // NormalScreen
+            this.Atk = 7;
+            this.Def = 6;
+            this.MaxHP = 70;
+            this.NowHP = 70;
+            Console.WriteLine("설명: 검은 판급갑옷, 검은 대검 or 검은 방패 한손무기 장착, 발생 원인은 파악을 못 하였으나 전쟁터에서 죽은 사람의 원혼이 뭉쳐서 탄생한다는 소문이 있다, ");
         }
         //else if (id == ) // 수진님 몬스터
         //{
@@ -178,6 +190,10 @@ public class Monster : Character // Monster 캐릭터 관리
         //    this.Def = 5;
         //    this.MaxHP = 600;
         //    this.NowHP = 600;
+        //}
+        //else
+        //{
+        //    //예외처리
         //}
         else
         {
