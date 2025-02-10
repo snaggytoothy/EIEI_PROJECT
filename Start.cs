@@ -7,17 +7,16 @@ namespace EIEIE_Project;
 
 public class Start()
 {
-    Information info = new();
+    private static int restNum = 500;
     static void Main(string[] args)
     {
         GameManager gameManager = new();
         Inventory inventory = new();
 
-        StartGame(gameManager);
-        inventory.InventoryScene(gameManager);
+        StartGame(gameManager, inventory);
     }
 
-    public static void StartGame(GameManager gameManager)
+    public static void StartGame(GameManager gameManager, Inventory inventory)
     {
         while (true)
         {
@@ -49,6 +48,11 @@ public class Start()
     public static void SelectMenu(GameManager gameManager) //활동 선택
     {
         int act;
+        Inventory inventory = new();
+        Store store = new();
+        Dungeon dungeon = new();
+        Player player = new();
+
         while (true)
         {
             Console.Clear();
@@ -59,30 +63,23 @@ public class Start()
             switch (act)
             {
                 case 1:
-                    Information.Status(gameManager);
+                    Status(gameManager);
                     break;
                 case 2:
                     inventory.InventoryScene(gameManager);
                     break;
                 case 3:
-                    Store store = new();
                     store.StoreScreen(gameManager.player, gameManager.itemList);
                     break;
                 case 4:
-                    Dungeon dungeon = new();
                     dungeon.DoorDungeon(gameManager);
                     break;
                 case 5:
-                    //휴식
-                    //-500 골드 && hp 100으로 회복
+                    RestScreen(player);
                     break;
-
             }
         }
     }
-}
-public class Information()
-{
     public static void Status(GameManager gameManager)
     {
         int act;
@@ -99,5 +96,49 @@ public class Information()
             Console.Clear();
         }
         Console.Clear();
+    }
+
+    public static void RestScreen(Player player)
+    {
+        Console.Clear();
+        Console.WriteLine("당신은 꽤 깔끔해보이는 동굴을 발견했습니다.");
+        Console.WriteLine("\"여긴 내 집인데.\" 낯선 늙은이가 말합니다.");
+        Console.WriteLine($"\"뭐... 돈을 조금 낸다면 쉬게 해주지. 단돈 {restNum} 골드라고. \"");
+        Console.WriteLine($"휴식합니까? 현재 지닌 골드는 {player.Gold} 입니다.");
+        Console.WriteLine("1. 휴식하기 \n0.나가기");
+
+        int num = Utility.GetInput(0, 1);
+        switch (num)
+        {
+            case 0:
+                break;
+            case 1:
+                Rest(player);
+                break;
+        }
+    }
+
+    public static void Rest(Player player)
+    {
+        Console.Clear();
+        if (player.NowHP == player.MaxHP) Console.WriteLine("이미 체력이 가득찼습니다.");
+        //플레이어의 체력이 가득찼을 경우 불필요하게 골드를 소모하지 못하게 막음
+        else if (player.Gold < restNum) Console.WriteLine("골드가 부족합니다. \"썩 꺼져.\" 늙은이가 말합니다.");
+        //골드가 부족하면 휴식하지 못하게 함
+        else
+        {
+            int num = Utility.GetInput(0, 1);
+            switch (num)
+            {
+                case 0:
+                    break;
+                case 1:
+                    player.Gold -= restNum;
+                    player.NowHP = player.MaxHP;
+                    Console.WriteLine("체력이 회복되었습니다. \"또 오라고.\" 늙은이가 켈켈 웃습니다.");
+                    break;
+            }
+        }
+        RestScreen(player);
     }
 }
