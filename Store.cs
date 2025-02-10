@@ -51,7 +51,7 @@ public class Store
 
             PrintItem(gm, inventory);
 
-            Console.WriteLine("1. 아이템 구매 \n2. 아이템 판매 \n0.나가기");
+            Console.WriteLine("1. 아이템 구매 \n2. 아이템 판매 \n0. 나가기");
             int num = Utility.GetInput(0, 2);
             if (num == 1) BuyItem(gm, inventory);
             else if (num == 2) SellItem(gm, inventory);
@@ -93,7 +93,8 @@ public class Store
                         gm.inventoryEquipment.Add(item); //인벤토리에 아이템 추가
                         gm.player.Gold -= item.Price; //골드 차감
                         Console.Clear();
-                        Console.WriteLine($"{item.Name} 아이템을 구매했습니다.");
+                        Console.WriteLine($"{item.Name} 아이템을 구매했습니다.\n 나가려면 아무 키나 누르세요.");
+                        Console.ReadKey();
                     }
                     else
                     {
@@ -113,7 +114,8 @@ public class Store
                             gm.player.Gold -= item.Price; //골드 차감
                             item.Count++; //소모품 개수 1 증가
                             Console.Clear();
-                            Console.WriteLine($"{item.Name} 아이템을 구매했습니다.");
+                            Console.WriteLine($"{item.Name} 아이템을 구매했습니다.\n나가려면 아무 키나 누르세요.");
+                            Console.ReadKey();
                         }
                         else
                         {

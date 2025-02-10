@@ -64,11 +64,11 @@ public class Inventory
             Console.WriteLine("[장비 목록]");
             for (int i = 0; i < gameManager.inventoryEquipment.Count; i++)
             {
-                if (gameManager.inventoryEquipment[i].ItemType == 1)
+                if (gameManager.inventoryEquipment[i].ItemType == 0)
                 {
                     Console.WriteLine($"-{i + 1}. {gameManager.inventoryEquipment[i].ChangeEquipMark()}{gameManager.inventoryEquipment[i].Name} | 공격력 +{gameManager.inventoryEquipment[i].GetValue()} | {gameManager.inventoryEquipment[i].Inform}");
                 }
-                else if (gameManager.inventoryEquipment[i].ItemType == 2)
+                else if (gameManager.inventoryEquipment[i].ItemType == 1)
                 {
                     Console.WriteLine($"-{i + 1}. {gameManager.inventoryEquipment[i].ChangeEquipMark()}{gameManager.inventoryEquipment[i].Name} | 방어력 +{gameManager.inventoryEquipment[i].GetValue()} | {gameManager.inventoryEquipment[i].Inform}");
                 }
