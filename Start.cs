@@ -166,9 +166,9 @@ public class Start()
     public static void Rest(Player player)
     {
         Console.Clear();
-        if (player.NowHP == player.MaxHP) Console.WriteLine("이미 체력이 가득찼습니다.");
+        if (player.NowHP == player.MaxHP) Console.WriteLine("이미 체력이 가득찼습니다.(아무 키나 눌러 확인)");
         //플레이어의 체력이 가득찼을 경우 불필요하게 골드를 소모하지 못하게 막음
-        else if (player.Gold < restNum) Console.WriteLine("골드가 부족합니다. \"썩 꺼져.\" 늙은이가 말합니다.");
+        else if (player.Gold < restNum) Console.WriteLine("골드가 부족합니다. \"썩 꺼져.\" 늙은이가 말합니다.(아무 키나 눌러 확인)");
         //골드가 부족하면 휴식하지 못하게 함
         else
         {
@@ -180,7 +180,8 @@ public class Start()
             {
                 player.NowHP = player.MaxHP;//만약 현재 HP 가 최대 HP를 넘어서면 최대 HP로 설정
             }
-            Console.WriteLine($"체력이 {healAmount} 회복되었습니다. \"또 오라고.\" 늙은이가 켈켈 웃습니다.");
+            Console.WriteLine($"체력이 {healAmount} 회복되었습니다. \"또 오라고.\" 늙은이가 켈켈 웃습니다.(아무 키나 눌러 확인)");
         }
+        Console.ReadKey();
     }
 }
