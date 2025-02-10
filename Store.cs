@@ -5,72 +5,74 @@ namespace EIEIE_Project;
 
 public class Store
 {
-    bool IsSellOrBuy = false;
+    bool IsSellOrBuy = false; //구매, 또는 판매 중일 때 true가 됨
 
-    public void PrintItem(GameManager gm)
+    public void PrintItem(GameManager gm) //아이템 목록을 출력함
     {
-        string strNum = " - ";
+        string strNum = " - "; //strNum 값을 " - "로 초기화
         Console.WriteLine("==장비=============");
         for (int i = 0; i < gm.equipments.Count; i++)
         {
-            if (!IsSellOrBuy) strNum = " - ";
-            else
+            if (!IsSellOrBuy) strNum = " - ";  //상점 창에서 아이템 번호 대신 " - "를 출력함
+            else //구매 또는 판매 중일 때
             {
-                int number = i + 1;
-                strNum = number.ToString() + ".";
+                int number = i + 1; //아이템 번호 값에 1을 더해 1번부터 시작하게 함
+                strNum = number.ToString() + "."; //아이템 번호를 문자열로 변환해 strNum에 저장
             }
-            Equipment item = gm.equipments[i];
-            string str = item.ItemType == 0 ? "공격력: " : "방어력: ";
-            string strPrice = item.IsBought ? "구매완료" : $"{item.Price} G";
+            Equipment item = gm.equipments[i]; //장비 아이템을 item에 저장
+            string str = item.ItemType == 0 ? "공격력: " : "방어력: "; //아이템의 아이템 타입에 따라, 0이면 공격력이고 아니라면 방어력으로 출력
+            string strPrice = item.IsBought ? "구매완료" : $"{item.Price} G"; //아이템을 이미 구매했는가의 여부에 따라 구매완료 또는 가격을 출력
             Console.WriteLine($" {strNum}{item.ChangeEquipMark()} {item.Name} | {str} +{item.GetValue()}| {item.Inform} | {strPrice}");
+            //아이템 순번, 아이템 장착 여부, 아이템 이름, 아이템 타입, 아이템 스탯 증가/감소 수치, 아이템 정보, 아이템 가격 출력
         }
 
-        int consumableNum = gm.equipments.Count + 1;
+        int consumableNum = gm.equipments.Count + 1;//소모품 번호는 장비 개수보다 1 많게 지정
 
         Console.WriteLine("==소모품=============");
         for (int i = 0; i < gm.consumables.Count; i++)
         {
-            if (!IsSellOrBuy) strNum = " - ";
+            if (!IsSellOrBuy) strNum = " - "; //상점 창에서 아이템 번호 대신 " - "를 출력함
             else
             {
-                strNum = consumableNum.ToString() + "."; 
+                strNum = consumableNum.ToString() + "."; //소모품 번호를 string 값으로 변환 후 마침표 찍어주기
             }
             Consumable item = gm.consumables[i];
             string str = "버프: ";
             Console.WriteLine($" {strNum} {item.Name} | {str} +{item.BuffAmount} | {item.Inform} | {item.Price}G | 보유 개수: {item.Count}");
+            //아이템 순번, 이름, 버프 + 버프 수치, 아이템 정보, 아이템 가격, 보유 개수 출력
         }
     }
-    public void StoreScreen(GameManager gm)
+    public void StoreScreen(GameManager gm) //상점 창 열람
     {
         while (true)
         {
-            IsSellOrBuy = false;
-            Console.Clear();
+            IsSellOrBuy = false; //이 창이 열리면 구매 또는 판매 중이 아님
+            Console.Clear(); //콘솔 비우기
             Console.WriteLine("상점 \n필요한 물건을 사고 팔 수 있는 곳입니다.\n");
             Console.WriteLine($"[보유 골드] : {gm.player.Gold}G \n");
             Console.WriteLine("[아이템 목록] \n");
 
-            PrintItem(gm);
+            PrintItem(gm); //아이템 목록 출력
 
             Console.WriteLine("1. 아이템 구매 \n2. 아이템 판매 \n0. 나가기");
-            int num = Utility.GetInput(0, 2);
-            if (num == 1) BuyItem(gm);
-            else if (num == 2) SellItem(gm);
+            int num = Utility.GetInput(0, 2); //0~2 사이 입력 가능
+            if (num == 1) BuyItem(gm); //1을 입력하면 아이템 구매
+            else if (num == 2) SellItem(gm); //2를 입력하면 아이템 판매
             else break;
         }
     }
 
-    public void BuyItem(GameManager gm)
+    public void BuyItem(GameManager gm) //아이템 구매
     {
         while (true)
         {
-            IsSellOrBuy = true;
-            Console.Clear();
+            IsSellOrBuy = true; //구매 또는 판매 중임으로 변경
+            Console.Clear(); //콘솔 비우기
             Console.WriteLine("상점 - 아이템 구매 \n아이템을 구매할 수 있습니다. \n");
             Console.WriteLine($"[보유 골드] : {gm.player.Gold} G \n");
             Console.WriteLine("[아이템 목록] \n");
 
-            PrintItem(gm);
+            PrintItem(gm); //아이템 목록 출력
 
             Console.WriteLine("구매할 아이템의 번호를 누르세요.");
             Console.WriteLine("0. 나가기");
@@ -79,8 +81,8 @@ public class Store
 
             if (num != 0)
             {
-                num--; //표면상 아이템이 1번부터 출력되지만 실제 리스트는 0번부터 시작하므로 1을 뺌
-                if (gm.itemList[num].ItemType != 2) //소모품이 아닐 경우
+                num--; //아이템 목록은 1번부터 출력되지만 실제 아이템 리스트는 0번부터 시작하므로 1을 차감함
+                if (gm.itemList[num].ItemType != 2) //장비 또는 방어구일 때
                 {
                     Equipment item = (Equipment)gm.itemList[num];
                     if (item.IsBought) //이미 구매한 상품이라면
@@ -162,8 +164,8 @@ public class Store
                 }
                 Equipment equipItem = gm.inventoryEquipment[i];
                 string str = equipItem.ItemType == 0 ? "공격력: " : "방어력: ";
-                float sellNum = equipItem.Price * 0.85f;
-                string sellPrice = sellNum.ToString("N0");
+                float sellNum = equipItem.Price * 0.85f; //판매 가격 설정
+                string sellPrice = sellNum.ToString("N0"); //판매 가격을 소수점 위로 출력되게 함
                 Console.WriteLine($" {strNum}{equipItem.ChangeEquipMark()} {equipItem.Name} | {str} +{equipItem.GetValue()}| {equipItem.Inform} | {sellPrice} G");
             }
             int consumableNum = gm.inventoryEquipment.Count + 1;
@@ -178,8 +180,8 @@ public class Store
                 }
                 Consumable consumeItem = gm.inventoryConsumables[i];
                 string str = "버프: ";
-                float sellNum = consumeItem.Price * 0.85f;
-                string sellPrice = sellNum.ToString("N0");
+                float sellNum = consumeItem.Price * 0.85f; //판매 가격 설정
+                string sellPrice = sellNum.ToString("N0"); //판매 가격을 소수점 위로 출력되게 함
                 Console.WriteLine($" {strNum} {consumeItem.Name} | {str} +{consumeItem.BuffAmount} | {consumeItem.Inform} | {sellPrice} G | 보유 개수: {consumeItem.Count}");
             }
 
@@ -190,8 +192,6 @@ public class Store
             if (num != 0)
             {
                 num--;
-                //num에 해당하는 아이템의 itemType을 반환해야함
-                
                 if (num < gm.inventoryEquipment.Count) //아이템이 장비일 때
                 {
                     Equipment equipItem = gm.inventoryEquipment[num];
