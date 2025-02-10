@@ -14,6 +14,7 @@ public class Utility
         }
     }
 
+    //로딩 화면
     public static void Loading()
     {
         Console.Clear();
@@ -29,6 +30,7 @@ public class Utility
 
     }
 
+    //글자 색 변경
     public static void ColorWrite(string str, ConsoleColor color)
     {
         Console.ForegroundColor = color;
