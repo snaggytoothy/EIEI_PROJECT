@@ -54,7 +54,6 @@ public class Start()
         Inventory inventory = new();
         Store store = new();
         Dungeon dungeon = new();
-        Player player = new();
 
         while (true)
         {
@@ -78,7 +77,7 @@ public class Start()
                     dungeon.DoorDungeon(gameManager);
                     break;
                 case 5:
-                    RestScreen(player);
+                    RestScreen(gameManager.player);
                     break;
                 case 0:
                     Environment.Exit(0);
@@ -135,18 +134,15 @@ public class Start()
         //골드가 부족하면 휴식하지 못하게 함
         else
         {
-            int num = Utility.GetInput(0, 1);
-            switch (num)
+            Random ran = new Random();
+            int healAmount = ran.Next(30, 51);//힐량은 30~50 랜덤 값
+            player.Gold -= restNum;
+            player.NowHP += healAmount;
+            if(player.NowHP > player.MaxHP)
             {
-                case 0:
-                    break;
-                case 1:
-                    player.Gold -= restNum;
-                    player.NowHP = player.MaxHP;
-                    Console.WriteLine("체력이 회복되었습니다. \"또 오라고.\" 늙은이가 켈켈 웃습니다.");
-                    break;
+                player.NowHP = player.MaxHP;//만약 현재 HP 가 최대 HP를 넘어서면 최대 HP로 설정
             }
+            Console.WriteLine($"체력이 {healAmount} 회복되었습니다. \"또 오라고.\" 늙은이가 켈켈 웃습니다.");
         }
-        RestScreen(player);
     }
 }
