@@ -181,6 +181,7 @@ class Dungeon
     public void PlayerTurn(GameManager gameManager,List<Monster> monsters)
     {
         int input;
+        float tempHP;
         Console.WriteLine("Battle!!");
         Console.WriteLine();
         for (int i = 0; i < monsters.Count; i++)
@@ -203,22 +204,42 @@ class Dungeon
         Console.WriteLine();
         Console.WriteLine("대상을 선택해주세요");
         Console.Write(">>>");
-        input = Utility.GetInput(0, monsters.FindAll(x=>x.IsDead==false).Count);
-        float tempHP = monsters[input-1].NowHP;
-        if (input == 0)
+        //input = Utility.GetInput(0, monsters.FindAll(x=>x.IsDead==false).Count);
+        while (true)
         {
-            return;
-        }
-        else { 
-            gameManager.player.Attack(gameManager.player, monsters[input - 1]);
-            if (monsters[input - 1].NowHP <= 0)
+            input = Utility.GetInput(0, monsters.Count);
+            tempHP = monsters[input - 1].NowHP;
+            if (input == 0)
             {
-                monsters[input - 1].IsDead = true;
-                monsters[input - 1].NowHP = 0;
-                gameManager.killCount++;
+                return;
             }
-
+            else
+            {
+                if (monsters[input - 1].IsDead == true)
+                {
+                    Console.WriteLine("잘못된 입력입니다.");
+                    Console.WriteLine();
+                    Console.WriteLine("아무키 입력. 다음");
+                    Console.WriteLine();
+                    Console.Write(">>");
+                    Console.ReadKey();
+                }
+                else
+                {
+                    gameManager.player.Attack(gameManager.player, monsters[input - 1]);
+                    if (monsters[input - 1].NowHP <= 0)
+                    {
+                        monsters[input - 1].IsDead = true;
+                        monsters[input - 1].NowHP = 0;
+                        gameManager.killCount = gameManager.killCount + 1;
+                        Console.WriteLine("{0}킬째", gameManager.killCount);
+                        
+                    }
+                    break;
+                }
+            }
         }
+        
         Console.Clear();
         Console.WriteLine("Battle!!");
         Console.WriteLine();
@@ -226,7 +247,7 @@ class Dungeon
         Console.WriteLine("Lv.{0} {1} 을(를) 맞췄습니다. [데미지] : {2}", monsters[input - 1].Level, monsters[input - 1].Name, tempHP - monsters[input - 1].NowHP);
         Console.WriteLine();
         Console.WriteLine("Lv.{0} {1}", monsters[input - 1].Level, monsters[input - 1].Name);
-        if(monsters[input].IsDead == true)
+        if(monsters[input-1].IsDead == true)
         {
             Console.WriteLine("HP {0} -> Dead", monsters[input - 1].Level);
         }
@@ -252,28 +273,35 @@ class Dungeon
         for (int i = 0; i < monsters.Count; i++)
         {
             tempHP = gameManager.player.NowHP;
-            Console.WriteLine("{0} 의 공격!", monsters[i].Name);
-            monsters[i].Attack(monsters[i], gameManager.player);
-            if (gameManager.player.NowHP <= 0)
+            if (monsters[i].IsDead == false)
             {
-                gameManager.player.NowHP = 0;
-            }
-            Console.WriteLine("{1} 을(를) 맞췄습니다. [데미지] : {2}", gameManager.player.Name,tempHP - gameManager.player.NowHP);
-            Console.WriteLine();
-            Console.WriteLine("Lv.{0} {1}", gameManager.player.Level,gameManager.player.Name);
-            if (gameManager.player.NowHP<=0)
-            {
-                Console.WriteLine("HP {0} -> Dead", gameManager.player.NowHP);
+                Console.WriteLine("{0} 의 공격!", monsters[i].Name);
+                monsters[i].Attack(monsters[i], gameManager.player);
+                if (gameManager.player.NowHP <= 0)
+                {
+                    gameManager.player.NowHP = 0;
+                }
+                Console.WriteLine("{0} 을(를) 맞췄습니다. [데미지] : {1}", gameManager.player.Name, tempHP - gameManager.player.NowHP);
+                Console.WriteLine();
+                Console.WriteLine("Lv.{0} {1}", gameManager.player.Level, gameManager.player.Name);
+                if (gameManager.player.NowHP <= 0)
+                {
+                    Console.WriteLine("HP {0} -> Dead", gameManager.player.NowHP);
+                }
+                else
+                {
+                    Console.WriteLine("HP {0} -> {1}", tempHP, gameManager.player.NowHP);
+                }
+
+                Console.WriteLine("?아무키 입력 다음");
+                Console.WriteLine();
+                Console.Write(">>");
+                Console.ReadKey();
             }
             else
             {
-                Console.WriteLine("HP {0} -> {1}", tempHP,gameManager.player.NowHP);
-            }
 
-            Console.WriteLine("?아무키 입력 다음");
-            Console.WriteLine();
-            Console.Write(">>");
-            Console.ReadKey();
+            }
         }
     }
 
