@@ -110,11 +110,20 @@ public class Monster : Character // Monster 캐릭터 관리
 
         }
 
+        else if (id == 7)
+        {
+            this.MonsterType = 1;
+            this.MonsterID = id;
+            this.Level = 3;
+            this.Name = "전사 스켈레톤[스톤]"; // NormalScreen
+            this.Atk = 4;
+            this.Def = 2;
+            this.MaxHP = 20;
+            this.NowHP = 20;
+            Console.WriteLine("설명: ");
 
-
-
-
-        else if (id == 4) // 수진님 몬스터
+        }
+        else if (id == ) // 수진님 몬스터
         {
             this.MonsterType = 1;
             this.MonsterID = id;
