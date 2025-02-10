@@ -46,6 +46,7 @@ public class Monster : Character
             this.Def = 5;
             this.MaxHP = 30;
             this.NowHP = 30;
+            this.IsDead = false;
         }
         else if (id == 2) // 수진님 몬스터
         {
@@ -57,6 +58,7 @@ public class Monster : Character
             this.Def = 5;
             this.MaxHP = 50;
             this.NowHP = 50;
+            this.IsDead = false;
         }
         else if (id == 3)
         {
@@ -68,6 +70,7 @@ public class Monster : Character
             this.Def = 5;
             this.MaxHP = 100;
             this.NowHP = 100;
+            this.IsDead = false;
         }
         else if (id == 4)
         {
@@ -79,6 +82,7 @@ public class Monster : Character
             this.Def = 10;
             this.MaxHP = 50;
             this.NowHP = 50;
+            this.IsDead = false;
         }
         else if (id == 5)
         {
@@ -90,6 +94,7 @@ public class Monster : Character
             this.Def = 5;
             this.MaxHP = 80;
             this.NowHP = 80;
+            this.IsDead = false;
         }
         else if (id == 6)
         {
@@ -101,6 +106,7 @@ public class Monster : Character
             this.Def = 10;
             this.MaxHP = 200;
             this.NowHP = 200;
+            this.IsDead = false;
         }
         else if (id == 7)
         {
@@ -112,6 +118,7 @@ public class Monster : Character
             this.Def = 5;
             this.MaxHP = 450;
             this.NowHP = 450;
+            this.IsDead = false;
         }
         else if (id == 8)
         {
@@ -123,6 +130,7 @@ public class Monster : Character
             this.Def = 5;
             this.MaxHP = 600;
             this.NowHP = 600;
+            this.IsDead = false;
         }
         else
         {
