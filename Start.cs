@@ -57,9 +57,9 @@ public class Start()
         {
             Console.Clear();
             Console.WriteLine("이곳에서 던전으로 들어가기전 활동을 할 수 있습니다.");
-            Console.WriteLine("1. 상태 보기 2. 인벤토리 3. 상점 4. 던전 입장 5. 휴식하기 | 0. 게임종료");
+            Console.WriteLine("1. 상태 보기 \n2. 인벤토리 \n3. 상점 \n4. 던전 입장 \n5. 휴식하기 \n\n0. 게임종료");
 
-            act = Utility.GetInput(1, 5);
+            act = Utility.GetInput(0, 5);
             switch (act)
             {
                 case 1:
@@ -76,6 +76,9 @@ public class Start()
                     break;
                 case 5:
                     RestScreen(player);
+                    break;
+                case 0:
+                    Environment.Exit(0);
                     break;
             }
         }
