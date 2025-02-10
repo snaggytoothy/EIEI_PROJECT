@@ -1,3 +1,5 @@
+using System.IO;
+
 namespace EIEIE_Project;
 
 public class Store
@@ -11,18 +13,27 @@ public class Store
         for (int i = 0; i < gm.equipments.Count; i++)
         {
             if (!IsSellOrBuy) strNum = " - ";
-            else strNum = i + 1.ToString();
+            else
+            {
+                int number = i + 1;
+                strNum = number.ToString() + ".";
+            }
             Equipment item = gm.equipments[i];
             string str = item.ItemType == 0 ? "공격력: " : "방어력: ";
             string strPrice = item.IsBought ? "구매완료" : $"{item.Price} G";
             Console.WriteLine($" {strNum}{item.ChangeEquipMark()} {item.Name} | {str} +{item.GetValue()}| {item.Inform} | {strPrice}");
         }
 
+        int consumableNum = gm.equipments.Count + 1;
+
         Console.WriteLine("==소모품=============");
         for (int i = 0; i < gm.consumables.Count; i++)
         {
             if (!IsSellOrBuy) strNum = " - ";
-            else strNum = $"{i + 1.ToString()}.";
+            else
+            {
+                strNum = consumableNum.ToString() + "."; 
+            }
             Consumable item = gm.consumables[i];
             string str = "버프: ";
             Console.WriteLine($" {strNum} {item.Name} | {str} +{item.BuffAmount} | {item.Inform} | {item.Price}G | 보유 개수: {item.Count}");
@@ -32,6 +43,7 @@ public class Store
     {
         while (true)
         {
+            IsSellOrBuy = false;
             Console.Clear();
             Console.WriteLine("상점 \n필요한 물건을 사고 팔 수 있는 곳입니다.\n");
             Console.WriteLine($"[보유 골드] : {gm.player.Gold}G \n");
@@ -51,14 +63,11 @@ public class Store
     {
         while (true)
         {
-
+            IsSellOrBuy = true;
             Console.Clear();
             Console.WriteLine("상점 - 아이템 구매 \n아이템을 구매할 수 있습니다. \n");
             Console.WriteLine($"[보유 골드] : {gm.player.Gold} G \n");
             Console.WriteLine("[아이템 목록] \n");
-
-
-            Console.WriteLine("==장비=============");
 
             PrintItem(gm, inventory);
 
@@ -78,40 +87,40 @@ public class Store
                         Console.Clear();
                         Console.WriteLine("이미 구매한 아이템입니다.");
                     }
-                    else if (gm.player.Gold >= gm.itemList[num].Price)
+                    else if (gm.player.Gold >= item.Price)
                     {
                         item.IsBought = true; //구매 완료 상태로 변경
-                        inventory.Add(gm.itemList[num]); //인벤토리에 해당 아이템 추가
-                        gm.player.Gold -= gm.itemList[num].Price; //골드 차감
+                        gm.inventoryEquipment.Add(item); //인벤토리에 아이템 추가
+                        gm.player.Gold -= item.Price; //골드 차감
                         Console.Clear();
-                        Console.WriteLine($"{gm.itemList[num].Name} 아이템을 구매했습니다.");
+                        Console.WriteLine($"{item.Name} 아이템을 구매했습니다.");
                     }
                     else
                     {
                         Console.Clear();
                         Console.WriteLine("골드가 부족합니다.");
                     }
-                    BuyItem(gm, inventory);
+                    break;
                 }
                 else //소모품일 경우
                 {
                     Consumable item = (Consumable)gm.itemList[num];
                     if(item.Count < item.MaxCount)
                     {
-                        if (gm.player.Gold >= gm.itemList[num].Price) //소모품은 계속 구매 가능
+                        if (gm.player.Gold >= item.Price) //소모품은 계속 구매 가능
                         {
-                            inventory.Add(gm.itemList[num]); //인벤토리에 아이템 추가
-                            gm.player.Gold -= gm.itemList[num].Price; //골드 차감
+                            gm.inventoryConsumables.Add(item); //인벤토리에 아이템 추가
+                            gm.player.Gold -= item.Price; //골드 차감
                             item.Count++; //소모품 개수 1 증가
                             Console.Clear();
-                            Console.WriteLine($"{gm.itemList[num].Name} 아이템을 구매했습니다.");
+                            Console.WriteLine($"{item.Name} 아이템을 구매했습니다.");
                         }
                         else
                         {
                             Console.Clear();
                             Console.WriteLine("골드가 부족합니다.");
                         }
-                        BuyItem(gm, inventory);
+                        break;
                     }
                     else
                     {
@@ -137,7 +146,36 @@ public class Store
             Console.WriteLine($"[보유 골드] : {gm.player.Gold} G \n");
             Console.WriteLine("[아이템 목록] \n");
 
-            PrintItem(gm, inventory);
+            Console.WriteLine("==장비=============");
+
+            string strNum = " - ";
+            for (int i = 0; i < gm.inventoryEquipment.Count; i++)
+            {
+                if (!IsSellOrBuy) strNum = " - ";
+                else
+                {
+                    int number = i + 1;
+                    strNum = number.ToString() + ".";
+                }
+                Equipment equipItem = gm.inventoryEquipment[i];
+                string str = equipItem.ItemType == 0 ? "공격력: " : "방어력: ";
+                string strPrice = equipItem.IsBought ? "구매완료" : $"{equipItem.Price} G";
+                Console.WriteLine($" {strNum}{equipItem.ChangeEquipMark()} {equipItem.Name} | {str} +{equipItem.GetValue()}| {equipItem.Inform} | {strPrice}");
+            }
+
+            Console.WriteLine("==소모품=============");
+            for (int i = 0; i < gm.inventoryConsumables.Count; i++)
+            {
+                if (!IsSellOrBuy) strNum = " - ";
+                else
+                {
+                    int number = i + 1;
+                    strNum = number.ToString() + ".";
+                }
+                Consumable consumeItem = gm.inventoryConsumables[i];
+                string str = "버프: ";
+                Console.WriteLine($" {strNum} {consumeItem.Name} | {str} +{consumeItem.BuffAmount} | {consumeItem.Inform} | {consumeItem.Price}G | 보유 개수: {consumeItem.Count}");
+            }
 
             Console.WriteLine("판매할 아이템의 번호를 누르세요.");
             Console.WriteLine("0. 나가기");
@@ -148,13 +186,13 @@ public class Store
                 num--;
                 if (inventory[num].ItemType != 2) //아이템이 장비일 때
                 {
-                    Equipment equipItem = (Equipment)inventory[num];
+                    Equipment equipItem = gm.inventoryEquipment[num];
                     equipItem.IsBought = false; //구매 상태를 false로 변경
                     int equipID = equipItem.ItemID; //선택된 아이템의 itemID를 반환함
                     if (equipItem.IsEquiped) equipItem.IsEquiped = false; //장착 중이었다면 해제함
                     float sellPrice = equipItem.Price * 0.85f;
                     gm.player.Gold += (int)sellPrice; //플레이어 골드에 판매 가격 추가
-                    inventory.Remove(equipItem); //해당 아이템을 inventory에서 제거
+                    gm.inventoryEquipment.Remove(equipItem); //해당 아이템을 inventory에서 제거
                     Console.Clear();
                     Console.WriteLine($"{gm.itemList[equipID].Name} 아이템을 판매했습니다.");
                 }
@@ -168,7 +206,7 @@ public class Store
                     Console.Clear();
                     Console.WriteLine($"{gm.itemList[consumeID].Name} 아이템을 판매했습니다.");
                 }
-                SellItem(gm, inventory);
+                break;
             }
             else //나가기를 누름
             {

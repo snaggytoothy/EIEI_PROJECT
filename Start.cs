@@ -6,6 +6,7 @@ using System.ComponentModel.Design;
 using Microsoft.VisualBasic;
 namespace EIEIE_Project;
 
+//휴식 수정해야함
 public class Start()
 {
     private static int restNum = 500;
