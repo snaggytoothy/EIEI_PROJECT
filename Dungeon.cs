@@ -1,6 +1,7 @@
 using System;
 using System.Numerics;
 using System.Reflection.Metadata.Ecma335;
+using System.Runtime.ExceptionServices;
 namespace EIEIE_Project;
 
 class Dungeon
@@ -143,12 +144,19 @@ class Dungeon
                 {
                     //패배화면으로
                     monsters.Clear();
+                    Fail(gameManager, tempPlayer);
                     break;
                 }
                 else if(monsters.FindAll(x=>x.IsDead).Count==monsters.Count)
                 {
+                    int resultExp = 0;
+                    for(int i=0; i < monsters.Count; i++)
+                    {
+                        resultExp += monsters[i].Level;
+                    }
                     monsters.Clear();
                     //승리화면으로
+                    Clear(gameManager, tempPlayer, resultExp);
                     break;
                 }
             }
@@ -272,7 +280,8 @@ class Dungeon
     public void Clear(GameManager gameManager, Player tempPlayer, int resultExp)
     {
         Random random = new Random();
-        var expect = gameManager.itemList.Where(x => gameManager.inventory.Count(s => x.ItemID != s.ItemID) != 0).ToList();
+        var expectequiment = gameManager.equipments.Where(x => gameManager.inventoryEquipment.Count(s => x.ItemID != s.ItemID) != 0).ToList();
+        var expectconsumables = gameManager.consumables.Where(x => gameManager.inventoryConsumables.Count(s => x.ItemID != s.ItemID) != 0).ToList();
 
         while (true)
         {
@@ -300,17 +309,16 @@ class Dungeon
                 if (random.Next(1, 101) > 60)
                 {
                     //전체 아이템리스트와 보유 아이템 리스트 비교
-
                     //비교한 리스트에 아무것도 없다면 정지
-                    if (expect.Any() == false)
+                    if (expectequiment.Any() == false)
                     {
                         break;
                     }
                     //보유하지 않은 아이템에서 몬스터 플래그가 트루인 아이템을 추가
-                    var find = expect.FindAll(x => x.MonsterFlag == true).ToList();
+                    var find = expectequiment.FindAll(x => x.MonsterFlag == true).ToList();
                     int temp = find[random.Next(0, find.Count)].ItemID;
                     Console.WriteLine("{0}", find[temp].Name);
-                    gameManager.inventory.Add(find[temp]);
+                    gameManager.inventoryEquipment.Add(find[temp]);
                 }
                 else
                 {
