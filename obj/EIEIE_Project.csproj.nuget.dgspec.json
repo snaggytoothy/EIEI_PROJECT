@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\snagg\\source\\repos\\EIEIPROJECT\\EIEIE_Project.csproj": {}
+    "C:\\Users\\snagg\\source\\repos\\EIEI_PROJECT\\EIEIE_Project.csproj": {}
   },
   "projects": {
-    "C:\\Users\\snagg\\source\\repos\\EIEIPROJECT\\EIEIE_Project.csproj": {
+    "C:\\Users\\snagg\\source\\repos\\EIEI_PROJECT\\EIEIE_Project.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\snagg\\source\\repos\\EIEIPROJECT\\EIEIE_Project.csproj",
+        "projectUniqueName": "C:\\Users\\snagg\\source\\repos\\EIEI_PROJECT\\EIEIE_Project.csproj",
         "projectName": "EIEIE_Project",
-        "projectPath": "C:\\Users\\snagg\\source\\repos\\EIEIPROJECT\\EIEIE_Project.csproj",
+        "projectPath": "C:\\Users\\snagg\\source\\repos\\EIEI_PROJECT\\EIEIE_Project.csproj",
         "packagesPath": "C:\\Users\\snagg\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\snagg\\source\\repos\\EIEIPROJECT\\obj\\",
+        "outputPath": "C:\\Users\\snagg\\source\\repos\\EIEI_PROJECT\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

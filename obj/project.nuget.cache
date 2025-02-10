@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "HH78b/RM+lo=",
+  "dgSpecHash": "C2K//dgGDoM=",
   "success": true,
-  "projectFilePath": "C:\\Users\\snagg\\source\\repos\\EIEIPROJECT\\EIEIE_Project.csproj",
+  "projectFilePath": "C:\\Users\\snagg\\source\\repos\\EIEI_PROJECT\\EIEIE_Project.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\snagg\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
   ],
