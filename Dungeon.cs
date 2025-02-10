@@ -203,20 +203,20 @@ class Dungeon
                 if (i == 1)
                 {
                     monsters.Clear();
-                    monsters.Add(new Monster(1));
+                    monsters.Add(new Monster(2));
                 }
                 else if (i == 2)
                 {
                     monsters.Clear();
-                    monsters.Add(new Monster(1));
                     monsters.Add(new Monster(2));
+                    monsters.Add(new Monster(3));
                 }
                 else if (i == 3)
                 {
                     monsters.Clear();
-                    monsters.Add(new Monster(1));
                     monsters.Add(new Monster(2));
                     monsters.Add(new Monster(3));
+                    monsters.Add(new Monster(4));
                 }
                 else
                 {
@@ -268,20 +268,20 @@ class Dungeon
                 if (i == 1)
                 {
                     monsters.Clear();
-                    monsters.Add(new Monster(1));
+                    monsters.Add(new Monster(3));
                 }
                 else if (i == 2)
                 {
                     monsters.Clear();
-                    monsters.Add(new Monster(1));
-                    monsters.Add(new Monster(2));
+                    monsters.Add(new Monster(3));
+                    monsters.Add(new Monster(4));
                 }
                 else if (i == 3)
                 {
                     monsters.Clear();
-                    monsters.Add(new Monster(1));
-                    monsters.Add(new Monster(2));
                     monsters.Add(new Monster(3));
+                    monsters.Add(new Monster(4));
+                    monsters.Add(new Monster(5));
                 }
                 else
                 {
