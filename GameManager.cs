@@ -16,8 +16,7 @@ public class GameManager
         IsEquiped = false, ShopFlag = true, MonsterFlag = true, Def = 8f},
         new Armor{Name = "심상치 않은 갑옷", ItemID = 6, Price = 700, ItemType = 1, Inform = "심상치 않은 기운이 느껴지는 갑옷입니다.",
         IsEquiped = false, ShopFlag = true, MonsterFlag = true, Def = 12f},
-        new Consumable{Name = "회복 물약", ItemID = 7, Price = 50, ItemType = 2, Inform = "체력을 50 회복시켜 줍니다.",
-        IsHad = false, ShopFlag = true, MonsterFlag = false, BuffAmount = 50}
+        new Consumable{Name = "회복 물약", ItemID = 7, Price = 50, ItemType = 2, Inform = "체력을 50 회복시켜 줍니다.", ShopFlag = true, MonsterFlag = false, BuffAmount = 50}
     };
     public List<Equipment> equipments = new List<Equipment>();
     public List<Consumable> consumables = new List<Consumable>();
