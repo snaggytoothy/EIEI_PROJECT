@@ -123,62 +123,62 @@ public class Monster : Character // Monster 캐릭터 관리
             Console.WriteLine("설명: ");
 
         }
-        else if (id == ) // 수진님 몬스터
-        {
-            this.MonsterType = 1;
-            this.MonsterID = id;
-            this.Level = 3;
-            this.Name = "고스트[브론즈]"; //  
-            this.Atk = 3;
-            this.Def = 5;
-            this.MaxHP = 50;
-            this.NowHP = 50;
-        }
+        //else if (id == ) // 수진님 몬스터
+        //{
+        //    this.MonsterType = 1;
+        //    this.MonsterID = id;
+        //    this.Level = 3;
+        //    this.Name = "고스트[브론즈]"; //  
+        //    this.Atk = 3;
+        //    this.Def = 5;
+        //    this.MaxHP = 50;
+        //    this.NowHP = 50;
+        //}
 
-        else if (id == )
-        {
-            this.MonsterType = 1;
-            this.MonsterID = id;
-            this.Level = 8;
-            this.Name = "물의 요정[]";
-            this.Atk = 12;
-            this.Def = 5;
-            this.MaxHP = 80;
-            this.NowHP = 80;
-        }
-        else if (id == )
-        {
-            this.MonsterType = 3;
-            this.MonsterID = id;
-            this.Level = 5;
-            this.Name = "킹 고블린 Boss[실버]";
-            this.Atk = 10;
-            this.Def = 10;
-            this.MaxHP = 200;
-            this.NowHP = 200;
-        }
-        else if (id == )
-        {
-            this.MonsterType = 3;
-            this.MonsterID = id;
-            this.Level = 10;
-            this.Name = "정령왕 픽시 Boss[]";
-            this.Atk = 30;
-            this.Def = 5;
-            this.MaxHP = 450;
-            this.NowHP = 450;
-        }
-        else if (id == )
-        {
-            this.MonsterType = 3;
-            this.MonsterID = id;
-            this.Level = 15;
-            this.Name = "언데드 군단장 Boss[]";
-            this.Atk = 30;
-            this.Def = 5;
-            this.MaxHP = 600;
-            this.NowHP = 600;
-        }
+        //else if (id == )
+        //{
+        //    this.MonsterType = 1;
+        //    this.MonsterID = id;
+        //    this.Level = 8;
+        //    this.Name = "물의 요정[]";
+        //    this.Atk = 12;
+        //    this.Def = 5;
+        //    this.MaxHP = 80;
+        //    this.NowHP = 80;
+        //}
+        //else if (id == )
+        //{
+        //    this.MonsterType = 3;
+        //    this.MonsterID = id;
+        //    this.Level = 5;
+        //    this.Name = "킹 고블린 Boss[실버]";
+        //    this.Atk = 10;
+        //    this.Def = 10;
+        //    this.MaxHP = 200;
+        //    this.NowHP = 200;
+        //}
+        //else if (id == )
+        //{
+        //    this.MonsterType = 3;
+        //    this.MonsterID = id;
+        //    this.Level = 10;
+        //    this.Name = "정령왕 픽시 Boss[]";
+        //    this.Atk = 30;
+        //    this.Def = 5;
+        //    this.MaxHP = 450;
+        //    this.NowHP = 450;
+        //}
+        //else if (id == )
+        //{
+        //    this.MonsterType = 3;
+        //    this.MonsterID = id;
+        //    this.Level = 15;
+        //    this.Name = "언데드 군단장 Boss[]";
+        //    this.Atk = 30;
+        //    this.Def = 5;
+        //    this.MaxHP = 600;
+        //    this.NowHP = 600;
+        //}
         else
         {
             //예외처리
