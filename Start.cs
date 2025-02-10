@@ -38,14 +38,52 @@ public class Start()
             {
                 case 1:
                     Console.Clear();
-                    SelectMenu(gameManager);
+                    SelectJob(gameManager);
                     break;
                 case 2:
                     Console.Clear();
                     Console.WriteLine("이름을 바꿀 수 있는 기회는 지금 밖에 없습니다. 신중히 입력해주세요!");
-                    continue; //다시 물어보기.
+                    break;
             }
         }
+    }
+    public static void SelectJob(GameManager gameManager)
+    {
+        while (true)
+        {
+            Console.Clear();
+            Console.WriteLine($"{gameManager.player.Name}님 멋진 이름이군요.");
+            Console.WriteLine("그렇다면 당신의 직업은 무엇인가요?");
+            Console.WriteLine("\n1. 전사\n2. 마법사\n3. 모험가");
+            int input = Utility.GetInput(1, 3);
+            switch (input)
+            {
+                case 1:
+                    gameManager.player.Job = "전사";
+                    break;
+                case 2:
+                    gameManager.player.Job = "마법사";
+                    break;
+                case 3:
+                    gameManager.player.Job = "모험가";
+                    break;
+            }
+            Console.Clear();
+            Console.WriteLine("확실한가요? 직업 역시 지금 정하면 이후에 변경할 수 없습니다.");
+            Console.WriteLine("1. 네 2. 아니오");
+
+            int jobsure = Utility.GetInput(1, 2);
+            switch (jobsure)
+            {
+                case 1:
+                    Console.Clear();
+                    SelectMenu(gameManager);
+                    break;
+                case 2:
+                    break;
+            }
+        }
+        
     }
 
     public static void SelectMenu(GameManager gameManager) //활동 선택
@@ -138,7 +176,7 @@ public class Start()
             int healAmount = ran.Next(30, 51);//힐량은 30~50 랜덤 값
             player.Gold -= restNum;
             player.NowHP += healAmount;
-            if(player.NowHP > player.MaxHP)
+            if (player.NowHP > player.MaxHP)
             {
                 player.NowHP = player.MaxHP;//만약 현재 HP 가 최대 HP를 넘어서면 최대 HP로 설정
             }
