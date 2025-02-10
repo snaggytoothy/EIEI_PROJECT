@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Xml.Linq;
 using System;
 using System.ComponentModel.Design;
+using Microsoft.VisualBasic;
 namespace EIEIE_Project;
 
 public class Start()
@@ -85,19 +86,29 @@ public class Start()
     }
     public static void Status(GameManager gameManager)
     {
-        int act;
         Console.Clear();
         Console.WriteLine($"<상태 보기>\n{gameManager.player.Name}님의 캐릭터 정보가 표시됩니다.\r\n");
         Console.WriteLine($"Lv. {gameManager.player.Level}");
-        Console.WriteLine($"{gameManager.player.Name} {gameManager.player.Job}");
+        Console.WriteLine($"{gameManager.player.Name} ({gameManager.player.Job})");
         Console.WriteLine($"공격력: {gameManager.player.Atk}");
         Console.WriteLine($"방어력: {gameManager.player.Def}");
         Console.WriteLine($"체력: {gameManager.player.NowHP}\nGold: {gameManager.player.Gold} G");
         Console.WriteLine("\r\n0. 나가기\n원하시는 행동을 입력해주세요.");
-        if (int.TryParse(Console.ReadLine(), out act))
+        int act = Utility.GetInput(0, 0);
+
+        if (act == 0)
         {
             Console.Clear();
+            SelectMenu(gameManager);
         }
+        //if (int.TryParse(Console.ReadLine(), out act))
+        //{
+        //    if (act == 0)
+        //    {
+        //        Console.Clear();
+        //        Status(gameManager);
+        //    }
+        //}
         Console.Clear();
     }
 
