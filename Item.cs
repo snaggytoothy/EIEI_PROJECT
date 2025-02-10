@@ -13,15 +13,15 @@ public class Item
 }
 
 
-public class Consumable : Item // 소비 아이템 클래스
+public class Consumable : Item // 소비 아이템 클래스  
 {
-    public bool IsHad {  get; set; }
     public int Count { get; set; }
+
     public float BuffAmount { get; set; }
 }
 
 
-public class Equipment : Item // 장비 클래스
+public class Equipment : Item // 장비 클래스 
 {
     public bool IsEquiped { get; set; }
     public bool IsBought { get; set; }

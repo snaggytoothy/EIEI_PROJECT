@@ -42,6 +42,7 @@ public class Start()
                 continue; //다시 물어보기.
             }
         }
+
     }
 
     public static void SelectMenu(GameManager gameManager) //활동 선택
@@ -52,6 +53,7 @@ public class Start()
             Console.Clear();
             Console.WriteLine("이곳에서 던전으로 들어가기전 활동을 할 수 있습니다.");
             Console.WriteLine("1. 상태 보기 2. 인벤토리 3. 상점 4. 던전 입장 5. 휴식하기 | 0. 게임종료");
+
             act = Utility.GetInput(1, 5);
             if (act == 1)
             {
@@ -84,7 +86,6 @@ public class Start()
         }
     }
 }
-
 public class Information()
 {
     public static void Status()
@@ -103,7 +104,6 @@ public class Information()
         {
             if (act == 0)
             {
-
             }
             Console.Clear();
         }
