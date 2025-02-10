@@ -15,8 +15,8 @@ public class Item
 
 public class Consumable : Item // 소비 아이템 클래스
 {
+    public bool IsHad {  get; set; }
     public int Count { get; set; }
-
     public float BuffAmount { get; set; }
 }
 
