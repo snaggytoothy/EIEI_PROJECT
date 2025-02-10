@@ -28,97 +28,129 @@ public class Player : Character
     public int Gold { get; set; }
 }
 
-public class Monster : Character
+public class Monster : Character // Monster 캐릭터 관리
 {
     public int MonsterType { get; set; }
     public int MonsterID { get; set; }
     public bool IsDead { get; set; }
-
-    public Monster(int id) // MonsterType 1번은 잡몹, 2번은 보스몹
+    // 몬스터 등급 스톤 -> 브론즈 -> 아이언 - > 실버 -> 골드 -> 플래티넘랭크 순이다.
+    public Monster(int id) // MonsterType 1번은 잡몹, 2번은 레어몹, 3번은 보스몹
     {
         if (id == 1)
         {
             this.MonsterType = 1;
             this.MonsterID = id;
             this.Level = 1;
-            this.Name = "고블린";
+            this.Name = "흰색 슬라임[스톤]"; // EasyScreen
             this.Atk = 2;
-            this.Def = 5;
+            this.Def = 1;
             this.MaxHP = 30;
             this.NowHP = 30;
+            Console.WriteLine("설명: 동그란 흰색 슬라임이다.");
         }
-        else if (id == 2) // 수진님 몬스터
+        else if(id == 2)
         {
             this.MonsterType = 1;
             this.MonsterID = id;
             this.Level = 2;
-            this.Name = "고스트";
-            this.Atk = 3;
-            this.Def = 5;
-            this.MaxHP = 50;
-            this.NowHP = 50;
+            this.Name = "고블린[스톤]"; // EasyScreen
+            this.Atk = 2;
+            this.Def = 3;
+            this.MaxHP = 30;
+            this.NowHP = 30;
+            Console.WriteLine("설명: 맨손상태, 가죽으로 쪼가리 몸에 두르고있다.");
         }
         else if (id == 3)
         {
             this.MonsterType = 1;
             this.MonsterID = id;
-            this.Level = 3;
-            this.Name = "슬라임";
-            this.Atk = 2;
-            this.Def = 5;
-            this.MaxHP = 100;
-            this.NowHP = 100;
+            this.Level = 4;
+            this.Name = "전투병 고블린[스톤]"; // EasyScreen
+            this.Atk = 3;
+            this.Def = 4;
+            this.MaxHP = 38;
+            this.NowHP = 38;
+            Console.WriteLine("설명: 칼날이가 다 빠지고 녹슨 롱소드를 손에 쥐고 있음, ");
         }
-        else if (id == 4)
+        else if (id == 4) // 강태현 몬스터
         {
-            this.MonsterType = 1;
+            this.MonsterType = 2;
             this.MonsterID = id;
-            this.Level = 5;
-            this.Name = "스켈레톤";
-            this.Atk = 10;
-            this.Def = 10;
-            this.MaxHP = 50;
-            this.NowHP = 50;
+            this.Level = 6;
+            this.Name = "홉 고블린[브론즈]"; // EasyScreen 
+            this.Atk = 6;
+            this.Def = 5;
+            this.MaxHP = 45;
+            this.NowHP = 45;
         }
         else if (id == 5)
         {
             this.MonsterType = 1;
             this.MonsterID = id;
+            this.Level = 1;
+            this.Name = "스켈레톤[스톤]"; // NormalScreen
+            this.Atk = 2;
+            this.Def = 2;
+            this.MaxHP = 20;
+            this.NowHP = 20;
+        }
+
+
+
+
+
+
+        else if (id == 4) // 수진님 몬스터
+        {
+            this.MonsterType = 1;
+            this.MonsterID = id;
+            this.Level = 3;
+            this.Name = "고스트[브론즈]"; //  
+            this.Atk = 3;
+            this.Def = 5;
+            this.MaxHP = 50;
+            this.NowHP = 50;
+        }
+
+        else if (id == )
+        {
+            this.MonsterType = 1;
+            this.MonsterID = id;
             this.Level = 8;
-            this.Name = "물의 요정";
+            this.Name = "물의 요정[]";
             this.Atk = 12;
             this.Def = 5;
             this.MaxHP = 80;
             this.NowHP = 80;
         }
-        else if (id == 6)
+        else if (id == )
         {
-            this.MonsterType = 2;
+            this.MonsterType = 3;
             this.MonsterID = id;
             this.Level = 5;
-            this.Name = "킹 고블린";
+            this.Name = "킹 고블린 Boss[실버]";
             this.Atk = 10;
             this.Def = 10;
             this.MaxHP = 200;
             this.NowHP = 200;
         }
-        else if (id == 7)
+        else if (id == )
         {
-            this.MonsterType = 2;
+            this.MonsterType = 3;
             this.MonsterID = id;
             this.Level = 10;
-            this.Name = "정령왕 픽시";
+            this.Name = "정령왕 픽시 Boss[]";
             this.Atk = 30;
             this.Def = 5;
             this.MaxHP = 450;
             this.NowHP = 450;
         }
-        else if (id == 8)
+        else if (id == )
         {
-            this.MonsterType = 2;
+            this.MonsterType = 3;
             this.MonsterID = id;
             this.Level = 15;
-            this.Name = "언데드 군단장";
+            this.Name = "언데드 군단장 Boss[]";
             this.Atk = 30;
             this.Def = 5;
             this.MaxHP = 600;
