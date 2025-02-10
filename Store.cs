@@ -1,3 +1,4 @@
+using System.Dynamic;
 using System.IO;
 
 namespace EIEIE_Project;
@@ -39,7 +40,7 @@ public class Store
             Console.WriteLine($" {strNum} {item.Name} | {str} +{item.BuffAmount} | {item.Inform} | {item.Price}G | 보유 개수: {item.Count}");
         }
     }
-    public void StoreScreen(GameManager gm, List<Item> inventory)
+    public void StoreScreen(GameManager gm)
     {
         while (true)
         {
@@ -53,13 +54,13 @@ public class Store
 
             Console.WriteLine("1. 아이템 구매 \n2. 아이템 판매 \n0. 나가기");
             int num = Utility.GetInput(0, 2);
-            if (num == 1) BuyItem(gm, inventory);
-            else if (num == 2) SellItem(gm, inventory);
+            if (num == 1) BuyItem(gm);
+            else if (num == 2) SellItem(gm);
             else break;
         }
     }
 
-    public void BuyItem(GameManager gm, List<Item> inventory)
+    public void BuyItem(GameManager gm)
     {
         while (true)
         {
@@ -138,7 +139,7 @@ public class Store
         }
     }
 
-    public void SellItem(GameManager gm, List<Item> inventory)
+    public void SellItem(GameManager gm)
     {
         while (true)
         {
@@ -161,8 +162,9 @@ public class Store
                 }
                 Equipment equipItem = gm.inventoryEquipment[i];
                 string str = equipItem.ItemType == 0 ? "공격력: " : "방어력: ";
-                string strPrice = equipItem.IsBought ? "구매완료" : $"{equipItem.Price} G";
-                Console.WriteLine($" {strNum}{equipItem.ChangeEquipMark()} {equipItem.Name} | {str} +{equipItem.GetValue()}| {equipItem.Inform} | {strPrice}");
+                float sellNum = equipItem.Price * 0.85f;
+                string sellPrice = sellNum.ToString("N0");
+                Console.WriteLine($" {strNum}{equipItem.ChangeEquipMark()} {equipItem.Name} | {str} +{equipItem.GetValue()}| {equipItem.Inform} | {sellPrice} G");
             }
             int consumableNum = gm.inventoryEquipment.Count + 1;
 
@@ -176,17 +178,21 @@ public class Store
                 }
                 Consumable consumeItem = gm.inventoryConsumables[i];
                 string str = "버프: ";
-                Console.WriteLine($" {strNum} {consumeItem.Name} | {str} +{consumeItem.BuffAmount} | {consumeItem.Inform} | {consumeItem.Price}G | 보유 개수: {consumeItem.Count}");
+                float sellNum = consumeItem.Price * 0.85f;
+                string sellPrice = sellNum.ToString("N0");
+                Console.WriteLine($" {strNum} {consumeItem.Name} | {str} +{consumeItem.BuffAmount} | {consumeItem.Inform} | {sellPrice} G | 보유 개수: {consumeItem.Count}");
             }
 
             Console.WriteLine("판매할 아이템의 번호를 누르세요.");
             Console.WriteLine("0. 나가기");
 
-            int num = Utility.GetInput(0, inventory.Count); //0에서 인벤토리 아이템 개수까지
+            int num = Utility.GetInput(0, gm.inventoryEquipment.Count + gm.inventoryConsumables.Count); //0에서 인벤토리 아이템 개수까지
             if (num != 0)
             {
                 num--;
-                if (inventory[num].ItemType != 2) //아이템이 장비일 때
+                //num에 해당하는 아이템의 itemType을 반환해야함
+                
+                if (num < gm.inventoryEquipment.Count) //아이템이 장비일 때
                 {
                     Equipment equipItem = gm.inventoryEquipment[num];
                     equipItem.IsBought = false; //구매 상태를 false로 변경
@@ -200,13 +206,13 @@ public class Store
                 }
                 else //아이템이 소모품일 때
                 {
-                    Consumable consumable = (Consumable)inventory[num];
+                    Consumable consumable = gm.inventoryConsumables[num - gm.inventoryEquipment.Count];
                     int consumeID = consumable.ItemID;
                     float sellPrice = consumable.Price * 0.85f; //판매 가격 설정
                     gm.player.Gold += (int)sellPrice; //플레이어 골드에 판매 가격 추가
                     if (consumable.Count > 0) consumable.Count--; //아이템 개수 차감
                     Console.Clear();
-                    Console.WriteLine($"{gm.itemList[consumeID].Name} 아이템을 판매했습니다.");
+                    Console.WriteLine($"{gm.itemList[consumeID - 1].Name} 아이템을 판매했습니다.");
                 }
                 break;
             }

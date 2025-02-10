@@ -72,7 +72,7 @@ public class Start()
                     inventory.InventoryScene(gameManager);
                     break;
                 case 3:
-                    store.StoreScreen(gameManager, gameManager.itemList);
+                    store.StoreScreen(gameManager);
                     break;
                 case 4:
                     dungeon.DoorDungeon(gameManager);
