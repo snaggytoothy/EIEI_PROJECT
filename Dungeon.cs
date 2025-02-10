@@ -20,23 +20,23 @@ class Dungeon
 
         int input = Utility.GetInput(1, 3);
 
-
-
         switch (input)
         {
             case 1:
-                EasyScreen();
+                if (gameManager.player.Level >= 1) EasyScreen(gameManager);
+                else Console.WriteLine("레벨이 부족합니다! (Lv.1 이상 필요)");
                 break;
             case 2:
-                //NormalScreen();
+                if (gameManager.player.Level >= 8) NormalScreen(gameManager);
+                else Console.WriteLine("레벨이 부족합니다! (Lv.1 이상 필요)");
                 break;
             case 3:
-                //HardScreen();
+                if (gameManager.player.Level >= 12) HardScreen(gameManager);
+                else Console.WriteLine("레벨이 부족합니다! (Lv.1 이상 필요)");
                 break;
         }
-    }
-  
 
+    }
 
     public void EasyScreen(GameManager gameManager)
     {
@@ -44,8 +44,8 @@ class Dungeon
         Console.WriteLine("던전을 걸어가고 있습니다.");
         for (int i = 0; i < 3; i++)
         {
+            Console.WriteLine("뚜벅");
             Thread.Sleep(1000); // 1초 시간지연
-            Console.Write("뚜벅");
         }
 
         Console.WriteLine();
