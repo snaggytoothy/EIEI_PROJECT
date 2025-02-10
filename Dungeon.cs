@@ -63,7 +63,7 @@ class Dungeon
         Console.WriteLine();
 
         Utility.GetInput(0, 0);
-        DoorDungeon(gameManager); // 던전입구 입장
+        DungeonProgress(gameManager, 1); // 던전입구 입장
     }
 
     public void NormalScreen(GameManager gameManager)
@@ -90,7 +90,7 @@ class Dungeon
         Console.WriteLine();
 
         Utility.GetInput(0, 0);
-        DoorDungeon(gameManager); // 던전입구 입장
+        DungeonProgress(gameManager, 2); // 던전입구 입장
     }
 
     public void HardScreen(GameManager gameManager)
@@ -117,7 +117,7 @@ class Dungeon
         Console.WriteLine();
 
         Utility.GetInput(0, 0);
-        DoorDungeon(gameManager); // 던전입구 입장 // 임시저장
+        DungeonProgress(gameManager, 3); // 던전입구 입장 // 임시저장
 
     }
 
@@ -457,7 +457,7 @@ class Dungeon
     {        
         Random random = new Random();
         var expectequiment = gameManager.equipments.Where(x => gameManager.inventoryEquipment.Count(s => x.ItemID != s.ItemID) != 0).ToList();
-        var expectconsumables = gameManager.consumables.Where(x => gameManager.inventoryConsumables.Count(s => x.ItemID != s.ItemID) != 0).ToList();            
+        //var expectconsumables = gameManager.consumables.Where(x => gameManager.inventoryConsumables.Count(s => x.ItemID != s.ItemID) != 0).ToList();            
         Console.Clear();
         Console.WriteLine("던전을 클리어하였습니다");            
         //떄려잡은 몹 수 표시        
