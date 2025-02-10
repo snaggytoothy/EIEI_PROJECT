@@ -70,7 +70,7 @@ public class Monster : Character // Monster 캐릭터 관리
             this.Def = 4;
             this.MaxHP = 38;
             this.NowHP = 38;
-            Console.WriteLine("설명: 칼날이가 다 빠지고 녹슨 롱소드를 손에 쥐고 있음, ");
+            Console.WriteLine("설명: 칼날 다 빠지고 녹슨 롱소드를 손에 쥐고 있다, 흉부에 가죽 갑옷을 입고있다");
         }
         else if (id == 4) // 강태현 몬스터
         {
@@ -82,6 +82,7 @@ public class Monster : Character // Monster 캐릭터 관리
             this.Def = 5;
             this.MaxHP = 45;
             this.NowHP = 45;
+            Console.WriteLine("설명: 키가 사람 평균 정도다, 제대로 된 가죽 갑옷을 입고 있다, 무기는 조잡하게 만든 몽둥이");
         }
         else if (id == 5)
         {
@@ -90,11 +91,24 @@ public class Monster : Character // Monster 캐릭터 관리
             this.Level = 1;
             this.Name = "스켈레톤[스톤]"; // NormalScreen
             this.Atk = 2;
+            this.Def = 1;
+            this.MaxHP = 20;
+            this.NowHP = 20;
+            Console.WriteLine("설명: 아무 장비도 장착 안 되어있는 그냥 스켈레톤이다 하지만 무리지어 다니기 때문에 다구리에 장사없으니 조심하자.");
+        }
+        else if (id == 6)
+        {
+            this.MonsterType = 1;
+            this.MonsterID = id;
+            this.Level = 3;
+            this.Name = "궁수 스켈레톤[스톤]"; // NormalScreen
+            this.Atk = 4;
             this.Def = 2;
             this.MaxHP = 20;
             this.NowHP = 20;
-        }
+            Console.WriteLine("설명: 활, 가죽 누더기를 장착하고있다, 죽기전에는 궁수였던거 같다.");
 
+        }
 
 
 
