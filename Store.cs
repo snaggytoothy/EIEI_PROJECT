@@ -97,20 +97,27 @@ public class Store
                 else //소모품일 경우
                 {
                     Consumable item = (Consumable)gm.itemList[num];
-                    if (player.Gold >= gm.itemList[num].Price) //소모품은 계속 구매 가능
+                    if(item.Count < item.MaxCount)
                     {
-                        inventory.Add(gm.itemList[num]); //인벤토리에 아이템 추가
-                        player.Gold -= gm.itemList[num].Price; //골드 차감
-                        item.Count++; //소모품 개수 1 증가
-                        Console.Clear();
-                        Console.WriteLine($"{gm.itemList[num].Name} 아이템을 구매했습니다.");
+                        if (player.Gold >= gm.itemList[num].Price) //소모품은 계속 구매 가능
+                        {
+                            inventory.Add(gm.itemList[num]); //인벤토리에 아이템 추가
+                            player.Gold -= gm.itemList[num].Price; //골드 차감
+                            item.Count++; //소모품 개수 1 증가
+                            Console.Clear();
+                            Console.WriteLine($"{gm.itemList[num].Name} 아이템을 구매했습니다.");
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            Console.WriteLine("골드가 부족합니다.");
+                        }
+                        BuyItem(player, inventory);
                     }
                     else
                     {
-                        Console.Clear();
-                        Console.WriteLine("골드가 부족합니다.");
-                    }
-                    BuyItem(player, inventory);
+                        Console.WriteLine("보유 한도를 초과했습니다.");
+                    }                
                 }
             }
             else //나가기를 누름
