@@ -59,11 +59,10 @@ public class Start()
             switch (act)
             {
                 case 1:
-                    Information.Status();
+                    Information.Status(gameManager);
                     break;
                 case 2:
-                    //인벤토리
-                    //Bag.inventory(this);
+                    inventory.InventoryScene(gameManager);
                     break;
                 case 3:
                     Store store = new();
@@ -84,9 +83,8 @@ public class Start()
 }
 public class Information()
 {
-    public static void Status()
+    public static void Status(GameManager gameManager)
     {
-        GameManager gameManager = new GameManager();
         int act;
         Console.Clear();
         Console.WriteLine($"<상태 보기>\n{gameManager.player.Name}님의 캐릭터 정보가 표시됩니다.\r\n");
@@ -98,10 +96,6 @@ public class Information()
         Console.WriteLine("\r\n0. 나가기\n원하시는 행동을 입력해주세요.");
         if (int.TryParse(Console.ReadLine(), out act))
         {
-            if (act == 0)
-            {
-
-            }
             Console.Clear();
         }
         Console.Clear();

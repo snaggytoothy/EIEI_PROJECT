@@ -143,6 +143,7 @@ public class Store
                 if (inventory[num].ItemType != 2) //아이템이 장비일 때
                 {
                     Equipment equipItem = (Equipment)inventory[num];
+                    equipItem.IsBought = false; //구매 상태를 false로 변경
                     int equipID = equipItem.ItemID; //선택된 아이템의 itemID를 반환함
                     if (equipItem.IsEquiped) equipItem.IsEquiped = false; //장착 중이었다면 해제함
                     float sellPrice = equipItem.Price * 0.85f;
@@ -157,8 +158,7 @@ public class Store
                     int consumeID = consumable.ItemID;
                     float sellPrice = consumable.Price * 0.85f; //판매 가격 설정
                     player.Gold += (int)sellPrice; //플레이어 골드에 판매 가격 추가
-                    if (consumable.Count <= 0) inventory.Remove(consumable); //아이템 개수가 0이 되면 인벤토리에서 제거
-                    else consumable.Count--; //아이템 개수 차감
+                    if (consumable.Count > 0) consumable.Count--; //아이템 개수 차감
                     Console.Clear();
                     Console.WriteLine($"{gm.itemList[consumeID].Name} 아이템을 판매했습니다.");
                 }
