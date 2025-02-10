@@ -331,6 +331,7 @@ class Dungeon
     {
         int input;
         float tempHP;
+        Console.Clear();
         Console.WriteLine("Battle!!");
         Console.WriteLine();
         for (int i = 0; i < monsters.Count; i++)
@@ -350,44 +351,60 @@ class Dungeon
         Console.WriteLine("HP {0}/{1}", gameManager.player.NowHP, gameManager.player.MaxHP);
         Console.WriteLine();
         Console.WriteLine("0. 턴종료");
+        Console.WriteLine("1. 공격");
+        Console.WriteLine("2. 아이템사용");
         Console.WriteLine();
         Console.WriteLine("대상을 선택해주세요");
         Console.Write(">>>");
-        //input = Utility.GetInput(0, monsters.FindAll(x=>x.IsDead==false).Count);
         while (true)
         {
-            input = Utility.GetInput(0, monsters.Count);
-            tempHP = monsters[input - 1].NowHP;
+            input = Utility.GetInput(0, 2);
             if (input == 0)
             {
-                return;
+                if (input == 0)
+                {
+                    return;
+                }
             }
-            else
+            else if (input == 1)
             {
-                if (monsters[input - 1].IsDead == true)
-                {
-                    Console.WriteLine("잘못된 입력입니다.");
-                    Console.WriteLine();
-                    Console.WriteLine("아무키 입력. 다음");
-                    Console.WriteLine();
-                    Console.Write(">>");
-                    Console.ReadKey();
-                }
-                else
-                {
-                    gameManager.player.Attack(gameManager.player, monsters[input - 1]);
-                    if (monsters[input - 1].NowHP <= 0)
-                    {
-                        monsters[input - 1].IsDead = true;
-                        monsters[input - 1].NowHP = 0;
-                        gameManager.killCount = gameManager.killCount + 1;
-                        Console.WriteLine("{0}킬째", gameManager.killCount);                        
-                    }
-                    break;
-                }
+                break;
+            }
+            else if (input == 2)
+            {
+                //아이템사용
             }
         }
         
+        
+        //input = Utility.GetInput(0, monsters.FindAll(x=>x.IsDead==false).Count);
+
+        while (true)
+        {
+            input = Utility.GetInput(1, monsters.Count);
+            tempHP = monsters[input - 1].NowHP;
+            if (monsters[input - 1].IsDead == true)
+            {
+                Console.WriteLine("잘못된 입력입니다.");
+                Console.WriteLine();
+                Console.WriteLine("아무키 입력. 다음");
+                Console.WriteLine();
+                Console.Write(">>");
+                Console.ReadKey();
+            }
+            else
+            {
+                gameManager.player.Attack(gameManager.player, monsters[input - 1]);
+                if (monsters[input - 1].NowHP <= 0)
+                {
+                    monsters[input - 1].IsDead = true;
+                    monsters[input - 1].NowHP = 0;
+                    gameManager.killCount = gameManager.killCount + 1;
+                    Console.WriteLine("{0}킬째", gameManager.killCount);
+                }
+                break;
+            }
+        }
         Console.Clear();
         Console.WriteLine("Battle!!");
         Console.WriteLine();
