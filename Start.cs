@@ -8,15 +8,16 @@ namespace EIEIE_Project;
 public class Start()
 {
     private static int restNum = 500;
+
+
     static void Main(string[] args)
     {
         GameManager gameManager = new();
-        Inventory inventory = new();
 
-        StartGame(gameManager, inventory);
+        StartGame(gameManager);
     }
 
-    public static void StartGame(GameManager gameManager, Inventory inventory)
+    public static void StartGame(GameManager gameManager)
     {
         while (true)
         {

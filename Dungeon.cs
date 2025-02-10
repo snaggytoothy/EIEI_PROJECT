@@ -29,11 +29,11 @@ class Dungeon
                 break;
             case 2:
                 if (gameManager.player.Level >= 8) NormalScreen(gameManager);
-                else Console.WriteLine("레벨이 부족합니다! (Lv.1 이상 필요)");
+                else Console.WriteLine("레벨이 부족합니다! (Lv.8 이상 필요)");
                 break;
             case 3:
                 if (gameManager.player.Level >= 12) HardScreen(gameManager);
-                else Console.WriteLine("레벨이 부족합니다! (Lv.1 이상 필요)");
+                else Console.WriteLine("레벨이 부족합니다! (Lv.12 이상 필요)");
                 break;
         }
 
