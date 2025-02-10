@@ -292,7 +292,7 @@ public class Monster : Character // Monster 캐릭터 관리
         //    this.MonsterType = 3;
         //    this.MonsterID = id;
         //    this.Level = 10;
-        //    this.Name = "정령왕 픽시 Boss[]";
+        //    this.Name = "킹 비스트맨(돌산양)  Boss[]";
         //    this.Atk = 30;
         //    this.Def = 5;
         //    this.MaxHP = 450;
