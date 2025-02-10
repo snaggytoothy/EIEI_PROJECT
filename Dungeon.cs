@@ -179,13 +179,11 @@ class Dungeon
                         Fail(gameManager, tempPlayer);
                         break;
                     }
-                    if (monsters.FindAll(x => x.IsDead == true).Count == monsters.Count && nowWave < wave)
-                    {
-                        Console.WriteLine("반복문 안");
+                    if (monsters.FindAll(x => x.IsDead == true).Count == monsters.Count)
+                    {                        
                         for (int j = 0; j < monsters.Count; j++)
                         {
                             resultExp += monsters[j].Level;
-                            //nowWave = nowWave + 1;
                         }
                         break;
                     }
@@ -246,13 +244,12 @@ class Dungeon
                         Fail(gameManager, tempPlayer);
                         break;
                     }
-                    if (monsters.FindAll(x => x.IsDead == true).Count == monsters.Count && nowWave < wave)
+                    if (monsters.FindAll(x => x.IsDead == true).Count == monsters.Count)
                     {
                         Console.WriteLine("반복문 안");
                         for (int j = 0; j < monsters.Count; j++)
                         {
                             resultExp += monsters[j].Level;
-                            //nowWave = nowWave + 1;
                         }
                         break;
                     }
@@ -312,13 +309,12 @@ class Dungeon
                         Fail(gameManager, tempPlayer);
                         break;
                     }
-                    if (monsters.FindAll(x => x.IsDead == true).Count == monsters.Count && nowWave < wave)
+                    if (monsters.FindAll(x => x.IsDead == true).Count == monsters.Count)
                     {
                         Console.WriteLine("반복문 안");
                         for (int j = 0; j < monsters.Count; j++)
                         {
                             resultExp += monsters[j].Level;
-                            //nowWave = nowWave + 1;
                         }
                         break;
                     }
