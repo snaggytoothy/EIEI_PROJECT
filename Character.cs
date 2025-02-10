@@ -94,6 +94,7 @@ public class Monster : Character // Monster 캐릭터 관리
     public int MonsterID { get; set; }
     public bool IsDead { get; set; }
     // 몬스터 등급 스톤 -> 브론즈 -> 아이언 - > 실버 -> 골드 -> 플래티넘랭크 순이다.
+    // 스톤(LV.1~6)
     public Monster(int id) // MonsterType 1번은 잡몹, 2번은 레어몹, 3번은 보스몹
     {
         if (id == 1)
@@ -101,7 +102,7 @@ public class Monster : Character // Monster 캐릭터 관리
             this.MonsterType = 1;
             this.MonsterID = id;
             this.Level = 1;
-            this.Name = "흰색 슬라임[스톤]"; // EasyScreen
+            this.Name = "흰색 슬라임[등급: 스톤]"; // EasyScreen
             this.Atk = 2;
             this.Def = 1;
             this.MaxHP = 30;
@@ -113,7 +114,7 @@ public class Monster : Character // Monster 캐릭터 관리
             this.MonsterType = 1;
             this.MonsterID = id;
             this.Level = 2;
-            this.Name = "고블린[스톤]"; // EasyScreen
+            this.Name = "고블린[등급: 스톤]"; // EasyScreen
             this.Atk = 2;
             this.Def = 3;
             this.MaxHP = 28;
@@ -125,7 +126,7 @@ public class Monster : Character // Monster 캐릭터 관리
             this.MonsterType = 1;
             this.MonsterID = id;
             this.Level = 4;
-            this.Name = "전투병 고블린[스톤]"; // EasyScreen
+            this.Name = "전투병 고블린[등급: 스톤]"; // EasyScreen
             this.Atk = 3;
             this.Def = 4;
             this.MaxHP = 33;
@@ -137,7 +138,7 @@ public class Monster : Character // Monster 캐릭터 관리
             this.MonsterType = 2;
             this.MonsterID = id;
             this.Level = 6;
-            this.Name = "홉 고블린[레어 스톤]"; // EasyScreen 
+            this.Name = "홉 고블린[등급: 레어 스톤]"; // EasyScreen 
             this.Atk = 6;
             this.Def = 5;
             this.MaxHP = 54;
@@ -149,7 +150,7 @@ public class Monster : Character // Monster 캐릭터 관리
             this.MonsterType = 1;
             this.MonsterID = id;
             this.Level = 1;
-            this.Name = "스켈레톤[스톤]"; // NormalScreen
+            this.Name = "스켈레톤[등급: 스톤]"; // NormalScreen
             this.Atk = 2;
             this.Def = 1;
             this.MaxHP = 15;
@@ -161,11 +162,12 @@ public class Monster : Character // Monster 캐릭터 관리
             this.MonsterType = 1;
             this.MonsterID = id;
             this.Level = 4;
-            this.Name = "궁수 스켈레톤[스톤]"; // NormalScreen
+            this.Name = "궁수 스켈레톤[등급: 스톤]"; // NormalScreen
             this.Atk = 5;
             this.Def = 2;
             this.MaxHP = 20;
             this.NowHP = 20;
+
             Console.WriteLine("설명: 활, 가죽 누더기를 장착하고있다, 죽기전에는 궁수였던거 같다.");
 
         }
@@ -174,7 +176,7 @@ public class Monster : Character // Monster 캐릭터 관리
             this.MonsterType = 1;
             this.MonsterID = id;
             this.Level = 3;
-            this.Name = "전사 스켈레톤[스톤]"; // NormalScreen
+            this.Name = "전사 스켈레톤[등급: 스톤]"; // NormalScreen
             this.Atk = 4;
             this.Def = 3;
             this.MaxHP = 23;
@@ -188,33 +190,33 @@ public class Monster : Character // Monster 캐릭터 관리
             this.MonsterType = 1;
             this.MonsterID = id;
             this.Level = 7;
-            this.Name = "스피어 군단장 언데드[레어 스톤]"; // NormalScreen
+            this.Name = "스피어 군단장 언데드[등급: 브론즈]"; // NormalScreen
             this.Atk = 4;
             this.Def = 3;
             this.MaxHP = 23;
             this.NowHP = 23;
-            Console.WriteLine("설명: 글레이즈 폴암, 부서진 파급 갑옷 장착, 꽤나 좋은 품질을 장비를 하고 있다 살아생전 꽤나 실력이 있는 군단장이었던 거 같다 하지만 죽었죠?... ");
+            Console.WriteLine("설명: 글레이즈 폴암, 부서진 파급 갑옷 장착, 꽤나 좋은 품질을 장비를 하고 있다 ");
 
         }
         else if (id == 9) //수정중
         {
-            this.MonsterType = 1;
+            this.MonsterType = 2;
             this.MonsterID = id;
-            this.Level = 7;
-            this.Name = "츠바이헨더 군단장 언데드[레어 브론즈]"; // NormalScreen
+            this.Level = 8;
+            this.Name = "츠바이헨더 군단장 언데드[등급: 레어 브론즈]"; // NormalScreen
             this.Atk = 4;
             this.Def = 3;
             this.MaxHP = 23;
             this.NowHP = 23;
-            Console.WriteLine("설명: 은빛 나는 츠바이헨더, 사슬+판급 갑옷 장착, ");
-
+            Console.WriteLine("설명: 은빛 츠바이헨더, 사슬+판급 갑옷 장착, 공략하면 낮은 확률로 은빛 츠바이헨더가 드랍된다는 소문이 있다.  살아생전 꽤나 실력이 있는 군단장이었던 거 같다 하지만 죽었죠?... ");
+            // 10 분의 1 확률로 은빛 츠바이헨더 드랍 기능 구현
         }
         else if (id == 10) // 수진님 몬스터
         {
             this.MonsterType = 2;
             this.MonsterID = id;
             this.Level = 7;
-            this.Name = "War 고스트[레어 아이언]"; // NormalScreen
+            this.Name = "War 고스트[등급: 브론즈]"; // NormalScreen
             this.Atk = 7;
             this.Def = 7;
             this.MaxHP = 63;
@@ -226,7 +228,7 @@ public class Monster : Character // Monster 캐릭터 관리
             this.MonsterType = 1;
             this.MonsterID = id;
             this.Level = 7;
-            this.Name = " 워리어 비스트맨(돌산양)[아이언]"; // HardScreen
+            this.Name = " 워리어 비스트맨(돌산양)[등급: 브론즈]"; // HardScreen
             this.Atk = 6;
             this.Def = 5;
             this.MaxHP = 50;
@@ -239,7 +241,7 @@ public class Monster : Character // Monster 캐릭터 관리
             this.MonsterType = 1;
             this.MonsterID = id;
             this.Level = 9;
-            this.Name = "정예 워리어 비스트맨(돌산양)[실버]"; // HardScreen
+            this.Name = "정예 워리어 비스트맨(돌산양)[등급: 아이언]"; // HardScreen
             this.Atk = 8;
             this.Def = 7;
             this.MaxHP = 65;
@@ -251,7 +253,7 @@ public class Monster : Character // Monster 캐릭터 관리
             this.MonsterType = 1;
             this.MonsterID = id;
             this.Level = 7;
-            this.Name = "헌터 비스트맨(돌산양)[아이언]"; // HardScreen
+            this.Name = "헌터 비스트맨(돌산양)[등급: 아이언]"; // HardScreen
             this.Atk = 6;
             this.Def = 5;
             this.MaxHP = 50;
