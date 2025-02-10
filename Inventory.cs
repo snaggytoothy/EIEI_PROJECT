@@ -28,7 +28,7 @@ public class Inventory
             Console.WriteLine("[소비 아이템 목록]");
             for (int i = 0; i < gameManager.inventoryConsumables.Count; i++)
             {
-                if (gameManager.inventoryConsumables[i].IsHad == true)
+                if (gameManager.inventoryConsumables[i].Count>0)
                 {
                     Console.WriteLine($"- {gameManager.inventoryConsumables[i].Name} | {gameManager.inventoryConsumables[i].Inform} | 보유 개수 : {gameManager.inventoryConsumables[i].Count}");
                 }        
@@ -48,7 +48,7 @@ public class Inventory
             }
             else if (input == 2)
             {
-                //아이템 사용창 띄우기
+                ConsumeManagement(gameManager); // 아이템 사용창 띄우기
             }
         }
     }
@@ -82,7 +82,7 @@ public class Inventory
             }
             else if (input > 0 && input <= gameManager.inventoryEquipment.Count)
             {
-                if (gameManager.inventoryEquipment[input - 1].IsEquiped) //장착되어있는 장비가 있는지 확인
+                if (gameManager.inventoryEquipment[input - 1].IsEquiped) //장비가 장착되어있는지 확인
                 {
                     UnEquip(gameManager.player, gameManager.inventoryEquipment[input - 1]);
                 }
@@ -105,7 +105,7 @@ public class Inventory
             Console.WriteLine("[소비 아이템 목록]");
             for (int i = 0; i < gameManager.inventoryConsumables.Count; i++)
             {
-                if (gameManager.inventoryConsumables[i].IsHad == true)
+                if (gameManager.inventoryConsumables[i].Count > 0)
                 {
                     Console.WriteLine($"-{i + 1}. {gameManager.inventoryConsumables[i].Name} | {gameManager.inventoryConsumables[i].Inform} | 보유 개수 : {gameManager.inventoryConsumables[i].Count}");
                 }
@@ -122,10 +122,6 @@ public class Inventory
                 if (gameManager.inventoryConsumables[input - 1].Count >0) 
                 {
                     gameManager.inventoryConsumables[input - 1].Use(gameManager.player); //해당 아이템 사용
-                }
-                if(gameManager.inventoryConsumables[input - 1].Count == 0)
-                {
-                    gameManager.inventoryConsumables.Remove(gameManager.inventoryConsumables[input - 1]);
                 }
             }
         }
