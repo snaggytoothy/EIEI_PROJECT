@@ -46,6 +46,7 @@ public class Player : Character
                 level = value;
                 Atk += (level - 1) * 0.5f;
                 Def += (level - 1) * 1f;
+                MaxExp += 15 * (level-1);
             }
         }
     }
@@ -68,8 +69,18 @@ public class Player : Character
                 if(nowExp == MaxExp)
                 {
                     nowExp = 0;
-                    MaxExp += 15 * Level;
                     Level++;
+                }
+                else if(nowExp > MaxExp)
+                {
+                    int extraExp = nowExp - MaxExp;
+                        Level++;
+                    while(extraExp/MaxExp > 0)
+                    {
+                        Level++;
+                        extraExp -= MaxExp;
+                    }
+                    nowExp = extraExp;
                 }
             }
         }
