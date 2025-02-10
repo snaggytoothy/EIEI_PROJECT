@@ -6,6 +6,7 @@ using System.ComponentModel.Design;
 using Microsoft.VisualBasic;
 namespace EIEIE_Project;
 
+//휴식 수정해야함
 public class Start()
 {
     private static int restNum = 500;
@@ -37,14 +38,52 @@ public class Start()
             {
                 case 1:
                     Console.Clear();
-                    SelectMenu(gameManager);
+                    SelectJob(gameManager);
                     break;
                 case 2:
                     Console.Clear();
                     Console.WriteLine("이름을 바꿀 수 있는 기회는 지금 밖에 없습니다. 신중히 입력해주세요!");
-                    continue; //다시 물어보기.
+                    break;
             }
         }
+    }
+    public static void SelectJob(GameManager gameManager)
+    {
+        while (true)
+        {
+            Console.Clear();
+            Console.WriteLine($"{gameManager.player.Name}님 멋진 이름이군요.");
+            Console.WriteLine("그렇다면 당신의 직업은 무엇인가요?");
+            Console.WriteLine("\n1. 전사\n2. 마법사\n3. 모험가");
+            int input = Utility.GetInput(1, 3);
+            switch (input)
+            {
+                case 1:
+                    gameManager.player.Job = "전사";
+                    break;
+                case 2:
+                    gameManager.player.Job = "마법사";
+                    break;
+                case 3:
+                    gameManager.player.Job = "모험가";
+                    break;
+            }
+            Console.Clear();
+            Console.WriteLine("확실한가요? 직업 역시 지금 정하면 이후에 변경할 수 없습니다.");
+            Console.WriteLine("1. 네 2. 아니오");
+
+            int jobsure = Utility.GetInput(1, 2);
+            switch (jobsure)
+            {
+                case 1:
+                    Console.Clear();
+                    SelectMenu(gameManager);
+                    break;
+                case 2:
+                    break;
+            }
+        }
+        
     }
 
     public static void SelectMenu(GameManager gameManager) //활동 선택
@@ -53,7 +92,6 @@ public class Start()
         Inventory inventory = new();
         Store store = new();
         Dungeon dungeon = new();
-        Player player = new();
 
         while (true)
         {
@@ -71,13 +109,13 @@ public class Start()
                     inventory.InventoryScene(gameManager);
                     break;
                 case 3:
-                    store.StoreScreen(gameManager, gameManager.itemList);
+                    store.StoreScreen(gameManager);
                     break;
                 case 4:
                     dungeon.DoorDungeon(gameManager);
                     break;
                 case 5:
-                    RestScreen(player);
+                    RestScreen(gameManager.player);
                     break;
                 case 0:
                     Environment.Exit(0);
@@ -128,24 +166,22 @@ public class Start()
     public static void Rest(Player player)
     {
         Console.Clear();
-        if (player.NowHP == player.MaxHP) Console.WriteLine("이미 체력이 가득찼습니다.");
+        if (player.NowHP == player.MaxHP) Console.WriteLine("이미 체력이 가득찼습니다.(아무 키나 눌러 확인)");
         //플레이어의 체력이 가득찼을 경우 불필요하게 골드를 소모하지 못하게 막음
-        else if (player.Gold < restNum) Console.WriteLine("골드가 부족합니다. \"썩 꺼져.\" 늙은이가 말합니다.");
+        else if (player.Gold < restNum) Console.WriteLine("골드가 부족합니다. \"썩 꺼져.\" 늙은이가 말합니다.(아무 키나 눌러 확인)");
         //골드가 부족하면 휴식하지 못하게 함
         else
         {
-            int num = Utility.GetInput(0, 1);
-            switch (num)
+            Random ran = new Random();
+            int healAmount = ran.Next(30, 51);//힐량은 30~50 랜덤 값
+            player.Gold -= restNum;
+            player.NowHP += healAmount;
+            if (player.NowHP > player.MaxHP)
             {
-                case 0:
-                    break;
-                case 1:
-                    player.Gold -= restNum;
-                    player.NowHP = player.MaxHP;
-                    Console.WriteLine("체력이 회복되었습니다. \"또 오라고.\" 늙은이가 켈켈 웃습니다.");
-                    break;
+                player.NowHP = player.MaxHP;//만약 현재 HP 가 최대 HP를 넘어서면 최대 HP로 설정
             }
+            Console.WriteLine($"체력이 {healAmount} 회복되었습니다. \"또 오라고.\" 늙은이가 켈켈 웃습니다.(아무 키나 눌러 확인)");
         }
-        RestScreen(player);
+        Console.ReadKey();
     }
 }

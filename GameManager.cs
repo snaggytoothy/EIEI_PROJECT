@@ -46,11 +46,12 @@ public class GameManager
 
 
 
-    public Player player = new Player() { Level = 1, Name = "", MaxHP = 100, NowHP = 100, Atk = 15, Def = 15, Job = "", Gold = 1500, MaxExp = 10, NowExp = 0, MaxMP = 100, NowMP = 10 };
+    public Player player = new Player() { Level = 1, Name = "", MaxHP = 100, NowHP = 1, Atk = 15, Def = 15, Job = "", Gold = 1500, MaxExp = 10, NowExp = 0, MaxMP = 100, NowMP = 10 };
 
     public List<Equipment> inventoryEquipment = new List<Equipment>();  //인벤토리 리스트
     public List<Consumable> inventoryConsumables = new List<Consumable>(); // 소모품 리스트
 
     public int killCount = 0;
     public int attackCount = 0;
+    public int exitFlag = 0;
 }
