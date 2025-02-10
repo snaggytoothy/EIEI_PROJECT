@@ -15,9 +15,21 @@ public class Item
 
 public class Consumable : Item // 소비 아이템 클래스  
 {
+    public bool IsHad {  get; set; }
     public int Count { get; set; }
 
     public float BuffAmount { get; set; }
+    
+    public void Use(Player player)
+    {
+        player.NowHP += BuffAmount;
+        if(player.NowHP > player.MaxHP)
+        {
+            player.NowHP = player.MaxHP;
+        }
+        Count--;
+        Console.WriteLine("체력이 50 회복되었습니다.");
+    }
 }
 
 
