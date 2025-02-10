@@ -29,16 +29,15 @@ public class Start()
             Console.Clear();
             Console.WriteLine($"안녕하세요! {gameManager.player.Name}님!\n계속해서 이 이름으로 불러 드릴까요?");
             Console.WriteLine("1. 네 2. 아니오");
-            string namesure = Console.ReadLine() ?? "기본값";
 
-            namesure = Utility.GetInput(1, 2).ToString();
+            int namesure = Utility.GetInput(1, 2);
             switch (namesure)
             {
-                case "1":
+                case 1:
                     Console.Clear();
                     SelectMenu(gameManager);
                     break;
-                case "2":
+                case 2:
                     Console.Clear();
                     Console.WriteLine("이름을 바꿀 수 있는 기회는 지금 밖에 없습니다. 신중히 입력해주세요!");
                     continue; //다시 물어보기.
