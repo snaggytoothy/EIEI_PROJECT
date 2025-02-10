@@ -137,7 +137,7 @@ public class Monster : Character // Monster 캐릭터 관리
             this.MonsterType = 2;
             this.MonsterID = id;
             this.Level = 6;
-            this.Name = "홉 고블린[레어 브론즈]"; // EasyScreen 
+            this.Name = "홉 고블린[레어 스톤]"; // EasyScreen 
             this.Atk = 6;
             this.Def = 5;
             this.MaxHP = 54;
@@ -182,20 +182,34 @@ public class Monster : Character // Monster 캐릭터 관리
             Console.WriteLine("설명: 들고있는 근접 무기가 다양하다, 대부분 녹슨 사슬갑옷을 장착, 죽기전에 전사였던거 같다.");
 
         }
-        else if (id == 7)
+
+        else if (id == 8)
         {
             this.MonsterType = 1;
             this.MonsterID = id;
-            this.Level = 6;
-            this.Name = "군단장 스켈레톤[스톤]"; // NormalScreen
+            this.Level = 7;
+            this.Name = "스피어 군단장 언데드[레어 스톤]"; // NormalScreen
             this.Atk = 4;
             this.Def = 3;
             this.MaxHP = 23;
             this.NowHP = 23;
-            Console.WriteLine("설명: 들고있는 근접 무기가 다양하다, 대부분 녹슨 사슬갑옷을 장착, 죽기전에 전사였던거 같다.");
+            Console.WriteLine("설명: 글레이즈 폴암, 부서진 파급 갑옷 장착, 꽤나 좋은 품질을 장비를 하고 있다 살아생전 꽤나 실력이 있는 군단장이었던 거 같다 하지만 죽었죠?... ");
 
         }
-        else if (id == 9) // 수진님 몬스터
+        else if (id == 9) //수정중
+        {
+            this.MonsterType = 1;
+            this.MonsterID = id;
+            this.Level = 7;
+            this.Name = "츠바이헨더 군단장 언데드[레어 브론즈]"; // NormalScreen
+            this.Atk = 4;
+            this.Def = 3;
+            this.MaxHP = 23;
+            this.NowHP = 23;
+            Console.WriteLine("설명: 은빛 나는 츠바이헨더, 사슬+판급 갑옷 장착, ");
+
+        }
+        else if (id == 10) // 수진님 몬스터
         {
             this.MonsterType = 2;
             this.MonsterID = id;
@@ -207,7 +221,7 @@ public class Monster : Character // Monster 캐릭터 관리
             this.NowHP = 63;
             Console.WriteLine("설명: 검은 판급갑옷, 검은 대검 or 검은 방패 한손무기 장착, 발생 원인은 파악을 못 하였으나 전쟁터에서 죽은 사람의 원혼이 뭉쳐서 탄생한다는 소문이 있다, ");
         }
-        else if (id == 10)
+        else if (id == 11)
         {
             this.MonsterType = 1;
             this.MonsterID = id;
@@ -220,7 +234,7 @@ public class Monster : Character // Monster 캐릭터 관리
             Console.WriteLine("설명: 둔기 or 도끼를 들고 있다, 갑옷은 인간의 뼈로 만든 흉갑이며 기본 2미터 크기이다. ");
             //Console.WriteLine("비스트맨의 종은 다양하다 하지만 이 던전에는 돌산양 비스트맨이 무리지어 살고있다. 얼굴은 돌산양 상반신 인간 하반신 말 이다. 박치기를 맞으면 상대는 대부분 즉사 한다고 하니 조심하자.");  던전 입장시 설명문으로 사용 예정 -> Dungeon 이동
         }   //Console.WriteLine("선호하는 식량은 인간이며 둔기로 전투불능으로 만들어 신선하게 먹는 걸 좋아한다.")
-        else if (id == 11)
+        else if (id == 12)
         {
             this.MonsterType = 1;
             this.MonsterID = id;
@@ -232,7 +246,7 @@ public class Monster : Character // Monster 캐릭터 관리
             this.NowHP = 65;
             Console.WriteLine("설명: 쌍수 시미터, 체인+판급 합성 갑옷을 장착, 인간 전사를 사냥해서 전리품을 장착한다, 큰 체구에 비해 상당히 민첩하며 괜찮은 장비를 보유하고있어서 공략하기 힘들다. ");
         }
-        else if (id == 12)
+        else if (id == 13)
         {
             this.MonsterType = 1;
             this.MonsterID = id;
