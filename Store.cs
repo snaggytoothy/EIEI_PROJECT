@@ -6,7 +6,7 @@ public class Store
 {
     bool IsSellOrBuy = false;
 
-    public void PrintItem(GameManager gm, List<Item> inventory)
+    public void PrintItem(GameManager gm)
     {
         string strNum = " - ";
         Console.WriteLine("==장비=============");
@@ -49,7 +49,7 @@ public class Store
             Console.WriteLine($"[보유 골드] : {gm.player.Gold}G \n");
             Console.WriteLine("[아이템 목록] \n");
 
-            PrintItem(gm, inventory);
+            PrintItem(gm);
 
             Console.WriteLine("1. 아이템 구매 \n2. 아이템 판매 \n0. 나가기");
             int num = Utility.GetInput(0, 2);
@@ -69,7 +69,7 @@ public class Store
             Console.WriteLine($"[보유 골드] : {gm.player.Gold} G \n");
             Console.WriteLine("[아이템 목록] \n");
 
-            PrintItem(gm, inventory);
+            PrintItem(gm);
 
             Console.WriteLine("구매할 아이템의 번호를 누르세요.");
             Console.WriteLine("0. 나가기");
