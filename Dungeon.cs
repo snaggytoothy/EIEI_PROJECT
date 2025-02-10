@@ -22,44 +22,20 @@ class Dungeon
 
 
 
-        switch (input)
-        {
-            case 1:
-<<<<<<< HEAD
-                EasyScreen();
-=======
-                if (gameManager.player.Level >= 1) EasyScreen(gameManager);
-                else Console.WriteLine("레벨이 부족합니다! (Lv.1 이상 필요)");
->>>>>>> th_EtDungeon
-                break;
-            case 2:
-                if (gameManager.player.Level >= 8) NormalScreen(gameManager);
-                else Console.WriteLine("레벨이 부족합니다! (Lv.1 이상 필요)");
-                break;
-            case 3:
-                if (gameManager.player.Level >= 12) HardScreen(gameManager);
-                else Console.WriteLine("레벨이 부족합니다! (Lv.1 이상 필요)");
-                break;
-        }
 
     }
   
-<<<<<<< HEAD
     public void EasyScreen()
-    {   
+     
         //렙 제한
         
 
-=======
     public void EasyScreen(GameManager gameManager)
     {
->>>>>>> th_EtDungeon
 
         Console.WriteLine("던전을 걸어가고 있습니다.");
         for (int i = 0; i < 3; i++)
         {
-<<<<<<< HEAD
-=======
             Console.WriteLine("뚜벅");
             Thread.Sleep(1000); // 1초 시간지연
         }
@@ -67,7 +43,6 @@ class Dungeon
                 Console.WriteLine("던전을 걸어가고 있습니다.");
         for (int i = 0; i < 3; i++)
         {
->>>>>>> th_EtDungeon
             Thread.Sleep(1000); // 1초 시간지연
             Console.Write("뚜벅");
         }
@@ -86,11 +61,8 @@ class Dungeon
         Console.WriteLine();
 
         Utility.GetInput(0, 0);
-<<<<<<< HEAD
         DoorDungeon(); // 던전입구 입장
-=======
         DoorDungeon(gameManager); // 던전입구 입장
->>>>>>> th_EtDungeon
     }
 
     public void NormalScreen(GameManager gameManager)
