@@ -30,6 +30,7 @@ public class Start()
             Console.WriteLine("1. 네 2. 아니오");
             string namesure = Console.ReadLine() ?? "기본값";
 
+            namesure = Utility.GetInput(1, 2).ToString();
             switch (namesure)
             {
                 case "1":

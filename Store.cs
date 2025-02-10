@@ -41,7 +41,6 @@ public class Store
             PrintItem(player, inventory);
 
             Console.WriteLine("1. 아이템 구매 \n2. 아이템 판매 \n0.나가기");
-
             int num = Utility.GetInput(0, 2);
             if (num == 1) BuyItem(player, inventory);
             else if (num == 2) SellItem(player, inventory);
