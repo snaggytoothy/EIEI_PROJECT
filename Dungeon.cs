@@ -130,7 +130,6 @@ class Dungeon
         if (level == 1)
         {
             int wave = 3;
-            int nowWave = 1;
             int resultExp = 0;
             //난이도에 맞는 몬스터 생성            
 
@@ -197,12 +196,134 @@ class Dungeon
         //normal 던전 입장
         else if (level == 2)
         {
+            int wave = 3;
+            int resultExp = 0;
+            //난이도에 맞는 몬스터 생성            
 
+            for (int i = 1; i <= wave + 1; i++)
+            {
+                if (i == 1)
+                {
+                    monsters.Clear();
+                    monsters.Add(new Monster(1));
+                }
+                else if (i == 2)
+                {
+                    monsters.Clear();
+                    monsters.Add(new Monster(1));
+                    monsters.Add(new Monster(2));
+                }
+                else if (i == 3)
+                {
+                    monsters.Clear();
+                    monsters.Add(new Monster(1));
+                    monsters.Add(new Monster(2));
+                    monsters.Add(new Monster(3));
+                }
+                else
+                {
+                    for (int j = 0; j < monsters.Count; j++)
+                    {
+                        resultExp += monsters[j].Level;
+                    }
+                    monsters.Clear();
+                    //승리화면으로
+                    Clear(gameManager, tempPlayer, resultExp);
+                    break;
+                }
+
+                while (true)
+                {
+                    Console.Clear();
+                    //플레이어 턴
+                    PlayerTurn(gameManager, monsters);
+                    //적 몬스터 턴
+                    EnemyTurn(gameManager, monsters);
+                    if (gameManager.player.NowHP <= 0)
+                    {
+                        //패배화면으로
+                        monsters.Clear();
+                        Fail(gameManager, tempPlayer);
+                        break;
+                    }
+                    if (monsters.FindAll(x => x.IsDead == true).Count == monsters.Count && nowWave < wave)
+                    {
+                        Console.WriteLine("반복문 안");
+                        for (int j = 0; j < monsters.Count; j++)
+                        {
+                            resultExp += monsters[j].Level;
+                            //nowWave = nowWave + 1;
+                        }
+                        break;
+                    }
+                }
+            }
         }
         //hard던전 입장
         else if (level == 3)
         {
+            int wave = 3;
+            int resultExp = 0;
+            //난이도에 맞는 몬스터 생성            
 
+            for (int i = 1; i <= wave + 1; i++)
+            {
+                if (i == 1)
+                {
+                    monsters.Clear();
+                    monsters.Add(new Monster(1));
+                }
+                else if (i == 2)
+                {
+                    monsters.Clear();
+                    monsters.Add(new Monster(1));
+                    monsters.Add(new Monster(2));
+                }
+                else if (i == 3)
+                {
+                    monsters.Clear();
+                    monsters.Add(new Monster(1));
+                    monsters.Add(new Monster(2));
+                    monsters.Add(new Monster(3));
+                }
+                else
+                {
+                    for (int j = 0; j < monsters.Count; j++)
+                    {
+                        resultExp += monsters[j].Level;
+                    }
+                    monsters.Clear();
+                    //승리화면으로
+                    Clear(gameManager, tempPlayer, resultExp);
+                    break;
+                }
+
+                while (true)
+                {
+                    Console.Clear();
+                    //플레이어 턴
+                    PlayerTurn(gameManager, monsters);
+                    //적 몬스터 턴
+                    EnemyTurn(gameManager, monsters);
+                    if (gameManager.player.NowHP <= 0)
+                    {
+                        //패배화면으로
+                        monsters.Clear();
+                        Fail(gameManager, tempPlayer);
+                        break;
+                    }
+                    if (monsters.FindAll(x => x.IsDead == true).Count == monsters.Count && nowWave < wave)
+                    {
+                        Console.WriteLine("반복문 안");
+                        for (int j = 0; j < monsters.Count; j++)
+                        {
+                            resultExp += monsters[j].Level;
+                            //nowWave = nowWave + 1;
+                        }
+                        break;
+                    }
+                }
+            }
         }
         else
         {
@@ -220,11 +341,11 @@ class Dungeon
         {
             if (monsters[i].IsDead == false)
             {
-                Console.WriteLine("{0} Lv {1} {2}   HP {3} / {4}", i, monsters[i].Name, monsters[i].Level, monsters[i].NowHP, monsters[i].MaxHP);
+                Console.WriteLine("{0} Lv {1} {2}   HP {3} / {4}", i+1, monsters[i].Name, monsters[i].Level, monsters[i].NowHP, monsters[i].MaxHP);
             }
             else if (monsters[i].IsDead == true)
             {
-                Console.WriteLine("{0} Lv {1} {2}   Dead", i, monsters[i].Name, monsters[i].Level);
+                Console.WriteLine("{0} Lv {1} {2}   Dead", i+1, monsters[i].Name, monsters[i].Level);
             }
         }
 
