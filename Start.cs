@@ -104,7 +104,6 @@ public class Information()
         {
             if (act == 0)
             {
-                
             }
             Console.Clear();
         }
