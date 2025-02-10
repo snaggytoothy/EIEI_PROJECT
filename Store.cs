@@ -164,6 +164,7 @@ public class Store
                 string strPrice = equipItem.IsBought ? "구매완료" : $"{equipItem.Price} G";
                 Console.WriteLine($" {strNum}{equipItem.ChangeEquipMark()} {equipItem.Name} | {str} +{equipItem.GetValue()}| {equipItem.Inform} | {strPrice}");
             }
+            int consumableNum = gm.inventoryEquipment.Count + 1;
 
             Console.WriteLine("==소모품=============");
             for (int i = 0; i < gm.inventoryConsumables.Count; i++)
@@ -171,8 +172,7 @@ public class Store
                 if (!IsSellOrBuy) strNum = " - ";
                 else
                 {
-                    int number = i + 1;
-                    strNum = number.ToString() + ".";
+                    strNum = consumableNum.ToString() + ".";
                 }
                 Consumable consumeItem = gm.inventoryConsumables[i];
                 string str = "버프: ";
