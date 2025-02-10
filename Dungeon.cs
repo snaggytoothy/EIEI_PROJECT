@@ -116,7 +116,7 @@ class Dungeon
         Console.WriteLine();
 
         Utility.GetInput(0, 0);
-        DoorDungeon(gameManager); // 던전입구 입장
+        DoorDungeon(gameManager); // 던전입구 입장 // 임시저장
 
     }
 
