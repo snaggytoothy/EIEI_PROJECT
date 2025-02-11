@@ -140,6 +140,7 @@ public class Store
             }
             else //나가기를 누름
             {
+                Console.Clear();
                 IsSellOrBuy = false;
                 break;
             }
@@ -202,6 +203,7 @@ public class Store
                 if (num < gm.inventoryEquipment.Count) //아이템이 장비일 때
                 {
                     Equipment equipItem = gm.inventoryEquipment[num];
+                    
                     equipItem.IsBought = false; //구매 상태를 false로 변경
                     int equipID = equipItem.ItemID; //선택된 아이템의 itemID를 반환함
                     if (equipItem.IsEquiped) equipItem.UnEquip(gm.player); //장착 중이었다면 해제함
@@ -209,7 +211,8 @@ public class Store
                     gm.player.Gold += (int)sellPrice; //플레이어 골드에 판매 가격 추가
                     gm.inventoryEquipment.Remove(equipItem); //해당 아이템을 inventory에서 제거
                     Console.Clear();
-                    Console.WriteLine($"==={gm.itemList[equipID].Name} 아이템을 판매했습니다.===\n");
+                    Console.WriteLine($"==={equipItem.Name} 아이템을 판매했습니다.===\n");
+                    //반지 판매 
                 }
                 else //아이템이 소모품일 때
                 {
@@ -227,6 +230,7 @@ public class Store
             else //나가기를 누름
             {
                 IsSellOrBuy = false;
+                Console.Clear();
                 break;
             }
         }
