@@ -644,7 +644,7 @@ class Dungeon
                 Console.WriteLine("Battle!!");
                 Console.WriteLine();
                 Console.WriteLine("{0} 의 공격!", gameManager.player.Name);
-                gameManager.player.Attack(gameManager.player, monsters[input - 1]);//공격
+                gameManager.player.Attack(gameManager.player, monsters[input - 1],tempHP);//공격
                 //공격한 몬스터가 죽으면
                 if (monsters[input - 1].NowHP <= 0)
                 {
@@ -653,9 +653,9 @@ class Dungeon
                     gameManager.killCount = gameManager.killCount + 1;
                     //Console.WriteLine("{0}킬째", gameManager.killCount);
                 }
-                Console.WriteLine("Lv.{0} {1} 을(를) 맞췄습니다. [데미지] : {2}", monsters[input - 1].Level, monsters[input - 1].Name, tempHP - monsters[input - 1].NowHP);
+                /*Console.WriteLine("Lv.{0} {1} 을(를) 맞췄습니다. [데미지] : {2}", monsters[input - 1].Level, monsters[input - 1].Name, tempHP - monsters[input - 1].NowHP);
                 Console.WriteLine();
-                Console.WriteLine("Lv.{0} {1}", monsters[input - 1].Level, monsters[input - 1].Name);
+                Console.WriteLine("Lv.{0} {1}", monsters[input - 1].Level, monsters[input - 1].Name);*/
                 if (monsters[input - 1].IsDead == true)
                 {
                     Console.WriteLine("HP {0} -> Dead", tempHP);
@@ -691,14 +691,14 @@ class Dungeon
             if (monsters[i].IsDead == false)
             {
                 Console.WriteLine("{0} 의 공격!", monsters[i].Name);
-                monsters[i].Attack(monsters[i], gameManager.player);
+                monsters[i].Attack(monsters[i], gameManager.player, tempHP);
                 if (gameManager.player.NowHP <= 0)
                 {
                     gameManager.player.NowHP = 0;
                 }
-                Console.WriteLine("{0} 을(를) 맞췄습니다. [데미지] : {1}", gameManager.player.Name, tempHP - gameManager.player.NowHP);
+                /*Console.WriteLine("{0} 을(를) 맞췄습니다. [데미지] : {1}", gameManager.player.Name, tempHP - gameManager.player.NowHP);
                 Console.WriteLine();
-                Console.WriteLine("Lv.{0} {1}", gameManager.player.Level, gameManager.player.Name);
+                Console.WriteLine("Lv.{0} {1}", gameManager.player.Level, gameManager.player.Name);*/
                 if (gameManager.player.NowHP <= 0)
                 {
                     Console.WriteLine("HP {0} -> Dead", gameManager.player.NowHP);

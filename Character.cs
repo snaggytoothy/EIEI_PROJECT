@@ -44,25 +44,38 @@ public class Character
     public float MaxHP { get; set; }
     public float NowHP { get; set; }
 
-    public void Attack(Character attacker, Character target)
+    public void Attack(Character attacker, Character target, float tempHP)
     {
         Random random = new Random();
         int max = (int)Math.Ceiling(attacker.Atk + (attacker.Atk * 0.1));
         int min = (int)Math.Ceiling(attacker.Atk - (attacker.Atk * 0.1));
-
-        if (random.Next(1, 101) <= 15)
+        if (random.Next(1, 101) <= 10)
         {
-            target.NowHP = (float)(target.NowHP - (random.Next(min, max) + Math.Ceiling(random.Next(min, max) * 0.6)));
-            //Console.WriteLine("치명타 공격!!");
-            Utility.ColorWrite("치명타 공격!!", ConsoleColor.Red);
+            Utility.ColorWrite("아무일도 일어나지 않았습니다", ConsoleColor.Red);
             Console.WriteLine();
-
         }
         else
         {
-            target.NowHP = target.NowHP - random.Next(min, max);
+            if (random.Next(1, 101) <= 15)
+            {
+                target.NowHP = (float)(target.NowHP - (random.Next(min, max) + Math.Ceiling(random.Next(min, max) * 0.6)));
+                //Console.WriteLine("치명타 공격!!");
+                Utility.ColorWrite("치명타 공격!!", ConsoleColor.Red);
+                Console.WriteLine("Lv.{0} {1} 을(를) 맞췄습니다. [데미지] : {2}", target.Level, target.Name, tempHP - target.NowHP);
+                Console.WriteLine();
+                Console.WriteLine("Lv.{0} {1}", target.Level, target.Name);
+                Console.WriteLine();
+
+            }
+            else
+            {
+                target.NowHP = target.NowHP - random.Next(min, max);
+                Console.WriteLine("Lv.{0} {1} 을(를) 맞췄습니다. [데미지] : {2}", target.Level, target.Name, tempHP - target.NowHP);
+                Console.WriteLine();
+                Console.WriteLine("Lv.{0} {1}", target.Level, target.Name);
+                Console.WriteLine();
+            }
         }
-        
     }
 }
 public class Player : Character
