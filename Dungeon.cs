@@ -528,7 +528,7 @@ class Dungeon
             //살아잇는 몬스터 표시
             if (monsters[i].IsDead == false)
             { 
-                Console.WriteLine("{0} Lv {1} {2}   HP {3} / {4}", i + 1, monsters[i].Level, monsters[i].Name, monsters[i].NowHP, monsters[i].MaxHP);
+                Console.WriteLine("{0} Lv {1} {2}   HP {3} / {4}  {5}", i + 1, monsters[i].Level, monsters[i].Name, monsters[i].NowHP, monsters[i].MaxHP, monsters[i].Details);
                 Console.WriteLine();
             }
             //죽은 몬스터 표시
@@ -727,7 +727,7 @@ class Dungeon
             Console.WriteLine("[내정보]");
             Console.WriteLine("Lv. {0}  {1}  ({2})", gameManager.player.Level, gameManager.player.Name, gameManager.player.Job);
             Console.WriteLine("HP {0} / {1}", gameManager.player.NowHP, gameManager.player.MaxHP);
-            Console.WriteLine("HP {0} / {1}", gameManager.player.NowMP, gameManager.player.MaxMP);
+            Console.WriteLine("MP {0} / {1}", gameManager.player.NowMP, gameManager.player.MaxMP);
             Console.WriteLine();
             Console.WriteLine("0. 턴종료");
             Console.WriteLine("1. 공격");
