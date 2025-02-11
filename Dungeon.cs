@@ -221,7 +221,7 @@ class Dungeon
         {
             if (wave == 1)
             {
-                monsterNum = random.Next(1, 2);
+                monsterNum = random.Next(1, 3);
                 for (int i = 0; i < monsterNum; i++)
                 {
                     monsterID = random.Next(1, 4);
@@ -240,7 +240,7 @@ class Dungeon
             }
             else if (wave == 3) 
             {
-                monsterNum = random.Next(3, 5);
+                monsterNum = random.Next(2 , 4);
                 for (int i = 0; i < monsterNum; i++)
                 {
                     monsterID = random.Next(1, 4);
@@ -744,40 +744,27 @@ class Dungeon
         gameManager.player.Gold = gameManager.player.Gold + resultExp * 50;
         Console.WriteLine("{0} Gold", gameManager.player.Gold);
 
-        /*while (true)
+        while (true)
         {
             //40%의 확률로            
             if (random1.Next(1, 101) > 60)
             {
                 Random random2 = new Random();
-                var expectequiment = gameManager.equipments.Where(x => gameManager.inventoryEquipment.Count(s => x.ItemID != s.ItemID) == 0).ToList();
-
-                Console.WriteLine("expectequiment");
-                foreach (var item in expectequiment) 
-                {
-                    Console.WriteLine(item.Name);
-                }
-                Console.WriteLine();
-                Console.WriteLine();
-                Console.WriteLine();
-                //전체 아이템리스트와 보유 아이템 리스트 비교                
-                //비교한 리스트에 아무것도 없다면 정지                
-                if (expectequiment.Any() == false)
+                var result = gameManager.equipments.Where(x => gameManager.inventoryEquipment.Count(s => x.ItemID == s.ItemID) == 0).ToList();
+                var find = result.FindAll(x => x.MonsterFlag == true).ToList();
+                if (find.Count == 0) 
                 {
                     break;
                 }
-                //보유하지 않은 아이템에서 몬스터 플래그가 트루인 아이템을 추가
-                var find = expectequiment.FindAll(x => x.MonsterFlag == true).ToList();
                 int temp = random2.Next(0, find.Count);
                 Console.WriteLine("{0}", find[temp].Name);
                 gameManager.inventoryEquipment.Add(find[temp]);
-                
             }
             else
             {
                 break;
             }
-        }*/
+        }
 
         gameManager.killCount = 0;
         Console.WriteLine("Anykey. 나가기");
