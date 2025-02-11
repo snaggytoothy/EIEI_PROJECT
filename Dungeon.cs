@@ -804,6 +804,10 @@ class Dungeon
                         {
                             gameManager.inventoryConsumables[input - 1].Use(gameManager, 10);
                         }
+                        if (gameManager.inventoryConsumables[input - 1].Count == 0)
+                        {
+                            gameManager.inventoryConsumables.Remove(gameManager.inventoryConsumables[input - 1]);
+                        }
                         Console.WriteLine("Anykey. 진행");
                         Console.ReadKey();
                     }
