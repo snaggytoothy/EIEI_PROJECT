@@ -3,9 +3,9 @@ namespace EIEIE_Project;
 public class Store
 {
     bool IsSellOrBuy = false; //구매, 또는 판매 중일 때 true가 됨
-
     public void PrintItem(GameManager gm) //아이템 목록을 출력함
     {
+        int consumableNum = 0;
         string strNum = " - "; //strNum 값을 " - "로 초기화
         Console.WriteLine("==장비=============");
         for (int i = 0; i < gm.equipments.Count; i++)
@@ -19,11 +19,14 @@ public class Store
             Equipment item = gm.equipments[i]; //장비 아이템을 item에 저장
             string str = item.ItemType == 0 ? "공격력: " : "방어력: "; //아이템의 아이템 타입에 따라, 0이면 공격력이고 아니라면 방어력으로 출력
             string strPrice = item.IsBought ? "구매완료" : $"{item.Price} G"; //아이템을 이미 구매했는가의 여부에 따라 구매완료 또는 가격을 출력
-            if (item.ShopFlag) Console.WriteLine($" {strNum}{item.ChangeEquipMark()} {item.Name} | {str} +{item.GetValue()}| {item.Inform} | {strPrice}");
+            if (item.ShopFlag)
+            {
+                Console.WriteLine($" {strNum}{item.ChangeEquipMark()} {item.Name} | {str} +{item.GetValue()}| {item.Inform} | {strPrice}");
+                consumableNum += 1;
+            }
             //아이템 순번, 아이템 장착 여부, 아이템 이름, 아이템 타입, 아이템 스탯 증가/감소 수치, 아이템 정보, 아이템 가격 출력
         }
-
-        int consumableNum = gm.equipments.Count + 1;//소모품 번호는 장비 개수보다 1 많게 지정
+        //consumable 추가하려고 하니 둘 다 같은 번호로 뜸. +1을 없애고, 그 뒤에 consumable.count도 더해야함
 
         Console.WriteLine("==소모품=============");
         for (int i = 0; i < gm.consumables.Count; i++)
@@ -31,6 +34,7 @@ public class Store
             if (!IsSellOrBuy) strNum = " - "; //상점 창에서 아이템 번호 대신 " - "를 출력함
             else
             {
+                consumableNum++;
                 strNum = consumableNum.ToString() + "."; //소모품 번호를 string 값으로 변환 후 마침표 찍어주기
             }
             Consumable item = gm.consumables[i];
