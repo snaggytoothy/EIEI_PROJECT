@@ -221,7 +221,7 @@ class Dungeon
         {
             if (wave == 1)
             {
-                monsterNum = random.Next(1, 2);
+                monsterNum = random.Next(1, 3);
                 for (int i = 0; i < monsterNum; i++)
                 {
                     monsterID = random.Next(1, 4);
@@ -240,7 +240,7 @@ class Dungeon
             }
             else if (wave == 3) 
             {
-                monsterNum = random.Next(3, 5);
+                monsterNum = random.Next(2 , 4);
                 for (int i = 0; i < monsterNum; i++)
                 {
                     monsterID = random.Next(1, 4);
@@ -521,6 +521,180 @@ class Dungeon
         }
     }
 
+    void MonsterDisplay(List<Monster> monsters)
+    {
+        for (int i = 0; i < monsters.Count; i++)
+        {
+            //살아잇는 몬스터 표시
+            if (monsters[i].IsDead == false)
+            { 
+                Console.WriteLine("{0} Lv {1} {2}   HP {3} / {4}", i + 1, monsters[i].Level, monsters[i].Name, monsters[i].NowHP, monsters[i].MaxHP);
+                Console.WriteLine();
+            }
+            //죽은 몬스터 표시
+            else if (monsters[i].IsDead == true)
+            {
+                Console.WriteLine("{0} Lv {1} {2}   Dead", i + 1, monsters[i].Level, monsters[i].Name);
+            }
+        }
+    }
+
+    void NormalAttack(GameManager gameManager, List<Monster> monsters)
+    {
+        int input;
+        float tempHP;
+        while (true)
+        {
+            Console.Clear();
+            //현재 몬스터 표시
+            MonsterDisplay(monsters);
+            Console.WriteLine("공격할 몬스터를 고르세요");
+            Console.Write(">>");
+            //몬스터 공격명령
+            input = Utility.GetInput(1, monsters.Count);
+            tempHP = monsters[input - 1].NowHP;
+            //죽은 몬스터 골랐을때
+            if (monsters[input - 1].IsDead == true)
+            {
+                Console.WriteLine("잘못된 입력입니다.");
+                Console.WriteLine();
+                Console.WriteLine("아무키 입력. 다음");
+                Console.WriteLine();
+                Console.Write(">>");
+                Console.ReadKey();
+            }
+            //살아있는 몬스터 골랐을때
+            else
+            {
+
+                //결과창 표시
+                Console.WriteLine("Battle!!");
+                Console.WriteLine();
+                Console.WriteLine("{0} 의 공격!", gameManager.player.Name);
+                gameManager.player.Attack(gameManager.player, monsters[input - 1]);//공격
+                //공격한 몬스터가 죽으면
+                if (monsters[input - 1].NowHP <= 0)
+                {
+                    monsters[input - 1].IsDead = true;
+                    monsters[input - 1].NowHP = 0;
+                    gameManager.killCount = gameManager.killCount + 1;
+                    //Console.WriteLine("{0}킬째", gameManager.killCount);
+                }
+                /*Console.WriteLine("Lv.{0} {1} 을(를) 맞췄습니다. [데미지] : {2}", monsters[input - 1].Level, monsters[input - 1].Name, tempHP - monsters[input - 1].NowHP);
+                Console.WriteLine();
+                Console.WriteLine("Lv.{0} {1}", monsters[input - 1].Level, monsters[input - 1].Name);*/
+                if (monsters[input - 1].IsDead == true)
+                {
+                    Console.WriteLine("HP {0} -> Dead", tempHP);
+                }
+                else
+                {
+                    Console.WriteLine("HP {0} -> {1}", tempHP, monsters[input - 1].NowHP);
+                }
+
+                Console.WriteLine();
+                Console.WriteLine("아무키 입력. 다음");
+                Console.WriteLine();
+                Console.Write(">>");
+                Console.ReadKey();
+                break;
+            }
+        }
+    }
+
+    void SkilDisplay(GameManager gameManager)
+    {
+        Console.WriteLine("스킬 보유 목록");
+        for(int i = 0; i<gameManager.mySkils.Count; i++)
+        {
+            Console.WriteLine("{0} {1} 소모 MP : {2} 기본 데미지 : {3} 공격 계수: {4}  설명 : {5}", i+1, gameManager.mySkils[i].Name, gameManager.mySkils[i].Cost, gameManager.mySkils[i].Damage, gameManager.mySkils[i].skilRatiod ,gameManager.mySkils[i].Description);
+        }
+    }
+
+    void SkilAttack(GameManager gameManager, List<Monster> monsters)
+    {
+        int skillInput;
+        int input;
+        while (true)
+        {
+            Console.Clear();
+            SkilDisplay(gameManager);
+            Console.WriteLine();
+            Console.WriteLine("사용할 스킬을 고르세요");
+            Console.Write("0. 뒤로가기");
+            Console.Write(">>");
+            skillInput = Utility.GetInput(0, gameManager.mySkils.Count);
+
+            if (skillInput == 0)
+            {
+                return;
+            }
+            else
+            {
+                while (true)
+                {
+                    MonsterDisplay(monsters);
+                    Console.WriteLine();
+                    Console.WriteLine("공격할 몬스터 고르세요");
+                    Console.Write(">>");
+                    input = Utility.GetInput(0, monsters.Count);
+                    if (input == 0)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        if (monsters[input - 1].IsDead == true)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("잘못된 입력입니다.");
+                            Console.WriteLine();
+                            Console.WriteLine("아무키 입력. 다음");
+                            Console.WriteLine();
+                            Console.Write(">>");
+                            Console.ReadKey();
+                            continue;
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            float tempHP = monsters[input - 1].NowHP;
+                            gameManager.player.CharacterSkil(gameManager.player, monsters[input - 1], gameManager.mySkils[skillInput - 1]);
+                            if (monsters[input - 1].NowHP <= 0)
+                            {
+                                monsters[input - 1].IsDead = true;
+                                monsters[input - 1].NowHP = 0;
+                                gameManager.killCount = gameManager.killCount + 1;
+                                //Console.WriteLine("{0}킬째", gameManager.killCount);
+
+                            }
+
+                            if (monsters[input - 1].IsDead == true)
+                            {
+                                Console.WriteLine("HP {0} -> Dead", tempHP);
+                            }
+                            else
+                            {
+                                Console.WriteLine("HP {0} -> {1}", tempHP, monsters[input - 1].NowHP);
+                            }
+
+                            Console.WriteLine();
+                            Console.WriteLine("아무키 입력. 다음");
+                            Console.WriteLine();
+                            Console.Write(">>");
+                            Console.ReadKey();
+                            return;
+                        }
+                        
+                    }
+
+                }
+            }
+        }
+        
+
+    }
+
     public void PlayerTurn(GameManager gameManager, List<Monster> monsters)
     {
         int input;
@@ -531,19 +705,7 @@ class Dungeon
             Console.Clear();
             Console.WriteLine("Battle!!");
             Console.WriteLine();
-            for (int i = 0; i < monsters.Count; i++)
-            {
-                //살아잇는 몬스터 표시
-                if (monsters[i].IsDead == false)
-                {
-                    Console.WriteLine("{0} Lv {1} {2}   HP {3} / {4}", i + 1, monsters[i].Name, monsters[i].Level, monsters[i].NowHP, monsters[i].MaxHP);
-                }
-                //죽은 몬스터 표시
-                else if (monsters[i].IsDead == true)
-                {
-                    Console.WriteLine("{0} Lv {1} {2}   Dead", i + 1, monsters[i].Name, monsters[i].Level);
-                }
-            }
+            MonsterDisplay(monsters);
 
             Console.WriteLine("[내정보]");
             Console.WriteLine("Lv. {0}  {1}  ({2})", gameManager.player.Level, gameManager.player.Name, gameManager.player.Job);
@@ -551,11 +713,12 @@ class Dungeon
             Console.WriteLine();
             Console.WriteLine("0. 턴종료");
             Console.WriteLine("1. 공격");
-            Console.WriteLine("2. 아이템사용");
+            Console.WriteLine("2. 스킬사용");
+            Console.WriteLine("3. 아이템사용");
             Console.WriteLine();
             Console.WriteLine("대상을 선택해주세요");
             Console.Write(">>>");
-            input = Utility.GetInput(0, 2);
+            input = Utility.GetInput(0, 3);
             if (input == 0)
             {
                 if (input == 0)
@@ -566,10 +729,15 @@ class Dungeon
             }
             else if (input == 1)
             {
-                //몬스터 공격화면으로 이동
+                NormalAttack(gameManager, monsters);
                 break;
             }
             else if (input == 2)
+            {
+                SkilAttack(gameManager, monsters);
+                
+            }
+            else if (input == 3)
             {
                 //아이템사용
                 while (true)
@@ -597,7 +765,14 @@ class Dungeon
                     }
                     else
                     {
-                        gameManager.inventoryConsumables[input - 1].Use(gameManager.player);
+                        if (gameManager.inventoryConsumables[input-1].ItemID == 7)
+                        {
+                            gameManager.inventoryConsumables[input - 1].Use(gameManager.player);
+                        }
+                        else if(gameManager.inventoryConsumables[input - 1].ItemID == 8)
+                        {
+                            gameManager.inventoryConsumables[input - 1].Use(gameManager, 10);
+                        }
                         Console.WriteLine("Anykey. 진행");
                         Console.ReadKey();
                     }
@@ -606,79 +781,16 @@ class Dungeon
             }
 
         }
-        while (true)
-        {
-            Console.Clear();
-            //현재 몬스터 표시
-            for (int i = 0; i < monsters.Count; i++)
-            {
-                if (monsters[i].IsDead == false)
-                {
-                    Console.WriteLine("{0} Lv {1} {2}   HP {3} / {4}", i + 1, monsters[i].Name, monsters[i].Level, monsters[i].NowHP, monsters[i].MaxHP);
-                }
-                else if (monsters[i].IsDead == true)
-                {
-                    Console.WriteLine("{0} Lv {1} {2}   Dead", i + 1, monsters[i].Name, monsters[i].Level);
-                }
-            }
-            Console.WriteLine("공격할 몬스터를 고르세요");
-            Console.Write(">>");
-            //몬스터 공격명령
-            input = Utility.GetInput(1, monsters.Count);
-            tempHP = monsters[input - 1].NowHP;
-            //죽은 몬스터 골랐을때
-            if (monsters[input - 1].IsDead == true)
-            {
-                Console.WriteLine("잘못된 입력입니다.");
-                Console.WriteLine();
-                Console.WriteLine("아무키 입력. 다음");
-                Console.WriteLine();
-                Console.Write(">>");
-                Console.ReadKey();
-            }
-            //살아있는 몬스터 골랐을때
-            else
-            {
-                gameManager.player.Attack(gameManager.player, monsters[input - 1]);//공격
-                //공격한 몬스터가 죽으면
-                if (monsters[input - 1].NowHP <= 0)
-                {
-                    monsters[input - 1].IsDead = true;
-                    monsters[input - 1].NowHP = 0;
-                    gameManager.killCount = gameManager.killCount + 1;
-                    Console.WriteLine("{0}킬째", gameManager.killCount);
-                }
-                break;
-            }
-        }
-        //결과창 표시
-        Console.Clear();
-        Console.WriteLine("Battle!!");
-        Console.WriteLine();
-        Console.WriteLine("{0} 의 공격!", gameManager.player.Name);
-        Console.WriteLine("Lv.{0} {1} 을(를) 맞췄습니다. [데미지] : {2}", monsters[input - 1].Level, monsters[input - 1].Name, tempHP - monsters[input - 1].NowHP);
-        Console.WriteLine();
-        Console.WriteLine("Lv.{0} {1}", monsters[input - 1].Level, monsters[input - 1].Name);
-        if (monsters[input - 1].IsDead == true)
-        {
-            Console.WriteLine("HP {0} -> Dead", tempHP);
-        }
-        else
-        {
-            Console.WriteLine("HP {0} -> {1}", tempHP, monsters[input - 1].NowHP);
-        }
-
-        Console.WriteLine();
-        Console.WriteLine("아무키 입력. 다음");
-        Console.WriteLine();
-        Console.Write(">>");
-        Console.ReadKey();
+        
+        
+        //Console.Clear();
+        
     }
 
     public void EnemyTurn(GameManager gameManager, List<Monster> monsters)
     {
         int input;
-        float tempHP = 0;
+        float tempHP;
         Console.Clear();
         Console.WriteLine("Battle!!");
         Console.WriteLine();
@@ -693,9 +805,9 @@ class Dungeon
                 {
                     gameManager.player.NowHP = 0;
                 }
-                Console.WriteLine("{0} 을(를) 맞췄습니다. [데미지] : {1}", gameManager.player.Name, tempHP - gameManager.player.NowHP);
+                /*Console.WriteLine("{0} 을(를) 맞췄습니다. [데미지] : {1}", gameManager.player.Name, tempHP - gameManager.player.NowHP);
                 Console.WriteLine();
-                Console.WriteLine("Lv.{0} {1}", gameManager.player.Level, gameManager.player.Name);
+                Console.WriteLine("Lv.{0} {1}", gameManager.player.Level, gameManager.player.Name);*/
                 if (gameManager.player.NowHP <= 0)
                 {
                     Console.WriteLine("HP {0} -> Dead", gameManager.player.NowHP);
@@ -715,10 +827,13 @@ class Dungeon
 
             }
         }
+        gameManager.TurnCount++;
     }
 
     public void Clear(GameManager gameManager, Player tempPlayer, int resultExp)
     {
+        gameManager.TurnCount = 0;
+
         Random random1 = new Random();
         
         //var expectconsumables = gameManager.consumables.Where(x => gameManager.inventoryConsumables.Count(s => x.ItemID != s.ItemID) != 0).ToList();            
@@ -744,40 +859,27 @@ class Dungeon
         gameManager.player.Gold = gameManager.player.Gold + resultExp * 50;
         Console.WriteLine("{0} Gold", gameManager.player.Gold);
 
-        /*while (true)
+        while (true)
         {
             //40%의 확률로            
             if (random1.Next(1, 101) > 60)
             {
                 Random random2 = new Random();
-                var expectequiment = gameManager.equipments.Where(x => gameManager.inventoryEquipment.Count(s => x.ItemID != s.ItemID) == 0).ToList();
-
-                Console.WriteLine("expectequiment");
-                foreach (var item in expectequiment) 
-                {
-                    Console.WriteLine(item.Name);
-                }
-                Console.WriteLine();
-                Console.WriteLine();
-                Console.WriteLine();
-                //전체 아이템리스트와 보유 아이템 리스트 비교                
-                //비교한 리스트에 아무것도 없다면 정지                
-                if (expectequiment.Any() == false)
+                var result = gameManager.equipments.Where(x => gameManager.inventoryEquipment.Count(s => x.ItemID == s.ItemID) == 0).ToList();
+                var find = result.FindAll(x => x.MonsterFlag == true).ToList();
+                if (find.Count == 0) 
                 {
                     break;
                 }
-                //보유하지 않은 아이템에서 몬스터 플래그가 트루인 아이템을 추가
-                var find = expectequiment.FindAll(x => x.MonsterFlag == true).ToList();
                 int temp = random2.Next(0, find.Count);
                 Console.WriteLine("{0}", find[temp].Name);
                 gameManager.inventoryEquipment.Add(find[temp]);
-                
             }
             else
             {
                 break;
             }
-        }*/
+        }
 
         gameManager.killCount = 0;
         Console.WriteLine("Anykey. 나가기");
@@ -788,6 +890,8 @@ class Dungeon
 
     public void Fail(GameManager gameManager, Player tempPlayer)
     {
+        gameManager.TurnCount = 0;
+
         int Input;
         string? tempName;
         Random random = new Random();
@@ -817,7 +921,7 @@ class Dungeon
             //입장시점 HP -> 0
             Console.WriteLine("HP {0} -> {1}", tempPlayer.NowHP, gameManager.player.NowHP);
             Console.WriteLine("Gold {0} -> {1}", tempPlayer.Gold, gameManager.player.Gold);
-            if (gameManager.inventoryEquipment.Any() == true)
+            if (gameManager.inventoryEquipment.Count>1)
             {
                 Console.WriteLine("잃어버린 아이템 : {0}", tempName);
             }

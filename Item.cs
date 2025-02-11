@@ -37,6 +37,18 @@ public class Consumable : Item // 소비 아이템 클래스
         Count--;
         Console.WriteLine("체력이 50 회복되었습니다.");
     }
+
+    public void Use(GameManager gameManager, int extraAtk) // 공격력 버프 물약
+    {
+        Count--;
+        BuffAmount = extraAtk;
+        gameManager.player.Atk += BuffAmount;
+        Buff buff = new Buff(EndAtkBuff, gameManager, 3);
+    }
+    private void EndAtkBuff(GameManager gameManager)
+    {
+        gameManager.player.Atk -= BuffAmount;
+    }
 }
 
 
@@ -68,6 +80,8 @@ public class Equipment : Item // 장비 클래스
         }
     }
     public string DifficultyLvFlag { get; set; } //MonsterFlag == true, ShopFlag ==false
+
+
 }
 
 public class Weapon : Equipment

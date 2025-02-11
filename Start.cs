@@ -50,12 +50,20 @@ public class Start()
             {
                 case 1:
                     gameManager.player.Job = "전사";
+                    gameManager.mySkils.Add(gameManager.SkilList[0]);
                     break;
                 case 2:
                     gameManager.player.Job = "마법사";
+                    gameManager.mySkils.Add(gameManager.SkilList[3]);
                     break;
                 case 3:
                     gameManager.player.Job = "모험가";
+                    gameManager.mySkils.Add(gameManager.SkilList[0]);
+                    gameManager.mySkils.Add(gameManager.SkilList[1]);
+                    gameManager.mySkils.Add(gameManager.SkilList[2]);
+                    gameManager.mySkils.Add(gameManager.SkilList[3]);
+                    gameManager.mySkils.Add(gameManager.SkilList[4]);
+                    gameManager.mySkils.Add(gameManager.SkilList[5]);
                     break;
             }
             Console.Clear();
