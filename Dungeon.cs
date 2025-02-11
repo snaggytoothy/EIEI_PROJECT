@@ -527,13 +527,14 @@ class Dungeon
         {
             //살아잇는 몬스터 표시
             if (monsters[i].IsDead == false)
-            {
-                Console.WriteLine("{0} Lv {1} {2}   HP {3} / {4}", i + 1, monsters[i].Name, monsters[i].Level, monsters[i].NowHP, monsters[i].MaxHP);
+            { 
+                Console.WriteLine("{0} Lv {1} {2}   HP {3} / {4}", i + 1, monsters[i].Level, monsters[i].Name, monsters[i].NowHP, monsters[i].MaxHP);
+                Console.WriteLine();
             }
             //죽은 몬스터 표시
             else if (monsters[i].IsDead == true)
             {
-                Console.WriteLine("{0} Lv {1} {2}   Dead", i + 1, monsters[i].Name, monsters[i].Level);
+                Console.WriteLine("{0} Lv {1} {2}   Dead", i + 1, monsters[i].Level, monsters[i].Name);
             }
         }
     }
@@ -612,6 +613,7 @@ class Dungeon
 
     void SkilAttack(GameManager gameManager, List<Monster> monsters)
     {
+        int skillInput;
         int input;
         while (true)
         {
@@ -621,9 +623,9 @@ class Dungeon
             Console.WriteLine("사용할 스킬을 고르세요");
             Console.Write("0. 뒤로가기");
             Console.Write(">>");
-            input = Utility.GetInput(0, gameManager.mySkils.Count);
+            skillInput = Utility.GetInput(0, gameManager.mySkils.Count);
 
-            if (input == 0)
+            if (skillInput == 0)
             {
                 return;
             }
@@ -642,7 +644,48 @@ class Dungeon
                     }
                     else
                     {
-                         
+                        if (monsters[input - 1].IsDead == true)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("잘못된 입력입니다.");
+                            Console.WriteLine();
+                            Console.WriteLine("아무키 입력. 다음");
+                            Console.WriteLine();
+                            Console.Write(">>");
+                            Console.ReadKey();
+                            continue;
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            float tempHP = monsters[input - 1].NowHP;
+                            gameManager.player.CharacterSkil(gameManager.player, monsters[input - 1], gameManager.mySkils[skillInput - 1]);
+                            if (monsters[input - 1].NowHP <= 0)
+                            {
+                                monsters[input - 1].IsDead = true;
+                                monsters[input - 1].NowHP = 0;
+                                gameManager.killCount = gameManager.killCount + 1;
+                                //Console.WriteLine("{0}킬째", gameManager.killCount);
+
+                            }
+
+                            if (monsters[input - 1].IsDead == true)
+                            {
+                                Console.WriteLine("HP {0} -> Dead", tempHP);
+                            }
+                            else
+                            {
+                                Console.WriteLine("HP {0} -> {1}", tempHP, monsters[input - 1].NowHP);
+                            }
+
+                            Console.WriteLine();
+                            Console.WriteLine("아무키 입력. 다음");
+                            Console.WriteLine();
+                            Console.Write(">>");
+                            Console.ReadKey();
+                            return;
+                        }
+                        
                     }
 
                 }
@@ -691,7 +734,7 @@ class Dungeon
             }
             else if (input == 2)
             {
-                SkilDisplay(gameManager);
+                SkilAttack(gameManager, monsters);
                 
             }
             else if (input == 3)

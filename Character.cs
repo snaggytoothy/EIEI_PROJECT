@@ -84,6 +84,12 @@ public class Character
     //단일기
     public void CharacterSkil(Character attacker, Character target, Skil skil)
     {
+        if (attacker.NowMP < skil.Cost)
+        {
+            Utility.ColorWrite("MP가 부족합니다", ConsoleColor.Red);
+            Console.ReadKey();
+            return;
+        }
         float tempHP = target.NowHP;
         float tempMP = attacker.NowMP;
         Console.WriteLine("{0}의 {1} 스킬사용 ", attacker.Name, skil.Name);
