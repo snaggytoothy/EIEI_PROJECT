@@ -131,7 +131,8 @@ public class Start()
         Console.WriteLine($"공격력: {gameManager.player.Atk}");
         Console.WriteLine($"방어력: {gameManager.player.Def}");
         Console.WriteLine($"체력: {gameManager.player.NowHP} / {gameManager.player.MaxHP}");
-        Console.WriteLine($"\nGold: {gameManager.player.Gold} G");
+        Console.WriteLine($"마나: {gameManager.player.NowMP} / {gameManager.player.MaxMP}");
+        Console.WriteLine($"Gold: {gameManager.player.Gold} G");
         Console.WriteLine($"경험치: {gameManager.player.NowExp} / {gameManager.player.MaxExp}");
         Console.WriteLine("\r\n0. 나가기");
         int act = Utility.GetInput(0, 0);
