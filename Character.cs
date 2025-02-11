@@ -84,7 +84,45 @@ public class Player : Character
             }
         }
     }
-    public string Job { get; set; }
+    private string job;
+    public string Job
+    {
+        get
+        {
+            return job;
+        }
+        set
+        {
+            job = value;
+            if (job == "전사")
+            {
+                MaxHP = 150;
+                NowHP = 150;
+                Atk = 20;
+                Def = 15;
+                MaxMP = 20;
+                NowMP = 20;
+            }
+            else if(job == "마법사")
+            {
+                MaxHP = 100;
+                NowHP = 100;
+                Atk = 15;
+                Def = 15;
+                MaxMP = 50;
+                NowMP = 50;
+            }
+            else if(job == "모험가")
+            {
+                MaxHP = 150;
+                NowHP = 150;
+                Atk = 20;
+                Def = 15;
+                MaxMP = 50;
+                NowMP = 50;
+            }
+        }
+    }
     public float MaxMP { get; set; }
     public float NowMP { get; set; }
     public int MaxExp { get; set; }
