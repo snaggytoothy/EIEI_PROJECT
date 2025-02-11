@@ -6,11 +6,11 @@ public class Utility
     {
         while (true)
         {
-            Console.Write("원하시는 행동을 입력해주세요.");
+            Console.Write("원하시는 행동을 입력해주세요. ->");
             if(int.TryParse(Console.ReadLine(), out int input) && (input >= min) && (input <= max))
             return input;
             
-            Console.WriteLine("잘못된 입력입니다. 다시 입력해주세요.");
+            Console.WriteLine("잘못된 입력입니다. 다시 입력해주세요. ->");
         }
     }
 
