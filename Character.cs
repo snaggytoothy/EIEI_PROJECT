@@ -43,6 +43,8 @@ public class Character
     }
     public float MaxHP { get; set; }
     public float NowHP { get; set; }
+    public float MaxMP { get; set; }
+    public float NowMP { get; set; }
 
     public void Attack(Character attacker, Character target, float tempHP)
     {
@@ -77,12 +79,12 @@ public class Character
             }
         }
     }
-
+    //단일기
     public virtual void CharacterSkil(Character attacker, Character target, float tempHP, Skil skil)
     {
 
     }
-
+    //광역기
     public virtual void CharacterSkil(Character attacker, List<Character> target, float tempHP, Skil skil)
     {
 
@@ -146,8 +148,7 @@ public class Player : Character
             }
         }
     }
-    public float MaxMP { get; set; }
-    public float NowMP { get; set; }
+   
     public int MaxExp { get; set; }
     private int nowExp;
     public int NowExp
@@ -185,8 +186,7 @@ public class Player : Character
     //단일기
     public override void CharacterSkil(Character attacker, Character target, float tempHP, Skil skil)
     {
-        Console.WriteLine("스킬사용 {0}",skil.Name);
-
+        Console.WriteLine("스킬사용 {0}", skil.Name);
     }
 
     //광역기
