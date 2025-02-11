@@ -36,7 +36,7 @@ class Dungeon
                     else { Console.WriteLine("레벨이 부족합니다! (Lv.8 이상 필요)"); Console.ReadKey(); }
                     break;
                 case 3:
-                    if (gameManager.player.Level >= 12) HardScreen(gameManager);
+                    if (gameManager.player.Level >= 1) HardScreen(gameManager);
                     else { Console.WriteLine("레벨이 부족합니다! (Lv.12 이상 필요)"); Console.ReadKey(); }
                     break;
             }
@@ -392,7 +392,7 @@ class Dungeon
                             {
                                 resultExp += monsters[j].Level;
                             }
-                            break;
+                            return;
                         }
                     }
                 }
@@ -430,6 +430,7 @@ class Dungeon
                     monsters.Clear();
                     //승리화면으로
                     Clear(gameManager, tempPlayer, resultExp);
+                    gameManager.exitFlag = 1;
                     break;
                 }
 
@@ -443,9 +444,16 @@ class Dungeon
                     if (gameManager.player.NowHP <= 0)
                     {
                         //패배화면으로
-                        monsters.Clear();
+                        //monsters.Clear();
                         Fail(gameManager, tempPlayer);
-                        break;
+                        if (gameManager.exitFlag == 0)
+                        {
+                            continue;
+                        }
+                        else if (gameManager.exitFlag == 1)
+                        {
+                            break;
+                        }
                     }
                     if (monsters.FindAll(x => x.IsDead == true).Count == monsters.Count)
                     {
@@ -453,7 +461,7 @@ class Dungeon
                         {
                             resultExp += monsters[j].Level;
                         }
-                        break;
+                        return;
                     }
                 }
             }
@@ -488,7 +496,8 @@ class Dungeon
                     monsters.Clear();
                     //승리화면으로
                     Clear(gameManager, tempPlayer, resultExp);
-                    break;
+                    gameManager.exitFlag = 1;
+                    return;
                 }
 
                 while (true)
@@ -501,9 +510,16 @@ class Dungeon
                     if (gameManager.player.NowHP <= 0)
                     {
                         //패배화면으로
-                        monsters.Clear();
+                        //monsters.Clear();
                         Fail(gameManager, tempPlayer);
-                        break;
+                        if (gameManager.exitFlag == 0)
+                        {
+                            continue;
+                        }
+                        else if (gameManager.exitFlag == 1)
+                        {
+                            break;
+                        }
                     }
                     if (monsters.FindAll(x => x.IsDead == true).Count == monsters.Count)
                     {
@@ -754,11 +770,41 @@ class Dungeon
                                     else if((input - 1) - (int)(gameManager.mySkils[skillInput-1].range / 2) + i >= monsters.Count)
                                     {
                                         break;
-                                        
                                     }
                                     else
                                     {
-                                        Console.WriteLine(monsters[(input - 1) - (int)(gameManager.mySkils[skillInput - 1].range / 2) + i].Name);
+                                        /*if (gameManager.player.CharacterSkil(gameManager.player, monsters[(input - 1) - (int)(gameManager.mySkils[skillInput - 1].range / 2) + i], gameManager.mySkils[skillInput - 1]))
+                                        {
+                                            if (monsters[(input - 1) - (int)(gameManager.mySkils[skillInput - 1].range / 2) + i].NowHP <= 0)
+                                            {
+                                                monsters[(input - 1) - (int)(gameManager.mySkils[skillInput - 1].range / 2) + i].IsDead = true;
+                                                monsters[(input - 1) - (int)(gameManager.mySkils[skillInput - 1].range / 2) + i].NowHP = 0;
+                                                gameManager.killCount = gameManager.killCount + 1;
+                                                //Console.WriteLine("{0}킬째", gameManager.killCount);
+
+                                            }
+
+                                            if (monsters[(input - 1) - (int)(gameManager.mySkils[skillInput - 1].range / 2) + i].IsDead == true)
+                                            {
+                                                Console.WriteLine("HP {0} -> Dead", tempHP);
+                                            }
+                                            else
+                                            {
+                                                Console.WriteLine("HP {0} -> {1}", tempHP, monsters[(input - 1) - (int)(gameManager.mySkils[skillInput - 1].range / 2) + i].NowHP);
+                                            }
+
+                                            Console.WriteLine();
+                                            Console.WriteLine("아무키 입력. 다음");
+                                            Console.WriteLine();
+                                            Console.Write(">>");
+                                            Console.ReadKey();
+                                            return true;
+                                        }
+                                        else
+                                        {
+                                            continue;
+                                        }*/
+                                            
                                     }
                                     
                                 }
