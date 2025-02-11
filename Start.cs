@@ -51,6 +51,7 @@ public class Start()
                 case 1:
                     gameManager.player.Job = "전사";
                     gameManager.mySkils.Add(gameManager.SkilList[0]);
+                    gameManager.mySkils.Add(gameManager.SkilList[1]);
                     break;
                 case 2:
                     gameManager.player.Job = "마법사";

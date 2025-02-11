@@ -154,10 +154,10 @@ public class Character
             }
 
             Console.WriteLine("{0}의 {1} 스킬사용 ", attacker.Name, skil.Name);
-            for (int i = 0; i < target.Count; i++)
+            /*for (int i = 0; i < target.Count; i++)
             {
                 target[i].NowHP = (float)(target[i].NowHP - Math.Ceiling(skil.Damage * (attacker.Atk * 0.3)));
-            }
+            }*/
             //target.NowHP = (float)(target.NowHP - Math.Ceiling(skil.Damage * (attacker.Atk * 0.3)));
             if (skil.type == 1)
             {
