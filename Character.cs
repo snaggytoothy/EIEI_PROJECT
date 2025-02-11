@@ -80,14 +80,84 @@ public class Character
         }
     }
     //단일기
-    public virtual void CharacterSkil(Character attacker, Character target, float tempHP, Skil skil)
+    public void CharacterSkil(Character attacker, Character target, Skil skil)
     {
+        float tempHP = target.NowHP;
+        Console.WriteLine("{0}의 {1} 스킬사용 ", attacker.Name, skil.Name);
+        target.NowHP = (float)(target.NowHP - Math.Ceiling(skil.Damage * (attacker.Atk * 0.3)));
+        if (skil.type == 1)
+        {
+            Random random = new Random();
+            if (random.Next(1, 100) <= 15)
+            {
+                Utility.ColorWrite("치명타 공격!!", ConsoleColor.Red);
+                target.NowHP = (float)(target.NowHP - (Math.Ceiling(skil.Damage * (attacker.Atk * skil.skilRatiod))) + Math.Ceiling(skil.Damage * (attacker.Atk * skil.skilRatiod)));
+                Console.WriteLine("Lv.{0} {1} 을(를) 맞췄습니다. [데미지] : {2}", target.Level, target.Name, tempHP - target.NowHP);
+                Console.WriteLine();
+            }
+            else
+            {
+                target.NowHP = (float)(target.NowHP - (Math.Ceiling(skil.Damage * (attacker.Atk * skil.skilRatiod))));
+                Console.WriteLine("Lv.{0} {1} 을(를) 맞췄습니다. [데미지] : {2}", target.Level, target.Name, tempHP - target.NowHP);
+                Console.WriteLine();
+            }
 
+        }
+        else
+        {
+            target.NowHP = (float)(target.NowHP - (Math.Ceiling(skil.Damage * (attacker.Atk * skil.skilRatiod))));
+            Console.WriteLine("Lv.{0} {1} 을(를) 맞췄습니다. [데미지] : {2}", target.Level, target.Name, tempHP - target.NowHP);
+            Console.WriteLine();
+        }
     }
-    //광역기
-    public virtual void CharacterSkil(Character attacker, List<Character> target, float tempHP, Skil skil)
-    {
 
+    //광역기
+    public void CharacterSkil(Character attacker, List<Character> target, Skil skil)
+    {
+        float[] tempHP = new float[target.Count];
+        for (int i = 0; i < target.Count; i++)
+        {
+            tempHP[i] = target[i].NowHP;
+        }
+
+        Console.WriteLine("{0}의 {1} 스킬사용 ", attacker.Name, skil.Name);
+        for (int i = 0; i < target.Count; i++)
+        {
+            target[i].NowHP = (float)(target[i].NowHP - Math.Ceiling(skil.Damage * (attacker.Atk * 0.3)));
+        }
+        //target.NowHP = (float)(target.NowHP - Math.Ceiling(skil.Damage * (attacker.Atk * 0.3)));
+        if (skil.type == 1)
+        {
+            Random random = new Random();
+            if (random.Next(1, 100) <= 15)
+            {
+                Utility.ColorWrite("치명타 공격!!", ConsoleColor.Red);
+                for (int i = 0; i < target.Count; i++)
+                {
+                    target[i].NowHP = (float)(target[i].NowHP - Math.Ceiling(skil.Damage * (attacker.Atk * 0.3)));
+                    Console.WriteLine("Lv.{0} {1} 을(를) 맞췄습니다. [데미지] : {2}", target[i].Level, target[i].Name, tempHP[i] - target[i].NowHP);
+                }
+                //Console.WriteLine("Lv.{0} {1} 을(를) 맞췄습니다. [데미지] : {2}", target.Level, target.Name, tempHP - target.NowHP);
+                Console.WriteLine();
+            }
+            else
+            {
+                for (int i = 0; i < target.Count; i++)
+                {
+                    target[i].NowHP = (float)(target[i].NowHP - Math.Ceiling(skil.Damage * (attacker.Atk * 0.3)));
+                    Console.WriteLine("Lv.{0} {1} 을(를) 맞췄습니다. [데미지] : {2}", target[i].Level, target[i].Name, tempHP[i] - target[i].NowHP);
+                }
+            }
+
+        }
+        else
+        {
+            for (int i = 0; i < target.Count; i++)
+            {
+                target[i].NowHP = (float)(target[i].NowHP - Math.Ceiling(skil.Damage * (attacker.Atk * 0.3)));
+                Console.WriteLine("Lv.{0} {1} 을(를) 맞췄습니다. [데미지] : {2}", target[i].Level, target[i].Name, tempHP[i] - target[i].NowHP);
+            }
+        }
     }
 }
 public class Player : Character
@@ -183,17 +253,7 @@ public class Player : Character
     }
     public int Gold { get; set; }
 
-    //단일기
-    public override void CharacterSkil(Character attacker, Character target, float tempHP, Skil skil)
-    {
-        Console.WriteLine("스킬사용 {0}", skil.Name);
-    }
-
-    //광역기
-    public override void CharacterSkil(Character attacker, List<Character> target, float tempHP, Skil skil)
-    {
-        Console.WriteLine("스킬사용 {0}", skil.Name);
-    }
+    
 }
 
 public class Monster : Character // Monster 캐릭터 관리
@@ -434,7 +494,10 @@ public class Skil
     public int ID { get; set; }
     public String? Name { get; set; }
     public float Damage { get; set; }
+    public double skilRatiod {  get; set; }
     public int range { get; set; }
     public bool IsHad {  get; set; }
     public int Cost {  get; set; }
+    public int type { get; set; } // 1물리 2마법
+    public string Description { get; set; }
 }
