@@ -243,6 +243,7 @@ class Dungeon
                         monsters.Clear();
                         //승리화면으로
                         Clear(gameManager, tempPlayer, resultExp);
+                        gameManager.exitFlag = 1;
                         break;
                     }
 
@@ -624,8 +625,12 @@ class Dungeon
         gameManager.player.NowExp = gameManager.player.NowExp + resultExp;
         gameManager.player.Gold = gameManager.player.Gold + resultExp * 50;
 
-        //체력경험치 증가 표시        
+        //체력경험치 증가 표시
         Console.WriteLine("HP : {0} -> {1}", tempPlayer.NowHP, gameManager.player.NowHP);
+        if (gameManager.player.Level != tempPlayer.Level)
+        {
+            Console.WriteLine("Lv.{0} -> {1}",tempPlayer.Level,gameManager.player.Level);
+        }
         Console.WriteLine("EXP : {0} -> {1}", tempPlayer.NowExp, gameManager.player.NowExp);
 
         //얻은 아이템 표시 및 추가        
@@ -661,6 +666,7 @@ class Dungeon
         gameManager.killCount = 0;
         Console.WriteLine("Anykey. 나가기");
         Console.ReadKey();
+        return;
     }
 
 
