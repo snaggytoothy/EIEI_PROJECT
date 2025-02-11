@@ -150,6 +150,7 @@ public class Store
     {
         while (true)
         {
+            int consumableNum = 0;
             IsSellOrBuy = true;
             Console.Clear();
             Console.WriteLine("상점 - 아이템 판매 \n아이템을 판매할 수 있습니다. \n");
@@ -172,8 +173,8 @@ public class Store
                 float sellNum = equipItem.Price * 0.85f; //판매 가격 설정
                 string sellPrice = sellNum.ToString("N0"); //판매 가격을 소수점 위로 출력되게 함
                 Console.WriteLine($" {strNum}{equipItem.ChangeEquipMark()} {equipItem.Name} | {str} +{equipItem.GetValue()}| {equipItem.Inform} | {sellPrice} G");
+                consumableNum += 1;
             }
-            int consumableNum = gm.inventoryEquipment.Count + 1;
 
             Console.WriteLine("==소모품=============");
             for (int i = 0; i < gm.inventoryConsumables.Count; i++)
@@ -181,6 +182,7 @@ public class Store
                 if (!IsSellOrBuy) strNum = " - ";
                 else
                 {
+                    consumableNum++;
                     strNum = consumableNum.ToString() + ".";
                 }
                 Consumable consumeItem = gm.inventoryConsumables[i];
