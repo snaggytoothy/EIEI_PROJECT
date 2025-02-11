@@ -19,7 +19,7 @@ public class Store
             Equipment item = gm.equipments[i]; //장비 아이템을 item에 저장
             string str = item.ItemType == 0 ? "공격력: " : "방어력: "; //아이템의 아이템 타입에 따라, 0이면 공격력이고 아니라면 방어력으로 출력
             string strPrice = item.IsBought ? "구매완료" : $"{item.Price} G"; //아이템을 이미 구매했는가의 여부에 따라 구매완료 또는 가격을 출력
-            Console.WriteLine($" {strNum}{item.ChangeEquipMark()} {item.Name} | {str} +{item.GetValue()}| {item.Inform} | {strPrice}");
+            if (item.ShopFlag) Console.WriteLine($" {strNum}{item.ChangeEquipMark()} {item.Name} | {str} +{item.GetValue()}| {item.Inform} | {strPrice}");
             //아이템 순번, 아이템 장착 여부, 아이템 이름, 아이템 타입, 아이템 스탯 증가/감소 수치, 아이템 정보, 아이템 가격 출력
         }
 
