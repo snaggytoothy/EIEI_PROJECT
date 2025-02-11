@@ -21,7 +21,7 @@ public class GameManager
         new Armor{Name = "레더 아머", ItemID = 4, Price = 500, ItemType = 1, Inform = "가죽을 무질과 간단한 기름칠로 경화처리를 거친, 흔한 가죽 갑옷.",
         IsEquiped = false, ShopFlag = true, MonsterFlag = false, Def = 1f},
 
-        new Armor{Name = "보일드 레더 아머", ItemID = 5, Price = 1000, ItemType = 1, Inform = "끓여진 파라핀+기름에 뺏다 넣었다 반복해서 만든 가죽 갑옷, 끝판왕 강도는 손으로 안굽 부러질 정도다.",
+        new Armor{Name = "보일드 레더 아머", ItemID = 5, Price = 1000, ItemType = 1, Inform = "끓여진 파라핀+기름에 뺏다 넣었다 반복해서 만든 가죽 갑옷 끝판왕, 강도는 손으로 안 구부러질 정도다.",
         IsEquiped = false, ShopFlag = true, MonsterFlag = true, Def = 3f},
 
         new Armor{Name = "고블린 찰갑", ItemID = 6, Price = 1600, ItemType = 1, Inform = "고블린 뼈로 만든 미늘 조각에 끈으로 연결하여 만든 갑옷, 꽤나 튼튼하고 유지 보수가 쉽다.",
@@ -29,7 +29,7 @@ public class GameManager
 
         new Consumable{Name = "회복 물약", ItemID = 7, Price = 50, ItemType = 2, Inform = "체력을 50 회복시켜 줍니다.", ShopFlag = true, MonsterFlag = false, BuffAmount = 50},
 
-        new Weapon{Name = "전설", ItemID = 100, Price = 10000, ItemType = 0, Inform = "전설",//작업중
+        new Weapon{Name = "링 오브 고블린 로드 ", ItemID = 100, Price = 10000, ItemType = 1, Inform = "고블린 로드가 장착했던 반지, ", //작업중
         IsEquiped = false, ShopFlag = false, MonsterFlag = true, Atk = 3f},
 
     };
