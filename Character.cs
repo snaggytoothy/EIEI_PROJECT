@@ -17,8 +17,30 @@ public class Character
         }
     }
     public string Name { get; set; }
-    public float Atk { get; set; }
-    public float Def { get; set; }
+    protected float atk;
+    public virtual float Atk
+    {
+        get
+        {
+            return atk;
+        }
+        set
+        {
+            atk = value;
+        }
+    }
+    protected float def;
+    public virtual float Def
+    {
+        get
+        {
+            return def;
+        }
+        set
+        {
+            def = value;
+        }
+    }
     public float MaxHP { get; set; }
     public float NowHP { get; set; }
 
@@ -32,7 +54,7 @@ public class Character
     }
 }
 public class Player : Character
-{    
+{
     public override int Level
     {
         get
@@ -41,12 +63,12 @@ public class Player : Character
         }
         set
         {
-            if(level != value)
+            if (level != value)
             {
                 level = value;
                 Atk += (level - 1) * 0.5f;
                 Def += (level - 1) * 1f;
-                MaxExp += 15 * (level-1);
+                MaxExp += 15 * (level - 1);
             }
         }
     }
@@ -63,19 +85,19 @@ public class Player : Character
         }
         set
         {
-            if(nowExp != value)
+            if (nowExp != value)
             {
                 nowExp += value;
-                if(nowExp == MaxExp)
+                if (nowExp == MaxExp)
                 {
                     nowExp = 0;
                     Level++;
                 }
-                else if(nowExp > MaxExp)
+                else if (nowExp > MaxExp)
                 {
                     int extraExp = nowExp - MaxExp;
-                        Level++;
-                    while(extraExp/MaxExp > 0)
+                    Level++;
+                    while (extraExp / MaxExp > 0)
                     {
                         Level++;
                         extraExp -= MaxExp;
@@ -108,7 +130,7 @@ public class Monster : Character // Monster 캐릭터 관리
             this.NowHP = 30;
             Console.WriteLine("설명: 동그란 흰색 슬라임이다.");
         }
-        else if(id == 2)
+        else if (id == 2)
         {
             this.MonsterType = 1;
             this.MonsterID = id;

@@ -28,10 +28,10 @@ public class Inventory
             Console.WriteLine("[소비 아이템 목록]");
             for (int i = 0; i < gameManager.inventoryConsumables.Count; i++)
             {
-                if (gameManager.inventoryConsumables[i].Count>0)
+                if (gameManager.inventoryConsumables[i].Count > 0)
                 {
                     Console.WriteLine($"- {gameManager.inventoryConsumables[i].Name} | {gameManager.inventoryConsumables[i].Inform} | 보유 개수 : {gameManager.inventoryConsumables[i].Count}");
-                }        
+                }
             }
             Console.WriteLine();
             Console.WriteLine("1. 장착 관리");
@@ -119,7 +119,7 @@ public class Inventory
             }
             else if (input > 0 && input <= gameManager.inventoryConsumables.Count)
             {
-                if (gameManager.inventoryConsumables[input - 1].Count >0) 
+                if (gameManager.inventoryConsumables[input - 1].Count > 0)
                 {
                     gameManager.inventoryConsumables[input - 1].Use(gameManager.player); //해당 아이템 사용
                 }
@@ -129,33 +129,41 @@ public class Inventory
 
     public void Equip(GameManager gameManager, Equipment item) // 장비 장착 메서드
     {
-        List<Equipment> find = gameManager.inventoryEquipment.FindAll(inventoryitem => inventoryitem.IsEquiped == true && inventoryitem.ItemID ==item.ItemID); // 장착된 장비가 있는지 확인
+        List<Equipment> find = gameManager.inventoryEquipment.FindAll(inventoryitem => inventoryitem.IsEquiped == true && inventoryitem.ItemType == item.ItemType);//장착된 장비가 있는지 확인
+        //foreach(Equipment equipment in gameManager.inventoryEquipment)
+        //{
+        //    Console.WriteLine($"{equipment.ItemID},{equipment.IsEquiped},{equipment.Name}");
+        //}
+        //Console.ReadKey();
         foreach (Equipment Equipeditem in find) //장착된 장비 해제
         {
-            UnEquip(gameManager.player, Equipeditem);
+            Equipeditem.UnEquip(gameManager.player);
+            //UnEquip(gameManager.player, Equipeditem);
         }
-        item.IsEquiped = true;
-        if (item.ItemType == 1) //무기
-        {
-            gameManager.player.Atk += item.GetValue();
-        }
-        else if (item.ItemType == 2)//방어구
-        {
-            gameManager.player.Def += item.GetValue();
-        }
+        item.Equip(gameManager.player);
+        //item.IsEquiped = true;
+        //if (item.ItemType == 0) //무기
+        //{
+        //    gameManager.player.Atk += item.GetValue();
+        //}
+        //else if (item.ItemType == 1)//방어구
+        //{
+        //    gameManager.player.Def += item.GetValue();
+        //}
     }
 
     public void UnEquip(Player player, Equipment item) // 장비 해제 메서드
     {
-        item.IsEquiped = false;
-        if (item.ItemType == 1) //무기
-        {
-            player.Atk -= item.GetValue();
-        }
-        else if (item.ItemType == 2)//방어구
-        {
-            player.Def -= item.GetValue();
-        }
+        item.UnEquip(player);
+        //item.IsEquiped = false;
+        //if (item.ItemType == 0) //무기
+        //{
+        //    player.Atk -= item.GetValue();
+        //}
+        //else if (item.ItemType == 1)//방어구
+        //{
+        //    player.Def -= item.GetValue();
+        //}
     }
 
 

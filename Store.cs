@@ -197,7 +197,7 @@ public class Store
                     Equipment equipItem = gm.inventoryEquipment[num];
                     equipItem.IsBought = false; //구매 상태를 false로 변경
                     int equipID = equipItem.ItemID; //선택된 아이템의 itemID를 반환함
-                    if (equipItem.IsEquiped) equipItem.IsEquiped = false; //장착 중이었다면 해제함
+                    if (equipItem.IsEquiped) equipItem.UnEquip(gm.player); //장착 중이었다면 해제함
                     float sellPrice = equipItem.Price * 0.85f;
                     gm.player.Gold += (int)sellPrice; //플레이어 골드에 판매 가격 추가
                     gm.inventoryEquipment.Remove(equipItem); //해당 아이템을 inventory에서 제거
