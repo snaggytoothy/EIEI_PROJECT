@@ -43,11 +43,14 @@ public class Consumable : Item // 소비 아이템 클래스
         Count--;
         BuffAmount = extraAtk;
         gameManager.player.Atk += BuffAmount;
+        Console.WriteLine("공격력이 10 올랐습니다.");
         Buff buff = new Buff(EndAtkBuff, gameManager, 3);
     }
     private void EndAtkBuff(GameManager gameManager)
     {
         gameManager.player.Atk -= BuffAmount;
+        Console.WriteLine("사냥꾼의 물약이 효능을 다했습니다.(아무 키나 눌러 확인)");
+        Console.ReadKey();
     }
 }
 
