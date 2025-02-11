@@ -46,8 +46,10 @@ public class Character
     public float MaxMP { get; set; }
     public float NowMP { get; set; }
 
-    public void Attack(Character attacker, Character target, float tempHP)
+    //일반 공격
+    public void Attack(Character attacker, Character target)
     {
+        float tempHP = target.NowHP;
         Random random = new Random();
         int max = (int)Math.Ceiling(attacker.Atk + (attacker.Atk * 0.1));
         int min = (int)Math.Ceiling(attacker.Atk - (attacker.Atk * 0.1));
@@ -83,6 +85,7 @@ public class Character
     public void CharacterSkil(Character attacker, Character target, Skil skil)
     {
         float tempHP = target.NowHP;
+        float tempMP = attacker.NowMP;
         Console.WriteLine("{0}의 {1} 스킬사용 ", attacker.Name, skil.Name);
         target.NowHP = (float)(target.NowHP - Math.Ceiling(skil.Damage * (attacker.Atk * 0.3)));
         if (skil.type == 1)
@@ -109,6 +112,9 @@ public class Character
             Console.WriteLine("Lv.{0} {1} 을(를) 맞췄습니다. [데미지] : {2}", target.Level, target.Name, tempHP - target.NowHP);
             Console.WriteLine();
         }
+        attacker.NowMP = attacker.NowMP - skil.Cost;
+        Console.WriteLine("MP: {0} -> {1}",tempMP,attacker.NowMP);
+
     }
 
     //광역기
