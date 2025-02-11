@@ -1,23 +1,13 @@
-using System.Numerics;
-using System.Runtime.CompilerServices;
-using System.Xml.Linq;
-using System;
-using System.ComponentModel.Design;
-using Microsoft.VisualBasic;
 namespace EIEIE_Project;
 
-//인벤토리 
 public class Start()
 {
-    private static int restNum = 500;
-
+    private static int restNum = 500; //휴식에 필요한 골드 양
 
     static void Main(string[] args)
     {
-        GameManager gameManager = new();
-
-
-        StartGame(gameManager);
+        GameManager gameManager = new(); //게임 매니저 생성
+        StartGame(gameManager); //게임 시작
     }
 
     public static void StartGame(GameManager gameManager)
@@ -26,12 +16,12 @@ public class Start()
         {
             Console.WriteLine("스파르타 던전에 오신 것을 환영합니다.\r\n");
             Console.WriteLine("원하시는 이름을 설정해주세요.");
-            string str = Console.ReadLine() ?? "기본값";
-            gameManager.player.Name = str;
+            string str = Console.ReadLine() ?? "스파르타"; //값이 없다면 "스파르타"로 설정
+            gameManager.player.Name = str; //플레이어 이름 설정
 
             Console.Clear();
             Console.WriteLine($"안녕하세요! {gameManager.player.Name}님!\n계속해서 이 이름으로 불러 드릴까요?");
-            Console.WriteLine("1. 네 2. 아니오");
+            Console.WriteLine("1. 네 \n2. 아니오");
 
             int namesure = Utility.GetInput(1, 2);
             switch (namesure)
@@ -42,7 +32,7 @@ public class Start()
                     break;
                 case 2:
                     Console.Clear();
-                    Console.WriteLine("이름을 바꿀 수 있는 기회는 지금 밖에 없습니다. 신중히 입력해주세요!");
+                    Console.WriteLine("다시 한 번 입력해주세요.");
                     break;
             }
         }
@@ -133,6 +123,7 @@ public class Start()
         Console.WriteLine($"공격력: {gameManager.player.Atk}");
         Console.WriteLine($"방어력: {gameManager.player.Def}");
         Console.WriteLine($"체력: {gameManager.player.NowHP}\nGold: {gameManager.player.Gold} G");
+        Console.WriteLine($"경험치: {gameManager.player.NowExp} / {gameManager.player.MaxExp}");
         Console.WriteLine("\r\n0. 나가기");
         int act = Utility.GetInput(0, 0);
 

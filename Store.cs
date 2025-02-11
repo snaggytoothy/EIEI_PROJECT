@@ -1,6 +1,3 @@
-using System.Dynamic;
-using System.IO;
-
 namespace EIEIE_Project;
 
 public class Store
