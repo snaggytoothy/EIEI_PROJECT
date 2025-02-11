@@ -48,7 +48,14 @@ public class Equipment : Item // 장비 클래스
     {
         return 0;
     }
+    public virtual void Equip(Player player)
+    {
 
+    }
+    public virtual void UnEquip(Player player)
+    {
+
+    }
     public string ChangeEquipMark()
     {
         if (IsEquiped)
@@ -70,6 +77,16 @@ public class Weapon : Equipment
     {
         return Atk;
     }
+    public override void Equip(Player player)
+    {
+        IsEquiped = true;
+        player.Atk += this.GetValue();
+    }
+    public override void UnEquip(Player player)
+    {
+        IsEquiped = false;
+        player.Atk -= this.GetValue();
+    }
 }
 
 public class Armor : Equipment
@@ -79,5 +96,14 @@ public class Armor : Equipment
     {
         return Def;
     }
-
+    public override void Equip(Player player)
+    {
+        IsEquiped = true;
+        player.Def += this.GetValue();
+    }
+    public override void UnEquip(Player player)
+    {
+        IsEquiped = false;
+        player.Def -= this.GetValue();
+    }
 }
