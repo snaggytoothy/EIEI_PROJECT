@@ -68,7 +68,7 @@ public class Player : Character
                 level = value;
                 Atk += (level - 1) * 0.5f;
                 Def += (level - 1) * 1f;
-                MaxExp += 15 * (level - 1);
+                MaxExp += 20 + 5 * (level - 1);
             }
         }
     }
