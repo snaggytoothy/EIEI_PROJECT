@@ -9,18 +9,24 @@ public class GameManager
 
     public List<Item> itemList = new List<Item>()
     {
-        new Weapon{Name = "낡은 검", ItemID = 1, Price = 100, ItemType = 0, Inform = "오랫동안 방치된 듯 보이는 검입니다.",
-        IsEquiped = false, ShopFlag = true, MonsterFlag = false, Atk = 5f},
-        new Weapon{Name = "예리한 검", ItemID = 2, Price = 250, ItemType = 0, Inform = "예리하게 벼려진 검입니다.",
-        IsEquiped = false, ShopFlag = true, MonsterFlag = true, Atk = 8f},
-        new Weapon{Name = "심상치 않은 검", ItemID = 3, Price = 500, ItemType = 0, Inform = "심상치 않은 기운이 느껴지는 검입니다.",
-        IsEquiped = false, ShopFlag = true, MonsterFlag = true, Atk = 10f},
+         new Weapon{Name = "투박한 롱소드", ItemID = 1, Price = 500, ItemType = 0, Inform = "매우 흔하디흔한 양산형 롱소드이다.",
+        IsEquiped = false, ShopFlag = true, MonsterFlag = false, Atk = 2f},
+
+        new Weapon{Name = "바스타드 소드", ItemID = 2, Price = 800, ItemType = 0, Inform = "대검 반 한 손 검, 롱소드보다 바디의 길이가 더 길며 파괴력이 높고 공방 밸런스가 잘 갖춰졌다.",
+        IsEquiped = false, ShopFlag = true, MonsterFlag = true, Atk = 4f},
+
+        new Weapon{Name = "한손검 글라디우스", ItemID = 3, Price = 600, ItemType = 0, Inform = "폭 넓은 양날 장검 무거워서 신속하게 사용 힘듬, 방패랑 사용하면 안정적이다.",
+        IsEquiped = false, ShopFlag = true, MonsterFlag = true, Atk = 3f},
+
         new Armor{Name = "무쇠 갑옷", ItemID = 4, Price = 100, ItemType = 1, Inform = "흔히 구할 수 있는 갑옷입니다.",
         IsEquiped = false, ShopFlag = true, MonsterFlag = false, Def = 5f},
+
         new Armor{Name = "단단한 갑옷", ItemID = 5, Price = 300, ItemType = 1, Inform = "아주 단단한 갑옷입니다.",
         IsEquiped = false, ShopFlag = true, MonsterFlag = true, Def = 8f},
+
         new Armor{Name = "심상치 않은 갑옷", ItemID = 6, Price = 700, ItemType = 1, Inform = "심상치 않은 기운이 느껴지는 갑옷입니다.",
         IsEquiped = false, ShopFlag = true, MonsterFlag = true, Def = 12f},
+
         new Consumable{Name = "회복 물약", ItemID = 7, Price = 50, ItemType = 2, Inform = "체력을 50 회복시켜 줍니다.", ShopFlag = true, MonsterFlag = false, BuffAmount = 50}
     };
     public List<Equipment> equipments = new List<Equipment>();
