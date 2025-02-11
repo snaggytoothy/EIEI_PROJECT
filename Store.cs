@@ -115,7 +115,7 @@ public class Store
                     {
                         if (gm.player.Gold >= item.Price) //소모품은 계속 구매 가능
                         {
-                            gm.inventoryConsumables.Add(item); //인벤토리에 아이템 추가
+                            if(item.Count == 0) gm.inventoryConsumables.Add(item); //인벤토리에 아이템 추가
                             gm.player.Gold -= item.Price; //골드 차감
                             item.Count++; //소모품 개수 1 증가
                             Console.Clear();
@@ -212,6 +212,7 @@ public class Store
                     float sellPrice = consumable.Price * 0.85f; //판매 가격 설정
                     gm.player.Gold += (int)sellPrice; //플레이어 골드에 판매 가격 추가
                     if (consumable.Count > 0) consumable.Count--; //아이템 개수 차감
+                    if (consumable.Count == 0) gm.inventoryConsumables.Remove(consumable); //아이템 개수가 0이면 인벤토리에서 제거
                     Console.Clear();
                     Console.WriteLine($"==={gm.itemList[consumeID - 1].Name} 아이템을 판매했습니다.===\n");
                 }
