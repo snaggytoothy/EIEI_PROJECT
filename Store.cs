@@ -115,7 +115,7 @@ public class Store
                     {
                         if (gm.player.Gold >= item.Price) //소모품은 계속 구매 가능
                         {
-                            gm.inventoryConsumables.Add(item); //인벤토리에 아이템 추가
+                            if(item.Count == 0) gm.inventoryConsumables.Add(item); //인벤토리에 아이템 추가
                             gm.player.Gold -= item.Price; //골드 차감
                             item.Count++; //소모품 개수 1 증가
                             Console.Clear();
