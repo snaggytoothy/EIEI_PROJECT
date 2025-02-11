@@ -16,7 +16,10 @@ public class GameManager
         IsEquiped = false, ShopFlag = true, MonsterFlag = true, Atk = 4f},
 
         new Weapon{Name = "한손검 글라디우스", ItemID = 3, Price = 600, ItemType = 0, Inform = "폭 넓은 양날 장검 무거워서 신속하게 사용 힘듬, 방패랑 사용하면 안정적이다.",
-        IsEquiped = false, ShopFlag = true, MonsterFlag = true, Atk = 3f},
+        IsEquiped = false, ShopFlag = false, MonsterFlag = true, Atk = 3f},
+
+        new Weapon{Name = "전설", ItemID = 100, Price = 10000, ItemType = 0, Inform = "전설",
+        IsEquiped = false, ShopFlag = false, MonsterFlag = true, Atk = 3f},
 
         new Armor{Name = "무쇠 갑옷", ItemID = 4, Price = 100, ItemType = 1, Inform = "흔히 구할 수 있는 갑옷입니다.",
         IsEquiped = false, ShopFlag = true, MonsterFlag = false, Def = 5f},
@@ -26,6 +29,7 @@ public class GameManager
 
         new Armor{Name = "심상치 않은 갑옷", ItemID = 6, Price = 700, ItemType = 1, Inform = "심상치 않은 기운이 느껴지는 갑옷입니다.",
         IsEquiped = false, ShopFlag = true, MonsterFlag = true, Def = 12f},
+
 
         new Consumable{Name = "회복 물약", ItemID = 7, Price = 50, ItemType = 2, Inform = "체력을 50 회복시켜 줍니다.", ShopFlag = true, MonsterFlag = false, BuffAmount = 50}
     };
