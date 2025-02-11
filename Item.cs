@@ -37,6 +37,22 @@ public class Consumable : Item // 소비 아이템 클래스
         Count--;
         Console.WriteLine("체력이 50 회복되었습니다.");
     }
+
+    public void Use(GameManager gameManager, int extraAtk) // 공격력 버프 물약
+    {
+        Count--;
+        int nowTurn = gameManager.turnCount;
+        int endTurn = nowTurn + 3;
+        BuffAmount = extraAtk;
+        gameManager.player.Atk += BuffAmount;
+        while (true)
+        {
+            if(gameManager.turnCount == endTurn || gameManager.turnCount == 0)
+            {
+                gameManager.player.Atk -= BuffAmount;
+            }
+        }
+    }
 }
 
 
