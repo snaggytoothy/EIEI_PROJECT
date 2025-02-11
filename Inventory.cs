@@ -122,6 +122,10 @@ public class Inventory
                 if (gameManager.inventoryConsumables[input - 1].Count > 0)
                 {
                     gameManager.inventoryConsumables[input - 1].Use(gameManager.player); //해당 아이템 사용
+                    if (gameManager.inventoryConsumables[input - 1].Count == 0)
+                    {
+                        gameManager.inventoryConsumables.Remove(gameManager.inventoryConsumables[input - 1]);
+                    }
                 }
             }
         }
