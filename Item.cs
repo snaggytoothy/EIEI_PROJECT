@@ -41,17 +41,13 @@ public class Consumable : Item // 소비 아이템 클래스
     public void Use(GameManager gameManager, int extraAtk) // 공격력 버프 물약
     {
         Count--;
-        int nowTurn = gameManager.turnCount;
-        int endTurn = nowTurn + 3;
         BuffAmount = extraAtk;
         gameManager.player.Atk += BuffAmount;
-        while (true)
-        {
-            if(gameManager.turnCount == endTurn || gameManager.turnCount == 0)
-            {
-                gameManager.player.Atk -= BuffAmount;
-            }
-        }
+        Buff buff = new Buff(EndAtkBuff, gameManager, 3);
+    }
+    private void EndAtkBuff(GameManager gameManager)
+    {
+        gameManager.player.Atk -= BuffAmount;
     }
 }
 
