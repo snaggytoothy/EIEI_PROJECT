@@ -51,10 +51,17 @@ public class GameManager
     }
 
 
+    public List<Skil> SkilList = new List<Skil>()
+    {
+        new Skil { ID = 1, Name = "전사스킬1", Damage = 30, range = 1, IsHad = false, Cost = 10},
+        new Skil { ID = 2, Name = "전사스킬2", Damage = 20, range = 2, IsHad = false, Cost = 20 },
+        new Skil { ID = 3, Name = "전사스킬3", Damage = 50, range = 1, IsHad = false , Cost = 50},
+        new Skil { ID = 4, Name = "마법사스킬1", Damage = 20, range = 1, IsHad = false, Cost = 10 },
+        new Skil { ID = 5, Name = "마법사스킬2", Damage = 10, range = 3, IsHad = false, Cost = 20 },
+        new Skil { ID = 6, Name = "마법사스킬3", Damage = 50, range = 1, IsHad = false, Cost = 50 },
+    };
 
-
-
-
+    public List<Skil> mySkils = new List<Skil>();
 
     public Player player = new Player() { Level = 1, Name = "", MaxHP = 100, NowHP = 100, Atk = 20, Def = 15, Job = "", Gold = 1500, MaxExp = 10, NowExp = 0, MaxMP = 100, NowMP = 10 };
 

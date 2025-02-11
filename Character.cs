@@ -77,6 +77,16 @@ public class Character
             }
         }
     }
+
+    public virtual void CharacterSkil(Character attacker, Character target, float tempHP, Skil skil)
+    {
+
+    }
+
+    public virtual void CharacterSkil(Character attacker, List<Character> target, float tempHP, Skil skil)
+    {
+
+    }
 }
 public class Player : Character
 {
@@ -171,6 +181,19 @@ public class Player : Character
         }
     }
     public int Gold { get; set; }
+
+    //단일기
+    public override void CharacterSkil(Character attacker, Character target, float tempHP, Skil skil)
+    {
+        Console.WriteLine("스킬사용 {0}",skil.Name);
+
+    }
+
+    //광역기
+    public override void CharacterSkil(Character attacker, List<Character> target, float tempHP, Skil skil)
+    {
+        Console.WriteLine("스킬사용 {0}", skil.Name);
+    }
 }
 
 public class Monster : Character // Monster 캐릭터 관리
@@ -404,4 +427,14 @@ public class Monster : Character // Monster 캐릭터 관리
         }
 
     }
+}
+
+public class Skil
+{
+    public int ID { get; set; }
+    public String? Name { get; set; }
+    public float Damage { get; set; }
+    public int range { get; set; }
+    public bool IsHad {  get; set; }
+    public int Cost {  get; set; }
 }
