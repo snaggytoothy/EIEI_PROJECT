@@ -229,8 +229,8 @@ public class Player : Character
             {
                 MaxHP = 150;
                 NowHP = 150;
-                Atk = 20;
-                Def = 15;
+                Atk = 15;
+                Def = 2;
                 MaxMP = 20;
                 NowMP = 20;
             }
@@ -238,8 +238,8 @@ public class Player : Character
             {
                 MaxHP = 100;
                 NowHP = 100;
-                Atk = 15;
-                Def = 15;
+                Atk = 10;
+                Def = 1;
                 MaxMP = 50;
                 NowMP = 50;
             }
@@ -298,7 +298,7 @@ public class Monster : Character // Monster 캐릭터 관리
     public int MonsterID { get; set; }
     public bool IsDead { get; set; }
     // 몬스터 등급 스톤 -> 브론즈 -> 아이언 - > 실버 -> 골드 -> 플래티넘랭크 순이다.
-    // 스톤(LV.1~6)
+    // 스톤(Lv.1~6) -> 브론즈(Lv.7~12) -> 아이언(Lv.13~18) -> 실버(Lv.19~28) -> 골드(Lv.29~35) -> 플래티넘(Lv.40~)
     public Monster(int id) // MonsterType 1번은 잡몹, 2번은 레어몹, 3번은 보스몹
     {
         if (id == 1)
@@ -307,11 +307,11 @@ public class Monster : Character // Monster 캐릭터 관리
             this.MonsterID = id;
             this.Level = 1;
             this.Name = "흰색 슬라임[등급: 스톤]"; // EasyScreen
-            this.Atk = 2;
-            this.Def = 1;
+            this.Atk = 3;
+            this.Def = 0;
             this.MaxHP = 30;
             this.NowHP = 30;
-            this.Details = "설명: 동그란 흰색 슬라임이다.";
+            this.Details = "설명: 장비 장착 없음, 동그란 흰색 슬라임이다.";
         }
         else if (id == 2)
         {
@@ -319,11 +319,11 @@ public class Monster : Character // Monster 캐릭터 관리
             this.MonsterID = id;
             this.Level = 2;
             this.Name = "고블린[등급: 스톤]"; // EasyScreen
-            this.Atk = 2;
-            this.Def = 3;
+            this.Atk = 4;
+            this.Def = 1;
             this.MaxHP = 28;
             this.NowHP = 28;
-            this.Details = "설명: 맨손상태, 가죽으로 쪼가리 몸에 두르고있다.";
+            this.Details = "설명: 장비 장착 없음, 생가죽 팬티 장착, 손톱과 발톱으로 공격한다.";
         }
         else if (id == 3)
         {
@@ -331,11 +331,11 @@ public class Monster : Character // Monster 캐릭터 관리
             this.MonsterID = id;
             this.Level = 4;
             this.Name = "전투병 고블린[등급: 스톤]"; // EasyScreen
-            this.Atk = 3;
-            this.Def = 4;
+            this.Atk = 5;
+            this.Def = 2;
             this.MaxHP = 33;
             this.NowHP = 33;
-            this.Details = "설명: 칼날 다 빠지고 녹슨 롱소드를 손에 쥐고 있다, 흉부에 가죽 갑옷을 입고있다";
+            this.Details = "설명: 녹슨 쇼트소드, 흉부에 생가죽 갑옷 장착, 무기를 들고있어 조금 위협적이다.";
         }
         else if (id == 4)
         {
@@ -343,11 +343,11 @@ public class Monster : Character // Monster 캐릭터 관리
             this.MonsterID = id;
             this.Level = 6;
             this.Name = "홉 고블린[등급: 레어 스톤]"; // EasyScreen 
-            this.Atk = 6;
-            this.Def = 5;
-            this.MaxHP = 54;
-            this.NowHP = 54;
-            this.Details = "설명: 키가 사람 평균 정도다, 제대로 된 가죽 갑옷을 입고 있다, 무기는 조잡하게 만든 몽둥이";
+            this.Atk = 7;
+            this.Def = 3;
+            this.MaxHP = 50;
+            this.NowHP = 50;
+            this.Details = "설명:  몽둥이 or 녹슨 아밍소드, 제대로 된 가죽 갑옷 장착, 키가 사람 평균 정도이며 고블린 보다는 지능이 좋다,";
         }
         else if (id == 5)
         {
@@ -355,11 +355,11 @@ public class Monster : Character // Monster 캐릭터 관리
             this.MonsterID = id;
             this.Level = 1;
             this.Name = "스켈레톤[등급: 스톤]"; // NormalScreen
-            this.Atk = 2;
+            this.Atk = 3;
             this.Def = 1;
             this.MaxHP = 15;
             this.NowHP = 15;
-            this.Details = "설명: 아무 장비도 장착 안 되어있는 그냥 스켈레톤이다 하지만 무리지어 다니기 때문에 다구리에 장사없으니 조심하자.";
+            this.Details = "설명: 장비 장착 없음, 그냥 스켈레톤이다 하지만 무리지어 다니기 때문에 다구리에 장사없으니 조심하자.";
         }
         else if (id == 6)
         {
@@ -371,7 +371,7 @@ public class Monster : Character // Monster 캐릭터 관리
             this.Def = 2;
             this.MaxHP = 20;
             this.NowHP = 20;
-            this.Details = "설명: 활, 가죽 누더기를 장착하고있다, 죽기전에는 궁수였던거 같다.";
+            this.Details = "설명: 활, 가죽 누더기를 장착, 죽기전에는 궁수였던거 같다.";
 
         }
         else if (id == 7)
@@ -384,7 +384,7 @@ public class Monster : Character // Monster 캐릭터 관리
             this.Def = 3;
             this.MaxHP = 23;
             this.NowHP = 23;
-            this.Details = "설명: 들고있는 근접 무기가 다양하다, 대부분 녹슨 사슬갑옷을 장착, 죽기전에 전사였던거 같다.";
+            this.Details = "설명: 들고있는 근접 무기가 다양함,녹슨 사슬갑옷 장착, 살아생전에 전사였던거 같다.";
 
         }
 
@@ -393,78 +393,105 @@ public class Monster : Character // Monster 캐릭터 관리
             this.MonsterType = 1;
             this.MonsterID = id;
             this.Level = 7;
-            this.Name = "스피어 군단장 언데드[등급: 브론즈]"; // NormalScreen
-            this.Atk = 4;
-            this.Def = 3;
-            this.MaxHP = 40;
-            this.NowHP = 40;
-            this.Details = "설명: 글레이즈 폴암, 부서진 파급 갑옷 장착, 꽤나 좋은 품질을 장비를 하고 있다 ";
+            this.Name = "스피어 정예병 언데드[등급: 브론즈]"; // NormalScreen
+            this.Atk = 7;
+            this.Def = 5;
+            this.MaxHP = 48;
+            this.NowHP = 48;
+            this.Details = "설명: 글레이즈 폴암, 부서진 파급 갑옷 장착, 꽤나 좋은 품질을 장비를 하고 있다 살아생전에 정예병사였던거 같다. ";
 
         }
         else if (id == 9) //수정중
         {
             this.MonsterType = 2;
             this.MonsterID = id;
-            this.Level = 8;
+            this.Level = 12;
             this.Name = "츠바이헨더 군단장 언데드[등급: 레어 브론즈]"; // NormalScreen
-            this.Atk = 7;
-            this.Def = 4;
-            this.MaxHP = 40;
-            this.NowHP = 40;
-            this.Details = "설명: 은빛 츠바이헨더, 사슬+판급 갑옷 장착, 살아생전 꽤나 실력이 있는 군단장이었던 거 같다 하지만 죽었죠?... "; // 공략하면 낮은 확률로 은빛 츠바이헨더가 드랍된다는 소문이 있다.  
-            // 10 분의 1 확률로 은빛 츠바이헨더 드랍 기능 구현
+            this.Atk = 8;
+            this.Def = 9;
+            this.MaxHP = 62;
+            this.NowHP = 62;
+            this.Details = "설명: 은빛 츠바이헨더, 사슬+판급 갑옷 장착, 살아생전 꽤나 실력이 있는 군단장이었던 거 같다 하지만 죽었죠?... ";
+            // 10 분의 1 확률로 은빛 츠바이헨더 드랍 기능 구현 // 공략하면 낮은 확률로 은빛 츠바이헨더가 드랍된다는 소문이 있다. 
         }
         else if (id == 10) // 수진님 몬스터
         {
             this.MonsterType = 2;
             this.MonsterID = id;
-            this.Level = 7;
-            this.Name = "War 고스트[등급: 브론즈]"; // NormalScreen
-            this.Atk = 7;
-            this.Def = 7;
-            this.MaxHP = 63;
-            this.NowHP = 63;
+            this.Level = 12;
+            this.Name = "War 고스트[등급: 레어 브론즈]"; // NormalScreen
+            this.Atk = 10;
+            this.Def = 1;
+            this.MaxHP = 84;
+            this.NowHP = 84;
             this.Details = "설명: 검은 판급갑옷, 검은 대검 or 검은 방패 한손무기 장착, 발생 원인은 파악을 못 하였으나 전쟁터에서 죽은 사람의 원혼이 뭉쳐서 탄생한다는 소문이 있다, ";
         }
         else if (id == 11)
         {
             this.MonsterType = 1;
             this.MonsterID = id;
-            this.Level = 7;
+            this.Level = 12;
             this.Name = " 워리어 비스트맨(돌산양)[등급: 브론즈]"; // HardScreen
-            this.Atk = 6;
+            this.Atk = 7;
             this.Def = 5;
-            this.MaxHP = 50;
-            this.NowHP = 50;
+            this.MaxHP = 58;
+            this.NowHP = 58;
             this.Details = "설명: 둔기 or 도끼, 갑옷은 인간의 뼈로 만든 흉갑 장착, 항상 전투에 목말라있다. ";
             //Console.WriteLine("비스트맨의 종은 다양하다 하지만 이 던전에는 돌산양 비스트맨이 무리지어 살고있다. 기본 2미터 크기이며 얼굴은 돌산양 상반신 인간 하반신 말 이다. 박치기를 맞으면 상대는 대부분 즉사 한다고 하니 조심하자.");  던전 입장시 설명문으로 사용 예정 -> Dungeon 이동
         }   //Console.WriteLine("선호하는 식량은 인간이며 둔기로 전투불능으로 만들어 신선하게 먹는 걸 좋아한다.")
+        
         else if (id == 12)
         {
             this.MonsterType = 1;
             this.MonsterID = id;
-            this.Level = 9;
+            this.Level = 14;
             this.Name = "정예 워리어 비스트맨(돌산양)[등급: 아이언]"; // HardScreen
-            this.Atk = 8;
+            this.Atk = 10;
             this.Def = 7;
             this.MaxHP = 65;
             this.NowHP = 65;
-            this.Details = "설명: 배틀액스, 판급갑옷 장착, 인간을 죽여서 장비를 장착하기도 한다, 전투에 노련한 자들이다 발차기를 조심하자.  ";
+            this.Details = "설명: 배틀액스, 판급갑옷 장착, 인간을 죽여서 장비를 장착하기도 한다, 전투에 노련한 자들이다 발차기를 조심하자. ";
         }
         else if (id == 13)
         {
             this.MonsterType = 1;
             this.MonsterID = id;
-            this.Level = 7;
-            this.Name = "헌터 비스트맨(돌산양)[등급: 아이언]"; // HardScreen
-            this.Atk = 6;
+            this.Level = 15;
+            this.Name = "half 키메라[등급: 아이언]"; // HardScreen
+            this.Atk = 12;
             this.Def = 5;
-            this.MaxHP = 50;
-            this.NowHP = 50;
+            this.MaxHP = 78;
+            this.NowHP = 78;
+            this.Details = "설명: 장비 장착 없음, 키메라는 여러 생물체의 특정 부위가 합쳐진 생명체이다 종류가 다양해서 특정하기 힘들다 성체가 아니라 아직 약하다. ";
+            //설명: ";
+        }
+        else if (id == 14)
+        {
+            this.MonsterType = 1;
+            this.MonsterID = id;
+            this.Level = 16;
+            this.Name = "헌터 비스트맨(돌산양)[등급: 아이언]"; // HardScreen
+            this.Atk = 14;
+            this.Def = 7;
+            this.MaxHP = 70;
+            this.NowHP = 70;
             this.Details = "설명: 쌍수 시미터, 경번갑 갑옷 장착, 인간 전사를 사냥해서 전리품을 장착한다, 큰 체구에 비해 상당히 민첩하며 괜찮은 장비를 보유하고있어서 공략하기 힘들다. ";
             //설명: 오랫동안 죽지않고 사냥으로 경험을 쌓은 헌터 비스트맨은 골드 등급 까지도 갈수 있다. ";
         }
-
+        
+        else if (id == 15)
+        {
+            this.MonsterType = 1;
+            this.MonsterID = id;
+            this.Level = 18;
+            this.Name = "시전드 헌터 비스트맨(돌산양)[등급: 레어 아이언]"; // HardScreen
+            this.Atk = 30;
+            this.Def = 10;
+            this.MaxHP = 82;
+            this.NowHP = 82;
+            this.Details = "설명: 소드  브레이커 or 자마다르, 천산갑비늘 어린갑 장착, 수많은 전사를 사냥한 헌터 전문가이다 은신이 특화이며 단검을 주로 사용한다 눈을 감지마라 감는순간 죽으니...";
+            //설명:  ";
+        }
 
 
 
