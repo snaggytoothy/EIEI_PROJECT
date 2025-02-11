@@ -359,7 +359,6 @@ class Dungeon
                         }
                         monsters.Clear();
                         //승리화면으로
-                        gameManager.TurnCount = 0;
                         Clear(gameManager, tempPlayer, resultExp);
                         gameManager.exitFlag = 1;
                         break;
@@ -377,7 +376,6 @@ class Dungeon
                             //패배화면으로
                             //monsters.Clear();
                             Fail(gameManager, tempPlayer);
-                            gameManager.TurnCount = 0;
                             if (gameManager.exitFlag == 0)
                             {
                                 continue;
@@ -786,10 +784,13 @@ class Dungeon
 
             }
         }
+        gameManager.TurnCount++;
     }
 
     public void Clear(GameManager gameManager, Player tempPlayer, int resultExp)
     {
+        gameManager.TurnCount = 0;
+
         Random random1 = new Random();
         
         //var expectconsumables = gameManager.consumables.Where(x => gameManager.inventoryConsumables.Count(s => x.ItemID != s.ItemID) != 0).ToList();            
@@ -846,6 +847,8 @@ class Dungeon
 
     public void Fail(GameManager gameManager, Player tempPlayer)
     {
+        gameManager.TurnCount = 0;
+
         int Input;
         string? tempName;
         Random random = new Random();
