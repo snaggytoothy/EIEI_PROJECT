@@ -61,7 +61,12 @@ class Dungeon
         Console.WriteLine();
         // Utility(캐릭터 상태창);
         Console.WriteLine("캐릭터의 정보가 표시됩니다.");
-
+        Console.WriteLine($"Lv. {gameManager.player.Level}");
+        Console.WriteLine($"{gameManager.player.Name} ({gameManager.player.Job})");
+        Console.WriteLine($"공격력: {gameManager.player.Atk}");
+        Console.WriteLine($"방어력: {gameManager.player.Def}");
+        Console.WriteLine($"체력: {gameManager.player.NowHP}\nGold: {gameManager.player.Gold} G");
+        Console.WriteLine($"경험치: {gameManager.player.NowExp} / {gameManager.player.MaxExp}");
 
         Console.WriteLine();
         Console.WriteLine("0. 도망가기");
@@ -110,7 +115,12 @@ class Dungeon
         // Utility(캐릭터 상태창);
 
         Console.WriteLine("캐릭터의 정보가 표시됩니다.");
-
+        Console.WriteLine($"Lv. {gameManager.player.Level}");
+        Console.WriteLine($"{gameManager.player.Name} ({gameManager.player.Job})");
+        Console.WriteLine($"공격력: {gameManager.player.Atk}");
+        Console.WriteLine($"방어력: {gameManager.player.Def}");
+        Console.WriteLine($"체력: {gameManager.player.NowHP}\nGold: {gameManager.player.Gold} G");
+        Console.WriteLine($"경험치: {gameManager.player.NowExp} / {gameManager.player.MaxExp}");
 
         Console.WriteLine();
         Console.WriteLine("0. 도망가기");
@@ -159,7 +169,12 @@ class Dungeon
         // Utility(캐릭터 상태창);
 
         Console.WriteLine("캐릭터의 정보가 표시됩니다.");
-
+        Console.WriteLine($"Lv. {gameManager.player.Level}");
+        Console.WriteLine($"{gameManager.player.Name} ({gameManager.player.Job})");
+        Console.WriteLine($"공격력: {gameManager.player.Atk}");
+        Console.WriteLine($"방어력: {gameManager.player.Def}");
+        Console.WriteLine($"체력: {gameManager.player.NowHP}\nGold: {gameManager.player.Gold} G");
+        Console.WriteLine($"경험치: {gameManager.player.NowExp} / {gameManager.player.MaxExp}");
 
         Console.WriteLine();
         Console.WriteLine("0. 도망가기");
@@ -195,10 +210,118 @@ class Dungeon
 
     }
 
+
+    void CreateMonster(List<Monster> monsters,int level,int wave)
+    {
+        Random random = new Random();
+        monsters.Clear();
+        int monsterID;
+        int monsterNum;
+        if(level == 1)
+        {
+            if (wave == 1)
+            {
+                monsterNum = random.Next(1, 2);
+                for (int i = 0; i < monsterNum; i++)
+                {
+                    monsterID = random.Next(1, 4);
+                    monsters.Add(new Monster(monsterID));
+                }
+
+            }
+            else if (wave == 2)
+            {
+                monsterNum = random.Next(2, 4);
+                for (int i = 0; i < monsterNum; i++)
+                {
+                    monsterID = random.Next(1, 4);
+                    monsters.Add(new Monster(monsterID));
+                }
+            }
+            else if (wave == 3) 
+            {
+                monsterNum = random.Next(3, 5);
+                for (int i = 0; i < monsterNum; i++)
+                {
+                    monsterID = random.Next(1, 4);
+                    monsters.Add(new Monster(monsterID));
+                }
+                monsters.Add(new Monster(4));//보스몬스터
+            }
+        }
+
+        else if(level == 2)
+        {
+            if (wave == 1)
+            {
+                monsterNum = random.Next(2, 4);
+                for (int i = 0; i < monsterNum; i++)
+                {
+                    monsterID = random.Next(5, 9);
+                    monsters.Add(new Monster(monsterID));
+                }
+
+            }
+            else if (wave == 2)
+            {
+                monsterNum = random.Next(4, 6);
+                for (int i = 0; i < monsterNum; i++)
+                {
+                    monsterID = random.Next(5, 9);
+                    monsters.Add(new Monster(monsterID));
+                }
+            }
+            else if (wave == 3)
+            {
+                monsterNum = random.Next(5, 8);
+                for (int i = 0; i < monsterNum; i++)
+                {
+                    monsterID = random.Next(5, 9);
+                    monsters.Add(new Monster(monsterID));
+                }
+                monsterNum = random.Next(9, 11);
+                monsters.Add(new Monster(monsterNum));//보스몬스터
+            }
+        }
+
+        else if(level == 3)
+        {
+            if (wave == 1)
+            {
+                monsterNum = random.Next(3, 5);
+                for (int i = 0; i < monsterNum; i++)
+                {
+                    monsterID = random.Next(11, 14);
+                    monsters.Add(new Monster(monsterID));
+                }
+
+            }
+            else if (wave == 2)
+            {
+                monsterNum = random.Next(4, 7);
+                for (int i = 0; i < monsterNum; i++)
+                {
+                    monsterID = random.Next(11, 14);
+                    monsters.Add(new Monster(monsterID));
+                }
+            }
+            else if (wave == 3)
+            {
+                monsterNum = random.Next(7, 11);
+                for (int i = 0; i < monsterNum; i++)
+                {
+                    monsterID = random.Next(11, 14);
+                    monsters.Add(new Monster(monsterID));
+                }
+                monsterNum = random.Next(9, 11);
+                monsters.Add(new Monster(monsterNum));//보스몬스터
+            }
+        }
+    }
     public void DungeonProgress(GameManager gameManager, int level)
     {
         //플레이어의 진입시 상태를 저장
-        Player tempPlayer = new Player() { NowExp = gameManager.player.NowExp, Gold = gameManager.player.Gold, NowHP = gameManager.player.NowHP, Level = gameManager.player.Level };
+        Player tempPlayer = new Player() { NowExp = gameManager.player.NowExp, Gold = gameManager.player.Gold, NowHP = gameManager.player.NowHP, Level = gameManager.player.Level ,MaxExp = gameManager.player.MaxExp};
         List<Monster> monsters = new List<Monster>();
         //easy던전 입장
         if (level == 1)
@@ -218,21 +341,15 @@ class Dungeon
                 {
                     if (i == 1)
                     {
-                        monsters.Clear();
-                        monsters.Add(new Monster(1));
+                        CreateMonster(monsters, level, i);
                     }
                     else if (i == 2)
                     {
-                        monsters.Clear();
-                        monsters.Add(new Monster(2));
-                        monsters.Add(new Monster(3));
+                        CreateMonster(monsters, level, i);
                     }
                     else if (i == 3)
                     {
-                        monsters.Clear();
-                        monsters.Add(new Monster(2));
-                        monsters.Add(new Monster(3));
-                        monsters.Add(new Monster(4));
+                        CreateMonster(monsters, level, i);
                     }
                     else
                     {
@@ -293,24 +410,15 @@ class Dungeon
             {
                 if (i == 1)
                 {
-                    monsters.Clear();
-                    monsters.Add(new Monster(5));
-                    monsters.Add(new Monster(6));
+                    CreateMonster(monsters, level, i);
                 }
                 else if (i == 2)
                 {
-                    monsters.Clear();
-                    monsters.Add(new Monster(6));
-                    monsters.Add(new Monster(7));
-                    monsters.Add(new Monster(8));
+                    CreateMonster(monsters, level, i);
                 }
                 else if (i == 3)
                 {
-                    monsters.Clear();
-                    monsters.Add(new Monster(5));
-                    monsters.Add(new Monster(6));
-                    monsters.Add(new Monster(7));
-                    monsters.Add(new Monster(8));
+                    CreateMonster(monsters, level, i);
                 }
                 else
                 {
@@ -360,21 +468,15 @@ class Dungeon
             {
                 if (i == 1)
                 {
-                    monsters.Clear();
-                    monsters.Add(new Monster(3));
+                    CreateMonster(monsters, level, i);
                 }
                 else if (i == 2)
                 {
-                    monsters.Clear();
-                    monsters.Add(new Monster(3));
-                    monsters.Add(new Monster(4));
+                    CreateMonster(monsters, level, i);
                 }
                 else if (i == 3)
                 {
-                    monsters.Clear();
-                    monsters.Add(new Monster(3));
-                    monsters.Add(new Monster(4));
-                    monsters.Add(new Monster(5));
+                    CreateMonster(monsters, level, i);
                 }
                 else
                 {
@@ -519,6 +621,8 @@ class Dungeon
                     Console.WriteLine("{0} Lv {1} {2}   Dead", i + 1, monsters[i].Name, monsters[i].Level);
                 }
             }
+            Console.WriteLine("공격할 몬스터를 고르세요");
+            Console.Write(">>");
             //몬스터 공격명령
             input = Utility.GetInput(1, monsters.Count);
             tempHP = monsters[input - 1].NowHP;
@@ -615,8 +719,8 @@ class Dungeon
 
     public void Clear(GameManager gameManager, Player tempPlayer, int resultExp)
     {
-        Random random = new Random();
-        var expectequiment = gameManager.equipments.Where(x => gameManager.inventoryEquipment.Count(s => x.ItemID != s.ItemID) != 0).ToList();
+        Random random1 = new Random();
+        
         //var expectconsumables = gameManager.consumables.Where(x => gameManager.inventoryConsumables.Count(s => x.ItemID != s.ItemID) != 0).ToList();            
         Console.Clear();
         Console.WriteLine("던전을 클리어하였습니다");
@@ -640,28 +744,40 @@ class Dungeon
         gameManager.player.Gold = gameManager.player.Gold + resultExp * 50;
         Console.WriteLine("{0} Gold", gameManager.player.Gold);
 
-        while (true)
+        /*while (true)
         {
             //40%의 확률로            
-            if (random.Next(1, 101) > 60)
+            if (random1.Next(1, 101) > 60)
             {
+                Random random2 = new Random();
+                var expectequiment = gameManager.equipments.Where(x => gameManager.inventoryEquipment.Count(s => x.ItemID != s.ItemID) == 0).ToList();
+
+                Console.WriteLine("expectequiment");
+                foreach (var item in expectequiment) 
+                {
+                    Console.WriteLine(item.Name);
+                }
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine();
                 //전체 아이템리스트와 보유 아이템 리스트 비교                
                 //비교한 리스트에 아무것도 없다면 정지                
                 if (expectequiment.Any() == false)
                 {
                     break;
                 }
-                //보유하지 않은 아이템에서 몬스터 플래그가 트루인 아이템을 추가                
+                //보유하지 않은 아이템에서 몬스터 플래그가 트루인 아이템을 추가
                 var find = expectequiment.FindAll(x => x.MonsterFlag == true).ToList();
-                int temp = find[random.Next(0, find.Count)].ItemID;
+                int temp = random2.Next(0, find.Count);
                 Console.WriteLine("{0}", find[temp].Name);
                 gameManager.inventoryEquipment.Add(find[temp]);
+                
             }
             else
             {
                 break;
             }
-        }
+        }*/
 
         gameManager.killCount = 0;
         Console.WriteLine("Anykey. 나가기");
