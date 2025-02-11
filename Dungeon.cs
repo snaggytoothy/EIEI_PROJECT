@@ -359,7 +359,7 @@ class Dungeon
                         }
                         monsters.Clear();
                         //승리화면으로
-                        gameManager.turnCount = 0;
+                        gameManager.TurnCount = 0;
                         Clear(gameManager, tempPlayer, resultExp);
                         gameManager.exitFlag = 1;
                         break;
@@ -377,7 +377,7 @@ class Dungeon
                             //패배화면으로
                             //monsters.Clear();
                             Fail(gameManager, tempPlayer);
-                            gameManager.turnCount = 0;
+                            gameManager.TurnCount = 0;
                             if (gameManager.exitFlag == 0)
                             {
                                 continue;
@@ -603,13 +603,55 @@ class Dungeon
         }
     }
 
-    void SkilDisplay(GameManager gameManager, List<Monster> monsters)
+    void SkilDisplay(GameManager gameManager)
     {
         Console.WriteLine("스킬 보유 목록");
         for(int i = 0; i<gameManager.mySkils.Count; i++)
         {
-            Console.WriteLine("{0} {1} 소모 MP : {2}", i, gameManager.mySkils[i].Name, gameManager.mySkils[i].Cost,);
+            Console.WriteLine("{0} {1} 소모 MP : {2} 기본 데미지 : {3} 공격 계수: {4}  설명 : {5}", i+1, gameManager.mySkils[i].Name, gameManager.mySkils[i].Cost, gameManager.mySkils[i].Damage, gameManager.mySkils[i].skilRatiod ,gameManager.mySkils[i].Description);
         }
+    }
+
+    void SkilAttack(GameManager gameManager, List<Monster> monsters)
+    {
+        int input;
+        while (true)
+        {
+            Console.Clear();
+            SkilDisplay(gameManager);
+            Console.WriteLine();
+            Console.WriteLine("사용할 스킬을 고르세요");
+            Console.Write("0. 뒤로가기");
+            Console.Write(">>");
+            input = Utility.GetInput(0, gameManager.mySkils.Count);
+
+            if (input == 0)
+            {
+                return;
+            }
+            else
+            {
+                while (true)
+                {
+                    MonsterDisplay(monsters);
+                    Console.WriteLine();
+                    Console.WriteLine("공격할 몬스터 고르세요");
+                    Console.Write(">>");
+                    input = Utility.GetInput(0, monsters.Count);
+                    if (input == 0)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                         
+                    }
+
+                }
+            }
+        }
+        
+
     }
 
     public void PlayerTurn(GameManager gameManager, List<Monster> monsters)
@@ -651,7 +693,8 @@ class Dungeon
             }
             else if (input == 2)
             {
-
+                SkilDisplay(gameManager);
+                
             }
             else if (input == 3)
             {
