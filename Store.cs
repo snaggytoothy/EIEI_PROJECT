@@ -47,7 +47,6 @@ public class Store
         while (true)
         {
             IsSellOrBuy = false; //이 창이 열리면 구매 또는 판매 중이 아님
-            Console.Clear(); //콘솔 비우기
             Console.WriteLine("상점 \n필요한 물건을 사고 팔 수 있는 곳입니다.\n");
             Console.WriteLine($"[보유 골드] : {gm.player.Gold}G \n");
             Console.WriteLine("[아이템 목록] \n");
@@ -56,8 +55,16 @@ public class Store
 
             Console.WriteLine("1. 아이템 구매 \n2. 아이템 판매 \n0. 나가기");
             int num = Utility.GetInput(0, 2); //0~2 사이 입력 가능
-            if (num == 1) BuyItem(gm); //1을 입력하면 아이템 구매
-            else if (num == 2) SellItem(gm); //2를 입력하면 아이템 판매
+            if (num == 1)
+            {
+                Console.Clear();
+                BuyItem(gm); //1을 입력하면 아이템 구매
+            }
+            else if (num == 2)
+            {
+                Console.Clear();
+                SellItem(gm); //2를 입력하면 아이템 판매
+            }
             else break;
         }
     }
@@ -67,7 +74,6 @@ public class Store
         while (true)
         {
             IsSellOrBuy = true; //구매 또는 판매 중임으로 변경
-            Console.Clear(); //콘솔 비우기
             Console.WriteLine("상점 - 아이템 구매 \n아이템을 구매할 수 있습니다. \n");
             Console.WriteLine($"[보유 골드] : {gm.player.Gold} G \n");
             Console.WriteLine("[아이템 목록] \n");
@@ -96,8 +102,7 @@ public class Store
                         gm.inventoryEquipment.Add(item); //인벤토리에 아이템 추가
                         gm.player.Gold -= item.Price; //골드 차감
                         Console.Clear();
-                        Console.WriteLine($"{item.Name} 아이템을 구매했습니다.\n 나가려면 아무 키나 누르세요.");
-                        Console.ReadKey();
+                        Console.WriteLine($"==={item.Name} 아이템을 구매했습니다.===\n");
                     }
                     else
                     {
@@ -117,8 +122,7 @@ public class Store
                             gm.player.Gold -= item.Price; //골드 차감
                             item.Count++; //소모품 개수 1 증가
                             Console.Clear();
-                            Console.WriteLine($"{item.Name} 아이템을 구매했습니다.\n나가려면 아무 키나 누르세요.");
-                            Console.ReadKey();
+                            Console.WriteLine($"==={item.Name} 아이템을 구매했습니다.===\n");
                         }
                         else
                         {
@@ -202,7 +206,7 @@ public class Store
                     gm.player.Gold += (int)sellPrice; //플레이어 골드에 판매 가격 추가
                     gm.inventoryEquipment.Remove(equipItem); //해당 아이템을 inventory에서 제거
                     Console.Clear();
-                    Console.WriteLine($"{gm.itemList[equipID].Name} 아이템을 판매했습니다.");
+                    Console.WriteLine($"==={gm.itemList[equipID].Name} 아이템을 판매했습니다.===\n");
                 }
                 else //아이템이 소모품일 때
                 {
@@ -212,7 +216,7 @@ public class Store
                     gm.player.Gold += (int)sellPrice; //플레이어 골드에 판매 가격 추가
                     if (consumable.Count > 0) consumable.Count--; //아이템 개수 차감
                     Console.Clear();
-                    Console.WriteLine($"{gm.itemList[consumeID - 1].Name} 아이템을 판매했습니다.");
+                    Console.WriteLine($"==={gm.itemList[consumeID - 1].Name} 아이템을 판매했습니다.===\n");
                 }
                 break;
             }

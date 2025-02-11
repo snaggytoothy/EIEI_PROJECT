@@ -6,7 +6,7 @@ using System.ComponentModel.Design;
 using Microsoft.VisualBasic;
 namespace EIEIE_Project;
 
-//휴식 수정해야함
+//인벤토리 
 public class Start()
 {
     private static int restNum = 500;
@@ -109,6 +109,7 @@ public class Start()
                     inventory.InventoryScene(gameManager);
                     break;
                 case 3:
+                    Console.Clear();
                     store.StoreScreen(gameManager);
                     break;
                 case 4:
