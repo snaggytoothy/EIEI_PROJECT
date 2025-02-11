@@ -97,10 +97,10 @@ public class Player : Character
                 {
                     int extraExp = nowExp - MaxExp;
                     Level++;
-                    while (extraExp / MaxExp > 0)
-                    {
-                        Level++;
+                    while (extraExp - MaxExp > 0)
+                    {                       
                         extraExp -= MaxExp;
+                        Level++;
                     }
                     nowExp = extraExp;
                 }
