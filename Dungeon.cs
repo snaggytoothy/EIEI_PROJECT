@@ -359,6 +359,7 @@ class Dungeon
                         }
                         monsters.Clear();
                         //승리화면으로
+                        gameManager.turnCount = 0;
                         Clear(gameManager, tempPlayer, resultExp);
                         gameManager.exitFlag = 1;
                         break;
@@ -376,6 +377,7 @@ class Dungeon
                             //패배화면으로
                             //monsters.Clear();
                             Fail(gameManager, tempPlayer);
+                            gameManager.turnCount = 0;
                             if (gameManager.exitFlag == 0)
                             {
                                 continue;
@@ -679,7 +681,14 @@ class Dungeon
                     }
                     else
                     {
-                        gameManager.inventoryConsumables[input - 1].Use(gameManager.player);
+                        if (gameManager.inventoryConsumables[input-1].ItemID == 7)
+                        {
+                            gameManager.inventoryConsumables[input - 1].Use(gameManager.player);
+                        }
+                        else if(gameManager.inventoryConsumables[input - 1].ItemID == 8)
+                        {
+                            gameManager.inventoryConsumables[input - 1].Use(gameManager, 10);
+                        }
                         Console.WriteLine("Anykey. 진행");
                         Console.ReadKey();
                     }

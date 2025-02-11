@@ -119,13 +119,18 @@ public class Inventory
             }
             else if (input > 0 && input <= gameManager.inventoryConsumables.Count)
             {
-                if (gameManager.inventoryConsumables[input - 1].Count > 0)
+                if (gameManager.inventoryConsumables[input - 1].Count > 0 && gameManager.inventoryConsumables[input -1].ItemID == 7)
                 {
                     gameManager.inventoryConsumables[input - 1].Use(gameManager.player); //해당 아이템 사용
                     if (gameManager.inventoryConsumables[input - 1].Count == 0)
                     {
                         gameManager.inventoryConsumables.Remove(gameManager.inventoryConsumables[input - 1]);
                     }
+                }
+                else
+                {
+                    Console.WriteLine("지금은 사용할 수 없는 아이템입니다.(아무 키나 눌러 확인)");
+                    Console.ReadKey();
                 }
             }
         }
