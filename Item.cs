@@ -68,6 +68,8 @@ public class Equipment : Item // 장비 클래스
         }
     }
     public string DifficultyLvFlag { get; set; } //MonsterFlag == true, ShopFlag ==false
+
+
 }
 
 public class Weapon : Equipment
