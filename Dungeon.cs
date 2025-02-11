@@ -36,7 +36,7 @@ class Dungeon
                     else { Console.WriteLine("레벨이 부족합니다! (Lv.8 이상 필요)"); Console.ReadKey(); }
                     break;
                 case 3:
-                    if (gameManager.player.Level >= 1) HardScreen(gameManager);
+                    if (gameManager.player.Level >= 12) HardScreen(gameManager);
                     else { Console.WriteLine("레벨이 부족합니다! (Lv.12 이상 필요)"); Console.ReadKey(); }
                     break;
             }
@@ -362,7 +362,7 @@ class Dungeon
                         //승리화면으로
                         Clear(gameManager, tempPlayer, resultExp);
                         gameManager.exitFlag = 1;
-                        break;
+                        return;
                     }
 
                     while (true)
@@ -392,7 +392,7 @@ class Dungeon
                             {
                                 resultExp += monsters[j].Level;
                             }
-                            return;
+                            break;
                         }
                     }
                 }
@@ -461,7 +461,7 @@ class Dungeon
                         {
                             resultExp += monsters[j].Level;
                         }
-                        return;
+                        break;
                     }
                 }
             }
@@ -690,8 +690,10 @@ class Dungeon
                             {
                                 Console.Clear();
                                 float tempHP = monsters[input - 1].NowHP;
+                                float tempMP = gameManager.player.NowMP;
                                 if (gameManager.player.CharacterSkil(gameManager.player, monsters[input - 1], gameManager.mySkils[skillInput - 1]))
                                 {
+
                                     if (monsters[input - 1].NowHP <= 0)
                                     {
                                         monsters[input - 1].IsDead = true;
@@ -713,6 +715,8 @@ class Dungeon
                                     Console.WriteLine();
                                     Console.WriteLine("아무키 입력. 다음");
                                     Console.WriteLine();
+                                    gameManager.player.NowMP = gameManager.player.NowMP - gameManager.mySkils[skillInput - 1].Cost;
+                                    Console.WriteLine("PlayerMP: {0} -> {1}", tempMP, gameManager.player.NowMP);
                                     Console.Write(">>");
                                     Console.ReadKey();
                                     return true;
@@ -759,10 +763,11 @@ class Dungeon
                             {
                                 Console.Clear();
                                 float[] tempHP = new float[gameManager.mySkils[skillInput - 1].range];
+                                float tempMP = gameManager.player.NowMP;
 
                                 for (int i = 0; i < gameManager.mySkils[skillInput - 1].range; i++)
                                 {
-                                    //tempHP[i] = monsters[(input - 1 - (gameManager.mySkils[skillInput - 1].range)/2) + i].NowHP;
+                                    
                                     if((input - 1) - (int)(gameManager.mySkils[skillInput-1].range / 2) + i < 0)
                                     {
                                         continue;
@@ -773,7 +778,8 @@ class Dungeon
                                     }
                                     else
                                     {
-                                        /*if (gameManager.player.CharacterSkil(gameManager.player, monsters[(input - 1) - (int)(gameManager.mySkils[skillInput - 1].range / 2) + i], gameManager.mySkils[skillInput - 1]))
+                                        tempHP[i] = monsters[(input - 1) - (int)(gameManager.mySkils[skillInput - 1].range / 2) + i].NowHP;
+                                        if (gameManager.player.CharacterSkil(gameManager.player, monsters[(input - 1) - (int)(gameManager.mySkils[skillInput - 1].range / 2) + i], gameManager.mySkils[skillInput - 1]))
                                         {
                                             if (monsters[(input - 1) - (int)(gameManager.mySkils[skillInput - 1].range / 2) + i].NowHP <= 0)
                                             {
@@ -781,98 +787,31 @@ class Dungeon
                                                 monsters[(input - 1) - (int)(gameManager.mySkils[skillInput - 1].range / 2) + i].NowHP = 0;
                                                 gameManager.killCount = gameManager.killCount + 1;
                                                 //Console.WriteLine("{0}킬째", gameManager.killCount);
-
+                                                if (monsters[(input - 1) - (int)(gameManager.mySkils[skillInput - 1].range / 2) + i].IsDead == true)
+                                                {
+                                                    Console.WriteLine("HP {0} -> Dead", tempHP);
+                                                }
+                                                else
+                                                {
+                                                    Console.WriteLine("HP {0} -> {1}", tempHP, monsters[(input - 1) - (int)(gameManager.mySkils[skillInput - 1].range / 2) + i].NowHP);
+                                                }
                                             }
-
-                                            if (monsters[(input - 1) - (int)(gameManager.mySkils[skillInput - 1].range / 2) + i].IsDead == true)
-                                            {
-                                                Console.WriteLine("HP {0} -> Dead", tempHP);
-                                            }
-                                            else
-                                            {
-                                                Console.WriteLine("HP {0} -> {1}", tempHP, monsters[(input - 1) - (int)(gameManager.mySkils[skillInput - 1].range / 2) + i].NowHP);
-                                            }
-
                                             Console.WriteLine();
                                             Console.WriteLine("아무키 입력. 다음");
                                             Console.WriteLine();
                                             Console.Write(">>");
                                             Console.ReadKey();
-                                            return true;
                                         }
                                         else
                                         {
                                             continue;
-                                        }*/
-                                            
+                                        }                                        
                                     }
                                     
                                 }
-                                /*Console.Clear();
-                                float[] tempHP = new float[gameManager.mySkils[skillInput - 1].range];
-                                List<Character> rangeMonsters = new List<Character>();
-                                for (int i = 0; i < gameManager.mySkils[skillInput - 1].range / 2; i++) 
-                                {
-                                    if(input - 1 < 0)
-                                    {
-                                        break;
-                                    }
-                                    else
-                                    {
-                                        rangeMonsters.Add(monsters[input - i]);
-                                    }
-                                    
-                                }
-                                for (int i = 1; i < gameManager.mySkils[skillInput - 1].range / 2; i++)
-                                {
-                                    if (input + 1 > monsters.Count)
-                                    {
-                                        break;
-                                    }
-                                    else
-                                    {
-                                        rangeMonsters.Add(monsters[input + i]);
-                                    }
-
-                                }
-                                //rangeMonsters.Add(monsters[input]);
-
-                                //float tempHP = monsters[input - 1].NowHP;
-                                if (gameManager.player.CharacterSkil(gameManager.player, rangeMonsters, gameManager.mySkils[skillInput - 1]))
-                                {
-                                    for(int i = 0; i < rangeMonsters.Count; i++)
-                                    {
-                                        if (monsters[i].NowHP <= 0)
-                                        {
-                                            monsters[i].IsDead = true;
-                                            monsters[i].NowHP = 0;
-                                            gameManager.killCount = gameManager.killCount + 1;
-                                            //Console.WriteLine("{0}킬째", gameManager.killCount);
-
-                                        }
-
-                                        if (monsters[i].IsDead == true)
-                                        {
-                                            Console.WriteLine("HP {0} -> Dead", tempHP);
-                                        }
-                                        else
-                                        {
-                                            Console.WriteLine("HP {0} -> {1}", tempHP, monsters[i].NowHP);
-                                        }
-                                    }
-                                    
-
-                                    Console.WriteLine();
-                                    Console.WriteLine("아무키 입력. 다음");
-                                    Console.WriteLine();
-                                    Console.Write(">>");
-                                    Console.ReadKey();
-                                    return true;
-                                }
-                                else
-                                {
-                                    continue;
-                                }*/
+                                gameManager.player.NowMP = gameManager.player.NowMP - gameManager.mySkils[skillInput - 1].Cost;
+                                Console.WriteLine("PlayerMP: {0} -> {1}", tempMP, gameManager.player.NowMP);
+                                return true;
                             }
 
                         }
