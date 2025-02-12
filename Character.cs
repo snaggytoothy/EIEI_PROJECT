@@ -538,5 +538,6 @@ public class Skil
     public int Cost { get; set; }
     public int type { get; set; } // 1물리 2마법
     public string Description { get; set; }
+    public int Price { get; set; }
 
 }
