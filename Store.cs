@@ -18,7 +18,13 @@ public class Store
             }
             Equipment item = gm.equipments[i]; //장비 아이템을 item에 저장
             string str = item.ItemType == 0 ? "공격력: " : "방어력: "; //아이템의 아이템 타입에 따라, 0이면 공격력이고 아니라면 방어력으로 출력
-            string strPrice = item.IsBought ? "구매완료" : $"{item.Price} G"; //아이템을 이미 구매했는가의 여부에 따라 구매완료 또는 가격을 출력
+
+            //해당 아이템이 인벤토리에 있는지 확인
+            if (gm.inventoryEquipment.FindAll(x => x.ItemID == item.ItemID).Count >= 1) //해당 아이템이 1개 이상이라면
+            {
+                item.IsBought = true; //구매 완료 상태로 변경
+            }
+            string strPrice = item.IsBought ? "소지 중" : $"{item.Price} G"; //아이템이 인벤토리에 있는가의 여부에 따라 소지 중 또는 가격을 출력
             if (item.ShopFlag)
             {
                 Console.WriteLine($" {strNum}{item.ChangeEquipMark()} {item.Name} | {str} +{item.GetValue()}| {item.Inform} | {strPrice}");
@@ -28,7 +34,7 @@ public class Store
         }
         //consumable 추가하려고 하니 둘 다 같은 번호로 뜸. +1을 없애고, 그 뒤에 consumable.count도 더해야함
 
-        Console.WriteLine("==소모품=============");
+        Console.WriteLine("==소비=============");
         for (int i = 0; i < gm.consumables.Count; i++)
         {
             if (!IsSellOrBuy) strNum = " - "; //상점 창에서 아이템 번호 대신 " - "를 출력함
@@ -92,10 +98,10 @@ public class Store
                 if (gm.itemList[num].ItemType != 2) //장비 또는 방어구일 때
                 {
                     Equipment item = (Equipment)gm.itemList[num];
-                    if (item.IsBought) //이미 구매한 상품이라면
+                    if (item.IsBought) //이미 있는 상품이라면
                     {
                         Console.Clear();
-                        Console.WriteLine("이미 구매한 아이템입니다.");
+                        Console.WriteLine("이미 있는 아이템입니다.");
                     }
                     else if (gm.player.Gold >= item.Price)
                     {
@@ -177,7 +183,7 @@ public class Store
                 consumableNum += 1;
             }
 
-            Console.WriteLine("==소모품=============");
+            Console.WriteLine("==소비=============");
             for (int i = 0; i < gm.inventoryConsumables.Count; i++)
             {
                 if (!IsSellOrBuy) strNum = " - ";
