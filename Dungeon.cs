@@ -18,9 +18,9 @@ class Dungeon
             Console.WriteLine("3개의 통로가 눈앞에 보입니다.");
             Console.WriteLine("각 통로 마다 팻말이 박혀있습니다.");
             Console.WriteLine();
-            Console.WriteLine("1. 쉬움");
-            Console.WriteLine("2. 보통");
-            Console.WriteLine("3. 어려움");
+            Console.WriteLine("1. 쉬움 | Lv 1 이상 입장가능");
+            Console.WriteLine("2. 보통 | Lv 8 이상 입장가능");
+            Console.WriteLine("3. 어려움 | Lv 14 이상 입장가능");
             Console.WriteLine();
             Utility.ColorWrite("0.나가기\n\n", ConsoleColor.Red);
 
@@ -37,7 +37,7 @@ class Dungeon
                     else { Utility.ColorWrite("레벨이 부족합니다! (Lv.8 이상 필요) (아무 키나 눌러 확인)\n", ConsoleColor.Red); Console.ReadKey(); }
                     break;
                 case 3:
-                    if (gameManager.player.Level >= 12) HardScreen(gameManager);
+                    if (gameManager.player.Level >= 14) HardScreen(gameManager);
                     else { Utility.ColorWrite("레벨이 부족합니다! (Lv.12 이상 필요) (아무 키나 눌러 확인)\n", ConsoleColor.Red); Console.ReadKey(); }
                     break;
             }
