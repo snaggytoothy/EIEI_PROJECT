@@ -243,14 +243,14 @@ public class Player : Character
                 MaxMP = 50;
                 NowMP = 50;
             }
-            else if (job == "모험가")
+            else if (job == "마검사")
             {
-                MaxHP = 150;
-                NowHP = 150;
-                Atk = 20;
-                Def = 15;
-                MaxMP = 50;
-                NowMP = 50;
+                MaxHP = 125;
+                NowHP = 125;
+                Atk = 13;
+                Def = 2;
+                MaxMP = 40;
+                NowMP = 40;
             }
         }
     }
@@ -298,7 +298,7 @@ public class Monster : Character // Monster 캐릭터 관리
     public int MonsterID { get; set; }
     public bool IsDead { get; set; }
     // 몬스터 등급 스톤 -> 브론즈 -> 아이언 - > 실버 -> 골드 -> 플래티넘랭크 순이다.
-    // 스톤(Lv.1~6) -> 브론즈(Lv.7~12) -> 아이언(Lv.13~18) -> 실버(Lv.19~28) -> 골드(Lv.29~35) -> 플래티넘(Lv.40~)
+    // 스톤(Lv.1~6) -> 브론즈(Lv.7~12) -> 아이언(Lv.13~18) -> 실버(Lv.19~28) -> 골드(Lv.29~35) -> 플래티넘(Lv.40~) -> 예측불가(Boss)
     public Monster(int id) // MonsterType 1번은 잡몹, 2번은 레어몹, 3번은 보스몹
     {
         if (id == 1)
@@ -347,7 +347,7 @@ public class Monster : Character // Monster 캐릭터 관리
             this.Def = 3;
             this.MaxHP = 50;
             this.NowHP = 50;
-            this.Details = "설명:  몽둥이 or 녹슨 아밍소드, 제대로 된 가죽 갑옷 장착, 키가 사람 평균 정도이며 고블린 보다는 지능이 좋다,";
+            this.Details = "설명:  몽둥이 or 녹슨 아밍소드, 제대로 된 가죽 갑옷 장착, 키가 사람 평균 정도이며 고블린 보다 힘, 덩치, 능지가 높다.";
         }
         else if (id == 5)
         {
@@ -477,72 +477,46 @@ public class Monster : Character // Monster 캐릭터 관리
             this.NowHP = 70;
             this.Details = "설명: 쌍수 시미터, 경번갑 갑옷 장착, 인간 전사를 사냥해서 전리품을 장착한다, 큰 체구에 비해 상당히 민첩하며 괜찮은 장비를 보유하고있어서 공략하기 힘들다. ";
             //설명: 오랫동안 죽지않고 사냥으로 경험을 쌓은 헌터 비스트맨은 골드 등급 까지도 갈수 있다. ";
-        }
-        
-        else if (id == 15)
+        } 
+        else if (id == 15) //애착 몬스터
         {
-            this.MonsterType = 1;
+            this.MonsterType = 2;
             this.MonsterID = id;
             this.Level = 18;
             this.Name = "시전드 헌터 비스트맨(돌산양)[등급: 레어 아이언]"; // HardScreen
             this.Atk = 30;
             this.Def = 10;
-            this.MaxHP = 82;
-            this.NowHP = 82;
+            this.MaxHP = 85;
+            this.NowHP = 85;
             this.Details = "설명: 소드  브레이커 or 자마다르, 천산갑비늘 어린갑 장착, 수많은 전사를 사냥한 헌터 전문가이다 은신이 특화이며 단검을 주로 사용한다 눈을 감지마라 감는순간 죽으니...";
-            //설명:  ";
+            //추가설명: n, n, n, 확률 드랍";
+        }
+        else if (id == 30)
+        {
+            this.MonsterType = 3;
+            this.MonsterID = id;
+            this.Level = 13;
+            this.Name = "탐욕의군주 고블린 로드(Boss)[등급: 예측불가]"; // HardScreen
+            this.Atk = 20;
+            this.Def = 10;
+            this.MaxHP = 100;
+            this.NowHP = 100;
+            this.Details = "설명: 칼 끄트머리를 우툴두툴 끝이 뾰족한 펄션, 차하르아네 갑주 장착, 일반 고블린 보다는 키와 덩치가 크다, 당신을 찢어 죽일 생각 ";
+            //설명:  고블린 무리를 이끄는 고블린 로드가 있다고 한다, 고블린 로드 상태는 어떻게 토벌이 가능하나 만약 홉 고블린 로드가 있다면 Lv.18 이하 모험가는 도망가는걸 추천한다.  ";
+        }   //설명;  진화 단계: 고블린 -> 홉 고블린, 고블린 로드 -> 홉 고블린 로드
+        else if (id == 31)
+        {
+            this.MonsterType = 3;
+            this.MonsterID = id;
+            this.Level = 13;
+            this.Name = "본 엘더리치 (Boss)[등급: 예측불가]"; // HardScreen
+            this.Atk = 20;
+            this.Def = 10;
+            this.MaxHP = 100;
+            this.NowHP = 100;
+            this.Details = "설명: ";
         }
 
-
-
-        //else if (id == )
-        //{
-        //    this.MonsterType = 1;
-        //    this.MonsterID = id;
-        //    this.Level = 8;
-        //    this.Name = "물의 요정[]";
-        //    this.Atk = 12;
-        //    this.Def = 5;
-        //    this.MaxHP = 80;
-        //    this.NowHP = 80;
-        //}
-        //else if (id == )
-        //{
-        //    this.MonsterType = 3;
-        //    this.MonsterID = id;
-        //    this.Level = 5;
-        //    this.Name = "킹 고블린 Boss[실버]";
-        //    this.Atk = 10;
-        //    this.Def = 10;
-        //    this.MaxHP = 200;
-        //    this.NowHP = 200;
-        //}
-        //else if (id == )
-        //{
-        //    this.MonsterType = 3;
-        //    this.MonsterID = id;
-        //    this.Level = 10;
-        //    this.Name = "킹 비스트맨(돌산양)  Boss[]";
-        //    this.Atk = 30;
-        //    this.Def = 5;
-        //    this.MaxHP = 450;
-        //    this.NowHP = 450;
-        //}
-        //else if (id == )
-        //{
-        //    this.MonsterType = 3;
-        //    this.MonsterID = id;
-        //    this.Level = 15;
-        //    this.Name = "본 엘더리치  Boss[]";
-        //    this.Atk = 30;
-        //    this.Def = 5;
-        //    this.MaxHP = 600;
-        //    this.NowHP = 600;
-        //}
-        //else
-        //{
-        //    //예외처리
-        //}
         else
         {
             //예외처리
@@ -555,11 +529,11 @@ public class Skil
 {
     public int ID { get; set; }
     public String? Name { get; set; }
-    public float Damage { get; set; }
-    public double skilRatiod { get; set; }
-    public int range { get; set; }
-    public bool IsHad { get; set; }
-    public int Cost { get; set; }
+    public float Damage { get; set; } // 데미지
+    public double skilRatiod { get; set; } // 데미지 *
+    public int range { get; set; } // 범위
+    public bool IsHad { get; set; } // 스킬소유 여부
+    public int Cost { get; set; } //MP
     public int type { get; set; } // 1물리 2마법
-    public string Description { get; set; }
+    public string Description { get; set; } // 스킬설명
 }
