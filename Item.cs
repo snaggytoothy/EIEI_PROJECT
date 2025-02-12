@@ -31,7 +31,7 @@ public class Consumable : Item // 소비 아이템 클래스
     {
         if(player.NowHP >= player.MaxHP)
         {
-            Console.WriteLine("이미 체력이 가득 차 있습니다.");
+            Console.WriteLine("이미 체력이 가득 차 있습니다.(아무 키나 눌러 확인)");
         }
         else
         {
@@ -52,7 +52,7 @@ public class Consumable : Item // 소비 아이템 클래스
     {
         if (player.NowMP >= player.MaxMP)
         {
-            Console.WriteLine("이미 마나가 가득 차 있습니다.");
+            Console.WriteLine("이미 마나가 가득 차 있습니다.(아무 키나 눌러 확인)");
         }
         else
         {
