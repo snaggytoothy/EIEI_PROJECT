@@ -565,6 +565,7 @@ public class Skil
     public int Cost { get; set; } //MP
     public int type { get; set; } // 1물리 2마법
     public string Description { get; set; } // 스킬설명
+    public int Price { get; set; }
 }
 
 public class MonsterSkil
@@ -577,5 +578,5 @@ public class MonsterSkil
     public bool IsHad { get; set; } // 스킬소유 여부
     public int Cost { get; set; } //MP
     public int type { get; set; } // 1물리 2마법
-     public string Description { get; set; }
+    public string Description { get; set; }
 }
