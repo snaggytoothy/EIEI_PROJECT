@@ -9,8 +9,8 @@ public class Utility
             Console.Write("원하시는 행동을 입력해주세요. ->");
             if(int.TryParse(Console.ReadLine(), out int input) && (input >= min) && (input <= max))
             return input;
-            
-            Console.WriteLine("잘못된 입력입니다. 다시 입력해주세요. ->");
+
+            Utility.ColorWrite("잘못된 입력입니다. 다시 입력해주세요.\n", ConsoleColor.Red);
         }
     }
 
@@ -18,7 +18,7 @@ public class Utility
     public static void Loading()
     {
         Console.Clear();
-        Console.Write("Loading");
+        Utility.ColorWrite("Loading", ConsoleColor.Yellow);
         String str = ".";
 
         for (int i = 0; i < 4; i++)
