@@ -7,10 +7,12 @@ public class Item
     public int Price { get; set; }
     public int ItemType { get; set; }
     public string Inform { get; set; }
-
     public bool ShopFlag { get; set; }
     public bool MonsterFlag { get; set; }
-    public bool RareFlag { get; set; }
+    public bool ERareFlag { get; set; }
+    public bool NareFlag { get; set; }
+    public bool HareFlag { get; set; }
+
 }
 
 
