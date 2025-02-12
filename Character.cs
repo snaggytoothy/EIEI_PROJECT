@@ -121,7 +121,7 @@ public class Character
                 if (random.Next(1, 100) <= 15)
                 {
                     Utility.ColorWrite("치명타 공격!!", ConsoleColor.Red);
-                    if ((float)(target.NowHP - (Math.Ceiling(skil.Damage + (attacker.Atk * skil.skilRatiod))) - target.Def * 0.5) <= 0)
+                    if ((float)((Math.Ceiling(skil.Damage + (attacker.Atk * skil.skilRatiod))) - target.Def * 0.5) <= 0)
                     {
                         target.NowHP = (float)(target.NowHP - 1);
                     }
@@ -132,10 +132,11 @@ public class Character
 
                     Console.WriteLine("Lv.{0} {1} 을(를) 맞췄습니다. [데미지] : {2}", target.Level, target.Name, tempHP - target.NowHP);
                     Console.WriteLine();
+                    return true;
                 }
                 else
                 {
-                    if ((float)(target.NowHP - (Math.Ceiling(skil.Damage + (attacker.Atk * skil.skilRatiod))) - target.Def * 0.5) <= 0)
+                    if ((float)((Math.Ceiling(skil.Damage + (attacker.Atk * skil.skilRatiod))) - target.Def * 0.5) <= 0)
                     {
                         target.NowHP = (float)(target.NowHP - -1);
                     }
@@ -145,12 +146,13 @@ public class Character
                     }
                     Console.WriteLine("Lv.{0} {1} 을(를) 맞췄습니다. [데미지] : {2}", target.Level, target.Name, tempHP - target.NowHP);
                     Console.WriteLine();
+                    return true;
                 }
 
             }
             else
             {
-                if ((float)(target.NowHP - (Math.Ceiling(skil.Damage + (attacker.Atk * skil.skilRatiod))) - target.Def * 0.5) <= 0)
+                if ((float)((Math.Ceiling(skil.Damage + (attacker.Atk * skil.skilRatiod))) - target.Def * 0.5) <= 0)
                 {
                     target.NowHP = (float)(target.NowHP - 1);
                 }
@@ -162,11 +164,11 @@ public class Character
                     Console.WriteLine();
                 }
 
-
                 return true;
             }
-            return false;
+            
         }
+        return false;
     }
 
 }
