@@ -38,29 +38,39 @@ public class Start()
 
     public static void StartGame(GameManager gameManager)
     {
-        while (true)
+        Save save = new Save();
+        if (File.Exists(save.FilePath))
         {
-            NameLength(gameManager);
-
-            Console.Clear();
-            Console.WriteLine($"안녕하세요! {name}님!\n계속해서 이 이름으로 불러 드릴까요?");
-            Console.WriteLine("1. 네 \n2. 아니오");
-
-            int namesure = Utility.GetInput(1, 2);
-            switch (namesure)
+            save.LoadPlayer(gameManager.player, gameManager.inventoryConsumables, gameManager.consumables, gameManager.inventoryEquipment, gameManager.equipments);
+            SelectMenu(gameManager, save);
+        }
+        else
+        {
+            while (true)
             {
-                case 1:
-                    Console.Clear();
-                    SelectJob(gameManager);
-                    break;
-                case 2:
-                    Console.Clear();
-                    Console.WriteLine("다시 한 번 입력해주세요.");
-                    break;
+                NameLength(gameManager);
+
+                Console.Clear();
+                Console.WriteLine($"안녕하세요! {name}님!\n계속해서 이 이름으로 불러 드릴까요?");
+                Console.WriteLine("1. 네 \n2. 아니오");
+
+                int namesure = Utility.GetInput(1, 2);
+                switch (namesure)
+                {
+                    case 1:
+                        Console.Clear();
+                        SelectJob(gameManager,save);
+                        break;
+                    case 2:
+                        Console.Clear();
+                        Console.WriteLine("다시 한 번 입력해주세요.");
+                        break;
+                }
             }
         }
+       
     }
-    public static void SelectJob(GameManager gameManager)
+    public static void SelectJob(GameManager gameManager,Save save)
     {
         while (true)
         {
@@ -99,7 +109,7 @@ public class Start()
             {
                 case 1:
                     Console.Clear();
-                    SelectMenu(gameManager);
+                    SelectMenu(gameManager,save);
                     break;
                 case 2:
                     break;
@@ -108,7 +118,7 @@ public class Start()
         
     }
 
-    public static void SelectMenu(GameManager gameManager) //활동 선택
+    public static void SelectMenu(GameManager gameManager,Save save) //활동 선택
     {
         int act;
         Inventory inventory = new();
@@ -119,9 +129,9 @@ public class Start()
         {
             Console.Clear();
             Console.WriteLine("이곳에서 던전으로 들어가기전 활동을 할 수 있습니다.\n");
-            Console.WriteLine("1. 상태 보기 \n2. 인벤토리 \n3. 상점 \n4. 던전 입장 \n5. 휴식하기 \n\n0. 게임종료");
+            Console.WriteLine("1. 상태 보기 \n2. 인벤토리 \n3. 상점 \n4. 던전 입장 \n5. 휴식하기 \n6. 세이브 \n\n0. 게임종료");
 
-            act = Utility.GetInput(0, 5);
+            act = Utility.GetInput(0, 6);
             switch (act)
             {
                 case 1:
@@ -139,6 +149,9 @@ public class Start()
                     break;
                 case 5:
                     RestScreen(gameManager.player);
+                    break;
+                case 6:
+                    SaveScreen(gameManager, save);
                     break;
                 case 0:
                     Environment.Exit(0);
@@ -165,7 +178,8 @@ public class Start()
         if (act == 0)
         {
             Console.Clear();
-            SelectMenu(gameManager);
+            return;
+            //SelectMenu(gameManager,save);
         }
         Console.Clear();
     }
@@ -216,5 +230,18 @@ public class Start()
             Console.WriteLine($"체력이 {healAmount} / 마나가 {mPhealAmount}회복되었습니다. \"또 오라고.\" 늙은이가 켈켈 웃습니다.(아무 키나 눌러 확인)");
         }
         Console.ReadKey();
+    }
+
+    public static void SaveScreen(GameManager gameManager, Save save)
+    {
+        save.SavePlayer(gameManager.player, gameManager.inventoryEquipment, gameManager.inventoryConsumables);
+        Console.Clear();
+        Console.Write("세이브중입니다");
+        for (int i = 0; i < 3; i++)
+        {
+            Console.Write(".");
+            Thread.Sleep(1000); // 1초 시간지연
+        }
+        
     }
 }

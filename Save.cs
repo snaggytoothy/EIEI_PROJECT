@@ -9,16 +9,22 @@ public class SaveItemData
     public bool IsEquiped;
 }
 
+public class SaveConsmable
+{
+    public int ItemID;
+    public int Count;
+}
+
 public class SaveData
 {
     public Player player;
     public List<SaveItemData> saveItemData;
-    public List<Consumable> consumablesItems;
+    public List<SaveConsmable> SaveConsmableData;
 }
 
 public class Save
 {
-    string FilePath = @"..\..\save.json";
+    public string FilePath = @"..\..\..\save.json";
 
     void SaveFile(SaveData data, String FilePath)
     {
@@ -50,18 +56,24 @@ public class Save
 
     }
 
-    public void LoadPlayer(List<SaveItemData> myItem, Player player, List<Consumable> inventoryConsumables, List<Equipment> inventoryEquipment)
+    public void LoadPlayer(Player player, List<Consumable> inventoryConsumables, List<Consumable> consumables ,List<Equipment> inventoryEquipment, List<Equipment> equipments)
     {
         if (File.Exists(FilePath))
         {
             SaveData loadData = LoadData(FilePath);
             player = loadData.player;
-            myItem = loadData.saveItemData;
-            inventoryConsumables = loadData.consumablesItems;
+            //myItem = loadData.saveItemData;
+            //inventoryConsumables = loadData.consumablesItems;
 
             for(int i = 0; i < loadData.saveItemData.Count; i++)
             {
-                //inventoryEquipment.Add()
+                inventoryEquipment.Add(equipments[equipments.FindIndex(x => x.ItemID.Equals(loadData.saveItemData[i].ItemID))]);
+                inventoryEquipment[i].IsEquiped = loadData.saveItemData[i].IsEquiped;
+            }
+            for (int i = 0; i < loadData.SaveConsmableData.Count; i++)
+            {
+                inventoryConsumables.Add(consumables[consumables.FindIndex(x => x.ItemID.Equals(loadData.SaveConsmableData[i].ItemID))]);
+                inventoryConsumables[i].Count = loadData.SaveConsmableData[i].Count;
             }
 
         }
@@ -71,9 +83,19 @@ public class Save
         }
     }
 
-    public void SavePlayer(Player player, List<SaveItemData> saveItemDatas, List<Consumable> inventoryConsumables)
+    public void SavePlayer(Player player, List<Equipment> inventoryEquipment, List<Consumable> inventoryConsumables)
     {
-        SaveData saveData = new SaveData() { player = player, saveItemData = saveItemDatas, consumablesItems = inventoryConsumables };
+        List<SaveItemData> saveItemDatas = new List<SaveItemData>();
+        List<SaveConsmable> saveConsmables = new List<SaveConsmable>();
+        for(int i = 0; i < inventoryEquipment.Count; i++)
+        {
+            saveItemDatas.Add(new SaveItemData { ItemID =  inventoryEquipment[i].ItemID ,IsEquiped = inventoryEquipment[i].IsEquiped });
+        }
+        for(int i =0;i<inventoryConsumables.Count; i++)
+        {
+            saveConsmables.Add(new SaveConsmable { ItemID = inventoryConsumables[i].ItemID, Count = inventoryConsumables[i].Count});
+        }
+        SaveData saveData = new SaveData() { player = player, saveItemData = saveItemDatas, SaveConsmableData = saveConsmables };
         SaveFile(saveData, FilePath);
     }
 
