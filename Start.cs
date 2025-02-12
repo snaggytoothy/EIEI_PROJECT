@@ -79,7 +79,7 @@ public class Start()
             Console.Clear();
             Console.WriteLine($"{gameManager.player.Name}님 멋진 이름이군요.");
             Console.WriteLine("그렇다면 당신의 직업은 무엇인가요?");
-            Console.WriteLine("\n1. 팔라딘\n2. 마검사\n3. 모험가");
+            Console.WriteLine("\n1. 팔라딘\n2. 마검사\n3. GM");
             int input = Utility.GetInput(1, 3);
             switch (input)
             {
