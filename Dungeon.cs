@@ -335,7 +335,7 @@ class Dungeon
                 }
                 if (random.Next(0, 101) > 90)
                 {
-                    monsters.Add(new Monster(random.Next(17, 19)));//레어몬스터 확정생성
+                    monsters.Add(new Monster(random.Next(17, 19)));//레어몬스터 확률생성
                 }
             }
             else if (wave == 3)
@@ -389,7 +389,7 @@ class Dungeon
                     }
                     monsters.Clear();
                     //승리화면으로
-                    Clear(gameManager, tempPlayer, resultExp);
+                    Clear(gameManager, tempPlayer, resultExp,level);
                     gameManager.exitFlag = 1;
                     return;
                 }
@@ -864,7 +864,7 @@ class Dungeon
         gameManager.TurnCount++;
     }
 
-    public void Clear(GameManager gameManager, Player tempPlayer, int resultExp)
+    public void Clear(GameManager gameManager, Player tempPlayer, int resultExp,int level)
     {
         gameManager.TurnCount = 0;
 
@@ -915,7 +915,7 @@ class Dungeon
 
         while (true)
         {
-            if (random1.Next(1, 101) > 95)
+            if (random1.Next(1, 101) > 90)
             {
                 var find = gameManager.equipments.FindAll(x=>x.RareFlag == true).ToList();
                 int temp = random1.Next(0, find.Count);
