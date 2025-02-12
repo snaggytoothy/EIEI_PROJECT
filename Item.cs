@@ -10,8 +10,8 @@ public class Item
     public bool ShopFlag { get; set; }
     public bool MonsterFlag { get; set; }
     public bool ERareFlag { get; set; }
-    public bool NareFlag { get; set; }
-    public bool HareFlag { get; set; }
+    public bool NRareFlag { get; set; }
+    public bool HRareFlag { get; set; }
 
 }
 
