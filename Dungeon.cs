@@ -691,9 +691,16 @@ class Dungeon
                                     }
                                     
                                 }
-                                gameManager.player.NowMP = gameManager.player.NowMP - gameManager.mySkils[skillInput - 1].Cost;
-                                Console.WriteLine("PlayerMP: {0} -> {1}", tempMP, gameManager.player.NowMP);
-                                return true;
+                                if (gameManager.player.NowMP < gameManager.mySkils[skillInput].Cost)
+                                {
+                                    return false;
+                                }
+                                else 
+                                {
+                                    gameManager.player.NowMP = gameManager.player.NowMP - gameManager.mySkils[skillInput - 1].Cost;
+                                    Console.WriteLine("PlayerMP: {0} -> {1}", tempMP, gameManager.player.NowMP);
+                                    return true;
+                                }
                             }
 
                         }
