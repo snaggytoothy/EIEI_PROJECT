@@ -29,9 +29,11 @@ public class GameManager
         new Armor{Name = "고블린 찰갑[일반★]", ItemID = 6, Price = 1600, ItemType = 1, Inform = "고블린 뼈로 만든 미늘 조각에 끈으로 연결하여 만든 갑옷, 꽤나 튼튼하고 유지 보수가 쉽다.",
         IsEquiped = false, ShopFlag = true, MonsterFlag = true, Def = 5f},
 
-        new Consumable{Name = "회복 물약", ItemID = 7, Price = 50, ItemType = 2, Inform = "체력을 50 회복시켜 줍니다.", ShopFlag = true, MonsterFlag = false, BuffAmount = 50},
+        new Consumable{Name = "체력 회복 물약", ItemID = 7, Price = 300, ItemType = 2, Inform = "체력을 40~50 회복시켜 줍니다.", ShopFlag = true, MonsterFlag = false, BuffAmount = "40~50"},
+
+        new Consumable{Name = "마나 회복 물약", ItemID = 8, Price = 150, ItemType = 2, Inform = "마나를 20~25 회복시켜 줍니다.", ShopFlag = true, MonsterFlag = false, BuffAmount = "20~25"},
         //테스트 공격력 버프 물약
-        new Consumable{Name = "싸움꾼의 물약", ItemID = 8, Price = 50, ItemType = 2, Inform = "3턴 간 공격력을 약간 올려줍니다.(전투 중에만 사용가능)", ShopFlag = true, MonsterFlag = false, BuffAmount = 50},
+        new Consumable{Name = "싸움꾼의 물약", ItemID = 9, Price = 50, ItemType = 2, Inform = "3턴 간 공격력을 약간 올려줍니다.(전투 중에만 사용가능)", ShopFlag = true, MonsterFlag = false, BuffAmount = "10"},
 
         new Weapon{Name = "링 오브 고블린 로드[등급: 전설] ", ItemID = 100, Price = 10000, ItemType = 1, Inform = "고블린 로드가 장착했던 반지, ", //작업중
         IsEquiped = false, ShopFlag = false, MonsterFlag = true, Atk = 5f},
@@ -58,10 +60,10 @@ public class GameManager
     public List<Skil> SkilList = new List<Skil>()
     {
         new Skil { ID = 1, Name = "전사스킬1", Damage = 30 , skilRatiod = 0.5, range = 1, IsHad = false, Cost = 10, type = 1, Description = "스킬설명"},
-        new Skil { ID = 2, Name = "전사스킬2", Damage = 20,  skilRatiod = 0.3,range = 2, IsHad = false, Cost = 20 , type = 1, Description = "스킬설명"},
+        new Skil { ID = 2, Name = "전사스킬2", Damage = 20,  skilRatiod = 0.3,range = 3, IsHad = false, Cost = 20 , type = 1, Description = "스킬설명"},
         new Skil { ID = 3, Name = "전사스킬3", Damage = 50, skilRatiod = 1.0, range = 1, IsHad = false , Cost = 50, type = 1, Description = "스킬설명"},
         new Skil { ID = 4, Name = "마법사스킬1", Damage = 20, skilRatiod = 0.5, range = 1, IsHad = false, Cost = 10 , type = 2, Description = "스킬설명"},
-        new Skil { ID = 5, Name = "마법사스킬2", Damage = 10, skilRatiod = 0.3, range = 3, IsHad = false, Cost = 20 , type = 2, Description = "스킬설명"},
+        new Skil { ID = 5, Name = "마법사스킬2", Damage = 10, skilRatiod = 0.3, range = 5, IsHad = false, Cost = 20 , type = 2, Description = "스킬설명"},
         new Skil { ID = 6, Name = "마법사스킬3", Damage = 50, skilRatiod = 1.0, range = 1, IsHad = false, Cost = 50 , type = 2, Description = "스킬설명"},
     };
 

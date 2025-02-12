@@ -63,7 +63,15 @@ public class Character
         {
             if (random.Next(1, 101) <= 15)
             {
-                target.NowHP = (float)(target.NowHP - (random.Next(min, max) + Math.Ceiling(random.Next(min, max) * 0.6)));
+                if ((random.Next(min, max) - target.Def * 0.5) <= 0)
+                {
+                    target.NowHP = (float)(target.NowHP - 1);
+                }
+                else
+                {
+                    target.NowHP = (float)(target.NowHP - (random.Next(min, max) + Math.Ceiling(random.Next(min, max) * 0.6)) - target.Def * 0.5);
+                }
+                    
                 //Console.WriteLine("치명타 공격!!");
                 Utility.ColorWrite("치명타 공격!!", ConsoleColor.Red);
                 Console.WriteLine("Lv.{0} {1} 을(를) 맞췄습니다. [데미지] : {2}", target.Level, target.Name, tempHP - target.NowHP);
@@ -74,7 +82,14 @@ public class Character
             }
             else
             {
-                target.NowHP = target.NowHP - random.Next(min, max);
+                if ((random.Next(min, max) - target.Def * 0.5) <= 0)
+                {
+                    target.NowHP = (float)(target.NowHP - 1);
+                }
+                else
+                {
+                    target.NowHP = (float)(target.NowHP - (random.Next(min, max) - target.Def * 0.5));
+                }
                 Console.WriteLine("Lv.{0} {1} 을(를) 맞췄습니다. [데미지] : {2}", target.Level, target.Name, tempHP - target.NowHP);
                 Console.WriteLine();
                 Console.WriteLine("Lv.{0} {1}", target.Level, target.Name);
@@ -82,7 +97,7 @@ public class Character
             }
         }
     }
-    //단일기
+    //스킬사용
     public bool CharacterSkil(Character attacker, Character target, Skil skil)
     {
         if (attacker.NowMP < skil.Cost)
@@ -106,95 +121,56 @@ public class Character
                 if (random.Next(1, 100) <= 15)
                 {
                     Utility.ColorWrite("치명타 공격!!", ConsoleColor.Red);
-                    target.NowHP = (float)(target.NowHP - (skil.Damage + (attacker.atk * skil.skilRatiod) + ((attacker.atk * skil.skilRatiod) * 0.6)));
+                    if ((float)((Math.Ceiling(skil.Damage + (attacker.Atk * skil.skilRatiod))) - target.Def * 0.5) <= 0)
+                    {
+                        target.NowHP = (float)(target.NowHP - 1);
+                    }
+                    else
+                    {
+                        target.NowHP = (float)(target.NowHP - (skil.Damage + (attacker.atk * skil.skilRatiod) + ((attacker.atk * skil.skilRatiod) * 0.6)) - target.Def * 0.5);
+                    }
+
                     Console.WriteLine("Lv.{0} {1} 을(를) 맞췄습니다. [데미지] : {2}", target.Level, target.Name, tempHP - target.NowHP);
                     Console.WriteLine();
+                    return true;
                 }
                 else
                 {
-                    target.NowHP = (float)(target.NowHP - (Math.Ceiling(skil.Damage + (attacker.Atk * skil.skilRatiod))));
+                    if ((float)((Math.Ceiling(skil.Damage + (attacker.Atk * skil.skilRatiod))) - target.Def * 0.5) <= 0)
+                    {
+                        target.NowHP = (float)(target.NowHP - -1);
+                    }
+                    else
+                    {
+                        target.NowHP = (float)(target.NowHP - (Math.Ceiling(skil.Damage + (attacker.Atk * skil.skilRatiod))) - target.Def * 0.5);
+                    }
                     Console.WriteLine("Lv.{0} {1} 을(를) 맞췄습니다. [데미지] : {2}", target.Level, target.Name, tempHP - target.NowHP);
                     Console.WriteLine();
+                    return true;
                 }
 
             }
             else
             {
-                target.NowHP = (float)(target.NowHP - (Math.Ceiling(skil.Damage + (attacker.Atk * skil.skilRatiod))));
-                Console.WriteLine("Lv.{0} {1} 을(를) 맞췄습니다. [데미지] : {2}", target.Level, target.Name, tempHP - target.NowHP);
-                Console.WriteLine();
-            }
-            attacker.NowMP = attacker.NowMP - skil.Cost;
-            Console.WriteLine("MP: {0} -> {1}", tempMP, attacker.NowMP);
-
-            return true;
-        }
-
-
-    }
-
-    //광역기
-    public bool CharacterSkil(Character attacker, List<Character> target, Skil skil)
-    {
-        if (attacker.NowMP < skil.Cost)
-        {
-            Utility.ColorWrite("MP가 부족합니다", ConsoleColor.Red);
-            Console.WriteLine();
-            Console.WriteLine("현재 MP : {0}", attacker.NowMP);
-            Console.ReadKey();
-            Console.Clear();
-            return false;
-        }
-        else
-        {
-            float[] tempHP = new float[target.Count];
-            for (int i = 0; i < target.Count; i++)
-            {
-                tempHP[i] = target[i].NowHP;
-            }
-
-            Console.WriteLine("{0}의 {1} 스킬사용 ", attacker.Name, skil.Name);
-            for (int i = 0; i < target.Count; i++)
-            {
-                target[i].NowHP = (float)(target[i].NowHP - Math.Ceiling(skil.Damage * (attacker.Atk * 0.3)));
-            }
-            //target.NowHP = (float)(target.NowHP - Math.Ceiling(skil.Damage * (attacker.Atk * 0.3)));
-            if (skil.type == 1)
-            {
-                Random random = new Random();
-                if (random.Next(1, 100) <= 15)
+                if ((float)((Math.Ceiling(skil.Damage + (attacker.Atk * skil.skilRatiod))) - target.Def * 0.5) <= 0)
                 {
-                    Utility.ColorWrite("치명타 공격!!", ConsoleColor.Red);
-                    for (int i = 0; i < target.Count; i++)
-                    {
-                        target[i].NowHP = (float)(target[i].NowHP - (skil.Damage + (attacker.atk * skil.skilRatiod) + ((attacker.atk * skil.skilRatiod) * 0.6)));
-                        Console.WriteLine("Lv.{0} {1} 을(를) 맞췄습니다. [데미지] : {2}", target[i].Level, target[i].Name, tempHP[i] - target[i].NowHP);
-                    }
-                    //Console.WriteLine("Lv.{0} {1} 을(를) 맞췄습니다. [데미지] : {2}", target.Level, target.Name, tempHP - target.NowHP);
-                    Console.WriteLine();
+                    target.NowHP = (float)(target.NowHP - 1);
                 }
                 else
                 {
-                    for (int i = 0; i < target.Count; i++)
-                    {
-                        target[i].NowHP = (float)(target[i].NowHP - Math.Ceiling(skil.Damage * (attacker.Atk * 0.3)));
-                        Console.WriteLine("Lv.{0} {1} 을(를) 맞췄습니다. [데미지] : {2}", target[i].Level, target[i].Name, tempHP[i] - target[i].NowHP);
-                    }
+                    target.NowHP = (float)(target.NowHP - (Math.Ceiling(skil.Damage + (attacker.Atk * skil.skilRatiod))) - target.Def * 0.5);
+
+                    Console.WriteLine("Lv.{0} {1} 을(를) 맞췄습니다. [데미지] : {2}", target.Level, target.Name, tempHP - target.NowHP);
+                    Console.WriteLine();
                 }
 
+                return true;
             }
-            else
-            {
-                for (int i = 0; i < target.Count; i++)
-                {
-                    target[i].NowHP = (float)(target[i].NowHP - Math.Ceiling(skil.Damage * (attacker.Atk * 0.3)));
-                    Console.WriteLine("Lv.{0} {1} 을(를) 맞췄습니다. [데미지] : {2}", target[i].Level, target[i].Name, tempHP[i] - target[i].NowHP);
-                }
-            }
-            return true;
+            
         }
-
+        return false;
     }
+
 }
 public class Player : Character
 {
@@ -602,4 +578,5 @@ public class MonsterSkil
     public int Cost { get; set; } //MP
     public int type { get; set; } // 1물리 2마법
     public string Description { get; set; } // 스킬설명
+
 }
