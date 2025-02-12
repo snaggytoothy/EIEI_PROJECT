@@ -14,14 +14,15 @@ class Dungeon
         while (true)
         {
             Console.Clear();
-            Console.WriteLine("던전에 들어왔다.");
-            Console.WriteLine("3개의 통로가 눈앞에 보인다.");
-            Console.WriteLine("각 통로 마다 팻말이 박혀있다.");
+            Console.WriteLine("던전에 들어왔습니다.");
+            Console.WriteLine("3개의 통로가 눈앞에 보입니다.");
+            Console.WriteLine("각 통로 마다 팻말이 박혀있습니다.");
             Console.WriteLine();
-            Console.WriteLine("0. 나가기");
-            Console.WriteLine("1. 쉬움");
-            Console.WriteLine("2. 보통");
-            Console.WriteLine("3. 어려움");
+            Console.WriteLine("1. 쉬움 | Lv 1 이상 입장가능");
+            Console.WriteLine("2. 보통 | Lv 8 이상 입장가능");
+            Console.WriteLine("3. 어려움 | Lv 14 이상 입장가능");
+            Console.WriteLine();
+            Utility.ColorWrite("0.나가기\n\n", ConsoleColor.Red);
 
             int input = Utility.GetInput(0, 3);
 
@@ -29,18 +30,17 @@ class Dungeon
             {
                 case 1:
                     if (gameManager.player.Level >= 1) EasyScreen(gameManager);
-                    else { Console.WriteLine("레벨이 부족합니다! (Lv.1 이상 필요)"); Console.ReadKey(); }
+                    else { Utility.ColorWrite("레벨이 부족합니다! (Lv.1 이상 필요) (아무 키나 눌러 확인)\n", ConsoleColor.Red); Console.ReadKey(); }
                     break;
                 case 2:
                     if (gameManager.player.Level >= 8) NormalScreen(gameManager);
-                    else { Console.WriteLine("레벨이 부족합니다! (Lv.8 이상 필요)"); Console.ReadKey(); }
+                    else { Utility.ColorWrite("레벨이 부족합니다! (Lv.8 이상 필요) (아무 키나 눌러 확인)\n", ConsoleColor.Red); Console.ReadKey(); }
                     break;
                 case 3:
-                    if (gameManager.player.Level >= 12) HardScreen(gameManager);
-                    else { Console.WriteLine("레벨이 부족합니다! (Lv.12 이상 필요)"); Console.ReadKey(); }
+                    if (gameManager.player.Level >= 14) HardScreen(gameManager);
+                    else { Utility.ColorWrite("레벨이 부족합니다! (Lv.12 이상 필요) (아무 키나 눌러 확인)\n", ConsoleColor.Red); Console.ReadKey(); }
                     break;
             }
-
             if (input == 0) break;
         }
     }
@@ -51,14 +51,15 @@ class Dungeon
         Console.WriteLine("던전을 걸어가고 있습니다.");
         for (int i = 0; i < 3; i++)
         {
-            Console.WriteLine("뚜벅");
+            Utility.ColorWrite("뚜벅\n", ConsoleColor.Cyan);
             Thread.Sleep(1000); // 1초 시간지연
         }
 
         Console.WriteLine();
         Console.WriteLine("길가던 할아버지도 입장할수있는");
-        Console.WriteLine("난이도 쉬움입니다.");
-
+        Console.Write("난이도 ");
+        Utility.ColorWrite("쉬움", ConsoleColor.Green);
+        Console.WriteLine("입니다.");
         Console.WriteLine();
         // Utility(캐릭터 상태창);
         Console.WriteLine("캐릭터의 정보가 표시됩니다.");
@@ -70,8 +71,8 @@ class Dungeon
         Console.WriteLine($"경험치: {gameManager.player.NowExp} / {gameManager.player.MaxExp}");
 
         Console.WriteLine();
-        Console.WriteLine("0. 도망가기");
-        Console.WriteLine("1. 진입하기");
+        Utility.ColorWrite("0. 도망가기\n", ConsoleColor.Yellow);
+        Utility.ColorWrite("1. 진입하기\n", ConsoleColor.Yellow);
         Console.WriteLine();
 
         cmd = Utility.GetInput(0, 1);
@@ -104,13 +105,15 @@ class Dungeon
         Console.WriteLine("던전을 걸어가고 있습니다.");
         for (int i = 0; i < 3; i++)
         {
-            Console.WriteLine("뚜벅");
+            Utility.ColorWrite("뚜벅\n", ConsoleColor.Cyan);
             Thread.Sleep(1000); // 1초 시간지연
         }
 
         Console.WriteLine();
         Console.WriteLine("이제 모험가라고 불릴 수 있는 단계입니다.");
-        Console.WriteLine("난이도 보통입니다.");
+        Console.Write("난이도 ");
+        Utility.ColorWrite("보통", ConsoleColor.Yellow);
+        Console.WriteLine("입니다.");
         Console.WriteLine();
 
         // Utility(캐릭터 상태창);
@@ -124,8 +127,8 @@ class Dungeon
         Console.WriteLine($"경험치: {gameManager.player.NowExp} / {gameManager.player.MaxExp}");
 
         Console.WriteLine();
-        Console.WriteLine("0. 도망가기");
-        Console.WriteLine("1. 진입하기");
+        Utility.ColorWrite("0. 도망가기\n", ConsoleColor.Yellow);
+        Utility.ColorWrite("1. 진입하기\n", ConsoleColor.Yellow);
         Console.WriteLine();
 
         cmd = Utility.GetInput(0, 1);
@@ -158,13 +161,15 @@ class Dungeon
         Console.WriteLine("던전을 걸어가고 있습니다.");
         for (int i = 0; i < 3; i++)
         {
-            Console.WriteLine("뚜벅");
+            Utility.ColorWrite("뚜벅\n", ConsoleColor.Cyan);
             Thread.Sleep(1000); // 1초 시간지연
         }
 
         Console.WriteLine();
         Console.WriteLine("상당히 무서운 몬스터들이 있는 던전입니다 조심하세요 순식간에 사망합니다.");
-        Console.WriteLine("난이도 어려움입니다.");
+        Console.Write("난이도 ");
+        Utility.ColorWrite("어려움", ConsoleColor.Red);
+        Console.WriteLine("입니다.");
         Console.WriteLine();
 
         // Utility(캐릭터 상태창);
@@ -178,12 +183,8 @@ class Dungeon
         Console.WriteLine($"경험치: {gameManager.player.NowExp} / {gameManager.player.MaxExp}");
 
         Console.WriteLine();
-        Console.WriteLine("0. 도망가기");
-        Console.WriteLine();
-
-        Console.WriteLine();
-        Console.WriteLine("0. 도망가기");
-        Console.WriteLine("1. 진입하기");
+        Utility.ColorWrite("0. 도망가기\n", ConsoleColor.Yellow);
+        Utility.ColorWrite("1. 진입하기\n", ConsoleColor.Yellow);
         Console.WriteLine();
 
         cmd = Utility.GetInput(0, 1);
@@ -212,7 +213,7 @@ class Dungeon
     }
 
     //몬스터 생성
-    void CreateMonster(List<Monster> monsters, int level, int wave)
+    void CreateMonster(List<Monster> monsters, int level, int wave) // id 1~3 -> easy 일반 몬스터 id 4~5-> easy 레어 몬스터 id 30 -> easy 보스몬스터 id 6~8->normal 스켈레톤(많이) 9-> normal 일반 10~11 normal 레어몬스터 31 -> normal 보스몬스터 12~16->hard 일반몬스터 17~18-> hard 레어몬스터 32->hard 보스몬스터
     {
         Random random = new Random();
         monsters.Clear();
@@ -238,7 +239,7 @@ class Dungeon
                     monsterID = random.Next(1, 4);
                     monsters.Add(new Monster(monsterID));
                 }
-                monsters.Add(new Monster(4));//레어몬스터 확정생성
+                monsters.Add(new Monster(random.Next(4,6)));//레어몬스터 확정생성
             }
             else if (wave == 3)
             {
@@ -248,7 +249,7 @@ class Dungeon
                     monsterID = random.Next(1, 4);
                     monsters.Add(new Monster(monsterID));
                 }
-                monsters.Add(new Monster(4));//보스몬스터 확정생성
+                monsters.Add(new Monster(30));//보스몬스터 확정생성
             }
         }
 
@@ -256,16 +257,16 @@ class Dungeon
         {
             if (wave == 1)
             {
-                monsterNum = random.Next(0 , 2);
+                monsterNum = random.Next(0, 2);
                 for (int i = 0; i < monsterNum; i++)
                 {
-                    monsterID = random.Next(8, 10);
+                    monsterID = random.Next(9, 10);
                     monsters.Add(new Monster(monsterID));
                 }
                 monsterNum = random.Next(3, 4);
                 for (int i = 0; i < monsterNum; i++)
                 {
-                    monsterID = random.Next(5, 8);
+                    monsterID = random.Next(6, 9);
                     monsters.Add(new Monster(monsterID));
                 }
 
@@ -275,32 +276,32 @@ class Dungeon
                 monsterNum = random.Next(0, 2);
                 for (int i = 0; i < monsterNum; i++)
                 {
-                    monsterID = random.Next(8, 10);
+                    monsterID = random.Next(9, 10);
                     monsters.Add(new Monster(monsterID));
                 }
                 monsterNum = random.Next(4, 6);
                 for (int i = 0; i < monsterNum; i++)
                 {
-                    monsterID = random.Next(5, 8);
+                    monsterID = random.Next(6, 9);
                     monsters.Add(new Monster(monsterID));
                 }
-                monsters.Add(new Monster(random.Next(9,11)));//레어몬스터 확정생성
+                monsters.Add(new Monster(random.Next(9, 11)));//레어몬스터 확정생성
             }
             else if (wave == 3)
             {
                 monsterNum = random.Next(2, 4);
                 for (int i = 0; i < monsterNum; i++)
                 {
-                    monsterID = random.Next(5, 9);
+                    monsterID = random.Next(9, 10);
                     monsters.Add(new Monster(monsterID));
                 }
                 monsterNum = random.Next(6, 8);
                 for (int i = 0; i < monsterNum; i++)
                 {
-                    monsterID = random.Next(5, 8);
+                    monsterID = random.Next(6, 9);
                     monsters.Add(new Monster(monsterID));
                 }
-                monsters.Add(new Monster(10));
+                monsters.Add(new Monster(31));//보스몬스터 확정생성
             }
         }
 
@@ -311,7 +312,7 @@ class Dungeon
                 monsterNum = random.Next(3, 5);
                 for (int i = 0; i < monsterNum; i++)
                 {
-                    monsterID = random.Next(11, 15);
+                    monsterID = random.Next(12, 17);
                     monsters.Add(new Monster(monsterID));
                 }
 
@@ -321,21 +322,21 @@ class Dungeon
                 monsterNum = random.Next(4, 7);
                 for (int i = 0; i < monsterNum; i++)
                 {
-                    monsterID = random.Next(11, 15);
+                    monsterID = random.Next(12, 17);
                     monsters.Add(new Monster(monsterID));
                 }
-                monsters.Add(new Monster(15));//레어몬스터 확정생성
+                monsters.Add(new Monster(random.Next(17,19)));//레어몬스터 확정생성
             }
             else if (wave == 3)
             {
                 monsterNum = random.Next(7, 11);
                 for (int i = 0; i < monsterNum; i++)
                 {
-                    monsterID = random.Next(11, 14);
+                    monsterID = random.Next(12, 17);
                     monsters.Add(new Monster(monsterID));
                 }
                 //monsterNum = random.Next(9, 11);
-                monsters.Add(new Monster(15));//보스몬스터 확정생성
+                monsters.Add(new Monster(32));//보스몬스터 확정생성
             }
         }
     }
@@ -425,13 +426,14 @@ class Dungeon
             //살아잇는 몬스터 표시
             if (monsters[i].IsDead == false)
             {
-                Console.WriteLine("{0} Lv {1} {2}   HP {3} / {4}  {5}", i + 1, monsters[i].Level, monsters[i].Name, monsters[i].NowHP, monsters[i].MaxHP, monsters[i].Details);
+                Utility.ColorWrite($"{i + 1}", ConsoleColor.DarkRed);
+                Console.WriteLine(" Lv {0} {1}   HP {2} / {3}  {4}",  monsters[i].Level, monsters[i].Name, monsters[i].NowHP, monsters[i].MaxHP, monsters[i].Details);
                 Console.WriteLine();
             }
             //죽은 몬스터 표시
             else if (monsters[i].IsDead == true)
             {
-                Utility.ColorWrite($"{i+1} Lv {monsters[i].Level} {monsters[i].Name}   Dead",ConsoleColor.DarkGray);
+                Utility.ColorWrite($"{i + 1} Lv {monsters[i].Level} {monsters[i].Name}   Dead", ConsoleColor.DarkGray);
                 Console.WriteLine();
                 //Console.WriteLine("{0} Lv {1} {2}   Dead", i + 1, monsters[i].Level, monsters[i].Name);
                 Console.WriteLine();
@@ -450,7 +452,7 @@ class Dungeon
             MonsterDisplay(monsters);
             Console.WriteLine("공격할 몬스터를 고르세요");
             Console.Write("0. 뒤로가기");
-            Console.Write(">>");
+            Console.WriteLine();
             //몬스터 공격명령
             input = Utility.GetInput(0, monsters.Count);
             //죽은 몬스터 골랐을때
@@ -462,11 +464,7 @@ class Dungeon
             {
                 if (monsters[input - 1].IsDead == true)
                 {
-                    Console.WriteLine("잘못된 입력입니다.");
-                    Console.WriteLine();
-                    Console.WriteLine("아무키 입력. 다음");
-                    Console.WriteLine();
-                    Console.Write(">>");
+                    Utility.ColorWrite("잘못된 입력입니다.(아무 키나 눌러 확인)", ConsoleColor.Red);
                     Console.ReadKey();
                 }
                 //살아있는 몬스터 골랐을때
@@ -516,7 +514,7 @@ class Dungeon
         Console.WriteLine("스킬 보유 목록");
         for (int i = 0; i < gameManager.mySkils.Count; i++)
         {
-            Console.WriteLine("{0} {1} 소모 MP : {2} 기본 데미지 : {3} 공격 계수: {4} 범위 {5} 설명 : {6}", i + 1, gameManager.mySkils[i].Name, gameManager.mySkils[i].Cost, gameManager.mySkils[i].Damage, gameManager.mySkils[i].skilRatiod, gameManager.mySkils[i].range,gameManager.mySkils[i].Description);
+            Console.WriteLine("{0} {1} 소모 MP : {2} 기본 데미지 : {3} 공격 계수: {4} 범위 {5} 설명 : {6}", i + 1, gameManager.mySkils[i].Name, gameManager.mySkils[i].Cost, gameManager.mySkils[i].Damage, gameManager.mySkils[i].skilRatiod, gameManager.mySkils[i].range, gameManager.mySkils[i].Description);
         }
     }
 
@@ -649,12 +647,12 @@ class Dungeon
 
                                 for (int i = 0; i < gameManager.mySkils[skillInput - 1].range; i++)
                                 {
-                                    
-                                    if((input - 1) - (int)(gameManager.mySkils[skillInput-1].range / 2) + i < 0)
+
+                                    if ((input - 1) - (int)(gameManager.mySkils[skillInput - 1].range / 2) + i < 0)
                                     {
                                         continue;
                                     }
-                                    else if((input - 1) - (int)(gameManager.mySkils[skillInput-1].range / 2) + i >= monsters.Count)
+                                    else if ((input - 1) - (int)(gameManager.mySkils[skillInput - 1].range / 2) + i >= monsters.Count)
                                     {
                                         break;
                                     }
@@ -686,14 +684,21 @@ class Dungeon
                                         }
                                         else
                                         {
-                                            continue;
-                                        }                                        
+                                            break;
+                                        }
                                     }
-                                    
+
                                 }
-                                gameManager.player.NowMP = gameManager.player.NowMP - gameManager.mySkils[skillInput - 1].Cost;
-                                Console.WriteLine("PlayerMP: {0} -> {1}", tempMP, gameManager.player.NowMP);
-                                return true;
+                                if (gameManager.player.NowMP < gameManager.mySkils[skillInput-1].Cost)
+                                {
+                                    return false;
+                                }
+                                else 
+                                {
+                                    gameManager.player.NowMP = gameManager.player.NowMP - gameManager.mySkils[skillInput - 1].Cost;
+                                    Console.WriteLine("PlayerMP: {0} -> {1}", tempMP, gameManager.player.NowMP);
+                                    return true;
+                                }
                             }
 
                         }
@@ -881,7 +886,7 @@ class Dungeon
         //떄려잡은 몹 수 표시        
         Console.WriteLine("던전에서 몬스터 {0}마리를 잡았습니다", gameManager.killCount);
         gameManager.player.NowExp = gameManager.player.NowExp + resultExp;
-        gameManager.player.Gold = gameManager.player.Gold + resultExp * 50;
+        gameManager.player.Gold = gameManager.player.Gold + resultExp * 20;
 
         //체력경험치 증가 표시
         Console.WriteLine("HP : {0} -> {1}", tempPlayer.NowHP, gameManager.player.NowHP);

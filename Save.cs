@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using System.IO;
+using System.Net;
 
 namespace EIEIE_Project;
 
@@ -14,12 +15,17 @@ public class SaveConsmable
     public int ItemID;
     public int Count;
 }
+public class SaveSkilData
+{
+    public int SkilID;
+}
 
 public class SaveData
 {
-    public Player player;
-    public List<SaveItemData> saveItemData;
-    public List<SaveConsmable> SaveConsmableData;
+    public Player? player;
+    public List<SaveItemData>? saveItemData;
+    public List<SaveConsmable>? SaveConsmableData;
+    public List<SaveSkilData>? SaveSkilData;
 }
 
 public class Save
@@ -56,16 +62,13 @@ public class Save
 
     }
 
-    public void LoadPlayer(ref Player player, List<Consumable> inventoryConsumables, List<Consumable> consumables ,List<Equipment> inventoryEquipment, List<Equipment> equipments)
+    public void LoadPlayer(ref Player player, List<Consumable> inventoryConsumables, List<Consumable> consumables ,List<Equipment> inventoryEquipment, List<Equipment> equipments, List<Skil> skils, List<Skil> mySkils)
     {
         if (File.Exists(FilePath))
         {
             SaveData loadData = LoadData(FilePath);
 
             player = loadData.player;
-            Console.WriteLine(player.Name);
-            Console.WriteLine(player.Gold);
-            Console.WriteLine(player.Job);
 
             for (int i = 0; i < loadData.saveItemData.Count; i++)
             {
@@ -77,7 +80,10 @@ public class Save
                 inventoryConsumables.Add(consumables[consumables.FindIndex(x => x.ItemID.Equals(loadData.SaveConsmableData[i].ItemID))]);
                 inventoryConsumables[i].Count = loadData.SaveConsmableData[i].Count;
             }
-
+            for (int i = 0; i < loadData.SaveSkilData.Count; i++)
+            {
+                mySkils.Add(skils[skils.FindIndex(x => x.ID.Equals(loadData.SaveSkilData[i].SkilID))]);
+            }
         }
         else
         {
@@ -85,10 +91,11 @@ public class Save
         }
     }
 
-    public void SavePlayer(Player player, List<Equipment> inventoryEquipment, List<Consumable> inventoryConsumables)
+    public void SavePlayer(Player player, List<Equipment> inventoryEquipment, List<Consumable> inventoryConsumables, List<Skil> mySkils)
     {
         List<SaveItemData> saveItemDatas = new List<SaveItemData>();
         List<SaveConsmable> saveConsmables = new List<SaveConsmable>();
+        List<SaveSkilData> saveSkilDatas = new List<SaveSkilData>();
         for(int i = 0; i < inventoryEquipment.Count; i++)
         {
             saveItemDatas.Add(new SaveItemData { ItemID =  inventoryEquipment[i].ItemID ,IsEquiped = inventoryEquipment[i].IsEquiped });
@@ -97,7 +104,11 @@ public class Save
         {
             saveConsmables.Add(new SaveConsmable { ItemID = inventoryConsumables[i].ItemID, Count = inventoryConsumables[i].Count});
         }
-        SaveData saveData = new SaveData() { player = player, saveItemData = saveItemDatas, SaveConsmableData = saveConsmables };
+        for (int i = 0; i < mySkils.Count; i++) 
+        {
+            saveSkilDatas.Add(new SaveSkilData { SkilID = mySkils[i].ID });
+        }
+        SaveData saveData = new SaveData() { player = player, saveItemData = saveItemDatas, SaveConsmableData = saveConsmables ,SaveSkilData = saveSkilDatas};
         SaveFile(saveData, FilePath);
     }
 
