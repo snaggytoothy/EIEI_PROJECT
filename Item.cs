@@ -31,7 +31,7 @@ public class Consumable : Item // 소비 아이템 클래스
     {
         if(player.NowHP >= player.MaxHP)
         {
-            Console.WriteLine("이미 체력이 가득 차 있습니다.(아무 키나 눌러 확인)");
+            Utility.ColorWrite("이미 체력이 가득 차 있습니다.(아무 키나 눌러 확인)\n", ConsoleColor.Red);
         }
         else
         {
@@ -44,7 +44,7 @@ public class Consumable : Item // 소비 아이템 클래스
                 player.NowHP = player.MaxHP;
             }
             Count--;
-            Console.WriteLine($"체력이 {BuffAmount} 회복되었습니다.(아무 키나 눌러 확인)");
+            Utility.ColorWrite($"체력이 {BuffAmount} 회복되었습니다.(아무 키나 눌러 확인)\n", ConsoleColor.Green);
         }
         Console.ReadKey();
     }
@@ -52,7 +52,7 @@ public class Consumable : Item // 소비 아이템 클래스
     {
         if (player.NowMP >= player.MaxMP)
         {
-            Console.WriteLine("이미 마나가 가득 차 있습니다.(아무 키나 눌러 확인)");
+            Utility.ColorWrite("이미 마나가 가득 차 있습니다.(아무 키나 눌러 확인)\n", ConsoleColor.Red);
         }
         else
         {
@@ -65,7 +65,7 @@ public class Consumable : Item // 소비 아이템 클래스
                 player.NowMP = player.MaxMP;
             }
             Count--;
-            Console.WriteLine($"마나가 {BuffAmount} 회복되었습니다.(아무 키나 눌러 확인)");
+            Utility.ColorWrite($"마나가 {BuffAmount} 회복되었습니다.(아무 키나 눌러 확인)\n", ConsoleColor.Blue);
         }
         Console.ReadKey();
     }
@@ -75,14 +75,14 @@ public class Consumable : Item // 소비 아이템 클래스
         Count--;
         BuffAmount = extraAtk.ToString();
         gameManager.player.Atk += int.Parse(BuffAmount);
-        Console.WriteLine("공격력이 10 올랐습니다.(아무 키나 눌러 확인)");
+        Utility.ColorWrite("공격력이 10 올랐습니다.(아무 키나 눌러 확인)\n",ConsoleColor.Magenta);
         Buff buff = new Buff(EndAtkBuff, gameManager, 3);
         Console.ReadKey();
     }
     private void EndAtkBuff(GameManager gameManager)
     {
         gameManager.player.Atk -= int.Parse(BuffAmount);
-        Console.WriteLine("사냥꾼의 물약이 효능을 다했습니다.(아무 키나 눌러 확인)");
+        Utility.ColorWrite("사냥꾼의 물약이 효능을 다했습니다.(아무 키나 눌러 확인)\n", ConsoleColor.DarkMagenta);
         Console.ReadKey();
     }
 }
