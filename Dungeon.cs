@@ -551,7 +551,9 @@ class Dungeon
             //죽은 몬스터 표시
             else if (monsters[i].IsDead == true)
             {
-                Console.WriteLine("{0} Lv {1} {2}   Dead", i + 1, monsters[i].Level, monsters[i].Name);
+                Utility.ColorWrite($"{i+1} Lv {monsters[i].Level} {monsters[i].Name}   Dead",ConsoleColor.Black);
+                Console.WriteLine();
+                //Console.WriteLine("{0} Lv {1} {2}   Dead", i + 1, monsters[i].Level, monsters[i].Name);
                 Console.WriteLine();
             }
         }
@@ -819,8 +821,53 @@ class Dungeon
                 }
             }
         }
+    }
 
+    void UseItem(GameManager gameManager)
+    {
+        int input;
+        //아이템사용
+        while (true)
+        {
+            Console.WriteLine();
+            Console.WriteLine("[소비 아이템 목록]");
+            for (int i = 0; i < gameManager.inventoryConsumables.Count; i++)
+            {
+                if (gameManager.inventoryConsumables[i].Count > 0 && gameManager.inventoryConsumables.Any() == true)
+                {
+                    Console.WriteLine($"- {i + 1} {gameManager.inventoryConsumables[i].Name} | {gameManager.inventoryConsumables[i].Inform} | 보유 개수 : {gameManager.inventoryConsumables[i].Count}");
+                }
+                else
+                {
+                    Console.WriteLine("소비아이템이 없습니다");
+                }
+            }
+            Console.WriteLine();
+            Console.WriteLine("0. 나가기");
+            input = Utility.GetInput(0, gameManager.inventoryConsumables.FindAll(x => x.Count > 0).Count);
 
+            if (input == 0)
+            {
+                break;
+            }
+            else
+            {
+                if (gameManager.inventoryConsumables[input - 1].ItemID == 7)
+                {
+                    gameManager.inventoryConsumables[input - 1].Use(gameManager.player);
+                }
+                else if (gameManager.inventoryConsumables[input - 1].ItemID == 8)
+                {
+                    gameManager.inventoryConsumables[input - 1].Use(gameManager, 10);
+                }
+                if (gameManager.inventoryConsumables[input - 1].Count == 0)
+                {
+                    gameManager.inventoryConsumables.Remove(gameManager.inventoryConsumables[input - 1]);
+                }
+                Console.WriteLine("Anykey. 진행");
+                Console.ReadKey();
+            }
+        }
     }
 
     public void PlayerTurn(GameManager gameManager, List<Monster> monsters)
@@ -858,72 +905,36 @@ class Dungeon
             }
             else if (input == 1)
             {
+                //일반공격
                 if (NormalAttack(gameManager, monsters))
                 {
-                    break;
+                    //공격 성공시 턴 종료
+                    return;
                 }
                 else
-                {
+                {   //실패시(공격 취소) 반복문 처음으로
                     continue;
                 }
             }
             else if (input == 2)
             {
+                //스킬공격
                 if (SkilAttack(gameManager, monsters))
                 {
-                    break;
+                    //공격 성공시 턴 종료
+                    return;
                 }
                 else
                 {
+                    //실패시(공격 취소 및 MP부족) 반복문 처음으로
                     continue;
                 }
 
             }
             else if (input == 3)
             {
-                //아이템사용
-                while (true)
-                {
-                    Console.WriteLine();
-                    Console.WriteLine("[소비 아이템 목록]");
-                    for (int i = 0; i < gameManager.inventoryConsumables.Count; i++)
-                    {
-                        if (gameManager.inventoryConsumables[i].Count > 0 && gameManager.inventoryConsumables.Any() == true)
-                        {
-                            Console.WriteLine($"- {i + 1} {gameManager.inventoryConsumables[i].Name} | {gameManager.inventoryConsumables[i].Inform} | 보유 개수 : {gameManager.inventoryConsumables[i].Count}");
-                        }
-                        else
-                        {
-                            Console.WriteLine("소비아이템이 없습니다");
-                        }
-                    }
-                    Console.WriteLine();
-                    Console.WriteLine("0. 나가기");
-                    input = Utility.GetInput(0, gameManager.inventoryConsumables.FindAll(x => x.Count > 0).Count);
-
-                    if (input == 0)
-                    {
-                        break;
-                    }
-                    else
-                    {
-                        if (gameManager.inventoryConsumables[input - 1].ItemID == 7)
-                        {
-                            gameManager.inventoryConsumables[input - 1].Use(gameManager.player);
-                        }
-                        else if (gameManager.inventoryConsumables[input - 1].ItemID == 8)
-                        {
-                            gameManager.inventoryConsumables[input - 1].Use(gameManager, 10);
-                        }
-                        if (gameManager.inventoryConsumables[input - 1].Count == 0)
-                        {
-                            gameManager.inventoryConsumables.Remove(gameManager.inventoryConsumables[input - 1]);
-                        }
-                        Console.WriteLine("Anykey. 진행");
-                        Console.ReadKey();
-                    }
-                }
-
+                //아이템 사용
+                UseItem(gameManager);
             }
 
         }
