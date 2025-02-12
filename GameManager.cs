@@ -44,8 +44,65 @@ public class GameManager
         
         new Consumable{Name = "싸움꾼의 물약", ItemID = 9, Price = 50, ItemType = 2, Inform = "3턴 간 공격력을 약간 올려줍니다.(전투 중에만 사용가능)", ShopFlag = true, MonsterFlag = false, BuffAmount = "10"},
 
-        new Weapon{Name = "링 오브 고블린 로드[등급: 전설] ", ItemID = 100, Price = 10000, ItemType = 1, Inform = "고블린 로드가 장착했던 반지이다, 청동으로 만들었으며 센터에 옥이 박혀있는형태 바디 부분에 룬 문자가 새겨져다. ",
-        IsEquiped = false, ShopFlag = false, MonsterFlag = false, Atk = 4.5f},
+        new Weapon{Name = "와일드보어 보일드 레더 그리브[등급: 일반★★★] ", ItemID = 100, Price = 2000, ItemType = 3, Inform = "와일드 보어 가죽으로 끓여진 파라핀+기름에 뺏다 넣었다 반복해서 만든 그리브 밖은 강철같이 튼튼하며 내부는 유연하여 충격에도 강하다. ",
+        IsEquiped = false, ShopFlag = false, MonsterFlag = false, ERareFlag = true  ,Atk = 4.5f},//Easy
+
+        new Weapon{Name = "와일드보어 보일드 레더 갑옷[등급: 일반★★★] ", ItemID = 100, Price = 2500, ItemType = 1, Inform = "와일드 보어 가죽으로 끓여진 파라핀+기름에 뺏다 넣었다 반복해서 만든 갑옷 밖은 강철같이 튼튼하며 내부는 유연하여 충격에도 강하다. ",
+        IsEquiped = false, ShopFlag = false, MonsterFlag = false, ERareFlag = true  ,Atk = 4.5f},//Easy
+
+        new Weapon{Name = "와일드보어 보일드 레더 투구[등급: 일반★★★] ", ItemID = 100, Price = 2000, ItemType = 4, Inform = "와일드 보어 가죽으로 끓여진 파라핀+기름에 뺏다 넣었다 반복해서 만든 투구 밖은 강철같이 튼튼하며 내부는 유연하여 충격에도 강하다. ",
+        IsEquiped = false, ShopFlag = false, MonsterFlag = false, ERareFlag = true  ,Atk = 4.5f},//Easy
+
+        new Weapon{Name = "고블린 보석[등급: 일반] ", ItemID = 100, Price = 700, ItemType = 5, Inform = "고블린 뼈에서 만들어지는 고블린 보석이다. ",
+        IsEquiped = false, ShopFlag = false, MonsterFlag = false, ERareFlag = true  ,Atk = 4.5f},//Easy
+
+        new Weapon{Name = "고블린 해골[등급: 일반] ", ItemID = 100, Price = 2000, ItemType = 5, Inform = "징그러운 고블린 해골 상점에 팔면된다. ",
+        IsEquiped = false, ShopFlag = false, MonsterFlag = false, ERareFlag = true  ,Atk = 4.5f},//Easy
+
+        new Weapon{Name = "튜터의 잃어버린 밥그릇[등급: 세트] ", ItemID = 100, Price = 2000, ItemType = 5, Inform = "튜터의 밥그릇이다 튜터중 누군가 밥을 못먹고 있는것이 틀림없다. ",
+        IsEquiped = false, ShopFlag = false, MonsterFlag = false, ERareFlag = true  ,Atk = 4.5f},//Easy
+
+        new Weapon{Name = "튜터의 잃어버린 왼쪽 부츠[등급: 세트] ", ItemID = 100, Price = 2000, ItemType = 5, Inform = "어쩌다 잃어버린걸까.. 알수없다. ",
+        IsEquiped = false, ShopFlag = false, MonsterFlag = false, ERareFlag = true  ,Atk = 4.5f},//Easy
+
+        new Weapon{Name = "은빛늑대 츠바이헨더[등급: 명작★★] ", ItemID = 100, Price = , ItemType = 0, Inform = "명장이 정화된 은을 첨가하여 만든 대검이다 칼자루 끝에 검은늑대 머리 형상이 있으며 가격은 상당히 비싸다.\r\n ",
+        IsEquiped = false, ShopFlag = false, MonsterFlag = false, NRareFlag = true  ,Atk = 4.5f},//Normal
+
+        new Weapon{Name = "검은늑대방패[등급: 명작★] ", ItemID = 100, Price = , ItemType = 6, Inform = "본체는 나무이며 검은 청동 철판을 덮은 지름 1미터 원형 방패 방패 중간에 검은늑대 머리가 각인되어 있다. ",
+        IsEquiped = false, ShopFlag = false, MonsterFlag = false, NRareFlag = true  ,Atk = 4.5f},//Normal
+
+        new Weapon{Name = "옥구슬[등급: 일반★] ", ItemID = 100, Price = 2000, ItemType = 5, Inform = "금속으로 만들어졌으며 센터에 품질좋은 옥구슬이 박혀있다, 장착하면 보호받는 기분이 든다. ",
+        IsEquiped = false, ShopFlag = false, MonsterFlag = false, NRareFlag = true  ,Atk = 4.5f},//Normal
+
+        new Weapon{Name = "[등급: 일반★★★] ", ItemID = 100, Price = 2000, ItemType = 3, Inform = " ",
+        IsEquiped = false, ShopFlag = false, MonsterFlag = false, NRareFlag = true  ,Atk = 4.5f},//Normal
+
+        new Weapon{Name = "[등급: 일반★★★] ", ItemID = 100, Price = 2000, ItemType = 3, Inform = " ",
+        IsEquiped = false, ShopFlag = false, MonsterFlag = false, NRareFlag = true  ,Atk = 4.5f},//Normal
+
+        new Weapon{Name = "[등급: 일반★★★] ", ItemID = 100, Price = 2000, ItemType = 3, Inform = " ",
+        IsEquiped = false, ShopFlag = false, MonsterFlag = false, NRareFlag = true  ,Atk = 4.5f},//Normal
+
+        new Weapon{Name = "[등급: 일반★★★] ", ItemID = 100, Price = 2000, ItemType = 3, Inform = " ",
+        IsEquiped = false, ShopFlag = false, MonsterFlag = false, NRareFlag = true  ,Atk = 4.5f},//Normal
+
+        new Weapon{Name = "[등급: 일반★★★] ", ItemID = 100, Price = 2000, ItemType = 3, Inform = " ",
+        IsEquiped = false, ShopFlag = false, MonsterFlag = false, NRareFlag = true  ,Atk = 4.5f},//Normal
+
+        new Weapon{Name = "[등급: 일반★★★] ", ItemID = 100, Price = , ItemType = 3, Inform = " ",
+        IsEquiped = false, ShopFlag = false, MonsterFlag = false, NRareFlag = true  ,Atk = 4.5f},//Normal
+
+        new Weapon{Name = "[등급: 일반★★★] ", ItemID = 100, Price = , ItemType = 3, Inform = " ",
+        IsEquiped = false, ShopFlag = false, MonsterFlag = false, NRareFlag = true  ,Atk = 4.5f},//Normal
+
+
+
+
+
+
+
+        new Weapon{Name = "링 오브 고블린 로드[등급: 전설] ", ItemID = 100, Price = 10000, ItemType = 5, Inform = "고블린 로드가 장착했던 반지이다, 청동으로 만들었으며 센터에 옥이 박혀있는형태 바디 부분에 룬 문자가 새겨져다. ",
+        IsEquiped = false, ShopFlag = false, MonsterFlag = false, ERareFlag = true  ,Atk = 4.5f},//Easy
 
     };
     public List<Equipment> equipments = new List<Equipment>();
