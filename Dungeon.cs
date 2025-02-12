@@ -18,9 +18,15 @@ class Dungeon
             Console.WriteLine("3개의 통로가 눈앞에 보입니다.");
             Console.WriteLine("각 통로 마다 팻말이 박혀있습니다.");
             Console.WriteLine();
-            Console.WriteLine("1. 쉬움 | Lv 1 이상 입장가능");
-            Console.WriteLine("2. 보통 | Lv 8 이상 입장가능");
-            Console.WriteLine("3. 어려움 | Lv 14 이상 입장가능");
+            Console.Write("1. ");
+            Utility.ColorWrite("쉬움 ", ConsoleColor.Green);
+            Console.WriteLine("| Lv 1 이상 입장가능");
+            Console.Write("2. ");
+            Utility.ColorWrite("보통 ", ConsoleColor.Yellow);
+            Console.WriteLine("| Lv 8 이상 입장가능");
+            Console.Write("3. ");
+            Utility.ColorWrite("어려움 ", ConsoleColor.DarkRed);
+            Console.WriteLine("| Lv 14 이상 입장가능");
             Console.WriteLine();
             Utility.ColorWrite("0.나가기\n\n", ConsoleColor.Red);
 
