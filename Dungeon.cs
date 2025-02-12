@@ -935,14 +935,14 @@ class Dungeon
                 }
                 else  if(level == 2)
                 {
-                    var find = gameManager.equipments.FindAll(x => x.NareFlag == true).ToList();
+                    var find = gameManager.equipments.FindAll(x => x.NRareFlag == true).ToList();
                     int temp = random1.Next(0, find.Count);
                     Console.WriteLine("{0}", find[temp].Name);
                     gameManager.equipments.Add(find[temp]);
                 }
                 else if(level == 3)
                 {
-                    var find = gameManager.equipments.FindAll(x => x.HareFlag == true).ToList();
+                    var find = gameManager.equipments.FindAll(x => x.HRareFlag == true).ToList();
                     int temp = random1.Next(0, find.Count);
                     Console.WriteLine("{0}", find[temp].Name);
                     gameManager.equipments.Add(find[temp]);
