@@ -129,12 +129,13 @@ public class Character
                     {
                         target.NowHP = (float)(target.NowHP - (skil.Damage + (attacker.atk * skil.skilRatiod) + ((attacker.atk * skil.skilRatiod) * 0.6)) - target.Def * 0.5);
                     }
+
                     Console.WriteLine("Lv.{0} {1} 을(를) 맞췄습니다. [데미지] : {2}", target.Level, target.Name, tempHP - target.NowHP);
                     Console.WriteLine();
                 }
                 else
                 {
-                    if((float)(target.NowHP - (Math.Ceiling(skil.Damage + (attacker.Atk * skil.skilRatiod))) - target.Def * 0.5) <= 0)
+                    if ((float)(target.NowHP - (Math.Ceiling(skil.Damage + (attacker.Atk * skil.skilRatiod))) - target.Def * 0.5) <= 0)
                     {
                         target.NowHP = (float)(target.NowHP - -1);
                     }
@@ -149,24 +150,24 @@ public class Character
             }
             else
             {
-                if((float)(target.NowHP - (Math.Ceiling(skil.Damage + (attacker.Atk * skil.skilRatiod))) - target.Def * 0.5) <= 0)
+                if ((float)(target.NowHP - (Math.Ceiling(skil.Damage + (attacker.Atk * skil.skilRatiod))) - target.Def * 0.5) <= 0)
                 {
                     target.NowHP = (float)(target.NowHP - 1);
                 }
                 else
                 {
                     target.NowHP = (float)(target.NowHP - (Math.Ceiling(skil.Damage + (attacker.Atk * skil.skilRatiod))) - target.Def * 0.5);
-                
-                Console.WriteLine("Lv.{0} {1} 을(를) 맞췄습니다. [데미지] : {2}", target.Level, target.Name, tempHP - target.NowHP);
-                Console.WriteLine();
-            }
-            
 
-            return true;
+                    Console.WriteLine("Lv.{0} {1} 을(를) 맞췄습니다. [데미지] : {2}", target.Level, target.Name, tempHP - target.NowHP);
+                    Console.WriteLine();
+                }
+
+
+                return true;
+            }
+            return false;
         }
-            
     }
-        return false;
 
 }
 public class Player : Character
@@ -182,8 +183,8 @@ public class Player : Character
             if (level != value)
             {
                 level = value;
-                Atk += 0.5f;
-                Def += 0.2f;
+                Atk += (level - 1) * 0.5f;
+                Def += (level - 1) * 1f;
                 MaxExp += 20 + 5 * (level - 1);
             }
         }
@@ -535,4 +536,5 @@ public class Skil
     public int Cost { get; set; }
     public int type { get; set; } // 1물리 2마법
     public string Description { get; set; }
+
 }
