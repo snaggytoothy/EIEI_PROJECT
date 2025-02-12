@@ -211,7 +211,7 @@ class Dungeon
 
     }
 
-
+    //몬스터 생성
     void CreateMonster(List<Monster> monsters, int level, int wave)
     {
         Random random = new Random();
@@ -339,6 +339,8 @@ class Dungeon
             }
         }
     }
+
+    //던전진행
     public void DungeonProgress(GameManager gameManager, int level)
     {
         //플레이어의 진입시 상태를 저장
@@ -514,7 +516,7 @@ class Dungeon
         Console.WriteLine("스킬 보유 목록");
         for (int i = 0; i < gameManager.mySkils.Count; i++)
         {
-            Console.WriteLine("{0} {1} 소모 MP : {2} 기본 데미지 : {3} 공격 계수: {4}  설명 : {5}", i + 1, gameManager.mySkils[i].Name, gameManager.mySkils[i].Cost, gameManager.mySkils[i].Damage, gameManager.mySkils[i].skilRatiod, gameManager.mySkils[i].Description);
+            Console.WriteLine("{0} {1} 소모 MP : {2} 기본 데미지 : {3} 공격 계수: {4} 범위 {5} 설명 : {6}", i + 1, gameManager.mySkils[i].Name, gameManager.mySkils[i].Cost, gameManager.mySkils[i].Damage, gameManager.mySkils[i].skilRatiod, gameManager.mySkils[i].range,gameManager.mySkils[i].Description);
         }
     }
 
@@ -736,14 +738,16 @@ class Dungeon
                 }
                 else if (gameManager.inventoryConsumables[input - 1].ItemID == 8)
                 {
+                    gameManager.inventoryConsumables[input - 1].RecoverMP(gameManager.player);
+                }
+                else if (gameManager.inventoryConsumables[input - 1].ItemID == 9)
+                {
                     gameManager.inventoryConsumables[input - 1].Use(gameManager, 10);
                 }
                 if (gameManager.inventoryConsumables[input - 1].Count == 0)
                 {
                     gameManager.inventoryConsumables.Remove(gameManager.inventoryConsumables[input - 1]);
                 }
-                Console.WriteLine("Anykey. 진행");
-                Console.ReadKey();
             }
         }
     }

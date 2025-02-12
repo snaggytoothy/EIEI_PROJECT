@@ -25,33 +25,64 @@ public class Consumable : Item // 소비 아이템 클래스
     }
     public int Count { get; set; }
 
-    public float BuffAmount { get; set; }
+    public string BuffAmount { get; set; }
     
     public void Use(Player player)
     {
-        Random random = new Random();
-        BuffAmount = random.Next(40, 51);
-        player.NowHP += BuffAmount;
-        if(player.NowHP > player.MaxHP)
+        if(player.NowHP >= player.MaxHP)
         {
-            player.NowHP = player.MaxHP;
+            Utility.ColorWrite("이미 체력이 가득 차 있습니다.(아무 키나 눌러 확인)\n", ConsoleColor.Red);
         }
-        Count--;
-        Console.WriteLine("체력이 50 회복되었습니다.");
+        else
+        {
+            Random random = new Random();
+            int randomBuffAmount = random.Next(40, 51);
+            BuffAmount = randomBuffAmount.ToString();
+            player.NowHP += int.Parse(BuffAmount);
+            if (player.NowHP > player.MaxHP)
+            {
+                player.NowHP = player.MaxHP;
+            }
+            Count--;
+            Utility.ColorWrite($"체력이 {BuffAmount} 회복되었습니다.(아무 키나 눌러 확인)\n", ConsoleColor.Green);
+        }
+        Console.ReadKey();
+    }
+    public void RecoverMP(Player player) // MP회복 메서드
+    {
+        if (player.NowMP >= player.MaxMP)
+        {
+            Utility.ColorWrite("이미 마나가 가득 차 있습니다.(아무 키나 눌러 확인)\n", ConsoleColor.Red);
+        }
+        else
+        {
+            Random random = new Random();
+            int randomBuffAmount = random.Next(20, 26);
+            BuffAmount = randomBuffAmount.ToString();
+            player.NowMP += int.Parse(BuffAmount);
+            if (player.NowMP > player.MaxMP)
+            {
+                player.NowMP = player.MaxMP;
+            }
+            Count--;
+            Utility.ColorWrite($"마나가 {BuffAmount} 회복되었습니다.(아무 키나 눌러 확인)\n", ConsoleColor.Blue);
+        }
+        Console.ReadKey();
     }
 
     public void Use(GameManager gameManager, int extraAtk) // 공격력 버프 물약
     {
         Count--;
-        BuffAmount = extraAtk;
-        gameManager.player.Atk += BuffAmount;
-        Console.WriteLine("공격력이 10 올랐습니다.");
+        BuffAmount = extraAtk.ToString();
+        gameManager.player.Atk += int.Parse(BuffAmount);
+        Utility.ColorWrite("공격력이 10 올랐습니다.(아무 키나 눌러 확인)\n",ConsoleColor.Magenta);
         Buff buff = new Buff(EndAtkBuff, gameManager, 3);
+        Console.ReadKey();
     }
     private void EndAtkBuff(GameManager gameManager)
     {
-        gameManager.player.Atk -= BuffAmount;
-        Console.WriteLine("사냥꾼의 물약이 효능을 다했습니다.(아무 키나 눌러 확인)");
+        gameManager.player.Atk -= int.Parse(BuffAmount);
+        Utility.ColorWrite("사냥꾼의 물약이 효능을 다했습니다.(아무 키나 눌러 확인)\n", ConsoleColor.DarkMagenta);
         Console.ReadKey();
     }
 }

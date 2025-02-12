@@ -11,7 +11,7 @@ public class GameManager
 
     public List<Item> itemList = new List<Item>() // 등급 : 일반 -> 명작 -> 레어 -> 전설 (등급 마다 성급 추가 최대 ★x3개)
     {
-         new Weapon{Name = "투박한 롱소드[일반]", ItemID = 1, Price = 500, ItemType = 0, Inform = "매우 흔하디흔한 양산형, 롱소드이다.",
+         new Weapon{Name = "투박한 롱소드[일반]", ItemID = 1, Price = 500, ItemType = 0, Inform = "매우 흔하디흔한\n 양산형, 롱소드이다.",
         IsEquiped = false, ShopFlag = true, MonsterFlag = false, Atk = 2f},
 
         new Weapon{Name = "바스타드 소드[일반★]", ItemID = 2, Price = 1150, ItemType = 0, Inform = "대검 반 한 손 검, 롱소드보다 바디의 길이가 더 길며 파괴력이 높고 공방 밸런스가 잘 갖춰졌다.",
@@ -29,12 +29,14 @@ public class GameManager
         new Armor{Name = "고블린 찰갑[일반★]", ItemID = 6, Price = 1600, ItemType = 1, Inform = "고블린 뼈로 만든 미늘 조각에 끈으로 연결하여 만든 갑옷, 꽤나 튼튼하고 유지 보수가 쉽다.",
         IsEquiped = false, ShopFlag = true, MonsterFlag = true, Def = 5f},
 
-        new Consumable{Name = "회복 물약", ItemID = 7, Price = 300, ItemType = 2, Inform = "체력을 40~50 회복시켜 줍니다.", ShopFlag = true, MonsterFlag = false, BuffAmount = 0},
+        new Consumable{Name = "체력 회복 물약", ItemID = 7, Price = 300, ItemType = 2, Inform = "체력을 40~50 회복시켜 줍니다.", ShopFlag = true, MonsterFlag = false, BuffAmount = "40~50"},
+
+        new Consumable{Name = "마나 회복 물약", ItemID = 8, Price = 150, ItemType = 2, Inform = "마나를 20~25 회복시켜 줍니다.", ShopFlag = true, MonsterFlag = false, BuffAmount = "20~25"},
         //테스트 공격력 버프 물약
-        new Consumable{Name = "싸움꾼의 물약", ItemID = 8, Price = 50, ItemType = 2, Inform = "3턴 간 공격력을 약간 올려줍니다.(전투 중에만 사용가능)", ShopFlag = true, MonsterFlag = false, BuffAmount = 50},
+        new Consumable{Name = "싸움꾼의 물약", ItemID = 9, Price = 50, ItemType = 2, Inform = "3턴 간 공격력을 약간 올려줍니다.(전투 중에만 사용가능)", ShopFlag = true, MonsterFlag = false, BuffAmount = "10"},
 
         new Weapon{Name = "링 오브 고블린 로드[등급: 전설] ", ItemID = 100, Price = 10000, ItemType = 1, Inform = "고블린 로드가 장착했던 반지, ", //작업중
-        IsEquiped = false, ShopFlag = false, MonsterFlag = true, Atk = 3f},
+        IsEquiped = false, ShopFlag = false, MonsterFlag = true, Atk = 5f},
 
     };
     public List<Equipment> equipments = new List<Equipment>();
