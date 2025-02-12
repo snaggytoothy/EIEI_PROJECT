@@ -202,25 +202,25 @@ public class Player : Character
         set
         {
             job = value;
-            if (job == "전사")
+            if (job == "팔라딘")
             {
-                MaxHP = 150;
+                MaxHP = 150;// 4.5
                 NowHP = 150;
-                Atk = 15;
-                Def = 2;
-                MaxMP = 20;
+                Atk = 10;   // 0.2
+                Def = 2.5f; // 0.5
+                MaxMP = 20; // 2
                 NowMP = 20;
             }
-            else if (job == "마법사")
-            {
-                MaxHP = 100;
-                NowHP = 100;
-                Atk = 10;
-                Def = 1;
-                MaxMP = 50;
-                NowMP = 50;
-            }
             else if (job == "마검사")
+            {
+                MaxHP = 100;// 2.5
+                NowHP = 100;
+                Atk = 14;   // 0.6
+                Def = 1;    // 0.25
+                MaxMP = 50; // 4
+                NowMP = 50; 
+            }
+            else if (job == "GM")
             {
                 MaxHP = 125;
                 NowHP = 125;
