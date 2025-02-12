@@ -23,7 +23,11 @@ public class Start()
                 name = "스파르타"; //값이 없거나 빈 문자열이면 "스파르타"로 설정
             }
             char[] letters = name.ToCharArray();
-            if (letters.Length > 8) Console.WriteLine("8글자 내로 입력해주세요.");
+            if (letters.Length > 8)
+            {
+                Console.Clear();
+                Console.WriteLine("8글자 내로 입력해주세요.");
+            }
             else
             {
                 gameManager.player.Name = name; //플레이어 이름 설정
@@ -87,8 +91,8 @@ public class Start()
                     break;
             }
             Console.Clear();
-            Console.WriteLine("확실한가요? 직업 역시 지금 정하면 이후에 변경할 수 없습니다.");
-            Console.WriteLine("1. 네 2. 아니오");
+            Console.WriteLine("확실한가요? 직업 역시 지금 정하면 이후에 변경할 수 없습니다.\n");
+            Console.WriteLine("1. 네 \n2. 아니오");
 
             int jobsure = Utility.GetInput(1, 2);
             switch (jobsure)
@@ -114,7 +118,7 @@ public class Start()
         while (true)
         {
             Console.Clear();
-            Console.WriteLine("이곳에서 던전으로 들어가기전 활동을 할 수 있습니다.");
+            Console.WriteLine("이곳에서 던전으로 들어가기전 활동을 할 수 있습니다.\n");
             Console.WriteLine("1. 상태 보기 \n2. 인벤토리 \n3. 상점 \n4. 던전 입장 \n5. 휴식하기 \n\n0. 게임종료");
 
             act = Utility.GetInput(0, 5);
@@ -145,7 +149,8 @@ public class Start()
     public static void Status(GameManager gameManager)
     {
         Console.Clear();
-        Console.WriteLine($"<상태 보기>\n{gameManager.player.Name}님의 캐릭터 정보가 표시됩니다.\r\n");
+        Utility.ColorWrite("<상태보기>", ConsoleColor.Cyan);
+        Console.WriteLine($"\n{gameManager.player.Name}님의 캐릭터 정보가 표시됩니다.\n");
         Console.WriteLine($"Lv. {gameManager.player.Level}");
         Console.WriteLine($"{gameManager.player.Name} ({gameManager.player.Job})");
         Console.WriteLine($"공격력: {gameManager.player.Atk}");
@@ -154,7 +159,7 @@ public class Start()
         Console.WriteLine($"마나: {gameManager.player.NowMP} / {gameManager.player.MaxMP}");
         Console.WriteLine($"Gold: {gameManager.player.Gold} G");
         Console.WriteLine($"경험치: {gameManager.player.NowExp} / {gameManager.player.MaxExp}");
-        Console.WriteLine("\r\n0. 나가기");
+        Utility.ColorWrite("\n0. 나가기\n\n", ConsoleColor.Red);
         int act = Utility.GetInput(0, 0);
 
         if (act == 0)
@@ -171,8 +176,8 @@ public class Start()
         Console.WriteLine("당신은 꽤 깔끔해보이는 동굴을 발견했습니다.");
         Console.WriteLine("\"여긴 내 집인데.\" 낯선 늙은이가 말합니다.");
         Console.WriteLine($"\"뭐... 돈을 조금 낸다면 쉬게 해주지. 단돈 {restNum} 골드라고. \"");
-        Console.WriteLine($"휴식합니까? 현재 지닌 골드는 {player.Gold} 입니다.");
-        Console.WriteLine("1. 휴식하기 \n0.나가기");
+        Console.WriteLine($"휴식합니까? 현재 지닌 골드는 {player.Gold} 입니다.\n");
+        Console.WriteLine("1. 휴식하기 \n0.나가기\n");
 
         int num = Utility.GetInput(0, 1);
         switch (num)
