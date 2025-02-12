@@ -178,7 +178,7 @@ public class Start()
         Console.WriteLine();
         for (int i = 0; i < gameManager.mySkils.Count; i++)
         {
-            Console.WriteLine($"{i+1}.{gameManager.mySkils[i].Name} {gameManager.mySkils[i].Description}");
+            Console.WriteLine($"{i+1}.{gameManager.mySkils[i].Name} | {gameManager.mySkils[i].Description}");
         }
         Utility.ColorWrite("\n0. 나가기\n\n", ConsoleColor.Red);
         int act = Utility.GetInput(0, 0);
