@@ -1,3 +1,4 @@
+using Microsoft.VisualBasic;
 using System.Runtime.ExceptionServices;
 
 namespace EIEIE_Project;
@@ -76,6 +77,7 @@ public class Start()
     {
         while (true)
         {
+            gameManager.mySkils.Clear();
             Console.Clear();
             Console.WriteLine($"{gameManager.player.Name}님 멋진 이름이군요.");
             Console.WriteLine("그렇다면 당신의 직업은 무엇인가요?");
