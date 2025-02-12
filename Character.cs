@@ -63,7 +63,7 @@ public class Character
         {
             if (random.Next(1, 101) <= 15)
             {
-                target.NowHP = (float)(target.NowHP - (random.Next(min, max) + Math.Ceiling(random.Next(min, max) * 0.6)));
+                target.NowHP = (float)(target.NowHP - (random.Next(min, max) + Math.Ceiling(random.Next(min, max) * 0.6)) - target.Def * 0.5);
                 //Console.WriteLine("치명타 공격!!");
                 Utility.ColorWrite("치명타 공격!!", ConsoleColor.Red);
                 Console.WriteLine("Lv.{0} {1} 을(를) 맞췄습니다. [데미지] : {2}", target.Level, target.Name, tempHP - target.NowHP);
@@ -74,7 +74,7 @@ public class Character
             }
             else
             {
-                target.NowHP = target.NowHP - random.Next(min, max);
+                target.NowHP = (float)(target.NowHP - (random.Next(min, max) - target.Def * 0.5));
                 Console.WriteLine("Lv.{0} {1} 을(를) 맞췄습니다. [데미지] : {2}", target.Level, target.Name, tempHP - target.NowHP);
                 Console.WriteLine();
                 Console.WriteLine("Lv.{0} {1}", target.Level, target.Name);
@@ -106,13 +106,13 @@ public class Character
                 if (random.Next(1, 100) <= 15)
                 {
                     Utility.ColorWrite("치명타 공격!!", ConsoleColor.Red);
-                    target.NowHP = (float)(target.NowHP - (skil.Damage + (attacker.atk * skil.skilRatiod) + ((attacker.atk * skil.skilRatiod) * 0.6)));
+                    target.NowHP = (float)(target.NowHP - (skil.Damage + (attacker.atk * skil.skilRatiod) + ((attacker.atk * skil.skilRatiod) * 0.6)) - target.Def * 0.5);
                     Console.WriteLine("Lv.{0} {1} 을(를) 맞췄습니다. [데미지] : {2}", target.Level, target.Name, tempHP - target.NowHP);
                     Console.WriteLine();
                 }
                 else
                 {
-                    target.NowHP = (float)(target.NowHP - (Math.Ceiling(skil.Damage + (attacker.Atk * skil.skilRatiod))));
+                    target.NowHP = (float)(target.NowHP - (Math.Ceiling(skil.Damage + (attacker.Atk * skil.skilRatiod))) - target.Def * 0.5);
                     Console.WriteLine("Lv.{0} {1} 을(를) 맞췄습니다. [데미지] : {2}", target.Level, target.Name, tempHP - target.NowHP);
                     Console.WriteLine();
                 }
@@ -120,7 +120,7 @@ public class Character
             }
             else
             {
-                target.NowHP = (float)(target.NowHP - (Math.Ceiling(skil.Damage + (attacker.Atk * skil.skilRatiod))));
+                target.NowHP = (float)(target.NowHP - (Math.Ceiling(skil.Damage + (attacker.Atk * skil.skilRatiod))) - target.Def * 0.5);
                 Console.WriteLine("Lv.{0} {1} 을(를) 맞췄습니다. [데미지] : {2}", target.Level, target.Name, tempHP - target.NowHP);
                 Console.WriteLine();
             }
