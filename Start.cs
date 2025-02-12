@@ -70,6 +70,7 @@ public class Start()
                 case 1:
                     gameManager.player.Job = "전사";
                     gameManager.mySkils.Add(gameManager.SkilList[0]);
+                    gameManager.mySkils.Add(gameManager.SkilList[1]);
                     break;
                 case 2:
                     gameManager.player.Job = "마법사";
@@ -187,7 +188,7 @@ public class Start()
     public static void Rest(Player player)
     {
         Console.Clear();
-        if (player.NowHP == player.MaxHP) Console.WriteLine("이미 체력이 가득찼습니다.(아무 키나 눌러 확인)");
+        if (player.NowHP == player.MaxHP && player.NowMP ==player.MaxMP) Console.WriteLine("이미 체력과 마나가 가득찼습니다.(아무 키나 눌러 확인)");
         //플레이어의 체력이 가득찼을 경우 불필요하게 골드를 소모하지 못하게 막음
         else if (player.Gold < restNum) Console.WriteLine("골드가 부족합니다. \"썩 꺼져.\" 늙은이가 말합니다.(아무 키나 눌러 확인)");
         //골드가 부족하면 휴식하지 못하게 함
@@ -195,13 +196,19 @@ public class Start()
         {
             Random ran = new Random();
             int healAmount = ran.Next(30, 51);//힐량은 30~50 랜덤 값
+            int mPhealAmount = ran.Next(30,51);//마나 회복량도 30~50 랜덤 값
             player.Gold -= restNum;
             player.NowHP += healAmount;
+            player.NowMP += mPhealAmount;
             if (player.NowHP > player.MaxHP)
             {
                 player.NowHP = player.MaxHP;//만약 현재 HP 가 최대 HP를 넘어서면 최대 HP로 설정
             }
-            Console.WriteLine($"체력이 {healAmount} 회복되었습니다. \"또 오라고.\" 늙은이가 켈켈 웃습니다.(아무 키나 눌러 확인)");
+            if(player.NowMP > player.MaxMP)
+            {
+                player.NowMP = player.MaxMP;//만약 현재 MP 가 최해 MP를 넘어서면 최대 MP로 설정
+            }
+            Console.WriteLine($"체력이 {healAmount} / 마나가 {mPhealAmount}회복되었습니다. \"또 오라고.\" 늙은이가 켈켈 웃습니다.(아무 키나 눌러 확인)");
         }
         Console.ReadKey();
     }
