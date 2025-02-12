@@ -83,13 +83,13 @@ public class Store
 
         switch (gm.player.Job)
         {
-            case "전사":
+            case "팔라딘":
                 PrintSkill(gm, warriorSkills);
                 break;
-            case "마법사":
+            case "마검사":
                 PrintSkill(gm, magicianSkills);
                 break;
-            case "모험가":
+            case "GM":
                 PrintSkill(gm, gm.SkilList);
                 break;
         }
@@ -189,8 +189,8 @@ public class Store
             }
 
             List<Skil> currentSkills = new List<Skil>();
-            if (gm.player.Job == "전사") currentSkills = warriorSkills;
-            else if (gm.player.Job == "마법사") currentSkills = magicianSkills;
+            if (gm.player.Job == "팔라딘") currentSkills = warriorSkills;
+            else if (gm.player.Job == "마검사") currentSkills = magicianSkills;
             else currentSkills = gm.SkilList;
 
             int num = Utility.GetInput(0, buyable.Count + currentSkills.Count); //0부터 아이템 개수까지의 입력 가능
