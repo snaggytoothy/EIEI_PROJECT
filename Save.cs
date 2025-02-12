@@ -56,16 +56,18 @@ public class Save
 
     }
 
-    public void LoadPlayer(Player player, List<Consumable> inventoryConsumables, List<Consumable> consumables ,List<Equipment> inventoryEquipment, List<Equipment> equipments)
+    public void LoadPlayer(ref Player player, List<Consumable> inventoryConsumables, List<Consumable> consumables ,List<Equipment> inventoryEquipment, List<Equipment> equipments)
     {
         if (File.Exists(FilePath))
         {
             SaveData loadData = LoadData(FilePath);
-            player = loadData.player;
-            //myItem = loadData.saveItemData;
-            //inventoryConsumables = loadData.consumablesItems;
 
-            for(int i = 0; i < loadData.saveItemData.Count; i++)
+            player = loadData.player;
+            Console.WriteLine(player.Name);
+            Console.WriteLine(player.Gold);
+            Console.WriteLine(player.Job);
+
+            for (int i = 0; i < loadData.saveItemData.Count; i++)
             {
                 inventoryEquipment.Add(equipments[equipments.FindIndex(x => x.ItemID.Equals(loadData.saveItemData[i].ItemID))]);
                 inventoryEquipment[i].IsEquiped = loadData.saveItemData[i].IsEquiped;

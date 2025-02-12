@@ -41,7 +41,7 @@ public class Start()
         Save save = new Save();
         if (File.Exists(save.FilePath))
         {
-            save.LoadPlayer(gameManager.player, gameManager.inventoryConsumables, gameManager.consumables, gameManager.inventoryEquipment, gameManager.equipments);
+            save.LoadPlayer(ref gameManager.player, gameManager.inventoryConsumables, gameManager.consumables, gameManager.inventoryEquipment, gameManager.equipments);
             SelectMenu(gameManager, save);
         }
         else
