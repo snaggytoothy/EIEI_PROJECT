@@ -389,18 +389,18 @@ public class Monster : Character // Monster 캐릭터 관리
             this.Details = "설명: 글레이즈 폴암, 부서진 파급 갑옷 장착, 꽤나 좋은 품질을 장비를 하고 있다 살아생전에 정예병사였던거 같다. ";
 
         }
-        else if (id == 10) //수정중
+        else if (id == 10)
         {
             this.MonsterType = 2;
             this.MonsterID = id;
             this.Level = 12;
             this.Name = "츠바이헨더 군단장 언데드[등급: 레어 브론즈]"; // NormalScreen
-            this.Atk = 8;
+            this.Atk = 8.5f;
             this.Def = 9;
             this.MaxHP = 62;
             this.NowHP = 62;
-            this.Details = "설명: 은빛 츠바이헨더, 사슬+판급 갑옷 장착, 살아생전 꽤나 실력이 있는 군단장이었던 거 같다 하지만 죽었죠?... ";
-            // 10 분의 1 확률로 은빛 츠바이헨더 드랍 기능 구현 // 공략하면 낮은 확률로 은빛 츠바이헨더가 드랍된다는 소문이 있다. 
+            this.Details = "설명: 타락한 은빛 츠바이헨더, 사슬+판급 갑옷 장착, 살아생전 꽤나 실력이 있는 군단장이었던 거 같다 하지만 죽었죠?... ";
+            //추가설명: 10/1 확률-은빛 츠바이헨더 Atk=  명장이 정화된 은을 첨가하여 만든 대검이다  가격도 상당히 비싸다.
         }
         else if (id == 11) // 수진님 몬스터
         {
@@ -409,10 +409,11 @@ public class Monster : Character // Monster 캐릭터 관리
             this.Level = 12;
             this.Name = "War 고스트[등급: 레어 브론즈]"; // NormalScreen
             this.Atk = 10;
-            this.Def = 1;
+            this.Def = 1.5f;
             this.MaxHP = 84;
             this.NowHP = 84;
             this.Details = "설명: 검은 판급갑옷, 검은 대검 or 검은 방패 한손무기 장착, 발생 원인은 파악을 못 하였으나 전쟁터에서 죽은 사람의 원혼이 뭉쳐서 탄생한다는 소문이 있다, ";
+            //추가설명: 검은방패 Def=  본체는 나무이며 검은청동 철판을 덮은 지름 1미터 원형 방패
         }
         else if (id == 12)
         {
@@ -425,7 +426,9 @@ public class Monster : Character // Monster 캐릭터 관리
             this.MaxHP = 40;
             this.NowHP = 40;
             this.Details = "설명: D급 미믹이다, 토벌 시 입을 벌리면서 랜덤 아이템을 뱉는다, [미믹 등급: DDr. -> CDr. -> BDr. -> ADr.]";
-            //추가설명: n, n, n, 확률 드랍";
+            //추가설명: 붉은루비, 골드, 란세어(창), 루비 스태프, 확률 드랍";
+            //란세어 : Atk:  만들기가 어려운 창이다, 생긴 모양은 양옆 블레이드가 크고 갈고리처럼 휘어있으며 창 중앙에 길고 뾰족한 50cm 창날이 있다
+            //루비 스태프: Atk:  스태프 본체는 고목나무이며 스태프 끝에 8각형 붉은색 루비가 박혀있다. 
         }
         else if (id == 13)
         {
