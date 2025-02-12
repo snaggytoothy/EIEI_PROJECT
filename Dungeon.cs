@@ -684,12 +684,12 @@ class Dungeon
                                         }
                                         else
                                         {
-                                            continue;
+                                            break;
                                         }
                                     }
 
                                 }
-                                if (gameManager.player.NowMP < gameManager.mySkils[skillInput].Cost)
+                                if (gameManager.player.NowMP < gameManager.mySkils[skillInput-1].Cost)
                                 {
                                     return false;
                                 }
