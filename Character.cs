@@ -202,11 +202,11 @@ public class Player : Character
             if (job == "전사")
             {
                 MaxHP = 150;
-                NowHP = 130;
+                NowHP = 150;
                 Atk = 15;
                 Def = 2;
                 MaxMP = 20;
-                NowMP = 1;
+                NowMP = 20;
             }
             else if (job == "마법사")
             {
