@@ -11,8 +11,9 @@ public class SaveItemData
 
 public class SaveData
 {
-    public Character character;
+    public Player player;
     public List<SaveItemData> saveItemData;
+    public List<Consumable> consumablesItems;
 }
 
 public class Save
@@ -49,12 +50,12 @@ public class Save
 
     }
 
-    public void LoadPlayer(List<SaveItemData> myItem, Character character)
+    public void LoadPlayer(List<SaveItemData> myItem, Player player)
     {
         if (File.Exists(FilePath))
         {
             SaveData loadData = LoadData(FilePath);
-            character = loadData.character;
+            player = loadData.player;
             myItem = loadData.saveItemData;
 
         }
@@ -64,9 +65,9 @@ public class Save
         }
     }
 
-    public void SavePlayer(Character character, List<SaveItemData> saveItemDatas)
+    public void SavePlayer(Player player, List<SaveItemData> saveItemDatas, List<Consumable> consumablesItems)
     {
-        SaveData saveData = new SaveData() { character = character, saveItemData = saveItemDatas};
+        SaveData saveData = new SaveData() { player = player, saveItemData = saveItemDatas, consumablesItems = consumablesItems};
         SaveFile(saveData, FilePath);
     }
 
