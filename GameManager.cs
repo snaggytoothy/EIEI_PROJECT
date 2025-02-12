@@ -59,12 +59,12 @@ public class GameManager
 
     public List<Skil> SkilList = new List<Skil>()
     {
-        new Skil { ID = 1, Name = "전사스킬1", Damage = 30 , skilRatiod = 0.5, range = 1, IsHad = false, Cost = 10, type = 1, Description = "스킬설명", Price = 1000},
-        new Skil { ID = 2, Name = "전사스킬2", Damage = 20,  skilRatiod = 0.3,range = 3, IsHad = false, Cost = 20 , type = 1, Description = "스킬설명", Price = 1000},
-        new Skil { ID = 3, Name = "전사스킬3", Damage = 50, skilRatiod = 1.0, range = 1, IsHad = false , Cost = 50, type = 1, Description = "스킬설명", Price = 1000},
-        new Skil { ID = 4, Name = "마법사스킬1", Damage = 20, skilRatiod = 0.5, range = 1, IsHad = false, Cost = 10 , type = 2, Description = "스킬설명", Price = 1000},
-        new Skil { ID = 5, Name = "마법사스킬2", Damage = 10, skilRatiod = 0.3, range = 5, IsHad = false, Cost = 20 , type = 2, Description = "스킬설명", Price = 1000},
-        new Skil { ID = 6, Name = "마법사스킬3", Damage = 50, skilRatiod = 1.0, range = 1, IsHad = false, Cost = 50 , type = 2, Description = "스킬설명", Price = 1000},
+        new Skil { ID = 1, Name = "신성 가르기", Damage = 30 , skilRatiod = 0.5, range = 1, IsHad = false, Cost = 10, type = 1, Description = "수련으로 단련된 강한 신성력을 응집시켜 상대에게 검기의 형태로 날립니다.", Price = 1000},
+        new Skil { ID = 2, Name = "퍼지는 태양 불길", Damage = 20,  skilRatiod = 0.3,range = 3, IsHad = false, Cost = 20 , type = 1, Description = "태양원판으로 빛을 산개하여 여러 명의 적에게 피해를 입힙니다.", Price = 1000},
+        new Skil { ID = 3, Name = "거대한 여신의 심판", Damage = 50, skilRatiod = 1.0, range = 1, IsHad = false , Cost = 50, type = 1, Description = "여신의 권능을 빌려 상대에게 심판을 내립니다. 팔라딘 중에서도 극히 일부만이 여신의 권능에 다가설 수 있습니다.", Price = 1000},
+        new Skil { ID = 4, Name = "그림자 꿰뚫기", Damage = 20, skilRatiod = 0.5, range = 1, IsHad = false, Cost = 10 , type = 2, Description = "음침한 어둠의 기운을 검에 둘러 상대를 찌릅니다. 꿰뚫린 상처에선 검은색 피가 흐릅니다.", Price = 1000},
+        new Skil { ID = 5, Name = "깊은 숲의 저주", Damage = 10, skilRatiod = 0.3, range = 5, IsHad = false, Cost = 20 , type = 2, Description = "금지된 숲에서 비롯되는 강한 원념을 이용하여 주변에 무차별적으로 저주를 퍼붓습니다.", Price = 1000},
+        new Skil { ID = 6, Name = "고대 용술사의 재림", Damage = 50, skilRatiod = 1.0, range = 1, IsHad = false, Cost = 50 , type = 2, Description = "용의 마력을 온몸으로 흘려보내 강력한 용언마법을 구사할 수 있게됩니다.", Price = 1000},
     };
 
     public List<Skil> mySkils = new List<Skil>();
