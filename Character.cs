@@ -147,7 +147,7 @@ public class Player : Character
             {
                 level = value;
                 Atk += 0.5f;
-                Def += 1f;
+                Def += 0.2f;
                 MaxExp += 20 + 5 * (level - 1);
             }
         }
