@@ -50,13 +50,19 @@ public class Save
 
     }
 
-    public void LoadPlayer(List<SaveItemData> myItem, Player player)
+    public void LoadPlayer(List<SaveItemData> myItem, Player player, List<Consumable> inventoryConsumables, List<Equipment> inventoryEquipment)
     {
         if (File.Exists(FilePath))
         {
             SaveData loadData = LoadData(FilePath);
             player = loadData.player;
             myItem = loadData.saveItemData;
+            inventoryConsumables = loadData.consumablesItems;
+
+            for(int i = 0; i < loadData.saveItemData.Count; i++)
+            {
+                //inventoryEquipment.Add()
+            }
 
         }
         else
@@ -65,9 +71,9 @@ public class Save
         }
     }
 
-    public void SavePlayer(Player player, List<SaveItemData> saveItemDatas, List<Consumable> consumablesItems)
+    public void SavePlayer(Player player, List<SaveItemData> saveItemDatas, List<Consumable> inventoryConsumables)
     {
-        SaveData saveData = new SaveData() { player = player, saveItemData = saveItemDatas, consumablesItems = consumablesItems};
+        SaveData saveData = new SaveData() { player = player, saveItemData = saveItemDatas, consumablesItems = inventoryConsumables };
         SaveFile(saveData, FilePath);
     }
 
