@@ -18,9 +18,9 @@ public class Store
             }
             Equipment item = gm.equipments[i]; //장비 아이템을 item에 저장
             string str = item.ItemType == 0 ? "공격력: " : "방어력: "; //아이템의 아이템 타입에 따라, 0이면 공격력이고 아니라면 방어력으로 출력
-            
+
             //해당 아이템이 인벤토리에 있는지 확인
-            if (gm.equipments.FindAll(x => x.ItemID == item.ItemID).Count > 1) //해당 아이템이 1개 이상이라면
+            if (gm.inventoryEquipment.FindAll(x => x.ItemID == item.ItemID).Count >= 1) //해당 아이템이 1개 이상이라면
             {
                 item.IsBought = true; //구매 완료 상태로 변경
             }
@@ -179,10 +179,6 @@ public class Store
                 string str = equipItem.ItemType == 0 ? "공격력: " : "방어력: ";
                 float sellNum = equipItem.Price * 0.85f; //판매 가격 설정
                 string sellPrice = sellNum.ToString("N0"); //판매 가격을 소수점 위로 출력되게 함
-                if (gm.equipments.FindAll(x => x.ItemID == equipItem.ItemID).Count > 1) //해당 아이템이 1개 이상이라면
-                {
-                    equipItem.IsBought = true; //구매 완료 상태로 변경
-                }
                 Console.WriteLine($" {strNum}{equipItem.ChangeEquipMark()} {equipItem.Name} | {str} +{equipItem.GetValue()}| {equipItem.Inform} | {sellPrice} G");
                 consumableNum += 1;
             }
