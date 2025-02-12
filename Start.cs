@@ -1,3 +1,5 @@
+using System.Runtime.ExceptionServices;
+
 namespace EIEIE_Project;
 
 public class Start()
@@ -172,6 +174,12 @@ public class Start()
         Console.WriteLine($"마나: {gameManager.player.NowMP} / {gameManager.player.MaxMP}");
         Console.WriteLine($"Gold: {gameManager.player.Gold} G");
         Console.WriteLine($"경험치: {gameManager.player.NowExp} / {gameManager.player.MaxExp}");
+        Utility.ColorWrite("<보유스킬>", ConsoleColor.Cyan);
+        Console.WriteLine();
+        for (int i = 0; i < gameManager.mySkils.Count; i++)
+        {
+            Console.WriteLine($"{i+1}.{gameManager.mySkils[i].Name} {gameManager.mySkils[i].Description}");
+        }
         Utility.ColorWrite("\n0. 나가기\n\n", ConsoleColor.Red);
         int act = Utility.GetInput(0, 0);
 
