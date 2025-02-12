@@ -185,10 +185,21 @@ public class Player : Character
             if (level != value)
             {
                 level = value;
-                Atk += 0.5f;
-                Def += 0.2f;
+                if(job == "ÆÈ¶óµò")
+                {
+                    MaxHP += 4.5f;
+                    Atk += 0.2f;
+                    Def += 0.5f;
+                    MaxMP += 2;
+                }
+                else if(job == "¸¶°Ë»ç")
+                {
+                    MaxHP += 2.5f;
+                    Atk += 0.6f;
+                    Def += 0.25f;
+                    MaxMP += 4;
+                }
                 MaxExp += 20 + 5 * (level - 1);
-                MaxMP += 4;
             }
         }
     }
