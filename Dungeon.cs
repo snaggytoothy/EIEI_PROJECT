@@ -489,17 +489,15 @@ class Dungeon
                     Console.WriteLine("Lv.{0} {1}", monsters[input - 1].Level, monsters[input - 1].Name);*/
                     if (monsters[input - 1].IsDead == true)
                     {
-                        Console.WriteLine("HP {0} -> Dead", tempHP);
+                        Utility.ColorWrite($"HP {tempHP} -> Dead\n", ConsoleColor.DarkRed);
                     }
                     else
                     {
-                        Console.WriteLine("HP {0} -> {1}", tempHP, monsters[input - 1].NowHP);
+                        Utility.ColorWrite($"HP {tempHP} -> {monsters[input - 1].NowHP}\n", ConsoleColor.DarkRed);
                     }
 
                     Console.WriteLine();
-                    Console.WriteLine("아무키 입력. 다음");
-                    Console.WriteLine();
-                    Console.Write(">>");
+                    Console.WriteLine("아무 키나 눌러 확인");
                     Console.ReadKey();
                     break;
                 }
@@ -511,10 +509,11 @@ class Dungeon
 
     void SkilDisplay(GameManager gameManager)
     {
-        Console.WriteLine("스킬 보유 목록");
+        Utility.ColorWrite("[스킬 보유 목록]\n", ConsoleColor.Cyan);
         for (int i = 0; i < gameManager.mySkils.Count; i++)
         {
-            Console.WriteLine("{0} {1} 소모 MP : {2} 기본 데미지 : {3} 공격 계수: {4} 범위 {5} 설명 : {6}", i + 1, gameManager.mySkils[i].Name, gameManager.mySkils[i].Cost, gameManager.mySkils[i].Damage, gameManager.mySkils[i].skilRatiod, gameManager.mySkils[i].range, gameManager.mySkils[i].Description);
+            Utility.ColorWrite($"{i + 1}", ConsoleColor.Cyan);
+            Console.WriteLine(" {0} 소모 MP : {1} 기본 데미지 : {2} 공격 계수: {3} 범위 {4} 설명 : {5}", gameManager.mySkils[i].Name, gameManager.mySkils[i].Cost, gameManager.mySkils[i].Damage, gameManager.mySkils[i].skilRatiod, gameManager.mySkils[i].range, gameManager.mySkils[i].Description);
         }
     }
 
@@ -529,7 +528,7 @@ class Dungeon
             Console.WriteLine();
             Console.WriteLine("사용할 스킬을 고르세요");
             Console.Write("0. 뒤로가기");
-            Console.Write(">>");
+            Console.WriteLine();
             skillInput = Utility.GetInput(0, gameManager.mySkils.Count);
 
             if (skillInput == 0)
@@ -543,11 +542,12 @@ class Dungeon
 
                     while (true)
                     {
+                        Console.Clear();
                         MonsterDisplay(monsters);
                         Console.WriteLine();
                         Console.WriteLine("공격할 몬스터 고르세요");
                         Console.Write("0. 뒤로가기");
-                        Console.Write(">>");
+                        Console.WriteLine();
                         input = Utility.GetInput(0, monsters.Count);
                         if (input == 0)
                         {
@@ -558,11 +558,7 @@ class Dungeon
                             if (monsters[input - 1].IsDead == true)
                             {
                                 Console.Clear();
-                                Console.WriteLine("잘못된 입력입니다.");
-                                Console.WriteLine();
-                                Console.WriteLine("아무키 입력. 다음");
-                                Console.WriteLine();
-                                Console.Write(">>");
+                                Utility.ColorWrite("잘못된 입력입니다.(아무 키나 눌러 확인)\n", ConsoleColor.Red);
                                 Console.ReadKey();
                                 continue;
                             }
@@ -585,19 +581,18 @@ class Dungeon
 
                                     if (monsters[input - 1].IsDead == true)
                                     {
-                                        Console.WriteLine("HP {0} -> Dead", tempHP);
+                                        Utility.ColorWrite($"HP {tempHP} -> Dead\n", ConsoleColor.DarkRed);
                                     }
                                     else
                                     {
-                                        Console.WriteLine("HP {0} -> {1}", tempHP, monsters[input - 1].NowHP);
+                                        Utility.ColorWrite($"HP {tempHP} -> {monsters[input - 1].NowHP}\n", ConsoleColor.DarkRed);
                                     }
 
                                     Console.WriteLine();
-                                    Console.WriteLine("아무키 입력. 다음");
                                     Console.WriteLine();
                                     gameManager.player.NowMP = gameManager.player.NowMP - gameManager.mySkils[skillInput - 1].Cost;
-                                    Console.WriteLine("PlayerMP: {0} -> {1}", tempMP, gameManager.player.NowMP);
-                                    Console.Write(">>");
+                                    Utility.ColorWrite($"PlayerMP : {tempMP} -> {gameManager.player.NowMP}\n", ConsoleColor.Blue);
+                                    Console.WriteLine("아무 키나 눌러 확인");
                                     Console.ReadKey();
                                     return true;
                                 }
@@ -620,7 +615,7 @@ class Dungeon
                         Console.WriteLine();
                         Console.WriteLine("공격할 몬스터 고르세요");
                         Console.Write("0. 뒤로가기");
-                        Console.Write(">>");
+                        Console.WriteLine();
                         input = Utility.GetInput(0, monsters.Count);
                         if (input == 0)
                         {
@@ -631,11 +626,8 @@ class Dungeon
                             if (monsters[input - 1].IsDead == true)
                             {
                                 Console.Clear();
-                                Console.WriteLine("잘못된 입력입니다.");
+                                Utility.ColorWrite("잘못된 입력입니다.(아무 키나 눌러 확인)",ConsoleColor.Red);
                                 Console.WriteLine();
-                                Console.WriteLine("아무키 입력. 다음");
-                                Console.WriteLine();
-                                Console.Write(">>");
                                 Console.ReadKey();
                                 continue;
                             }
@@ -669,17 +661,13 @@ class Dungeon
                                                 //Console.WriteLine("{0}킬째", gameManager.killCount);
                                                 if (monsters[(input - 1) - (int)(gameManager.mySkils[skillInput - 1].range / 2) + i].IsDead == true)
                                                 {
-                                                    Console.WriteLine("HP {0} -> Dead", tempHP[i]);
-                                                }
-                                                else
-                                                {
-                                                    Console.WriteLine("HP {0} -> {1}", tempHP[i], monsters[(input - 1) - (int)(gameManager.mySkils[skillInput - 1].range / 2) + i].NowHP);
-                                                }
+                                                    Utility.ColorWrite($"HP {tempHP[i]} -> Dead\n", ConsoleColor.DarkRed);
+                                                }                                    
                                             }
-                                            Console.WriteLine();
-                                            Console.WriteLine("아무키 입력. 다음");
-                                            Console.WriteLine();
-                                            Console.Write(">>");
+                                            else
+                                            {
+                                                Utility.ColorWrite($"HP {tempHP[i]} -> {monsters[(input - 1) - (int)(gameManager.mySkils[skillInput - 1].range / 2) + i].NowHP}\n", ConsoleColor.DarkRed);
+                                            }
                                             Console.ReadKey();
                                         }
                                         else
@@ -696,8 +684,12 @@ class Dungeon
                                 else 
                                 {
                                     gameManager.player.NowMP = gameManager.player.NowMP - gameManager.mySkils[skillInput - 1].Cost;
-                                    Console.WriteLine("PlayerMP: {0} -> {1}", tempMP, gameManager.player.NowMP);
+                                    Utility.ColorWrite($"PlayerMP : {tempMP} -> {gameManager.player.NowMP}", ConsoleColor.Blue);
+                                    Console.WriteLine();
+                                    Console.WriteLine("아무 키나 눌러 확인");
+                                    Console.ReadKey();
                                     return true;
+
                                 }
                             }
 
@@ -715,12 +707,14 @@ class Dungeon
         while (true)
         {
             Console.WriteLine();
-            Console.WriteLine("[소비 아이템 목록]");
+            Utility.ColorWrite("[소비 아이템 목록]\n", ConsoleColor.Blue);
             for (int i = 0; i < gameManager.inventoryConsumables.Count; i++)
             {
                 if (gameManager.inventoryConsumables[i].Count > 0 && gameManager.inventoryConsumables.Any() == true)
                 {
-                    Console.WriteLine($"- {i + 1} {gameManager.inventoryConsumables[i].Name} | {gameManager.inventoryConsumables[i].Inform} | 보유 개수 : {gameManager.inventoryConsumables[i].Count}");
+                    Console.Write("-");
+                    Utility.ColorWrite($" {i + 1}", ConsoleColor.Blue);
+                    Console.WriteLine($" {gameManager.inventoryConsumables[i].Name} | {gameManager.inventoryConsumables[i].Inform} | 보유 개수 : {gameManager.inventoryConsumables[i].Count}");
                 }
                 else
                 {
@@ -728,7 +722,7 @@ class Dungeon
                 }
             }
             Console.WriteLine();
-            Console.WriteLine("0. 나가기");
+            Utility.ColorWrite("0. 나가기\n\n", ConsoleColor.Red);
             input = Utility.GetInput(0, gameManager.inventoryConsumables.FindAll(x => x.Count > 0).Count);
 
             if (input == 0)
@@ -765,22 +759,20 @@ class Dungeon
         while (true)
         {
             Console.Clear();
-            Console.WriteLine("Battle!!");
+            Utility.ColorWrite("Battle!!\n",ConsoleColor.DarkRed);
             Console.WriteLine();
             MonsterDisplay(monsters);
 
-            Console.WriteLine("[내정보]");
+            Utility.ColorWrite("[내정보]\n", ConsoleColor.Green);
             Console.WriteLine("Lv. {0}  {1}  ({2})", gameManager.player.Level, gameManager.player.Name, gameManager.player.Job);
             Console.WriteLine("HP {0} / {1}", gameManager.player.NowHP, gameManager.player.MaxHP);
             Console.WriteLine("MP {0} / {1}", gameManager.player.NowMP, gameManager.player.MaxMP);
             Console.WriteLine();
             Console.WriteLine("0. 턴종료");
-            Console.WriteLine("1. 공격");
-            Console.WriteLine("2. 스킬사용");
-            Console.WriteLine("3. 아이템사용");
+            Utility.ColorWrite("1. 공격\n", ConsoleColor.Magenta);
+            Utility.ColorWrite("2. 스킬사용\n", ConsoleColor.Cyan);
+            Utility.ColorWrite("3. 아이템사용\n", ConsoleColor.Blue);
             Console.WriteLine();
-            Console.WriteLine("대상을 선택해주세요");
-            Console.Write(">>>");
             input = Utility.GetInput(0, 3);
             if (input == 0)
             {
@@ -836,7 +828,7 @@ class Dungeon
         int input;
         float tempHP;
         Console.Clear();
-        Console.WriteLine("Battle!!");
+        Utility.ColorWrite("Battle!!\n", ConsoleColor.DarkRed);
         Console.WriteLine();
         for (int i = 0; i < monsters.Count; i++)
         {
@@ -854,16 +846,14 @@ class Dungeon
                 Console.WriteLine("Lv.{0} {1}", gameManager.player.Level, gameManager.player.Name);*/
                 if (gameManager.player.NowHP <= 0)
                 {
-                    Console.WriteLine("HP {0} -> Dead", gameManager.player.NowHP);
+                    Utility.ColorWrite($"HP {gameManager.player.NowHP} -> Dead", ConsoleColor.DarkGray);
                 }
                 else
                 {
-                    Console.WriteLine("HP {0} -> {1}", tempHP, gameManager.player.NowHP);
+                    Utility.ColorWrite($"HP {tempHP} -> {gameManager.player.NowHP}", ConsoleColor.DarkMagenta);
                 }
 
-                Console.WriteLine("?아무키 입력 다음");
-                Console.WriteLine();
-                Console.Write(">>");
+                Console.WriteLine("아무 키나 눌러 확인");
                 Console.ReadKey();
             }
             else
@@ -882,26 +872,26 @@ class Dungeon
 
         //var expectconsumables = gameManager.consumables.Where(x => gameManager.inventoryConsumables.Count(s => x.ItemID != s.ItemID) != 0).ToList();            
         Console.Clear();
-        Console.WriteLine("던전을 클리어하였습니다");
+        Utility.ColorWrite("던전을 클리어하였습니다!\n", ConsoleColor.Cyan);
         //떄려잡은 몹 수 표시        
         Console.WriteLine("던전에서 몬스터 {0}마리를 잡았습니다", gameManager.killCount);
         gameManager.player.NowExp = gameManager.player.NowExp + resultExp;
         gameManager.player.Gold = gameManager.player.Gold + resultExp * 20;
 
         //체력경험치 증가 표시
-        Console.WriteLine("HP : {0} -> {1}", tempPlayer.NowHP, gameManager.player.NowHP);
+        Utility.ColorWrite($"HP : {tempPlayer.NowHP} -> {gameManager.player.NowHP}\n", ConsoleColor.DarkGreen);
         if (gameManager.player.Level != tempPlayer.Level)
         {
-            Console.WriteLine("Lv.{0} -> {1}", tempPlayer.Level, gameManager.player.Level);
+            Utility.ColorWrite($"Lv. {tempPlayer.Level} -> {gameManager.player.Level}\n", ConsoleColor.Green);
         }
-        Console.WriteLine("EXP : {0} -> {1}", tempPlayer.NowExp, gameManager.player.NowExp);
+        Utility.ColorWrite($"Exp. {tempPlayer.NowExp} -> {gameManager.player.NowExp}\n", ConsoleColor.Green);
 
         //얻은 아이템 표시 및 추가        
         Console.WriteLine();
-        Console.WriteLine("[획득 아이템]");
+        Utility.ColorWrite("[획득 아이템]\n", ConsoleColor.DarkYellow);
         Console.WriteLine();
         gameManager.player.Gold = gameManager.player.Gold + resultExp * 50;
-        Console.WriteLine("{0} Gold", gameManager.player.Gold);
+        Utility.ColorWrite($"{gameManager.player.Gold} Gold\n", ConsoleColor.Yellow);
 
         while (true)
         {
@@ -926,7 +916,7 @@ class Dungeon
         }
 
         gameManager.killCount = 0;
-        Console.WriteLine("Anykey. 나가기");
+        Console.WriteLine("\n아무 키나 눌러 나가기");
         Console.ReadKey();
         return;
     }
@@ -955,7 +945,7 @@ class Dungeon
         while (true)
         {
             Console.Clear();
-            Console.WriteLine("[GameOver]");
+            Utility.ColorWrite("[GameOver]\n", ConsoleColor.Red);
             Console.WriteLine("던전공략 실패");
             Console.WriteLine("캐릭터가 사망하였습니다.");
             Console.WriteLine();
@@ -973,7 +963,7 @@ class Dungeon
             Console.WriteLine("1. 게임종료");
             Console.WriteLine("2. 던전 재시작");
             Console.WriteLine("3. 던전입장화면으로");
-            Console.Write(">>");
+            Console.WriteLine();
             Input = Utility.GetInput(1, 3);
             gameManager.killCount = 0;
 
