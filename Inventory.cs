@@ -17,22 +17,22 @@ public class Inventory
             {
                 if (gameManager.inventoryEquipment[i].IsEquiped == true)
                 {
-                    if (gameManager.inventoryEquipment[i].ItemType == 0)
+                    if (gameManager.inventoryEquipment[i].ItemType == 0 || gameManager.inventoryEquipment[i].ItemType == 5)
                     {
                         Utility.ColorWrite($"- {gameManager.inventoryEquipment[i].ChangeEquipMark()}{gameManager.inventoryEquipment[i].Name} | 공격력 +{gameManager.inventoryEquipment[i].GetValue()} | {gameManager.inventoryEquipment[i].Inform}\n", ConsoleColor.Green);
                     }
-                    else if (gameManager.inventoryEquipment[i].ItemType == 1)
+                    else if (gameManager.inventoryEquipment[i].ItemType == 1 || gameManager.inventoryEquipment[i].ItemType == 3 || gameManager.inventoryEquipment[i].ItemType == 4 || gameManager.inventoryEquipment[i].ItemType == 6)
                     {
                         Utility.ColorWrite($"- {gameManager.inventoryEquipment[i].ChangeEquipMark()}{gameManager.inventoryEquipment[i].Name} | 방어력 +{gameManager.inventoryEquipment[i].GetValue()} | {gameManager.inventoryEquipment[i].Inform}\n", ConsoleColor.Green);
                     }
                 }
                 else
                 {
-                    if (gameManager.inventoryEquipment[i].ItemType == 0)
+                    if (gameManager.inventoryEquipment[i].ItemType == 0 || gameManager.inventoryEquipment[i].ItemType == 5)
                     {
                         Console.WriteLine($"- {gameManager.inventoryEquipment[i].ChangeEquipMark()}{gameManager.inventoryEquipment[i].Name} | 공격력 +{gameManager.inventoryEquipment[i].GetValue()} | {gameManager.inventoryEquipment[i].Inform}");
                     }
-                    else if (gameManager.inventoryEquipment[i].ItemType == 1)
+                    else if (gameManager.inventoryEquipment[i].ItemType == 1 || gameManager.inventoryEquipment[i].ItemType == 3 || gameManager.inventoryEquipment[i].ItemType == 4 || gameManager.inventoryEquipment[i].ItemType == 6)
                     {
                         Console.WriteLine($"- {gameManager.inventoryEquipment[i].ChangeEquipMark()}{gameManager.inventoryEquipment[i].Name} | 방어력 +{gameManager.inventoryEquipment[i].GetValue()} | {gameManager.inventoryEquipment[i].Inform}");
                     }
@@ -81,22 +81,23 @@ public class Inventory
             {
                 if (gameManager.inventoryEquipment[i].IsEquiped == true)
                 {
-                    if (gameManager.inventoryEquipment[i].ItemType == 0)
+                    if (gameManager.inventoryEquipment[i].ItemType == 0 || gameManager.inventoryEquipment[i].ItemType == 5)
                     {
                         Utility.ColorWrite($"-{i + 1}. {gameManager.inventoryEquipment[i].ChangeEquipMark()}{gameManager.inventoryEquipment[i].Name} | 공격력 +{gameManager.inventoryEquipment[i].GetValue()} | {gameManager.inventoryEquipment[i].Inform}\n", ConsoleColor.Green);
                     }
-                    else if (gameManager.inventoryEquipment[i].ItemType == 1)
+                    else if (gameManager.inventoryEquipment[i].ItemType == 1 || gameManager.inventoryEquipment[i].ItemType == 3 || gameManager.inventoryEquipment[i].ItemType == 4 || gameManager.inventoryEquipment[i].ItemType == 6)
                     {
                         Utility.ColorWrite($"-{i + 1}. {gameManager.inventoryEquipment[i].ChangeEquipMark()}{gameManager.inventoryEquipment[i].Name} | 방어력 +{gameManager.inventoryEquipment[i].GetValue()} | {gameManager.inventoryEquipment[i].Inform}\n", ConsoleColor.Green);
                     }
+
                 }
                 else
                 {
-                    if (gameManager.inventoryEquipment[i].ItemType == 0)
+                    if (gameManager.inventoryEquipment[i].ItemType == 0 || gameManager.inventoryEquipment[i].ItemType == 5)
                     {
                         Console.WriteLine($"-{i + 1}. {gameManager.inventoryEquipment[i].ChangeEquipMark()}{gameManager.inventoryEquipment[i].Name} | 공격력 +{gameManager.inventoryEquipment[i].GetValue()} | {gameManager.inventoryEquipment[i].Inform}");
                     }
-                    else if (gameManager.inventoryEquipment[i].ItemType == 1)
+                    else if (gameManager.inventoryEquipment[i].ItemType == 1 || gameManager.inventoryEquipment[i].ItemType == 3 || gameManager.inventoryEquipment[i].ItemType == 4 || gameManager.inventoryEquipment[i].ItemType == 6)
                     {
                         Console.WriteLine($"-{i + 1}. {gameManager.inventoryEquipment[i].ChangeEquipMark()}{gameManager.inventoryEquipment[i].Name} | 방어력 +{gameManager.inventoryEquipment[i].GetValue()} | {gameManager.inventoryEquipment[i].Inform}");
                     }
