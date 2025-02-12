@@ -1,0 +1,29 @@
+{
+  "player": {
+    "Level": 1,
+    "Job": "전사",
+    "MaxExp": 10,
+    "NowExp": 0,
+    "Gold": 700,
+    "Name": "kim",
+    "Details": null,
+    "Atk": 15.0,
+    "Def": 2.0,
+    "MaxHP": 150.0,
+    "NowHP": 150.0,
+    "MaxMP": 20.0,
+    "NowMP": 20.0
+  },
+  "saveItemData": [
+    {
+      "ItemID": 1,
+      "IsEquiped": false
+    }
+  ],
+  "SaveConsmableData": [
+    {
+      "ItemID": 7,
+      "Count": 1
+    }
+  ]
+}
