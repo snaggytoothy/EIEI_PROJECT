@@ -59,12 +59,12 @@ public class GameManager
 
     public List<Skil> SkilList = new List<Skil>()
     {
-        new Skil { ID = 1, Name = "전사스킬1", Damage = 30 , skilRatiod = 0.5, range = 1, IsHad = false, Cost = 10, type = 1, Description = "스킬설명"},
-        new Skil { ID = 2, Name = "전사스킬2", Damage = 20,  skilRatiod = 0.3,range = 3, IsHad = false, Cost = 20 , type = 1, Description = "스킬설명"},
-        new Skil { ID = 3, Name = "전사스킬3", Damage = 50, skilRatiod = 1.0, range = 1, IsHad = false , Cost = 50, type = 1, Description = "스킬설명"},
-        new Skil { ID = 4, Name = "마법사스킬1", Damage = 20, skilRatiod = 0.5, range = 1, IsHad = false, Cost = 10 , type = 2, Description = "스킬설명"},
-        new Skil { ID = 5, Name = "마법사스킬2", Damage = 10, skilRatiod = 0.3, range = 5, IsHad = false, Cost = 20 , type = 2, Description = "스킬설명"},
-        new Skil { ID = 6, Name = "마법사스킬3", Damage = 50, skilRatiod = 1.0, range = 1, IsHad = false, Cost = 50 , type = 2, Description = "스킬설명"},
+        new Skil { ID = 1, Name = "전사스킬1", Damage = 30 , skilRatiod = 0.5, range = 1, IsHad = false, Cost = 10, type = 1, Description = "스킬설명", Price = 1000},
+        new Skil { ID = 2, Name = "전사스킬2", Damage = 20,  skilRatiod = 0.3,range = 3, IsHad = false, Cost = 20 , type = 1, Description = "스킬설명", Price = 1000},
+        new Skil { ID = 3, Name = "전사스킬3", Damage = 50, skilRatiod = 1.0, range = 1, IsHad = false , Cost = 50, type = 1, Description = "스킬설명", Price = 1000},
+        new Skil { ID = 4, Name = "마법사스킬1", Damage = 20, skilRatiod = 0.5, range = 1, IsHad = false, Cost = 10 , type = 2, Description = "스킬설명", Price = 1000},
+        new Skil { ID = 5, Name = "마법사스킬2", Damage = 10, skilRatiod = 0.3, range = 5, IsHad = false, Cost = 20 , type = 2, Description = "스킬설명", Price = 1000},
+        new Skil { ID = 6, Name = "마법사스킬3", Damage = 50, skilRatiod = 1.0, range = 1, IsHad = false, Cost = 50 , type = 2, Description = "스킬설명", Price = 1000},
     };
 
     public List<Skil> mySkils = new List<Skil>();
