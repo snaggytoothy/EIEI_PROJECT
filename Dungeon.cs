@@ -239,7 +239,11 @@ class Dungeon
                     monsterID = random.Next(1, 4);
                     monsters.Add(new Monster(monsterID));
                 }
-                monsters.Add(new Monster(random.Next(4,6)));//레어몬스터 확정생성
+                if (random.Next(1, 101) > 90)
+                {
+                    monsters.Add(new Monster(random.Next(4, 6)));//레어몬스터 확률생성
+                }
+                
             }
             else if (wave == 3)
             {
@@ -285,7 +289,11 @@ class Dungeon
                     monsterID = random.Next(6, 9);
                     monsters.Add(new Monster(monsterID));
                 }
-                monsters.Add(new Monster(random.Next(9, 11)));//레어몬스터 확정생성
+                if (random.Next(0, 101) > 90)
+                {
+                    monsters.Add(new Monster(random.Next(9, 11)));//레어몬스터 확률
+                }
+                
             }
             else if (wave == 3)
             {
@@ -325,7 +333,10 @@ class Dungeon
                     monsterID = random.Next(12, 17);
                     monsters.Add(new Monster(monsterID));
                 }
-                monsters.Add(new Monster(random.Next(17,19)));//레어몬스터 확정생성
+                if (random.Next(0, 101) > 90)
+                {
+                    monsters.Add(new Monster(random.Next(17, 19)));//레어몬스터 확률생성
+                }
             }
             else if (wave == 3)
             {
@@ -335,7 +346,6 @@ class Dungeon
                     monsterID = random.Next(12, 17);
                     monsters.Add(new Monster(monsterID));
                 }
-                //monsterNum = random.Next(9, 11);
                 monsters.Add(new Monster(32));//보스몬스터 확정생성
             }
         }
@@ -379,7 +389,7 @@ class Dungeon
                     }
                     monsters.Clear();
                     //승리화면으로
-                    Clear(gameManager, tempPlayer, resultExp);
+                    Clear(gameManager, tempPlayer, resultExp,level);
                     gameManager.exitFlag = 1;
                     return;
                 }
@@ -435,7 +445,6 @@ class Dungeon
             {
                 Utility.ColorWrite($"{i + 1} Lv {monsters[i].Level} {monsters[i].Name}   Dead", ConsoleColor.DarkGray);
                 Console.WriteLine();
-                //Console.WriteLine("{0} Lv {1} {2}   Dead", i + 1, monsters[i].Level, monsters[i].Name);
                 Console.WriteLine();
             }
         }
@@ -482,11 +491,7 @@ class Dungeon
                         monsters[input - 1].IsDead = true;
                         monsters[input - 1].NowHP = 0;
                         gameManager.killCount = gameManager.killCount + 1;
-                        //Console.WriteLine("{0}킬째", gameManager.killCount);
                     }
-                    /*Console.WriteLine("Lv.{0} {1} 을(를) 맞췄습니다. [데미지] : {2}", monsters[input - 1].Level, monsters[input - 1].Name, tempHP - monsters[input - 1].NowHP);
-                    Console.WriteLine();
-                    Console.WriteLine("Lv.{0} {1}", monsters[input - 1].Level, monsters[input - 1].Name);*/
                     if (monsters[input - 1].IsDead == true)
                     {
                         Utility.ColorWrite($"HP {tempHP} -> Dead\n", ConsoleColor.DarkRed);
@@ -575,7 +580,6 @@ class Dungeon
                                         monsters[input - 1].IsDead = true;
                                         monsters[input - 1].NowHP = 0;
                                         gameManager.killCount = gameManager.killCount + 1;
-                                        //Console.WriteLine("{0}킬째", gameManager.killCount);
 
                                     }
 
@@ -658,7 +662,6 @@ class Dungeon
                                                 monsters[(input - 1) - (int)(gameManager.mySkils[skillInput - 1].range / 2) + i].IsDead = true;
                                                 monsters[(input - 1) - (int)(gameManager.mySkils[skillInput - 1].range / 2) + i].NowHP = 0;
                                                 gameManager.killCount = gameManager.killCount + 1;
-                                                //Console.WriteLine("{0}킬째", gameManager.killCount);
                                                 if (monsters[(input - 1) - (int)(gameManager.mySkils[skillInput - 1].range / 2) + i].IsDead == true)
                                                 {
                                                     Utility.ColorWrite($"HP {tempHP[i]} -> Dead\n", ConsoleColor.DarkRed);
@@ -841,9 +844,6 @@ class Dungeon
                 {
                     gameManager.player.NowHP = 0;
                 }
-                /*Console.WriteLine("{0} 을(를) 맞췄습니다. [데미지] : {1}", gameManager.player.Name, tempHP - gameManager.player.NowHP);
-                Console.WriteLine();
-                Console.WriteLine("Lv.{0} {1}", gameManager.player.Level, gameManager.player.Name);*/
                 if (gameManager.player.NowHP <= 0)
                 {
                     Utility.ColorWrite($"HP {gameManager.player.NowHP} -> Dead", ConsoleColor.DarkGray);
@@ -864,13 +864,11 @@ class Dungeon
         gameManager.TurnCount++;
     }
 
-    public void Clear(GameManager gameManager, Player tempPlayer, int resultExp)
+    public void Clear(GameManager gameManager, Player tempPlayer, int resultExp,int level)
     {
         gameManager.TurnCount = 0;
 
         Random random1 = new Random();
-
-        //var expectconsumables = gameManager.consumables.Where(x => gameManager.inventoryConsumables.Count(s => x.ItemID != s.ItemID) != 0).ToList();            
         Console.Clear();
         Utility.ColorWrite("던전을 클리어하였습니다!\n", ConsoleColor.Cyan);
         //떄려잡은 몹 수 표시        
@@ -908,6 +906,21 @@ class Dungeon
                 int temp = random2.Next(0, find.Count);
                 Console.WriteLine("{0}", find[temp].Name);
                 gameManager.inventoryEquipment.Add(find[temp]);
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        while (true)
+        {
+            if (random1.Next(1, 101) > 90)
+            {
+                var find = gameManager.equipments.FindAll(x=>x.RareFlag == true).ToList();
+                int temp = random1.Next(0, find.Count);
+                Console.WriteLine("{0}", find[temp].Name);
+                gameManager.equipments.Add(find[temp]);
             }
             else
             {

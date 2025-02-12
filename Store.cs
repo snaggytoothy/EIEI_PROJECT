@@ -1,7 +1,10 @@
+using System.IO;
+
 namespace EIEIE_Project;
 
 public class Store
 {
+    //플레이어 직업에 따라 살 수 있는 스킬 제한
     bool IsSellOrBuy = false; //구매, 또는 판매 중일 때 true가 됨
     public void PrintItem(GameManager gm) //아이템 목록을 출력함
     {
@@ -41,7 +44,7 @@ public class Store
             }
             //아이템 순번, 아이템 장착 여부, 아이템 이름, 아이템 타입, 아이템 스탯 증가/감소 수치, 아이템 정보, 아이템 가격 출력
         }
-        //consumable 추가하려고 하니 둘 다 같은 번호로 뜸. +1을 없애고, 그 뒤에 consumable.count도 더해야함
+
         Console.WriteLine();
         Utility.ColorWrite("==소비=============\n", ConsoleColor.DarkYellow);
         for (int i = 0; i < gm.consumables.Count; i++)
@@ -61,7 +64,49 @@ public class Store
         }
         Console.WriteLine();
         Utility.ColorWrite("==스킬=============\n", ConsoleColor.DarkYellow);
-        for (int i = 0; i < gm.SkilList.Count; i++)
+        List<Skil> warriorSkills = new List<Skil>();
+        List<Skil> magicianSkills = new List<Skil>();
+        for (int i = 0; i < gm.SkilList.Count; i++) //모든 스킬을 type에 따라 다른 목록으로 추가
+        {
+            if (gm.SkilList[i].type == 1)
+            {
+                warriorSkills.Add(gm.SkilList[i]);
+            }
+            else
+            {
+                magicianSkills.Add(gm.SkilList[i]);
+            }
+        }
+
+        switch (gm.player.Job)
+        {
+            case "전사":
+                PrintSkill(gm, warriorSkills);
+                break;
+            case "마법사":
+                PrintSkill(gm, magicianSkills);
+                break;
+            case "모험가":
+                PrintSkill(gm, gm.SkilList);
+                break;
+        }
+        Console.WriteLine();
+    }
+
+    public void PrintSkill(GameManager gm, List<Skil> skills)
+    {
+        string str = "";
+        int consumableNum = gm.itemList.Count;
+        string strNum = "";
+        for (int i = 0; i < gm.itemList.Count; i++)
+        {
+            if (!gm.itemList[i].ShopFlag)
+            {
+                consumableNum--;
+            }
+        }
+
+        for (int i = 0; i < skills.Count; i++)
         {
             if (!IsSellOrBuy) strNum = " - "; //상점 창에서 아이템 번호 대신 " - "를 출력함
             else
@@ -69,8 +114,9 @@ public class Store
                 consumableNum++;
                 strNum = consumableNum.ToString() + "."; //소모품 번호를 string 값으로 변환 후 마침표 찍어주기
             }
-            Skil item = gm.SkilList[i];
+            Skil item = skills[i];
             string strPrice = item.IsHad ? "소지 중" : $"{item.Price} G"; //아이템이 인벤토리에 있는가의 여부에 따라 소지 중 또는 가격을 출력
+
             Console.Write($" {strNum} {item.Name} | 공격력: {item.Damage} | 공격 계수: {item.skilRatiod} | 공격 범위: {item.range}마리 | 마나 소모량: {item.Cost} | 스킬 타입: {item.type} | {item.Description} | ");
             if (item.IsHad)
             {
@@ -82,8 +128,8 @@ public class Store
             }
             Console.WriteLine();
         }
-        Console.WriteLine() ;
     }
+
     public void StoreScreen(GameManager gm) //상점 창 열람
     {
         while (true)
@@ -130,81 +176,83 @@ public class Store
             Console.WriteLine("구매할 아이템의 번호를 누르세요.");
             Utility.ColorWrite("0. 나가기\n\n", ConsoleColor.Red);
 
-            int num = Utility.GetInput(0, gm.itemList.Count + gm.SkilList.Count); //0부터 아이템 개수까지의 입력 가능
+            int num = Utility.GetInput(0, gm.itemList.Count + gm.SkilList.Count - 1); //0부터 아이템 개수까지의 입력 가능
 
             if (num != 0) //0은 아닌데 아이템 목록 개수와 같거나 더 적을 때
             {
                 num--; //아이템 번호를 0부터 시작하게 함
-                if (gm.itemList[num].ItemType != 2 && gm.itemList[num].ShopFlag) //장비 또는 방어구일 때
+                if (num < gm.itemList.Count)
                 {
-                    Equipment item = (Equipment)gm.itemList[num];
-                    if (item.IsBought) //이미 있는 상품이라면
+                    if (gm.itemList[num].ItemType != 2 && gm.itemList[num].ShopFlag) //장비 또는 방어구일 때
                     {
-                        Console.Clear();
-                        Utility.ColorWrite("이미 있는 아이템입니다.\n\n", ConsoleColor.Green);
-                    }
-                    else if (gm.player.Gold >= item.Price)
-                    {
-                        item.IsBought = true; //구매 완료 상태로 변경
-                        gm.inventoryEquipment.Add(item); //인벤토리에 아이템 추가
-                        gm.player.Gold -= item.Price; //골드 차감
-                        Console.Clear();
-                        Utility.ColorWrite($"==={item.Name} 아이템을 구매했습니다.===\n\n", ConsoleColor.Green);
-                    }
-                    else
-                    {
-                        Console.Clear();
-                        Utility.ColorWrite($"{item.Name} 아이템을 사기에 골드가 부족합니다.\n\n", ConsoleColor.Red);
-                    }
-                    break;
-                }
-                else if (gm.itemList[num].ItemType == 2)//소모품일 경우
-                {
-                    Consumable item = (Consumable)gm.itemList[num];
-                    if (item.Count < item.MaxCount)
-                    {
-                        if (gm.player.Gold >= item.Price) //소모품은 계속 구매 가능
+                        Equipment item = (Equipment)gm.itemList[num];
+                        if (item.IsBought) //이미 있는 상품이라면
                         {
-                            if (item.Count == 0) gm.inventoryConsumables.Add(item); //인벤토리에 아이템 추가
+                            Console.Clear();
+                            Utility.ColorWrite("이미 있는 아이템입니다.\n\n", ConsoleColor.Green);
+                        }
+                        else if (gm.player.Gold >= item.Price)
+                        {
+                            item.IsBought = true; //구매 완료 상태로 변경
+                            gm.inventoryEquipment.Add(item); //인벤토리에 아이템 추가
                             gm.player.Gold -= item.Price; //골드 차감
-                            item.Count++; //소모품 개수 1 증가
                             Console.Clear();
                             Utility.ColorWrite($"==={item.Name} 아이템을 구매했습니다.===\n\n", ConsoleColor.Green);
                         }
                         else
                         {
                             Console.Clear();
-                            Utility.ColorWrite("골드가 부족합니다.\n\n", ConsoleColor.Red);
+                            Utility.ColorWrite($"{item.Name} 아이템을 사기에 골드가 부족합니다.\n\n", ConsoleColor.Red);
                         }
                         break;
                     }
+                    else if (gm.itemList[num].ItemType == 2)//소모품일 경우
+                    {
+                        Consumable item = (Consumable)gm.itemList[num];
+                        if (item.Count < item.MaxCount)
+                        {
+                            if (gm.player.Gold >= item.Price) //소모품은 계속 구매 가능
+                            {
+                                if (item.Count == 0) gm.inventoryConsumables.Add(item); //인벤토리에 아이템 추가
+                                gm.player.Gold -= item.Price; //골드 차감
+                                item.Count++; //소모품 개수 1 증가
+                                Console.Clear();
+                                Utility.ColorWrite($"==={item.Name} 아이템을 구매했습니다.===\n\n", ConsoleColor.Green);
+                            }
+                            else
+                            {
+                                Console.Clear();
+                                Utility.ColorWrite("골드가 부족합니다.\n\n", ConsoleColor.Red);
+                            }
+                            break;
+                        }
+                        else
+                        {
+                            Utility.ColorWrite("보유한도를 초과했습니다.\n\n", ConsoleColor.Red);
+                        }
+                    }
                     else
                     {
-                        Utility.ColorWrite("보유한도를 초과했습니다.\n\n", ConsoleColor.Red);
-                    }
-                }
-                else
-                {
-                    num++;
-                    int skillNum = num - gm.itemList.Count;
-                    Skil item = gm.SkilList[skillNum];
-                    if (item.Price > gm.player.Gold)
-                    {
-                        Console.Clear();
-                        Utility.ColorWrite("해당 스킬을 구매하기에 골드가 부족합니다.\n\n", ConsoleColor.Red);
-                    }
-                    else if (item.IsHad)
-                    {
-                        Console.Clear();
-                        Console.WriteLine("이미 있는 스킬입니다.");
-                        break;
-                    }
-                    else
-                    {
-                        gm.SkilList[skillNum].IsHad = true;
-                        gm.mySkils.Add(item);
-                        Console.Clear();
-                        Utility.ColorWrite($"{gm.SkilList[skillNum].Name} 스킬을 추가했습니다.\n\n", ConsoleColor.Green);
+                        int skillNum = num - gm.itemList.Count;
+                        Skil item = gm.SkilList[skillNum];
+                        if (item.Price > gm.player.Gold)
+                        {
+                            Console.Clear();
+                            Utility.ColorWrite("해당 스킬을 구매하기에 골드가 부족합니다.\n\n", ConsoleColor.Red);
+                        }
+                        else if (item.IsHad)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("이미 있는 스킬입니다.");
+                            break;
+                        }
+                        else
+                        {
+                            gm.SkilList[skillNum].IsHad = true;
+                            gm.mySkils.Add(item);
+                            Console.Clear();
+                            Utility.ColorWrite($"{gm.SkilList[skillNum].Name} 스킬을 추가했습니다.\n\n", ConsoleColor.Green);
+                        }
                     }
                 }
             }
