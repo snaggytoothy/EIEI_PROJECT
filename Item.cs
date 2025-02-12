@@ -10,6 +10,7 @@ public class Item
 
     public bool ShopFlag { get; set; }
     public bool MonsterFlag { get; set; }
+    public bool RareFlag { get; set; }
 }
 
 
