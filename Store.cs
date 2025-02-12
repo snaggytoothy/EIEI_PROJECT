@@ -48,6 +48,21 @@ public class Store
             Console.WriteLine($" {strNum} {item.Name} | {str} +{item.BuffAmount} | {item.Inform} | {item.Price}G | 보유 개수: {item.Count}");
             //아이템 순번, 이름, 버프 + 버프 수치, 아이템 정보, 아이템 가격, 보유 개수 출력
         }
+
+        Console.WriteLine("==스킬=============");
+        for (int i = 0; i < gm.SkilList.Count; i++)
+        {
+            if (!IsSellOrBuy) strNum = " - "; //상점 창에서 아이템 번호 대신 " - "를 출력함
+            else
+            {
+                consumableNum++;
+                strNum = consumableNum.ToString() + "."; //소모품 번호를 string 값으로 변환 후 마침표 찍어주기
+            }
+             Skil item = gm.SkilList[i];
+
+            string str = "";
+            Console.WriteLine($" {strNum} {item.Name} | 공격력: {item.Damage} | 공격 계수: {item.skilRatiod} | 공격 범위: {item.range}마리 | 마나 소모량: {item.Cost} | 스킬 타입: {item.type} | {item.Description}");
+        }
     }
     public void StoreScreen(GameManager gm) //상점 창 열람
     {
