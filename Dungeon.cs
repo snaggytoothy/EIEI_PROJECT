@@ -232,12 +232,13 @@ class Dungeon
             }
             else if (wave == 2)
             {
-                monsterNum = random.Next(2, 4);
+                monsterNum = random.Next(1, 3);
                 for (int i = 0; i < monsterNum; i++)
                 {
                     monsterID = random.Next(1, 4);
                     monsters.Add(new Monster(monsterID));
                 }
+                monsters.Add(new Monster(4));//레어몬스터 확정생성
             }
             else if (wave == 3)
             {
@@ -247,7 +248,7 @@ class Dungeon
                     monsterID = random.Next(1, 4);
                     monsters.Add(new Monster(monsterID));
                 }
-                monsters.Add(new Monster(4));//보스몬스터
+                monsters.Add(new Monster(4));//보스몬스터 확정생성
             }
         }
 
@@ -255,33 +256,51 @@ class Dungeon
         {
             if (wave == 1)
             {
-                monsterNum = random.Next(2, 4);
+                monsterNum = random.Next(0 , 2);
                 for (int i = 0; i < monsterNum; i++)
                 {
-                    monsterID = random.Next(5, 9);
+                    monsterID = random.Next(8, 10);
+                    monsters.Add(new Monster(monsterID));
+                }
+                monsterNum = random.Next(3, 4);
+                for (int i = 0; i < monsterNum; i++)
+                {
+                    monsterID = random.Next(5, 8);
                     monsters.Add(new Monster(monsterID));
                 }
 
             }
             else if (wave == 2)
             {
+                monsterNum = random.Next(0, 2);
+                for (int i = 0; i < monsterNum; i++)
+                {
+                    monsterID = random.Next(8, 10);
+                    monsters.Add(new Monster(monsterID));
+                }
                 monsterNum = random.Next(4, 6);
                 for (int i = 0; i < monsterNum; i++)
                 {
-                    monsterID = random.Next(5, 9);
+                    monsterID = random.Next(5, 8);
                     monsters.Add(new Monster(monsterID));
                 }
+                monsters.Add(new Monster(random.Next(9,11)));//레어몬스터 확정생성
             }
             else if (wave == 3)
             {
-                monsterNum = random.Next(5, 8);
+                monsterNum = random.Next(2, 4);
                 for (int i = 0; i < monsterNum; i++)
                 {
                     monsterID = random.Next(5, 9);
                     monsters.Add(new Monster(monsterID));
                 }
-                monsterNum = random.Next(9, 11);
-                monsters.Add(new Monster(monsterNum));//보스몬스터
+                monsterNum = random.Next(6, 8);
+                for (int i = 0; i < monsterNum; i++)
+                {
+                    monsterID = random.Next(5, 8);
+                    monsters.Add(new Monster(monsterID));
+                }
+                monsters.Add(new Monster(10));
             }
         }
 
@@ -292,7 +311,7 @@ class Dungeon
                 monsterNum = random.Next(3, 5);
                 for (int i = 0; i < monsterNum; i++)
                 {
-                    monsterID = random.Next(11, 14);
+                    monsterID = random.Next(11, 15);
                     monsters.Add(new Monster(monsterID));
                 }
 
@@ -302,9 +321,10 @@ class Dungeon
                 monsterNum = random.Next(4, 7);
                 for (int i = 0; i < monsterNum; i++)
                 {
-                    monsterID = random.Next(11, 14);
+                    monsterID = random.Next(11, 15);
                     monsters.Add(new Monster(monsterID));
                 }
+                monsters.Add(new Monster(15));//레어몬스터 확정생성
             }
             else if (wave == 3)
             {
@@ -314,8 +334,8 @@ class Dungeon
                     monsterID = random.Next(11, 14);
                     monsters.Add(new Monster(monsterID));
                 }
-                monsterNum = random.Next(9, 11);
-                monsters.Add(new Monster(monsterNum));//보스몬스터
+                //monsterNum = random.Next(9, 11);
+                monsters.Add(new Monster(15));//보스몬스터 확정생성
             }
         }
     }
@@ -649,11 +669,11 @@ class Dungeon
                                                 //Console.WriteLine("{0}킬째", gameManager.killCount);
                                                 if (monsters[(input - 1) - (int)(gameManager.mySkils[skillInput - 1].range / 2) + i].IsDead == true)
                                                 {
-                                                    Console.WriteLine("HP {0} -> Dead", tempHP);
+                                                    Console.WriteLine("HP {0} -> Dead", tempHP[i]);
                                                 }
                                                 else
                                                 {
-                                                    Console.WriteLine("HP {0} -> {1}", tempHP, monsters[(input - 1) - (int)(gameManager.mySkils[skillInput - 1].range / 2) + i].NowHP);
+                                                    Console.WriteLine("HP {0} -> {1}", tempHP[i], monsters[(input - 1) - (int)(gameManager.mySkils[skillInput - 1].range / 2) + i].NowHP);
                                                 }
                                             }
                                             Console.WriteLine();
