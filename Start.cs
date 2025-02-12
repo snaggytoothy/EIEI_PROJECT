@@ -14,11 +14,21 @@ public class Start()
     {
         while (true)
         {
-            Console.WriteLine("스파르타 던전에 오신 것을 환영합니다.\r\n");
-            Console.WriteLine("원하시는 이름을 설정해주세요.");
-            string str = Console.ReadLine() ?? "스파르타"; //값이 없다면 "스파르타"로 설정
-            gameManager.player.Name = str; //플레이어 이름 설정
+            while (true)
+            {
+                Console.WriteLine("스파르타 던전에 오신 것을 환영합니다.\r\n");
+                Console.WriteLine("원하시는 이름을 설정해주세요.");
 
+                string str = Console.ReadLine() ?? "스파르타"; //값이 없다면 "스파르타"로 설정
+                char[] letters = str.ToCharArray();
+                if (letters.Length > 8) Console.WriteLine("8글자 내로 입력해주세요.");
+                else
+                {
+                    gameManager.player.Name = str; //플레이어 이름 설정
+                    break;
+                }
+            }
+            
             Console.Clear();
             Console.WriteLine($"안녕하세요! {gameManager.player.Name}님!\n계속해서 이 이름으로 불러 드릴까요?");
             Console.WriteLine("1. 네 \n2. 아니오");
