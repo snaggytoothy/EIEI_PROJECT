@@ -324,156 +324,17 @@ class Dungeon
         //플레이어의 진입시 상태를 저장
         Player tempPlayer = new Player() { NowExp = gameManager.player.NowExp, Gold = gameManager.player.Gold, NowHP = gameManager.player.NowHP, Level = gameManager.player.Level, MaxExp = gameManager.player.MaxExp };
         List<Monster> monsters = new List<Monster>();
-        //easy던전 입장
-        if (level == 1)
+
+        int wave = 3;
+        int resultExp = 0;
+        //던전시작
+        for (int i = 1; i <= wave + 1; i++)
         {
-            int wave = 3;
-            int resultExp = 0;
-            //난이도에 맞는 몬스터 생성            
-
-
-            for (int i = 1; i <= wave + 1; i++)
+            if (gameManager.exitFlag == 1)
             {
-                if (gameManager.exitFlag == 1)
-                {
-                    break;
-                }
-                else if (gameManager.exitFlag == 0)
-                {
-                    if (i == 1)
-                    {
-                        CreateMonster(monsters, level, i);
-                    }
-                    else if (i == 2)
-                    {
-                        CreateMonster(monsters, level, i);
-                    }
-                    else if (i == 3)
-                    {
-                        CreateMonster(monsters, level, i);
-                    }
-                    else
-                    {
-                        for (int j = 0; j < monsters.Count; j++)
-                        {
-                            resultExp += monsters[j].Level;
-                        }
-                        monsters.Clear();
-                        //승리화면으로
-                        Clear(gameManager, tempPlayer, resultExp);
-                        gameManager.exitFlag = 1;
-                        return;
-                    }
-
-                    while (true)
-                    {
-                        Console.Clear();
-                        //플레이어 턴
-                        PlayerTurn(gameManager, monsters);
-                        //적 몬스터 턴
-                        EnemyTurn(gameManager, monsters);
-                        if (gameManager.player.NowHP <= 0)
-                        {
-                            //패배화면으로
-                            //monsters.Clear();
-                            Fail(gameManager, tempPlayer);
-                            if (gameManager.exitFlag == 0)
-                            {
-                                continue;
-                            }
-                            else if (gameManager.exitFlag == 1)
-                            {
-                                break;
-                            }
-                        }
-                        if (monsters.FindAll(x => x.IsDead == true).Count == monsters.Count)
-                        {
-                            for (int j = 0; j < monsters.Count; j++)
-                            {
-                                resultExp += monsters[j].Level;
-                            }
-                            break;
-                        }
-                    }
-                }
-
+                break;
             }
-
-        }
-        //normal 던전 입장
-        else if (level == 2)
-        {
-            int wave = 3;
-            int resultExp = 0;
-            //난이도에 맞는 몬스터 생성            
-
-            for (int i = 1; i <= wave + 1; i++)
-            {
-                if (i == 1)
-                {
-                    CreateMonster(monsters, level, i);
-                }
-                else if (i == 2)
-                {
-                    CreateMonster(monsters, level, i);
-                }
-                else if (i == 3)
-                {
-                    CreateMonster(monsters, level, i);
-                }
-                else
-                {
-                    for (int j = 0; j < monsters.Count; j++)
-                    {
-                        resultExp += monsters[j].Level;
-                    }
-                    monsters.Clear();
-                    //승리화면으로
-                    Clear(gameManager, tempPlayer, resultExp);
-                    gameManager.exitFlag = 1;
-                    break;
-                }
-
-                while (true)
-                {
-                    Console.Clear();
-                    //플레이어 턴
-                    PlayerTurn(gameManager, monsters);
-                    //적 몬스터 턴
-                    EnemyTurn(gameManager, monsters);
-                    if (gameManager.player.NowHP <= 0)
-                    {
-                        //패배화면으로
-                        //monsters.Clear();
-                        Fail(gameManager, tempPlayer);
-                        if (gameManager.exitFlag == 0)
-                        {
-                            continue;
-                        }
-                        else if (gameManager.exitFlag == 1)
-                        {
-                            break;
-                        }
-                    }
-                    if (monsters.FindAll(x => x.IsDead == true).Count == monsters.Count)
-                    {
-                        for (int j = 0; j < monsters.Count; j++)
-                        {
-                            resultExp += monsters[j].Level;
-                        }
-                        break;
-                    }
-                }
-            }
-        }
-        //hard던전 입장
-        else if (level == 3)
-        {
-            int wave = 3;
-            int resultExp = 0;
-            //난이도에 맞는 몬스터 생성            
-
-            for (int i = 1; i <= wave + 1; i++)
+            else if (gameManager.exitFlag == 0)
             {
                 if (i == 1)
                 {
@@ -531,10 +392,7 @@ class Dungeon
                     }
                 }
             }
-        }
-        else
-        {
-            //예외처리
+
         }
     }
 
@@ -551,7 +409,7 @@ class Dungeon
             //죽은 몬스터 표시
             else if (monsters[i].IsDead == true)
             {
-                Utility.ColorWrite($"{i+1} Lv {monsters[i].Level} {monsters[i].Name}   Dead",ConsoleColor.Black);
+                Utility.ColorWrite($"{i+1} Lv {monsters[i].Level} {monsters[i].Name}   Dead",ConsoleColor.DarkGray);
                 Console.WriteLine();
                 //Console.WriteLine("{0} Lv {1} {2}   Dead", i + 1, monsters[i].Level, monsters[i].Name);
                 Console.WriteLine();
