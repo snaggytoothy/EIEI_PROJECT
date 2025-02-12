@@ -146,8 +146,8 @@ public class Player : Character
             if (level != value)
             {
                 level = value;
-                Atk += (level - 1) * 0.5f;
-                Def += (level - 1) * 1f;
+                Atk += 0.5f;
+                Def += 1f;
                 MaxExp += 20 + 5 * (level - 1);
             }
         }
