@@ -117,7 +117,9 @@ public class Store
                 consumableNum++;
                 strNum = consumableNum.ToString() + "."; //소모품 번호를 string 값으로 변환 후 마침표 찍어주기
             }
+            Skil ownedSkill = gm.mySkils.Find(x => x.Name == skills[i].Name);
             Skil item = skills[i];
+            item.IsHad = ownedSkill != null; //보유한 스킬인지 확인
             string strPrice = item.IsHad ? "소지 중" : $"{item.Price} G"; //아이템이 인벤토리에 있는가의 여부에 따라 소지 중 또는 가격을 출력
 
             Console.Write($" {strNum} {item.Name} | 공격력: {item.Damage} | 공격 계수: {item.skilRatiod} | 공격 범위: {item.range}마리 | 마나 소모량: {item.Cost} | 스킬 타입: {item.type} | {item.Description} | ");
