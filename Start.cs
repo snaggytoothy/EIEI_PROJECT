@@ -79,21 +79,20 @@ public class Start()
             Console.Clear();
             Console.WriteLine($"{gameManager.player.Name}님 멋진 이름이군요.");
             Console.WriteLine("그렇다면 당신의 직업은 무엇인가요?");
-            Console.WriteLine("\n1. 전사\n2. 마법사\n3. 모험가");
+            Console.WriteLine("\n1. 팔라딘\n2. 마검사\n3. 모험가");
             int input = Utility.GetInput(1, 3);
             switch (input)
             {
                 case 1:
-                    gameManager.player.Job = "전사";
+                    gameManager.player.Job = "팔라딘";
                     gameManager.mySkils.Add(gameManager.SkilList[0]);
-                    gameManager.mySkils.Add(gameManager.SkilList[1]);
                     break;
                 case 2:
-                    gameManager.player.Job = "마법사";
+                    gameManager.player.Job = "마검사";
                     gameManager.mySkils.Add(gameManager.SkilList[3]);
                     break;
                 case 3:
-                    gameManager.player.Job = "모험가";
+                    gameManager.player.Job = "GM";
                     gameManager.mySkils.Add(gameManager.SkilList[0]);
                     gameManager.mySkils.Add(gameManager.SkilList[1]);
                     gameManager.mySkils.Add(gameManager.SkilList[2]);
@@ -131,8 +130,8 @@ public class Start()
         {
             Console.Clear();
             Console.WriteLine("이곳에서 던전으로 들어가기전 활동을 할 수 있습니다.\n");
-            Console.WriteLine("1. 상태 보기 \n2. 인벤토리 \n3. 상점 \n4. 던전 입장 \n5. 휴식하기 \n6. 세이브 \n\n0. 게임종료");
-
+            Console.WriteLine("1. 상태보기 \n2. 인벤토리\n3. 상점\n4. 던전 입장\n5. 휴식하기\n6. 저장하기\n");
+            Utility.ColorWrite("0. 게임종료\n", ConsoleColor.Red);
             act = Utility.GetInput(0, 6);
             switch (act)
             {
@@ -216,9 +215,9 @@ public class Start()
     public static void Rest(Player player)
     {
         Console.Clear();
-        if (player.NowHP == player.MaxHP && player.NowMP ==player.MaxMP) Console.WriteLine("이미 체력과 마나가 가득찼습니다.(아무 키나 눌러 확인)");
+        if (player.NowHP == player.MaxHP && player.NowMP ==player.MaxMP) Utility.ColorWrite("이미 체력과 마나가 가득찼습니다.(아무 키나 눌러 확인)\n",ConsoleColor.Red);
         //플레이어의 체력이 가득찼을 경우 불필요하게 골드를 소모하지 못하게 막음
-        else if (player.Gold < restNum) Console.WriteLine("골드가 부족합니다. \"썩 꺼져.\" 늙은이가 말합니다.(아무 키나 눌러 확인)");
+        else if (player.Gold < restNum) Utility.ColorWrite("골드가 부족합니다. \"썩 꺼져.\" 늙은이가 말합니다.(아무 키나 눌러 확인)\n", ConsoleColor.Red);
         //골드가 부족하면 휴식하지 못하게 함
         else
         {
@@ -236,7 +235,11 @@ public class Start()
             {
                 player.NowMP = player.MaxMP;//만약 현재 MP 가 최해 MP를 넘어서면 최대 MP로 설정
             }
-            Console.WriteLine($"체력이 {healAmount} / 마나가 {mPhealAmount}회복되었습니다. \"또 오라고.\" 늙은이가 켈켈 웃습니다.(아무 키나 눌러 확인)");
+            Console.Write("체력이 ");
+            Utility.ColorWrite($"{healAmount}", ConsoleColor.Green);
+            Console.Write(" / 마나가 ");
+            Utility.ColorWrite($"{mPhealAmount}", ConsoleColor.Blue);
+            Console.WriteLine(" 회복되었습니다. \"또 오라고.\" 늙은이가 켈켈 웃습니다(아무 키나 눌러 확인)");
         }
         Console.ReadKey();
     }
