@@ -74,32 +74,45 @@ public class GameManager
         new Weapon{Name = "옥구슬[등급: 일반★] ", ItemID = 100, Price = 2000, ItemType = 5, Inform = "금속으로 만들어졌으며 센터에 품질좋은 옥구슬이 박혀있다, 장착하면 보호받는 기분이 든다. ",
         IsEquiped = false, ShopFlag = false, MonsterFlag = false, NRareFlag = true  ,Atk = 4.5f},//Normal
 
-        new Weapon{Name = "[등급: 일반★★★] ", ItemID = 100, Price = 2000, ItemType = 3, Inform = " ",
+        new Weapon{Name = "푸바오 목각인형[등급: 일반★★★] ", ItemID = 100, Price = 2000, ItemType = 3, Inform = "대상을 그리워하는 마음으로 조각한거 같다. ",
         IsEquiped = false, ShopFlag = false, MonsterFlag = false, NRareFlag = true  ,Atk = 4.5f},//Normal
 
-        new Weapon{Name = "[등급: 일반★★★] ", ItemID = 100, Price = 2000, ItemType = 3, Inform = " ",
+        new Weapon{Name = "검은 판금 그리브[등급: 일반★★★] ", ItemID = 100, Price = 2000, ItemType = 3, Inform = "흑철을 사용해서 만든 그리브 이다. 흑철은 마법의 저항력과 강철보다 높은 내구성을 가지고있다. ",
         IsEquiped = false, ShopFlag = false, MonsterFlag = false, NRareFlag = true  ,Atk = 4.5f},//Normal
 
-        new Weapon{Name = "[등급: 일반★★★] ", ItemID = 100, Price = 2000, ItemType = 3, Inform = " ",
+        new Weapon{Name = "검은 경번갑 갑옷[등급: 일반★★★] ", ItemID = 100, Price = 2000, ItemType = 3, Inform = "사슬 갑옷에 철판을 유기적으로 결합시킨 갑옷이다 재료는 흑철이 들어가서 검은색을 띈다. ",
         IsEquiped = false, ShopFlag = false, MonsterFlag = false, NRareFlag = true  ,Atk = 4.5f},//Normal
 
-        new Weapon{Name = "[등급: 일반★★★] ", ItemID = 100, Price = 2000, ItemType = 3, Inform = " ",
+        new Weapon{Name = "부셔진 옥구슬[등급: 일반★★★] ", ItemID = 100, Price = 2000, ItemType = 3, Inform = "부셔져 버린 상태는 상품 가치가 낮다. ",
         IsEquiped = false, ShopFlag = false, MonsterFlag = false, NRareFlag = true  ,Atk = 4.5f},//Normal
 
-        new Weapon{Name = "[등급: 일반★★★] ", ItemID = 100, Price = 2000, ItemType = 3, Inform = " ",
+        new Weapon{Name = "튜터의 회고록[등급: 일반★★★] ", ItemID = 100, Price = 2000, ItemType = 3, Inform = "누군가의 회고록이다 무슨 내용인지 모르겠다. ",
         IsEquiped = false, ShopFlag = false, MonsterFlag = false, NRareFlag = true  ,Atk = 4.5f},//Normal
 
-        new Weapon{Name = "[등급: 일반★★★] ", ItemID = 100, Price = , ItemType = 3, Inform = " ",
+        new Weapon{Name = "튜터의 목검[등급: 일반★★★] ", ItemID = 100, Price = , ItemType = 3, Inform = "튜터라는 전사가 쓰던 목검이다 생각보다 튼튼해서 쓸만하다. ",
         IsEquiped = false, ShopFlag = false, MonsterFlag = false, NRareFlag = true  ,Atk = 4.5f},//Normal
 
-        new Weapon{Name = "[등급: 일반★★★] ", ItemID = 100, Price = , ItemType = 3, Inform = " ",
+        new Weapon{Name = "EIEI 목걸이[등급: 일반★★★] ", ItemID = 100, Price = , ItemType = 3, Inform = "유명한 길드 이름의 은목걸이 누구나 가입하고 싶어 하는 길드다. ",
         IsEquiped = false, ShopFlag = false, MonsterFlag = false, NRareFlag = true  ,Atk = 4.5f},//Normal
 
+        new Weapon{Name = "란세어[등급: 일반★★★] ", ItemID = , Price = , ItemType = , Inform = "만들기가 어려운 창이다, 생긴 모양은 양옆 블레이드가 크고 갈고리처럼 휘어있으며 창 중앙에 길고 뾰족한 50cm 창날이 있다. ",
+        IsEquiped = false, ShopFlag = false, MonsterFlag = false, HRareFlag = true  ,Atk = 4.5f},//Hard
+
+        new Weapon{Name = "천산 어린갑[등급: 일반★★★] ", ItemID = , Price = , ItemType = , Inform = "천산갑이라는 동물의 비늘을 겹겹이 쌓아서 안감과 연결해서 만들었다 천산갑의 비늘은 상당히 고가이며 내구성도 매우 높아 부르는 게 값이다. ",
+        IsEquiped = false, ShopFlag = false, MonsterFlag = false, HRareFlag = true  ,Atk = 4.5f},//Hard
+
+        new Weapon{Name = "역전의 마티네 목걸이[등급: 일반★★★] ", ItemID = , Price = , ItemType = , Inform = "쌍검이 크로스로 겹쳐있는 모양이 달려있는 황금 목걸이다, 착용하면 힘이 솟아난다. ",
+        IsEquiped = false, ShopFlag = false, MonsterFlag = false, HRareFlag = true  ,Atk = 4.5f},//Hard
+
+        new Weapon{Name = "붉은루비[등급: 일반★★★] ", ItemID = , Price = , ItemType = , Inform = "붉은 빛이 매혹적이다 값 비싸게 판매가 가능하다.  ",
+        IsEquiped = false, ShopFlag = false, MonsterFlag = false, HRareFlag = true  ,Atk = 4.5f},//Hard
 
 
+        new Weapon{Name = "본 엘더 헬름투구[등급: 전설] ", ItemID = , Price = , ItemType = , Inform = "본 엘더리치가 소유하고있던 어느 전사의 전리품이다 외부는 검은색 뼈 내부는 강철로 만들어진 헬름투구이다. ",
+        IsEquiped = false, ShopFlag = false, MonsterFlag = false, HRareFlag = true  ,Atk = 4.5f},//Hard
 
-
-
+        new Weapon{Name = "자하드가가의 플라멘슈베르트[등급: 전설] ", ItemID = , Price = , ItemType = , Inform = "양손대검이다, 검날이 불꽃의 형태를띄고 이 검으로 베이면 살점이 떨어져 나간다. 숙련도가 많이 필요한 검이다. ",
+        IsEquiped = false, ShopFlag = false, MonsterFlag = false, HRareFlag = true  ,Atk = 4.5f},//Hard
 
         new Weapon{Name = "링 오브 고블린 로드[등급: 전설] ", ItemID = 100, Price = 10000, ItemType = 5, Inform = "고블린 로드가 장착했던 반지이다, 청동으로 만들었으며 센터에 옥이 박혀있는형태 바디 부분에 룬 문자가 새겨져다. ",
         IsEquiped = false, ShopFlag = false, MonsterFlag = false, ERareFlag = true  ,Atk = 4.5f},//Easy
