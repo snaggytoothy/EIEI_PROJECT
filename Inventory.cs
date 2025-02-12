@@ -127,6 +127,14 @@ public class Inventory
                         gameManager.inventoryConsumables.Remove(gameManager.inventoryConsumables[input - 1]);
                     }
                 }
+                else if(gameManager.inventoryConsumables[input - 1].Count > 0 && gameManager.inventoryConsumables[input - 1].ItemID == 8)
+                {
+                    gameManager.inventoryConsumables[input - 1].RecoverMP(gameManager.player); //해당 아이템 사용
+                    if (gameManager.inventoryConsumables[input - 1].Count == 0)
+                    {
+                        gameManager.inventoryConsumables.Remove(gameManager.inventoryConsumables[input - 1]);
+                    }
+                }
                 else
                 {
                     Console.WriteLine("지금은 사용할 수 없는 아이템입니다.(아무 키나 눌러 확인)");

@@ -738,14 +738,16 @@ class Dungeon
                 }
                 else if (gameManager.inventoryConsumables[input - 1].ItemID == 8)
                 {
+                    gameManager.inventoryConsumables[input - 1].RecoverMP(gameManager.player);
+                }
+                else if (gameManager.inventoryConsumables[input - 1].ItemID == 9)
+                {
                     gameManager.inventoryConsumables[input - 1].Use(gameManager, 10);
                 }
                 if (gameManager.inventoryConsumables[input - 1].Count == 0)
                 {
                     gameManager.inventoryConsumables.Remove(gameManager.inventoryConsumables[input - 1]);
                 }
-                Console.WriteLine("Anykey. 진행");
-                Console.ReadKey();
             }
         }
     }
