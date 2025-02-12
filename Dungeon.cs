@@ -255,29 +255,47 @@ class Dungeon
         {
             if (wave == 1)
             {
-                monsterNum = random.Next(2, 4);
+                monsterNum = random.Next(0 , 2);
                 for (int i = 0; i < monsterNum; i++)
                 {
-                    monsterID = random.Next(5, 9);
+                    monsterID = random.Next(8, 11);
+                    monsters.Add(new Monster(monsterID));
+                }
+                monsterNum = random.Next(3, 4);
+                for (int i = 0; i < monsterNum; i++)
+                {
+                    monsterID = random.Next(5, 8);
                     monsters.Add(new Monster(monsterID));
                 }
 
             }
             else if (wave == 2)
             {
+                monsterNum = random.Next(0, 2);
+                for (int i = 0; i < monsterNum; i++)
+                {
+                    monsterID = random.Next(8, 11);
+                    monsters.Add(new Monster(monsterID));
+                }
                 monsterNum = random.Next(4, 6);
                 for (int i = 0; i < monsterNum; i++)
                 {
-                    monsterID = random.Next(5, 9);
+                    monsterID = random.Next(5, 8);
                     monsters.Add(new Monster(monsterID));
                 }
             }
             else if (wave == 3)
             {
-                monsterNum = random.Next(5, 8);
+                monsterNum = random.Next(2, 4);
                 for (int i = 0; i < monsterNum; i++)
                 {
                     monsterID = random.Next(5, 9);
+                    monsters.Add(new Monster(monsterID));
+                }
+                monsterNum = random.Next(6, 8);
+                for (int i = 0; i < monsterNum; i++)
+                {
+                    monsterID = random.Next(5, 8);
                     monsters.Add(new Monster(monsterID));
                 }
                 monsterNum = random.Next(9, 11);
@@ -649,11 +667,11 @@ class Dungeon
                                                 //Console.WriteLine("{0}킬째", gameManager.killCount);
                                                 if (monsters[(input - 1) - (int)(gameManager.mySkils[skillInput - 1].range / 2) + i].IsDead == true)
                                                 {
-                                                    Console.WriteLine("HP {0} -> Dead", tempHP);
+                                                    Console.WriteLine("HP {0} -> Dead", tempHP[i]);
                                                 }
                                                 else
                                                 {
-                                                    Console.WriteLine("HP {0} -> {1}", tempHP, monsters[(input - 1) - (int)(gameManager.mySkils[skillInput - 1].range / 2) + i].NowHP);
+                                                    Console.WriteLine("HP {0} -> {1}", tempHP[i], monsters[(input - 1) - (int)(gameManager.mySkils[skillInput - 1].range / 2) + i].NowHP);
                                                 }
                                             }
                                             Console.WriteLine();
