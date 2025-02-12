@@ -61,6 +61,7 @@ class Dungeon
             Thread.Sleep(1000); // 1초 시간지연
         }
 
+        Console.Clear();
         Console.WriteLine();
         Console.WriteLine("길가던 할아버지도 입장할수있는");
         Console.Write("난이도 ");
@@ -115,6 +116,7 @@ class Dungeon
             Thread.Sleep(1000); // 1초 시간지연
         }
 
+        Console.Clear();
         Console.WriteLine();
         Console.WriteLine("이제 모험가라고 불릴 수 있는 단계입니다.");
         Console.Write("난이도 ");
@@ -171,6 +173,7 @@ class Dungeon
             Thread.Sleep(1000); // 1초 시간지연
         }
 
+        Console.Clear();
         Console.WriteLine();
         Console.WriteLine("상당히 무서운 몬스터들이 있는 던전입니다 조심하세요 순식간에 사망합니다.");
         Console.Write("난이도 ");
