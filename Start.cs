@@ -195,7 +195,7 @@ public class Start()
         else
         {
             Random ran = new Random();
-            int healAmount = ran.Next(30, 51);//힐량은 30~50 랜덤 값
+            int healAmount = ran.Next(50, 71);//힐량은 50~70 랜덤 값
             int mPhealAmount = ran.Next(30,51);//마나 회복량도 30~50 랜덤 값
             player.Gold -= restNum;
             player.NowHP += healAmount;

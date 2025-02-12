@@ -29,6 +29,8 @@ public class Consumable : Item // 소비 아이템 클래스
     
     public void Use(Player player)
     {
+        Random random = new Random();
+        BuffAmount = random.Next(40, 51);
         player.NowHP += BuffAmount;
         if(player.NowHP > player.MaxHP)
         {
