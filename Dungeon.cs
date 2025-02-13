@@ -861,7 +861,7 @@ class Dungeon
                 }
                 if (gameManager.player.NowHP <= 0)
                 {
-                    Utility.ColorWrite($"HP {(gameManager.player.NowHP).ToString("n1")} -> Dead", ConsoleColor.DarkGray);
+                    Utility.ColorWrite($"HP {(gameManager.player.NowHP).ToString("n1")} -> 치명상을 받고 피를 흘리며 도주!", ConsoleColor.DarkGray);
                 }
                 else
                 {
@@ -1000,6 +1000,16 @@ class Dungeon
             if (gameManager.inventoryEquipment.Count > 1)
             {
                 Console.WriteLine("잃어버린 아이템 : {0}", tempName);
+            }
+            Console.Clear();
+            Utility.ColorWrite("휴식중", ConsoleColor.Yellow);
+            String str = ".";
+
+            for (int i = 0; i < 4; i++)
+            {
+                Thread.Sleep(1000);
+                Console.Write(str);
+
             }
             Console.WriteLine();
             Console.WriteLine("1. 게임종료");
