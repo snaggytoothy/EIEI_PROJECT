@@ -1001,7 +1001,6 @@ class Dungeon
             {
                 Console.WriteLine("잃어버린 아이템 : {0}", tempName);
             }
-            Console.Clear();
             Utility.ColorWrite("휴식중", ConsoleColor.Yellow);
             String str = ".";
 
@@ -1011,6 +1010,8 @@ class Dungeon
                 Console.Write(str);
 
             }
+
+            Console.Clear();
             Console.WriteLine();
             Console.WriteLine("1. 게임종료");
             Console.WriteLine("2. 던전 재시작");
