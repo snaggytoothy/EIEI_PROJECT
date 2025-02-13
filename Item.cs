@@ -75,16 +75,25 @@ public class Consumable : Item // 소비 아이템 클래스
 
     public void Use(GameManager gameManager, int extraAtk) // 공격력 버프 물약
     {
-        Count--;
-        BuffAmount = extraAtk.ToString();
-        gameManager.player.Atk += int.Parse(BuffAmount);
-        Utility.ColorWrite("공격력이 10 올랐습니다.(아무 키나 눌러 확인)\n",ConsoleColor.Magenta);
-        Buff buff = new Buff(EndAtkBuff, gameManager, 3);
-        Console.ReadKey();
+        if (!gameManager.IsBuffOn)
+        {
+            Count--;
+            gameManager.IsBuffOn = true;
+            BuffAmount = extraAtk.ToString();
+            gameManager.player.Atk += int.Parse(BuffAmount);
+            Utility.ColorWrite("공격력이 10 올랐습니다.(아무 키나 눌러 확인)\n", ConsoleColor.Magenta);
+            Buff buff = new Buff(EndAtkBuff, gameManager, 3);
+            Console.ReadKey();
+        }
+        else
+        {
+            Utility.ColorWrite("이미 물약의 효능을 받고 있습니다.(아무 키나 눌러 확인)\n", ConsoleColor.Red);
+        }
     }
     private void EndAtkBuff(GameManager gameManager)
     {
         gameManager.player.Atk -= int.Parse(BuffAmount);
+        gameManager.IsBuffOn = false;
         Utility.ColorWrite("사냥꾼의 물약이 효능을 다했습니다.(아무 키나 눌러 확인)\n", ConsoleColor.DarkMagenta);
         Console.ReadKey();
     }
