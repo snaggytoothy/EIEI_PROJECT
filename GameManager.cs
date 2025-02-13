@@ -145,7 +145,7 @@ public class GameManager
         IsEquiped = false, ShopFlag = false, MonsterFlag = false, ERareFlag = true  ,Atk = 2.3f},//Easy
 
         new Armor{Name = "본 엘더 헬름투구[등급: 전설] ", ItemID = 101, Price = 8300, ItemType = 4, Inform = "본 엘더리치가 소유하고있던 어느 전사의 전리품이다 외부는 검은색 뼈 내부는 강철로 만들어진 헬름투구이다. ",
-        IsEquiped = false, ShopFlag = false, MonsterFlag = false, HRareFlag = true  ,Def = 2.5f},//Normal
+        IsEquiped = false, ShopFlag = false, MonsterFlag = false, NRareFlag = true  ,Def = 2.5f},//Normal
 
         new Weapon{Name = "자하드가가의 플라멘슈베르트[등급: 전설] ", ItemID = 102, Price =25000, ItemType = 0, Inform = "양손대검이다, 검날이 불꽃의 형태를띄고 이 검으로 베이면 살점이 떨어져 나간다. 숙련도가 많이 필요한 검이다. ",
         IsEquiped = false, ShopFlag = false, MonsterFlag = false, HRareFlag = true  ,Atk = 10f},//Hard
