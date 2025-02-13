@@ -314,7 +314,7 @@ public class Store
                 float sellNum = equipItem.Price * 0.85f; //판매 가격 설정
                 string sellPrice = sellNum.ToString("N0"); //판매 가격을 소수점 위로 출력되게 함
                 Console.Write($" {strNum}{equipItem.ChangeEquipMark()} {equipItem.Name} | {str} +{equipItem.GetValue()}| {equipItem.Inform} | ");
-                Utility.ColorWrite($"{sellPrice} G", ConsoleColor.Yellow);
+                Utility.ColorWrite($"{sellPrice} G\n", ConsoleColor.Yellow);
                 consumableNum += 1;
             }
 
