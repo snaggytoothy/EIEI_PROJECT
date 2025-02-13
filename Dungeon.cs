@@ -509,11 +509,11 @@ class Dungeon
                     }
                     if (monsters[input - 1].IsDead == true)
                     {
-                        Utility.ColorWrite($"HP {tempHP} -> Dead\n", ConsoleColor.DarkRed);
+                        Utility.ColorWrite($"HP {tempHP.ToString("n1")} -> Dead\n", ConsoleColor.DarkRed);
                     }
                     else
                     {
-                        Utility.ColorWrite($"HP {tempHP} -> {monsters[input - 1].NowHP}\n", ConsoleColor.DarkRed);
+                        Utility.ColorWrite($"HP {tempHP.ToString("n1")} -> {monsters[input - 1].NowHP.ToString("n1")}\n", ConsoleColor.DarkRed);
                     }
 
                     Console.WriteLine();
@@ -600,17 +600,17 @@ class Dungeon
 
                                     if (monsters[input - 1].IsDead == true)
                                     {
-                                        Utility.ColorWrite($"HP {tempHP} -> Dead\n", ConsoleColor.DarkRed);
+                                        Utility.ColorWrite($"HP {tempHP.ToString("n1")} -> Dead\n", ConsoleColor.DarkRed);
                                     }
                                     else
                                     {
-                                        Utility.ColorWrite($"HP {tempHP} -> {monsters[input - 1].NowHP}\n", ConsoleColor.DarkRed);
+                                        Utility.ColorWrite($"HP {tempHP.ToString("n1")} -> {monsters[input - 1].NowHP.ToString("n1")}\n", ConsoleColor.DarkRed);
                                     }
 
                                     Console.WriteLine();
                                     Console.WriteLine();
                                     gameManager.player.NowMP = gameManager.player.NowMP - gameManager.mySkils[skillInput - 1].Cost;
-                                    Utility.ColorWrite($"PlayerMP : {tempMP} -> {gameManager.player.NowMP}\n", ConsoleColor.Blue);
+                                    Utility.ColorWrite($"PlayerMP : {tempMP.ToString("n1")} -> {gameManager.player.NowMP.ToString("n1")}\n", ConsoleColor.Blue);
                                     Console.WriteLine("아무 키나 눌러 확인");
                                     Console.ReadKey();
                                     return true;
@@ -679,12 +679,12 @@ class Dungeon
                                                 gameManager.killCount = gameManager.killCount + 1;
                                                 if (monsters[(input - 1) - (int)(gameManager.mySkils[skillInput - 1].range / 2) + i].IsDead == true)
                                                 {
-                                                    Utility.ColorWrite($"HP {tempHP[i]} -> Dead\n", ConsoleColor.DarkRed);
+                                                    Utility.ColorWrite($"HP {tempHP[i].ToString("n1")} -> Dead\n", ConsoleColor.DarkRed);
                                                 }
                                             }
                                             else
                                             {
-                                                Utility.ColorWrite($"HP {tempHP[i]} -> {monsters[(input - 1) - (int)(gameManager.mySkils[skillInput - 1].range / 2) + i].NowHP}\n", ConsoleColor.DarkRed);
+                                                Utility.ColorWrite($"HP {tempHP[i].ToString("n1")} -> {monsters[(input - 1) - (int)(gameManager.mySkils[skillInput - 1].range / 2) + i].NowHP.ToString("n1")}\n", ConsoleColor.DarkRed);
                                             }
                                             Console.ReadKey();
                                         }
@@ -783,7 +783,7 @@ class Dungeon
 
             Utility.ColorWrite("[내정보]\n", ConsoleColor.Green);
             Console.WriteLine("Lv. {0}  {1}  ({2})", gameManager.player.Level, gameManager.player.Name, gameManager.player.Job);
-            Console.WriteLine("HP {0} / {1}", gameManager.player.NowHP.ToString("n0"), gameManager.player.MaxHP);
+            Console.WriteLine("HP {0} / {1}", gameManager.player.NowHP.ToString("n1"), gameManager.player.MaxHP);
             Console.WriteLine("MP {0} / {1}", gameManager.player.NowMP, gameManager.player.MaxMP);
             Console.WriteLine();
             Console.WriteLine("0. 턴종료");
@@ -861,11 +861,11 @@ class Dungeon
                 }
                 if (gameManager.player.NowHP <= 0)
                 {
-                    Utility.ColorWrite($"HP {(gameManager.player.NowHP).ToString("n0")} -> Dead", ConsoleColor.DarkGray);
+                    Utility.ColorWrite($"HP {(gameManager.player.NowHP).ToString("n1")} -> Dead", ConsoleColor.DarkGray);
                 }
                 else
                 {
-                    Utility.ColorWrite($"HP {tempHP.ToString("n0")} -> {gameManager.player.NowHP.ToString("n0")}", ConsoleColor.DarkMagenta);
+                    Utility.ColorWrite($"HP {tempHP.ToString("n1")} -> {gameManager.player.NowHP.ToString("n1")}", ConsoleColor.DarkMagenta);
                 }
 
                 Console.WriteLine("아무 키나 눌러 확인");
@@ -892,7 +892,7 @@ class Dungeon
         gameManager.player.Gold = gameManager.player.Gold + resultExp * 20;
 
         //체력경험치 증가 표시
-        Utility.ColorWrite($"HP : {tempPlayer.NowHP.ToString("n0")} -> {gameManager.player.NowHP.ToString("n0")}\n", ConsoleColor.DarkGreen);
+        Utility.ColorWrite($"HP : {tempPlayer.NowHP.ToString("n1")} -> {gameManager.player.NowHP.ToString("n1")}\n", ConsoleColor.DarkGreen);
         if (gameManager.player.Level != tempPlayer.Level)
         {
             Utility.ColorWrite($"Lv. {tempPlayer.Level} -> {gameManager.player.Level}\n", ConsoleColor.Green);
@@ -995,7 +995,7 @@ class Dungeon
             //유저스탯 - 레벨 / 이름
             Console.WriteLine("Lv. {0} NAME : {1}", gameManager.player.Level, gameManager.player.Name);
             //입장시점 HP -> 0
-            Console.WriteLine("HP {0} -> {1}", tempPlayer.NowHP, gameManager.player.NowHP);
+            Console.WriteLine("HP {0} -> {1}", tempPlayer.NowHP.ToString("n1"), gameManager.player.NowHP.ToString("n1"));
             Console.WriteLine("Gold {0} -> {1}", tempPlayer.Gold, gameManager.player.Gold);
             if (gameManager.inventoryEquipment.Count > 1)
             {
