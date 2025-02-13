@@ -783,7 +783,7 @@ class Dungeon
 
             Utility.ColorWrite("[내정보]\n", ConsoleColor.Green);
             Console.WriteLine("Lv. {0}  {1}  ({2})", gameManager.player.Level, gameManager.player.Name, gameManager.player.Job);
-            Console.WriteLine("HP {0} / {1}", gameManager.player.NowHP, gameManager.player.MaxHP);
+            Console.WriteLine("HP {0} / {1}", gameManager.player.NowHP.ToString("n0"), gameManager.player.MaxHP);
             Console.WriteLine("MP {0} / {1}", gameManager.player.NowMP, gameManager.player.MaxMP);
             Console.WriteLine();
             Console.WriteLine("0. 턴종료");
@@ -861,11 +861,11 @@ class Dungeon
                 }
                 if (gameManager.player.NowHP <= 0)
                 {
-                    Utility.ColorWrite($"HP {gameManager.player.NowHP} -> Dead", ConsoleColor.DarkGray);
+                    Utility.ColorWrite($"HP {(gameManager.player.NowHP).ToString("n0")} -> Dead", ConsoleColor.DarkGray);
                 }
                 else
                 {
-                    Utility.ColorWrite($"HP {tempHP} -> {gameManager.player.NowHP}", ConsoleColor.DarkMagenta);
+                    Utility.ColorWrite($"HP {tempHP.ToString("n0")} -> {gameManager.player.NowHP.ToString("n0")}", ConsoleColor.DarkMagenta);
                 }
 
                 Console.WriteLine("아무 키나 눌러 확인");
@@ -892,7 +892,7 @@ class Dungeon
         gameManager.player.Gold = gameManager.player.Gold + resultExp * 20;
 
         //체력경험치 증가 표시
-        Utility.ColorWrite($"HP : {tempPlayer.NowHP} -> {gameManager.player.NowHP}\n", ConsoleColor.DarkGreen);
+        Utility.ColorWrite($"HP : {tempPlayer.NowHP.ToString("n0")} -> {gameManager.player.NowHP.ToString("n0")}\n", ConsoleColor.DarkGreen);
         if (gameManager.player.Level != tempPlayer.Level)
         {
             Utility.ColorWrite($"Lv. {tempPlayer.Level} -> {gameManager.player.Level}\n", ConsoleColor.Green);
@@ -989,7 +989,7 @@ class Dungeon
             Console.Clear();
             Utility.ColorWrite("[GameOver]\n", ConsoleColor.Red);
             Console.WriteLine("던전공략 실패");
-            Console.WriteLine("캐릭터가 사망하였습니다.");
+            Console.WriteLine("캐릭터가 치명상을 입고 도주하였습니다!!");
             Console.WriteLine();
 
             //유저스탯 - 레벨 / 이름
