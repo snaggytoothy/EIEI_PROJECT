@@ -63,7 +63,9 @@ class Dungeon
 
         Console.Clear();
         Console.WriteLine();
-        Console.WriteLine("길가던 할아버지도 입장할수있는");
+        Console.WriteLine("[던전의 정보]");
+        Console.WriteLine("고블린 무리를 지배하는 고블린 로드는 강력한 지휘력과 전투 능력을 갖춘 존재다.\n그보다 더욱 위협적인 홉 고블린 로드는 인간과 맞먹는 체격과 지능, 그리고 압도적인 힘을 지닌다.\n일반 고블린이 홉 고블린으로 진화하듯, 로드 역시 더 강한 존재로 변하며 군대를 이끈다.\nLv.18 이하의 모험가라면? 전투를 고민하기 전에 즉시 도망치는 것이 현명할 것이다.\n진화 단계 : 고블린 → 홉 고블린, 고블린 로드 → 홉 고블린 로드");
+        Console.WriteLine();
         Console.Write("난이도 ");
         Utility.ColorWrite("쉬움", ConsoleColor.Green);
         Console.WriteLine("입니다.");
@@ -117,8 +119,10 @@ class Dungeon
         }
 
         Console.Clear();
+        Console.WriteLine("");
+        Console.WriteLine("[던전의 정보]");
+        Console.WriteLine("이곳은 언데드가 배회하는 저주의 던전. 어둠 속에서 스켈레톤 군단이 무리를 지어 움직인다.\r\n가장 두려운 존재는, 금기의 마법을 탐구하다 저주에 잠식된 한 마법사였다.\r\n그는 먹지도, 자지도 못한 채 연구에 몰두하다가 결국 육체를 잃고 언데드가 되었다.\r\n그러나 죽음조차 그의 집념을 꺾지 못했고, 그는 이제 불멸의 존재로 남았다.\r\n그의 실험실에서는 아직도 마법의 촛불이 흔들리고, 금단의 연구는 계속되고 있다.\r\n그리고… 어둠 속에서 그의 차가운 붉은 눈이 모험가를 지켜보고 있다...");
         Console.WriteLine();
-        Console.WriteLine("이제 모험가라고 불릴 수 있는 단계입니다.");
         Console.Write("난이도 ");
         Utility.ColorWrite("보통", ConsoleColor.Yellow);
         Console.WriteLine("입니다.");
@@ -175,7 +179,9 @@ class Dungeon
 
         Console.Clear();
         Console.WriteLine();
-        Console.WriteLine("상당히 무서운 몬스터들이 있는 던전입니다 조심하세요 순식간에 사망합니다.");
+        Console.WriteLine("[던전의 정보]");
+        Console.WriteLine("이 던전에는 산양인 비스트맨들이 무리를 지어 살고 있으며, 그들의 본능은 포식과 사냥이다.\r\n그들은 평균 2미터의 거구에 산양의 머리와 다리, 인간의 상반신을 가진 흉포한 존재.\r\n특히 인간을 선호하는 식성을 가졌으며, 둔기로 전투불능 상태로 만든 뒤 신선한 상태에서 먹는 것을 즐긴다.\r\n그중에서도 가장 두려운 존재는 헌터 비스트맨, 수많은 사냥을 통해 경험을 쌓은 헌터 베테랑은 진화를 한다.\r\n그들은 골드 등급 모험가조차 사냥할 수 있는 강적으로, 그들의 영역에 발을 들인다면 결코 살아남기 어렵다.\r\n\r\n그러나 더 깊이 들어가면 더욱 끔찍한 소문이 들려온다…\r\n던전의 심연에는 ‘악마종 바폰메트인’이 비스트맨들을 지배하고 있다는 전설이 존재한다.\r\n만약 그 소문이 사실이라면, 전투는 어리석은 선택이며 오직 도망만이 유일한 생존법이다.\r\n");
+        Console.WriteLine();
         Console.Write("난이도 ");
         Utility.ColorWrite("어려움", ConsoleColor.Red);
         Console.WriteLine("입니다.");
