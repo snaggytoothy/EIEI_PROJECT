@@ -191,6 +191,7 @@ public class GameManager
     public int killCount = 0;
     public int attackCount = 0;
     public int exitFlag = 0;
+    public bool IsBuffOn = false;
     private int turnCount;
     public event Action onChangeTurnCount;
     public int TurnCount
